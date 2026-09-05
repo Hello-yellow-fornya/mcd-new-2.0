@@ -1,39 +1,56 @@
 import type { Metadata } from 'next';
-import { site } from '@/lib/site';
-import styles from './page.module.css';
+import { Band, Benefits, ClaimsStrip, Faq, HomeHero, IndependenceLine, ReviewBand, SiteFooter, SiteHeader, Steps, ThemUs } from '@/components';
+import { hero } from '@/data/copy';
+import { absoluteUrl, site } from '@/lib/site';
 
 export const metadata: Metadata = {
+  title: `${site.name}: non-fault accident? Choose the smarter way to claim`,
+  description: site.description,
   alternates: { canonical: '/' },
+  openGraph: { title: 'Non-fault accident? Choose the smarter way to claim.', description: site.description, url: '/' },
 };
 
 /**
- * Step 1 placeholder. The hero copy is the signed-off H1/H2 pair from
- * CLAUDE.md §0 so the type, the highlight bar and the CTA pair can be checked;
- * the real homepage lands in step 3 from design/mcd-2-0-homepage-*.html.
+ * The homepage (§0 order): hero → ClaimsStrip → review band → the band →
+ * their/your table with its CTA pair → independence line → benefits → how it
+ * works → FAQ → footer. Desktop from design/mcd-2-0-homepage-concept.html,
+ * mobile from design/mcd-2-0-homepage-mobile-v2.html, where the hero is
+ * fold-locked so the strip ends on the fold.
  */
 export default function HomePage() {
+  const jsonLd = [
+    {
+      '@context': 'https://schema.org',
+      '@type': 'Organization',
+      name: site.name,
+      legalName: site.legalName,
+      url: absoluteUrl('/'),
+      telephone: site.phone.e164,
+      areaServed: 'GB',
+    },
+    {
+      '@context': 'https://schema.org',
+      '@type': 'WebSite',
+      name: site.name,
+      url: absoluteUrl('/'),
+    },
+  ];
   return (
-    <main id="main">
-      <section className={styles.hero}>
-        <div className={`wrap ${styles.inner}`}>
-          <p className={styles.eyebrow}>Independent accident management</p>
-          <h1>
-            <span className="hl">Non-fault</span> accident?
-          </h1>
-          <h2 className={styles.sub}>
-            Choose the <span className="hl">smarter way</span> to claim.
-          </h2>
-          <div className={styles.ctas}>
-            <a className={`${styles.btn} ${styles.btnInk}`} href="/claim-now/">
-              Start your non-fault claim
-            </a>
-            <a className={`${styles.btn} ${styles.btnYellow}`} href={site.phone.href}>
-              Call {site.phone.display}
-            </a>
-          </div>
-          <p className={styles.wait}>Lines open 24/7. A person in the UK picks up.</p>
-        </div>
-      </section>
-    </main>
+    <>
+      <SiteHeader />
+      <main id="main">
+        <HomeHero h1={hero.h1} h2={hero.h2} />
+        <ClaimsStrip />
+        <ReviewBand />
+        <Band />
+        <ThemUs />
+        <IndependenceLine />
+        <Benefits />
+        <Steps />
+        <Faq />
+      </main>
+      <SiteFooter />
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }} />
+    </>
   );
 }

@@ -1,0 +1,15 @@
+.section {
+  background: var(--cream);
+  padding: var(--section-pad) 0;
+}
+
+.p {
+  margin: 16px 0 24px;
+  color: var(--muted);
+}
+
+.ctas {
+  display: flex;
+  gap: 12px;
+  flex-wrap: wrap;
+}
