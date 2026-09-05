@@ -24,7 +24,7 @@ pnpm test:e2e       # Playwright, against a production build (run `pnpm exec pla
 
 ## Environments and staging
 
-The site runs on the Vercel project's own `*.vercel.app` URL. There is no custom domain, and there is no Railway service for 2.0.
+The Vercel project is **`mcd-new-2-0`** (team `fornya`), production at `https://mcd-new-2-0.vercel.app`. There is no custom domain, and there is no Railway service for 2.0.
 
 | | production (`main`, `.vercel.app`) | preview (every branch and PR) |
 |---|---|---|
@@ -33,7 +33,7 @@ The site runs on the Vercel project's own `*.vercel.app` URL. There is no custom
 | `X-Robots-Tag: noindex, nofollow`, `<meta name="robots">`, disallow-all `robots.txt` | yes | yes |
 | Canonical URLs | `NEXT_PUBLIC_SITE_URL` (the `.vercel.app` URL) | same |
 
-- **Set `NEXT_PUBLIC_SITE_URL` in Vercel** to the project's production URL (for example `https://mcd-new-2-0.vercel.app`). Unset, the site falls back to `VERCEL_PROJECT_PRODUCTION_URL`, then to `http://localhost:3000`.
+- **Set `NEXT_PUBLIC_SITE_URL` in Vercel** to `https://mcd-new-2-0.vercel.app` for all environments. Unset, the site falls back to `VERCEL_PROJECT_PRODUCTION_URL`, then to `http://localhost:3000`.
 - The noindex is keyed off the request host against `NEXT_PUBLIC_SITE_URL`, never off `VERCEL_ENV` (`src/lib/host.ts`). While that URL is a `.vercel.app` address, every host is staging: `src/middleware.ts` sets the header, `src/app/robots.ts` serves disallow-all, and the root layout renders the noindex meta. When a real domain is set in that one variable and attached to the project, requests from that host (with or without `www`) become live and everything else stays noindexed. `tests/unit/staging.test.ts` and `tests/e2e/staging.spec.ts` cover both sides.
 - `/claim/*` carries `noindex, nofollow` on every host (`next.config.ts`).
 - Deployment protection is a Vercel project setting (Settings → Deployment Protection). It sits on top of the noindex, not instead of it.
@@ -67,7 +67,7 @@ tests/e2e/              Playwright (390×844, 430×932 and desktop projects)
 
 ## Deploy
 
-Push to a branch and open a PR: Vercel builds a preview and comments the URL. Merging to `main` deploys the production build, which stays at the `*.vercel.app` address, protected and noindexed. `pnpm build` runs the content and CSS lints first and stops on a hit.
+Push to a branch and open a PR: Vercel (`mcd-new-2-0`) builds a preview at `mcd-new-2-0-git-<branch>-fornya.vercel.app` and comments the URL on the PR. Merging to `main` deploys the production build, which stays at the `*.vercel.app` address, protected and noindexed. `pnpm build` runs the content and CSS lints first and stops on a hit.
 
 ## Go-live checklist (appendix §2a)
 
