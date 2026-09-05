@@ -11,7 +11,7 @@ export default async function robots(): Promise<MetadataRoute.Robots> {
   const h = await headers();
   const host = h.get('x-forwarded-host') ?? h.get('host');
   return {
-    rules: isLiveHost(host) ? { userAgent: '*', allow: '/', disallow: ['/claim/'] } : { userAgent: '*', disallow: '/' },
+    rules: isLiveHost(host) ? { userAgent: '*', allow: '/', disallow: ['/claim/', '/styleguide/'] } : { userAgent: '*', disallow: '/' },
     sitemap: absoluteUrl('/sitemap.xml'),
   };
 }

@@ -1,0 +1,86 @@
+.foot {
+  background: var(--cream);
+  border-top: 1px solid var(--line);
+  padding: 56px 0 40px;
+  font-size: 15px;
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: 1.4fr 1fr 1fr 1fr 1fr;
+  gap: 28px;
+}
+
+.strap {
+  margin-top: 12px;
+  color: var(--muted);
+}
+
+.phone {
+  margin-top: 10px;
+  font-weight: var(--w-bold);
+}
+
+.phone a {
+  text-decoration: none;
+}
+
+.reassure {
+  margin-top: 4px;
+  color: var(--muted);
+  font-size: 13px;
+}
+
+/* Archivo Black 13px, ochre, tracked (mockup .foot h4) in sentence case. */
+.h4 {
+  font-family: var(--display);
+  font-weight: var(--w-display);
+  font-size: 13px;
+  letter-spacing: 0.06em;
+  margin-bottom: 10px;
+  color: var(--ochre);
+}
+
+.list {
+  list-style: none;
+}
+
+.list li {
+  margin-bottom: 6px;
+}
+
+.list a {
+  text-decoration: none;
+}
+
+.list a:hover {
+  text-decoration: underline;
+  text-decoration-color: var(--yellow);
+  text-decoration-thickness: 2px;
+}
+
+.soon {
+  color: var(--muted);
+}
+
+.legal {
+  font-size: 12px;
+  color: var(--muted);
+  margin-top: 28px;
+  max-width: 100ch;
+}
+
+.todo {
+  color: var(--ochre);
+  font-weight: var(--w-bold);
+}
+
+@media (max-width: 820px) {
+  .grid {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .grid > div:first-child {
+    grid-column: 1 / -1;
+  }
+}

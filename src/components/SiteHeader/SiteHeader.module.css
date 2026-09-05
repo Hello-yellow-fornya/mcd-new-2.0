@@ -1,0 +1,256 @@
+/* Sticky cream bar with a hairline (mockup .nav). */
+.nav {
+  position: sticky;
+  top: 0;
+  z-index: 20;
+  background: var(--cream);
+  border-bottom: 1px solid var(--line);
+}
+
+.row {
+  display: flex;
+  align-items: center;
+  gap: 18px;
+  min-height: var(--nav-h);
+}
+
+/* Section links: Archivo 700 14px, 2px underline, yellow when active (mockup .links). */
+.links {
+  display: flex;
+  gap: 16px;
+  margin-left: auto;
+  font-size: 14px;
+  font-weight: var(--w-bold);
+}
+
+.link {
+  display: inline-block;
+  white-space: nowrap;
+  padding: 6px 0;
+  border: 0;
+  border-bottom: 2px solid transparent;
+  background: none;
+  color: var(--ink);
+  font: inherit;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.link b {
+  font-weight: var(--w-regular);
+  font-size: 11px;
+  margin-left: 2px;
+}
+
+.on {
+  border-bottom-color: var(--yellow);
+}
+
+.soon {
+  color: var(--muted);
+  cursor: default;
+}
+
+/* Services dropdown: opens on hover and keyboard focus, no script. */
+.menu {
+  position: relative;
+}
+
+.dropdown {
+  position: absolute;
+  top: 100%;
+  left: -12px;
+  min-width: 220px;
+  margin-top: 6px;
+  padding: 8px 0;
+  list-style: none;
+  background: var(--white);
+  border: 1px solid var(--line);
+  border-radius: 14px;
+  box-shadow: var(--shadow-float);
+  display: none;
+  z-index: 21;
+}
+
+.menu:hover .dropdown,
+.menu:focus-within .dropdown {
+  display: block;
+}
+
+.dropdown li a,
+.dropdown li span {
+  display: block;
+  padding: 8px 16px;
+  font-weight: var(--w-bold);
+  font-size: 14px;
+  text-decoration: none;
+  white-space: nowrap;
+}
+
+.dropdown li a:hover {
+  background: var(--cream);
+}
+
+/* The white proof chip: 11px bold, hairline border, green dot (mockup .proofnav). */
+.proof {
+  display: flex;
+  gap: 10px;
+  font-size: 11px;
+  font-weight: var(--w-bold);
+  white-space: nowrap;
+  padding: 5px 10px;
+  border-radius: var(--r-pill);
+  background: var(--white);
+  border: 1px solid var(--line);
+}
+
+.dot {
+  display: inline-block;
+  width: 7px;
+  height: 7px;
+  border-radius: var(--r-circle);
+  background: var(--green);
+  margin-right: 5px;
+  vertical-align: 1px;
+}
+
+
+.call,
+.start {
+  flex: none;
+}
+
+/* Mobile controls: hidden on desktop. */
+.mobile {
+  display: none;
+}
+
+@media (max-width: 1180px) {
+  .call {
+    display: none;
+  }
+}
+
+@media (max-width: 820px) {
+  .row {
+    gap: 12px;
+    padding: 0 14px 0 16px;
+    height: var(--nav-h);
+  }
+
+  .links,
+  .chip,
+  .call,
+  .start {
+    display: none;
+  }
+
+  .mobile {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-left: auto;
+  }
+
+  /* Ink "Call now" pill: 34px, 13px, 14px icon (mobile mockup .pill.sm). */
+  .callNow {
+    min-height: 34px;
+    padding: 0 12px;
+    font-size: 13px;
+    gap: 7px;
+  }
+
+  .callNow svg {
+    width: 14px;
+    height: 14px;
+  }
+}
+
+/* Burger: 22×16, three 2px bars (mobile mockup .burger), inside a 44px target. */
+.burger {
+  width: 44px;
+  height: 44px;
+  margin-right: -11px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 5px;
+  background: none;
+  border: 0;
+  padding: 0;
+  cursor: pointer;
+}
+
+.bar,
+.barOpen {
+  display: block;
+  width: 22px;
+  height: 2px;
+  border-radius: 2px;
+  background: var(--ink);
+  transition: transform var(--motion), opacity var(--motion);
+}
+
+.barOpen:nth-child(1) {
+  transform: translateY(7px) rotate(45deg);
+}
+
+.barOpen:nth-child(2) {
+  opacity: 0;
+}
+
+.barOpen:nth-child(3) {
+  transform: translateY(-7px) rotate(-45deg);
+}
+
+/* The drawer: full width on cream under the bar (design/mcd-2-0-nav-options.png). */
+.drawer {
+  position: fixed;
+  left: 0;
+  right: 0;
+  top: var(--nav-h);
+  bottom: 0;
+  background: var(--cream);
+  border-top: 1px solid var(--line);
+  padding: 16px 18px 24px;
+  overflow-y: auto;
+  z-index: 20;
+}
+
+.drawerProof {
+  display: flex;
+  gap: 10px;
+  font-size: 12px;
+  font-weight: var(--w-bold);
+  color: var(--ink);
+  padding: 0 0 10px;
+}
+
+.drawerList {
+  list-style: none;
+  border-top: 1px solid var(--line);
+}
+
+.drawerList li {
+  border-bottom: 1px solid var(--line);
+}
+
+.drawerList a,
+.drawerList span {
+  display: block;
+  padding: 16px 0;
+  font-weight: var(--w-bold);
+  font-size: 18px;
+  text-decoration: none;
+}
+
+.drawerCtas {
+  display: grid;
+  gap: 10px;
+  margin-top: 22px;
+}
+
+.drawerCtas > * {
+  min-height: 56px;
+}

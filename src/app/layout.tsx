@@ -3,6 +3,7 @@ import { body, display } from '@/fonts';
 import { site, siteUrl } from '@/lib/site';
 import { isStagingSite } from '@/lib/host';
 import { HostRobots } from '@/components/Robots/HostRobots';
+import { Sprite } from '@/components/Icon/Sprite';
 import '@/styles/tokens.css';
 import './globals.css';
 
@@ -37,6 +38,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         <a className="skip" href="#main">
           Skip to content
         </a>
+        <Sprite />
         {children}
         <HostRobots />
       </body>

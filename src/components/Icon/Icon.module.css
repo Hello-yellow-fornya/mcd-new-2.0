@@ -1,0 +1,35 @@
+.icon {
+  width: 1em;
+  height: 1em;
+  fill: currentColor;
+  flex: none;
+  display: inline-block;
+  vertical-align: middle;
+}
+
+.circle {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: var(--r-circle);
+  flex: none;
+}
+
+/* --ic-bg feeds the two-tone icons so their inner strokes match the circle. */
+.ink {
+  --ic-bg: var(--ink);
+  background: var(--ink);
+  color: var(--yellow);
+}
+
+.yellow {
+  --ic-bg: var(--yellow);
+  background: var(--yellow);
+  color: var(--on-yellow);
+}
+
+.pale {
+  --ic-bg: var(--pale);
+  background: var(--pale);
+  color: var(--ochre);
+}

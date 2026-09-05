@@ -1,0 +1,39 @@
+.label {
+  font-size: 12px;
+  font-weight: var(--w-bold);
+  color: var(--ochre);
+  padding: 8px 24px;
+  background: var(--pale);
+  border-top: 1px solid var(--line);
+  border-bottom: 1px solid var(--line);
+}
+
+.section {
+  padding: 40px 0 64px;
+}
+
+.section .label {
+  margin: 24px -24px 16px;
+}
+
+.row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  align-items: center;
+}
+
+.onInk {
+  background: var(--ink);
+  padding: 16px;
+  border-radius: var(--r-card);
+  margin-top: 12px;
+}
+
+.gridWrap {
+  max-width: 520px;
+  margin-top: 16px;
+  padding: 24px;
+  background: var(--cream);
+  border-radius: var(--r-card-lg);
+}
