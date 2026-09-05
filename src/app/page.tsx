@@ -15,7 +15,7 @@ export default function HomePage() {
   return (
     <main id="main">
       <section className={styles.hero}>
-        <div className="wrap">
+        <div className={`wrap ${styles.inner}`}>
           <p className={styles.eyebrow}>Independent accident management</p>
           <h1>
             <span className="hl">Non-fault</span> accident?

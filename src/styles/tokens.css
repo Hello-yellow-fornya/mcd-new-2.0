@@ -6,8 +6,9 @@
   --font-body on <html>.
 
   No coral, no marine, no shards, no photography in the hero (§0). The type
-  scale below is provisional until the mockups in design/ are reproduced in
-  step 2, which is where the exact sizes come from.
+  scale, button and strip sizes are read from the signed-off mockups in
+  design/ (mcd-2-0-homepage-concept.html for desktop, mcd-2-0-homepage-mobile-v2.html
+  for mobile).
 */
 :root {
   /* §0 Colour — one bright (yellow), one functional (green). */
@@ -19,7 +20,8 @@
   --muted: #54524a;  /* secondary text */
   --line: #e6e2d6;   /* hairlines and borders */
   --green: #7dc24a;  /* functional "handled"/tick state only */
-  --white: #ffffff;  /* cards, the header chip, text on ink */
+  --white: #ffffff;  /* page body (the mockups set body #fff), cards on cream, the header chip, text on ink */
+  --text-soft: #3b3a33; /* card and FAQ body copy in the mockups (.card p, details .a) */
 
   --ink-rgb: 25, 24, 15;       /* for scrims and tints: rgba(var(--ink-rgb), .2) */
   --yellow-rgb: 243, 205, 62;
@@ -43,23 +45,25 @@
   --w-regular: 400;
   --w-bold: 700;
 
-  /* Provisional scale — reconciled against design/ in step 2. */
-  --fs-h1: clamp(38px, 6vw, 76px);
-  --lh-h1: 0.98;
-  --ls-h1: -0.02em;
-  --fs-h2: clamp(26px, 3.2vw, 40px);
+  /* Scale, from the mockups. Display faces: line-height 1.05, tracking -0.025em. */
+  --fs-h1: clamp(48px, 6.2vw, 84px);      /* hero H1 (desktop mockup h1); 54px on mobile */
+  --lh-h1: 1.02;
+  --ls-h1: -0.025em;
+  --fs-h1-sub: clamp(22px, 2.4vw, 32px);  /* the H2 under the H1 (.h2), line-height 1.2, tracking -0.02em */
+  --lh-h1-sub: 1.2;
+  --fs-h2: clamp(28px, 3.4vw, 40px);      /* section H2 */
   --lh-h2: 1.05;
-  --ls-h2: -0.015em;
-  --fs-h3: clamp(20px, 1.6vw, 22px);
+  --ls-h2: -0.025em;
+  --fs-h3: 21px;                          /* card H3 (.card h3) */
   --lh-h3: 1.15;
-  --fs-big: clamp(48px, 7vw, 96px);
+  --fs-band: clamp(28px, 3.6vw, 44px);    /* the band's three lines and its chip, line-height 1.08 */
   --fs-body: 17px;
   --lh-body: 1.6;
   --measure: 65ch;
   --fs-small: 13px;
-  --fs-label: 15px;
+  --fs-label: 14px;                       /* proof rows, nav links, table heads */
   --fs-btn: 16px;
-  --fs-btn-lg: 18px;
+  --fs-btn-sm: 14px;                      /* nav pills, band pills */
 
   /* §0 Highlight: a yellow bar under one or two words. Never a box behind text
      except the band's chip. Applied by the .hl class in globals.css. */
@@ -73,15 +77,27 @@
   --grid-max: 1140px;
   --gutter: 24px;
   --nav-h: 84px;         /* §0 header: 84px desktop, 64px mobile */
-  --logo-h: 34px;        /* §0 logo: 34px desktop, 30px mobile */
+  --logo-h: 34px;        /* §0 logo: 34px desktop, 30px mobile (font-size of the MOTOR line) */
+  --strip-h: 52px;       /* the ClaimsStrip on mobile; the hero is fold-locked against nav + strip */
+  --hero-pad: 56px 24px 52px; /* desktop hero (.hero .wrap padding) */
 
-  /* Appendix §3 shape */
-  --r-card: 20px;
-  --r-photo: 24px;
+  /* Shape, from the mockups */
+  --r-card: 18px;        /* proof cards, review cards, step cards */
+  --r-card-lg: 22px;     /* benefit cards */
+  --r-chip: 8px;         /* the band's chip */
   --r-reg: 14px;
   --r-pill: 999px;
   --r-circle: 50%;
   --border: 1px solid var(--line);
+
+  /* Buttons and circles, from the mockups */
+  --btn-h: 52px;         /* .btn min-height; 56px on the mobile hero call pill */
+  --btn-h-sm: 44px;      /* nav pills */
+  --btn-h-band: 42px;    /* the band's outlined pills */
+  --btn-pad: 24px;
+  --btn-gap: 10px;
+  --icon-circle: 48px;   /* .gic: ink circle, yellow icon */
+  --icon-circle-sm: 30px; /* .si in the ClaimsStrip: yellow circle, ink icon */
 
   /* Elevation — none on static elements; one soft shadow on floating elements only. */
   --shadow-float: 0 18px 40px rgba(var(--ink-rgb), 0.2);
@@ -95,7 +111,6 @@
   --focus-ring-on-dark: 2px solid var(--white);
   --focus-offset: 2px;
   --touch-min: 44px;
-  --btn-min: 48px;
 
   /* Breakpoint used by the mockups: 820px. Media queries cannot read custom
      properties, so the value is repeated in component CSS as @media (max-width: 820px). */
@@ -107,6 +122,12 @@
     --section-pad: 48px;
     --nav-h: 64px;
     --logo-h: 30px;
+    --fs-h1: 54px;
+    --lh-h1: 1.08;
+    --fs-h1-sub: 19px;
+    --lh-h1-sub: 1.3;
+    --fs-h3: 20px;
+    --btn-h-sm: 34px;
   }
 }
 

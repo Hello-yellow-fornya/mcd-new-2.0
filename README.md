@@ -43,7 +43,7 @@ The site runs on the Vercel project's own `*.vercel.app` URL. There is no custom
 
 ```
 CLAUDE.md               the build brief
-design/                 signed-off HTML mockups, nav and font options, the logo (to be added)
+design/                 signed-off HTML mockups, nav and font options, the logo
 content/                MDX pages with frontmatter (from step 5)
 content.rules.json      content lint rules (appendix §10)
 scripts/                lint-content.mjs, lint-css.mjs
@@ -57,7 +57,7 @@ tests/e2e/              Playwright (390×844, 430×932 and desktop projects)
 
 ## Design tokens
 
-`src/styles/tokens.css` holds the §0 values: ink, yellow, cream, pale, ochre, muted, line, green; the contrast pairings (`--on-yellow`, `--on-ink`, `--on-ink-button`, …); Archivo Black and Archivo; the highlight bar; radii, grid, spacing, motion and the focus ring. The type scale is provisional until step 2 reproduces the mockups. Components use tokens, never raw values. Five rules are enforced by `pnpm lint:css` rather than documented:
+`src/styles/tokens.css` holds the §0 values: ink, yellow, cream, pale, ochre, muted, line, green; the contrast pairings (`--on-yellow`, `--on-ink`, `--on-ink-button`, …); Archivo Black and Archivo; the highlight bar; radii, grid, spacing, motion and the focus ring, with the type scale, button heights, circle sizes and the mobile nav and strip heights read from the mockups in `design/`. The page body is white and the hero, nav and cards take cream, as the mockups set them. Components use tokens, never raw values. Five rules are enforced by `pnpm lint:css` rather than documented:
 
 - sentence case everywhere: no `text-transform: uppercase`
 - never italics

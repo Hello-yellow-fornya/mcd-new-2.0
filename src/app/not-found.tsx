@@ -10,7 +10,7 @@ export default function NotFound() {
   return (
     <main id="main">
       <section className={styles.hero}>
-        <div className="wrap">
+        <div className={`wrap ${styles.inner}`}>
           <h1>That page isn’t here.</h1>
           <p>The link may be old, or the page hasn’t been written yet. If you’ve been hit by someone else, the number still works.</p>
           <div className={styles.ctas}>

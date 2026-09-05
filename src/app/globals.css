@@ -8,9 +8,10 @@
   padding: 0;
 }
 
+/* The mockups set the page body white; hero, nav, cards and footer take cream. */
 html {
   -webkit-text-size-adjust: 100%;
-  background: var(--cream);
+  background: var(--white);
   color-scheme: light;
 }
 
@@ -25,7 +26,7 @@ body {
   font-size: var(--fs-body);
   line-height: var(--lh-body);
   color: var(--ink);
-  background: var(--cream);
+  background: var(--white);
   -webkit-font-smoothing: antialiased;
 }
 
