@@ -9,4 +9,4 @@ The visual and structural spec for 2.0, reproduced as components, never redesign
 - `mcd-logo-motor-mark.png`, `mcd-logo-mono-and-square.png` — the logo (yellow disc, ink spokes)
 - `mcd-2-0-font-options.png` — C is the pairing
 
-Not yet in the repo as of step 1. Steps 2 to 4 are built from these files.
+Steps 2 to 4 are built from these files.
