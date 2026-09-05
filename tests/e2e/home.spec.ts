@@ -38,14 +38,14 @@ test('mobile: the hero is fold-locked and the ClaimsStrip ends on the fold', asy
   const header = await page.locator('[data-site-header]').boundingBox();
   const hero = await page.locator('[data-hero]').boundingBox();
   const strip = await page.locator('[data-claims-strip]').boundingBox();
-  expect(Math.round(header!.height)).toBe(65);
+  expect(Math.round(header!.height)).toBe(64);
   expect(Math.round(strip!.height)).toBe(52);
   // Everything in the hero sits above the strip, and the strip's bottom edge is the fold.
   for (const sel of ['h1', 'h2', '[data-proof-grid]', 'a[data-cta="call"]:visible', 'a[data-cta="start-online"]']) {
     const box = await page.locator(`[data-hero] ${sel}`).first().boundingBox();
     expect(box!.y + box!.height, `${sel} above the strip`).toBeLessThanOrEqual(strip!.y + 0.5);
   }
-  expect(Math.abs(strip!.y + strip!.height - vh), 'strip bottom edge on the fold').toBeLessThanOrEqual(1);
+  expect(strip!.y + strip!.height, 'strip bottom edge on the fold').toBeCloseTo(vh, 0);
   expect(hero!.y + hero!.height).toBeCloseTo(strip!.y, 0);
 });
 

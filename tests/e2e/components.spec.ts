@@ -14,7 +14,7 @@ test('header: sticky cream bar at 84px desktop / 64px mobile with the logo hard 
   await expect(header).toHaveCSS('position', 'sticky');
   await expect(header).toHaveCSS('background-color', 'rgb(247, 245, 239)');
   const box = await header.boundingBox();
-  expect(Math.round(box!.height)).toBe(isMobile(page) ? 65 : 85); // + the 1px hairline
+  expect(Math.round(box!.height)).toBe(isMobile(page) ? 64 : 85); // mobile includes the hairline; desktop adds it
   const logo = header.locator('a[aria-label="Motor Claims Department, home"]');
   await expect(logo).toBeVisible();
   const motor = logo.locator('span > span').first();
