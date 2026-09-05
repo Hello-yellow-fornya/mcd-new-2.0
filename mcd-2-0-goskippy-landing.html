@@ -1,0 +1,169 @@
+<!doctype html><html lang="en-GB"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Insured with GoSkippy? Call us before you call your insurer — MCD 2.0</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo+Black&family=Archivo:wght@400;600;700&display=swap" rel="stylesheet">
+<style>
+:root{--ink:#19180F;--yel:#F3CD3E;--cream:#F7F5EF;--pale:#FBF0BF;--ochre:#B08900;--muted:#54524A;--line:#E6E2D6}
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:'Archivo',system-ui,sans-serif;color:var(--ink);background:#fff;font-size:17px;line-height:1.6}
+a{color:inherit;text-decoration:none}
+.wrap{max-width:1140px;margin:0 auto;padding:0 24px}
+h1,h2,h3{font-family:'Archivo Black',sans-serif;font-weight:400;line-height:1.05;letter-spacing:-0.025em}
+h2{font-size:clamp(28px,3.4vw,40px)}
+.ul{text-decoration:underline;text-decoration-color:var(--yel);text-decoration-thickness:.14em;text-underline-offset:.08em;text-decoration-skip-ink:none}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:10px;border-radius:999px;padding:0 24px;font-weight:700;font-size:16px;min-height:52px}
+.btn-ink{background:var(--ink);color:var(--yel)} .btn-yel{background:var(--yel);color:var(--ink)}
+.ph{width:18px;height:18px;fill:currentColor}
+.sec-cta{display:flex;gap:12px;flex-wrap:wrap;margin-top:28px}
+/* nav */
+.nav{position:sticky;top:0;z-index:20;background:var(--cream);border-bottom:1px solid var(--line)}
+.navrow{display:flex;align-items:center;gap:18px;min-height:84px}
+.mcd{display:inline-flex;flex-direction:column;line-height:1;color:var(--ink)}
+.mcd1{font-family:'Archivo Black';font-size:34px;letter-spacing:-0.035em;white-space:nowrap}
+.mcd .om{display:inline-block;width:.74em;height:.74em;vertical-align:-0.02em}
+.mcd2{font-weight:700;font-size:10.5px;letter-spacing:.14em;margin-top:3px;white-space:nowrap}
+.links{display:flex;gap:16px;margin-left:auto;font-size:14px;font-weight:700}
+.links a{white-space:nowrap;padding:6px 0;border-bottom:2px solid transparent} .links a.on{border-bottom-color:var(--yel)} .links a b{font-weight:400;font-size:11px;margin-left:2px}
+.proofnav{display:flex;gap:10px;font-size:11px;font-weight:700;white-space:nowrap;padding:5px 10px;border-radius:999px;background:#fff;border:1px solid var(--line)}
+.dot{display:inline-block;width:7px;height:7px;border-radius:50%;background:#7DC24A;margin-right:5px}
+.nav .call{display:inline-flex;align-items:center;gap:8px;font-weight:700;font-size:14px;white-space:nowrap;min-height:44px;padding:0 18px;border-radius:999px;background:var(--yel);color:var(--ink)}
+.nav .btn{min-height:44px;padding:0 18px;font-size:14px;white-space:nowrap}
+@media (max-width:1180px){.nav .call{display:none}}
+/* hero */
+.hero{background:var(--cream)}
+.hero .wrap{display:grid;grid-template-columns:1.05fr .95fr;gap:48px;align-items:center;padding:56px 24px 52px}
+h1{font-size:clamp(48px,6.2vw,84px);line-height:1.02;margin-bottom:18px}
+.h2{font-family:'Archivo Black';font-size:clamp(22px,2.4vw,32px);line-height:1.2;margin-bottom:26px;letter-spacing:-0.02em}
+.proof{display:flex;gap:18px;font-size:14px;color:var(--muted);margin-top:14px}
+.proof span{display:inline-flex;align-items:center;gap:7px}
+.pic{width:16px;height:16px;border-radius:50%;background:var(--pale);display:inline-flex;align-items:center;justify-content:center} .pic svg{width:9px;height:9px;fill:var(--ochre)}
+.pgrid{list-style:none;display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.pgrid li{background:#fff;border-radius:18px;padding:22px 16px 20px;text-align:center;display:flex;flex-direction:column;align-items:center;gap:6px}
+.gic{width:48px;height:48px;border-radius:50%;background:var(--ink);color:var(--yel);display:flex;align-items:center;justify-content:center;margin-bottom:4px} .gic svg{width:26px;height:26px}
+.pgrid b{font-family:'Archivo Black';font-weight:400;font-size:17px;line-height:1.15} .gsub{font-size:13.5px;color:var(--muted);line-height:1.35}
+/* strip */
+.ticker{background:var(--ink);color:var(--yel);overflow:hidden;font-weight:700;font-size:16px}
+.ticker .track{display:flex;gap:44px;width:max-content;padding:12px 24px;animation:tk 36s linear infinite}
+.ticker span{display:inline-flex;align-items:center;gap:12px;white-space:nowrap}
+.si{width:30px;height:30px;border-radius:50%;background:var(--yel);color:var(--ink);display:inline-flex;align-items:center;justify-content:center;flex:none} .si svg{width:17px;height:17px}
+@keyframes tk{from{transform:translateX(0)}to{transform:translateX(-50%)}}
+/* reviews */
+.reviews{padding:56px 0 52px;overflow:hidden}
+.rhead{display:flex;align-items:baseline;justify-content:space-between;gap:16px;flex-wrap:wrap;margin-bottom:18px}
+.stars{display:inline-flex;gap:2px} .stars svg{width:14px;height:14px;fill:var(--ochre)}
+.rtrack{display:flex;gap:14px;width:max-content;padding:0 24px;animation:tk 44s linear infinite}
+.rcard{flex:none;width:300px;background:var(--cream);border-radius:18px;padding:18px} .rcard p{font-size:15px;margin:10px 0 12px} .rcard small{font-size:13px;color:var(--muted)} .rcard b{color:var(--ink)}
+/* band + table */
+.band{background:var(--ink);color:#fff;padding:64px 0 60px}
+.band .l0,.band .l1{font-family:'Archivo Black';font-size:clamp(28px,3.6vw,44px);line-height:1.08;letter-spacing:-0.02em;display:block}
+.band .l1{margin-top:.2em}
+.band .l2{display:block;margin-top:.35em}
+.band mark{display:inline-block;background:var(--yel);color:var(--ink);font-family:'Archivo Black';font-size:clamp(28px,3.6vw,44px);line-height:1.05;padding:.06em .18em .1em;border-radius:8px;letter-spacing:-0.02em}
+.band-ctas{display:flex;gap:10px;margin-top:26px}
+.band-call{display:inline-flex;align-items:center;gap:8px;min-height:42px;padding:0 18px;border-radius:999px;border:1.5px solid var(--yel);color:var(--yel);font-weight:700;font-size:14px} .band-call .ph{width:15px;height:15px;fill:var(--yel)}
+.tu{padding:56px 0 48px;background:#fff}
+.tu-head,.tu-row{display:grid;grid-template-columns:1fr 1fr;gap:24px;padding:14px 0;border-bottom:1px solid var(--line)}
+.tu-head{font-size:14px;font-weight:700;color:var(--muted)} .tu-head div:last-child{color:var(--ink)}
+.tu-row>div{display:flex;gap:12px;align-items:flex-start;font-size:16px} .tu-row .them{color:var(--muted)} .tu-row .us{font-weight:700}
+.mk{flex:none;width:26px;height:26px;border-radius:50%;display:flex;align-items:center;justify-content:center} .mk svg{width:15px;height:15px} .mk.ok{background:var(--yel)} .mk.no{border:1.5px solid var(--ink)}
+.indep{background:var(--cream);border-top:1px solid var(--line);border-bottom:1px solid var(--line);font-size:14px;color:var(--muted);padding:12px 0}
+/* benefits + how */
+.sec{padding:64px 0}
+.sub{color:var(--muted);max-width:56ch;margin:10px 0 26px}
+.cards3{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
+.card{background:var(--cream);border-radius:22px;padding:26px} .card .gic{margin-bottom:14px} .card h3{font-size:21px;margin-bottom:8px} .card p{font-size:15px;color:#3B3A33}
+.how{background:var(--cream)}
+.steps{list-style:none;display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-top:8px}
+.steps li{background:#fff;border-radius:18px;padding:20px;display:flex;gap:14px;align-items:flex-start;font-size:16px}
+.steps b{flex:none;width:34px;height:34px;border-radius:50%;background:var(--yel);display:flex;align-items:center;justify-content:center;font-family:'Archivo Black';font-weight:400;font-size:15px}
+/* faq */
+.faq .wrap{display:grid;grid-template-columns:.8fr 1.2fr;gap:48px;padding:64px 24px;align-items:start}
+details{border-top:1px solid var(--line)} details:last-child{border-bottom:1px solid var(--line)}
+summary{list-style:none;cursor:pointer;padding:16px 40px 16px 0;font-weight:700;font-size:18px;position:relative} summary::-webkit-details-marker{display:none}
+summary::after{content:"+";position:absolute;right:0;top:12px;font-size:24px;color:var(--ochre)} details[open] summary::after{content:"\2013"}
+details .a{padding:0 40px 18px 0;color:#3B3A33}
+/* footer */
+.foot{background:var(--cream);border-top:1px solid var(--line);padding:56px 0 40px;font-size:15px}
+.fgrid{display:grid;grid-template-columns:1.4fr 1fr 1fr 1fr 1fr;gap:28px}
+.foot h4{font-family:'Archivo Black';font-weight:400;font-size:13px;letter-spacing:.06em;text-transform:uppercase;margin-bottom:10px;color:var(--ochre)}
+.foot ul{list-style:none} .foot li{margin-bottom:6px} .legal{font-size:12px;color:var(--muted);margin-top:28px;max-width:100ch}
+@media (max-width:820px){.links,.proofnav,.nav .call{display:none}.hero .wrap,.tu-head,.tu-row,.steps,.faq .wrap{grid-template-columns:1fr}.cards3{grid-template-columns:1fr}.fgrid{grid-template-columns:1fr 1fr}}
+</style></head><body>
+<header class="nav"><div class="wrap navrow"><a class="brand" href="/"><span class="mcd"><span class="mcd1">MOT<svg class="om" viewBox="0 0 100 100"><circle cx="50" cy="50" r="50" fill="#F3CD3E"/><line x1="50" y1="50" x2="84.00" y2="50.00" stroke="#19180F" stroke-width="9" stroke-linecap="round"/><line x1="50" y1="50" x2="74.04" y2="74.04" stroke="#19180F" stroke-width="9" stroke-linecap="round"/><line x1="50" y1="50" x2="50.00" y2="84.00" stroke="#19180F" stroke-width="9" stroke-linecap="round"/><line x1="50" y1="50" x2="25.96" y2="74.04" stroke="#19180F" stroke-width="9" stroke-linecap="round"/><line x1="50" y1="50" x2="16.00" y2="50.00" stroke="#19180F" stroke-width="9" stroke-linecap="round"/><line x1="50" y1="50" x2="25.96" y2="25.96" stroke="#19180F" stroke-width="9" stroke-linecap="round"/><line x1="50" y1="50" x2="50.00" y2="16.00" stroke="#19180F" stroke-width="9" stroke-linecap="round"/><line x1="50" y1="50" x2="74.04" y2="25.96" stroke="#19180F" stroke-width="9" stroke-linecap="round"/><circle cx="50" cy="50" r="11" fill="#19180F"/></svg>R</span><span class="mcd2">CLAIMS DEPARTMENT</span></span></a><nav class="links"><a href="#" class="on">How it works</a><a href="#">Non-fault accident</a><a href="#">Services <b>▾</b></a><a href="#">Advice</a><a href="#">About</a></nav><span class="proofnav"><span><i class="dot"></i>Lines open 24/7</span><span>Avg wait 1 min</span></span><a class="call" href="tel:08000480048"><svg viewBox="0 0 24 24" class="ph"><path d="M6.6 10.8a15.2 15.2 0 0 0 6.6 6.6l2.2-2.2a1.3 1.3 0 0 1 1.3-.3c1.2.4 2.5.6 3.8.6a1.3 1.3 0 0 1 1.3 1.3v3.4a1.3 1.3 0 0 1-1.3 1.3A18.3 18.3 0 0 1 2.2 4.5a1.3 1.3 0 0 1 1.3-1.3h3.4a1.3 1.3 0 0 1 1.3 1.3c0 1.3.2 2.6.6 3.8a1.3 1.3 0 0 1-.3 1.3z"/></svg>0800 048 0048</a><a class="btn btn-ink" href="#">Start your claim</a></div></header>
+
+<section class="hero"><div class="wrap">
+  <div>
+    <h1>Insured with <span class="ul">GoSkippy?</span></h1>
+    <p class="h2">Call us before you call your insurer.</p>
+    <div class="sec-cta" style="margin-top:0"><a class="btn btn-ink" href="#">Start your non-fault claim</a><a class="btn btn-yel" href="tel:08000480048"><svg viewBox="0 0 24 24" class="ph"><path d="M6.6 10.8a15.2 15.2 0 0 0 6.6 6.6l2.2-2.2a1.3 1.3 0 0 1 1.3-.3c1.2.4 2.5.6 3.8.6a1.3 1.3 0 0 1 1.3 1.3v3.4a1.3 1.3 0 0 1-1.3 1.3A18.3 18.3 0 0 1 2.2 4.5a1.3 1.3 0 0 1 1.3-1.3h3.4a1.3 1.3 0 0 1 1.3 1.3c0 1.3.2 2.6.6 3.8a1.3 1.3 0 0 1-.3 1.3z"/></svg>Call 0800 048 0048</a></div>
+    <p class="proof"><span><i class="pic"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="6"/></svg></i>Avg wait 1 min</span><span><i class="pic"><svg viewBox="0 0 24 24"><path d="M13 2L4 14h7l-1 8 9-12h-7z"/></svg></i>Fastest way to claim</span></p>
+  </div>
+  <ul class="pgrid">
+    <li><span class="gic"><svg viewBox="0 0 24 24"><path d="M12 2l8 3.2v6.4c0 5-3.6 8.6-8 11.2C7.6 20.2 4 16.6 4 11.6V5.2z" fill="currentColor"/><path d="M8.5 12l2.5 2.5 4.8-4.8" fill="none" stroke="#19180F" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/></svg></span><b>Protect your<br>no claims</b><span class="gsub">Keep your no claims bonus safe.</span></li>
+    <li><span class="gic"><svg viewBox="0 0 24 24"><text x="12" y="19.5" text-anchor="middle" fill="currentColor" style="font-family:Archivo Black,sans-serif;font-size:22px">£</text></svg></span><b>No excess<br>to pay</b><span class="gsub">Our service is free for non-fault drivers.</span></li>
+    <li><span class="gic"><svg viewBox="0 0 24 24"><path d="M4.2 11.5l1.9-5A2.5 2.5 0 0 1 8.4 5h7.2a2.5 2.5 0 0 1 2.3 1.5l1.9 5A2.5 2.5 0 0 1 22 14v4a1.5 1.5 0 0 1-1.5 1.5h-.5a2 2 0 0 1-4 0H8a2 2 0 0 1-4 0h-.5A1.5 1.5 0 0 1 2 18v-4a2.5 2.5 0 0 1 2.2-2.5zM7.1 7.8L6 11h12l-1.1-3.2A.8.8 0 0 0 16.1 7H7.9a.8.8 0 0 0-.8.8zM6 15.5a1.3 1.3 0 1 0 0-2.6 1.3 1.3 0 0 0 0 2.6zm12 0a1.3 1.3 0 1 0 0-2.6 1.3 1.3 0 0 0 0 2.6z" fill="currentColor"/></svg></span><b>Like-for-like<br>replacement</b><span class="gsub">Car, van or bike, whatever your cover.</span></li>
+    <li><span class="gic"><svg viewBox="0 0 24 24"><path d="M13 2L4 14h7l-1 8 9-12h-7z" fill="currentColor"/></svg></span><b>Back on the road<br>within 90 mins</b><span class="gsub">Nationwide recovery and rapid mobilisation.</span></li>
+  </ul>
+</div></section>
+
+<div class="ticker"><div class="track"><span><span class="si"><svg viewBox="0 0 24 24"><path d="M5 12.5l4.5 4.5L19 7.5" fill="none" stroke="currentColor" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>Non-fault claims handled for you</span><span><span class="si"><svg viewBox="0 0 24 24"><text x="12" y="19.5" text-anchor="middle" fill="currentColor" style="font-family:Archivo Black,sans-serif;font-size:22px">£</text></svg></span>No excess to pay</span><span><span class="si"><svg viewBox="0 0 24 24"><path d="M12 2l8 3.2v6.4c0 5-3.6 8.6-8 11.2C7.6 20.2 4 16.6 4 11.6V5.2z" fill="currentColor"/><path d="M8.5 12l2.5 2.5 4.8-4.8" fill="none" stroke="#19180F" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/></svg></span>Keep your no claims bonus</span><span><span class="si"><svg viewBox="0 0 24 24"><path d="M4.2 11.5l1.9-5A2.5 2.5 0 0 1 8.4 5h7.2a2.5 2.5 0 0 1 2.3 1.5l1.9 5A2.5 2.5 0 0 1 22 14v4a1.5 1.5 0 0 1-1.5 1.5h-.5a2 2 0 0 1-4 0H8a2 2 0 0 1-4 0h-.5A1.5 1.5 0 0 1 2 18v-4a2.5 2.5 0 0 1 2.2-2.5zM7.1 7.8L6 11h12l-1.1-3.2A.8.8 0 0 0 16.1 7H7.9a.8.8 0 0 0-.8.8zM6 15.5a1.3 1.3 0 1 0 0-2.6 1.3 1.3 0 0 0 0 2.6zm12 0a1.3 1.3 0 1 0 0-2.6 1.3 1.3 0 0 0 0 2.6z" fill="currentColor"/></svg></span>Like-for-like car from day one</span><span><span class="si"><svg viewBox="0 0 24 24"><path d="M6 2h8l5 5v15H6z" fill="currentColor"/><path d="M9 11h6M9 14.5h6M9 18h4" fill="none" stroke="#F3CD3E" stroke-width="2" stroke-linecap="round"/></svg></span>Nothing on your policy</span><span><span class="si"><svg viewBox="0 0 24 24"><circle cx="12" cy="7.5" r="4.5" fill="currentColor"/><path d="M3.5 21.5c0-4.7 3.8-8 8.5-8s8.5 3.3 8.5 8z" fill="currentColor"/></svg></span>A named UK handler</span><span><span class="si"><svg viewBox="0 0 24 24"><path d="M5 12.5l4.5 4.5L19 7.5" fill="none" stroke="currentColor" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>Non-fault claims handled for you</span><span><span class="si"><svg viewBox="0 0 24 24"><text x="12" y="19.5" text-anchor="middle" fill="currentColor" style="font-family:Archivo Black,sans-serif;font-size:22px">£</text></svg></span>No excess to pay</span><span><span class="si"><svg viewBox="0 0 24 24"><path d="M12 2l8 3.2v6.4c0 5-3.6 8.6-8 11.2C7.6 20.2 4 16.6 4 11.6V5.2z" fill="currentColor"/><path d="M8.5 12l2.5 2.5 4.8-4.8" fill="none" stroke="#19180F" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/></svg></span>Keep your no claims bonus</span><span><span class="si"><svg viewBox="0 0 24 24"><path d="M4.2 11.5l1.9-5A2.5 2.5 0 0 1 8.4 5h7.2a2.5 2.5 0 0 1 2.3 1.5l1.9 5A2.5 2.5 0 0 1 22 14v4a1.5 1.5 0 0 1-1.5 1.5h-.5a2 2 0 0 1-4 0H8a2 2 0 0 1-4 0h-.5A1.5 1.5 0 0 1 2 18v-4a2.5 2.5 0 0 1 2.2-2.5zM7.1 7.8L6 11h12l-1.1-3.2A.8.8 0 0 0 16.1 7H7.9a.8.8 0 0 0-.8.8zM6 15.5a1.3 1.3 0 1 0 0-2.6 1.3 1.3 0 0 0 0 2.6zm12 0a1.3 1.3 0 1 0 0-2.6 1.3 1.3 0 0 0 0 2.6z" fill="currentColor"/></svg></span>Like-for-like car from day one</span><span><span class="si"><svg viewBox="0 0 24 24"><path d="M6 2h8l5 5v15H6z" fill="currentColor"/><path d="M9 11h6M9 14.5h6M9 18h4" fill="none" stroke="#F3CD3E" stroke-width="2" stroke-linecap="round"/></svg></span>Nothing on your policy</span><span><span class="si"><svg viewBox="0 0 24 24"><circle cx="12" cy="7.5" r="4.5" fill="currentColor"/><path d="M3.5 21.5c0-4.7 3.8-8 8.5-8s8.5 3.3 8.5 8z" fill="currentColor"/></svg></span>A named UK handler</span></div></div>
+
+<section class="reviews"><div class="wrap rhead"><h2>What drivers say</h2><p><span class="stars"><svg viewBox="0 0 24 24"><path d="M12 2l3 6.6 7 .8-5.2 4.8 1.4 7L12 17.8 5.8 21.2l1.4-7L2 9.4l7-.8z"/></svg><svg viewBox="0 0 24 24"><path d="M12 2l3 6.6 7 .8-5.2 4.8 1.4 7L12 17.8 5.8 21.2l1.4-7L2 9.4l7-.8z"/></svg><svg viewBox="0 0 24 24"><path d="M12 2l3 6.6 7 .8-5.2 4.8 1.4 7L12 17.8 5.8 21.2l1.4-7L2 9.4l7-.8z"/></svg><svg viewBox="0 0 24 24"><path d="M12 2l3 6.6 7 .8-5.2 4.8 1.4 7L12 17.8 5.8 21.2l1.4-7L2 9.4l7-.8z"/></svg><svg viewBox="0 0 24 24"><path d="M12 2l3 6.6 7 .8-5.2 4.8 1.4 7L12 17.8 5.8 21.2l1.4-7L2 9.4l7-.8z"/></svg></span> <b>4.9</b> · 300+ reviews</p></div><div class="rtrack" id="rt"><article class="rcard"><span class="stars"><svg viewBox="0 0 24 24"><path d="M12 2l3 6.6 7 .8-5.2 4.8 1.4 7L12 17.8 5.8 21.2l1.4-7L2 9.4l7-.8z"/></svg><svg viewBox="0 0 24 24"><path d="M12 2l3 6.6 7 .8-5.2 4.8 1.4 7L12 17.8 5.8 21.2l1.4-7L2 9.4l7-.8z"/></svg><svg viewBox="0 0 24 24"><path d="M12 2l3 6.6 7 .8-5.2 4.8 1.4 7L12 17.8 5.8 21.2l1.4-7L2 9.4l7-.8z"/></svg><svg viewBox="0 0 24 24"><path d="M12 2l3 6.6 7 .8-5.2 4.8 1.4 7L12 17.8 5.8 21.2l1.4-7L2 9.4l7-.8z"/></svg><svg viewBox="0 0 24 24"><path d="M12 2l3 6.6 7 .8-5.2 4.8 1.4 7L12 17.8 5.8 21.2l1.4-7L2 9.4l7-.8z"/></svg></span><p>"Got hit on the school run. One call and they sorted the lot — a car on my drive the next morning."</p><small><b>Sarah M.</b> · Bristol</small></article><article class="rcard"><span class="stars"><svg viewBox="0 0 24 24"><path d="M12 2l3 6.6 7 .8-5.2 4.8 1.4 7L12 17.8 5.8 21.2l1.4-7L2 9.4l7-.8z"/></svg><svg viewBox="0 0 24 24"><path d="M12 2l3 6.6 7 .8-5.2 4.8 1.4 7L12 17.8 5.8 21.2l1.4-7L2 9.4l7-.8z"/></svg><svg viewBox="0 0 24 24"><path d="M12 2l3 6.6 7 .8-5.2 4.8 1.4 7L12 17.8 5.8 21.2l1.4-7L2 9.4l7-.8z"/></svg><svg viewBox="0 0 24 24"><path d="M12 2l3 6.6 7 .8-5.2 4.8 1.4 7L12 17.8 5.8 21.2l1.4-7L2 9.4l7-.8z"/></svg><svg viewBox="0 0 24 24"><path d="M12 2l3 6.6 7 .8-5.2 4.8 1.4 7L12 17.8 5.8 21.2l1.4-7L2 9.4l7-.8z"/></svg></span><p>"No excess, my no claims untouched, and the same person every time I rang."</p><small><b>Daniel K.</b> · Leeds</small></article><article class="rcard"><span class="stars"><svg viewBox="0 0 24 24"><path d="M12 2l3 6.6 7 .8-5.2 4.8 1.4 7L12 17.8 5.8 21.2l1.4-7L2 9.4l7-.8z"/></svg><svg viewBox="0 0 24 24"><path d="M12 2l3 6.6 7 .8-5.2 4.8 1.4 7L12 17.8 5.8 21.2l1.4-7L2 9.4l7-.8z"/></svg><svg viewBox="0 0 24 24"><path d="M12 2l3 6.6 7 .8-5.2 4.8 1.4 7L12 17.8 5.8 21.2l1.4-7L2 9.4l7-.8z"/></svg><svg viewBox="0 0 24 24"><path d="M12 2l3 6.6 7 .8-5.2 4.8 1.4 7L12 17.8 5.8 21.2l1.4-7L2 9.4l7-.8z"/></svg><svg viewBox="0 0 24 24"><path d="M12 2l3 6.6 7 .8-5.2 4.8 1.4 7L12 17.8 5.8 21.2l1.4-7L2 9.4l7-.8z"/></svg></span><p>"The other driver’s insurer rang me within the hour. I told them to speak to MCD."</p><small><b>Priya R.</b> · Croydon</small></article><article class="rcard"><span class="stars"><svg viewBox="0 0 24 24"><path d="M12 2l3 6.6 7 .8-5.2 4.8 1.4 7L12 17.8 5.8 21.2l1.4-7L2 9.4l7-.8z"/></svg><svg viewBox="0 0 24 24"><path d="M12 2l3 6.6 7 .8-5.2 4.8 1.4 7L12 17.8 5.8 21.2l1.4-7L2 9.4l7-.8z"/></svg><svg viewBox="0 0 24 24"><path d="M12 2l3 6.6 7 .8-5.2 4.8 1.4 7L12 17.8 5.8 21.2l1.4-7L2 9.4l7-.8z"/></svg><svg viewBox="0 0 24 24"><path d="M12 2l3 6.6 7 .8-5.2 4.8 1.4 7L12 17.8 5.8 21.2l1.4-7L2 9.4l7-.8z"/></svg><svg viewBox="0 0 24 24"><path d="M12 2l3 6.6 7 .8-5.2 4.8 1.4 7L12 17.8 5.8 21.2l1.4-7L2 9.4l7-.8z"/></svg></span><p>"Van was written off. They kept me in a like-for-like until the payout came through."</p><small><b>Tom H.</b> · Salford</small></article></div></section>
+
+<section class="band"><div class="wrap">
+  <span class="l0">Your insurer has a claims department.</span>
+  <span class="l1">It works for your insurer.</span>
+  <span class="l2"><mark>We work for you.</mark></span>
+  <div class="band-ctas"><a class="band-call" href="#">Start your claim</a><a class="band-call" href="tel:08000480048"><svg viewBox="0 0 24 24" class="ph"><path d="M6.6 10.8a15.2 15.2 0 0 0 6.6 6.6l2.2-2.2a1.3 1.3 0 0 1 1.3-.3c1.2.4 2.5.6 3.8.6a1.3 1.3 0 0 1 1.3 1.3v3.4a1.3 1.3 0 0 1-1.3 1.3A18.3 18.3 0 0 1 2.2 4.5a1.3 1.3 0 0 1 1.3-1.3h3.4a1.3 1.3 0 0 1 1.3 1.3c0 1.3.2 2.6.6 3.8a1.3 1.3 0 0 1-.3 1.3z"/></svg>Call now</a></div>
+</div></section>
+
+<section class="tu"><div class="wrap">
+  <div class="tu-head"><div>Their claims department</div><div>Your claims handler</div></div><div class="tu-row"><div class="them"><span class="mk no"><svg viewBox="0 0 24 24"><path d="M7 7l10 10M17 7L7 17" fill="none" stroke="#19180F" stroke-width="2.6" stroke-linecap="round"/></svg></span><span>Works for your insurer</span></div><div class="us"><span class="mk ok"><svg viewBox="0 0 24 24"><path d="M5 12.5l4.5 4.5L19 7.5" fill="none" stroke="#19180F" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg></span><span>Works for you</span></div></div><div class="tu-row"><div class="them"><span class="mk no"><svg viewBox="0 0 24 24"><path d="M7 7l10 10M17 7L7 17" fill="none" stroke="#19180F" stroke-width="2.6" stroke-linecap="round"/></svg></span><span>A queue, then whoever picks up</span></div><div class="us"><span class="mk ok"><svg viewBox="0 0 24 24"><path d="M5 12.5l4.5 4.5L19 7.5" fill="none" stroke="#19180F" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg></span><span>One named person, UK-based, from first call to keys back</span></div></div><div class="tu-row"><div class="them"><span class="mk no"><svg viewBox="0 0 24 24"><path d="M7 7l10 10M17 7L7 17" fill="none" stroke="#19180F" stroke-width="2.6" stroke-linecap="round"/></svg></span><span>Your excess, paid by you</span></div><div class="us"><span class="mk ok"><svg viewBox="0 0 24 24"><path d="M5 12.5l4.5 4.5L19 7.5" fill="none" stroke="#19180F" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg></span><span>No excess — the other driver’s insurer pays</span></div></div><div class="tu-row"><div class="them"><span class="mk no"><svg viewBox="0 0 24 24"><path d="M7 7l10 10M17 7L7 17" fill="none" stroke="#19180F" stroke-width="2.6" stroke-linecap="round"/></svg></span><span>A claim on your policy</span></div><div class="us"><span class="mk ok"><svg viewBox="0 0 24 24"><path d="M5 12.5l4.5 4.5L19 7.5" fill="none" stroke="#19180F" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg></span><span>Nothing on your policy. Your no-claims untouched</span></div></div><div class="tu-row"><div class="them"><span class="mk no"><svg viewBox="0 0 24 24"><path d="M7 7l10 10M17 7L7 17" fill="none" stroke="#19180F" stroke-width="2.6" stroke-linecap="round"/></svg></span><span>A courtesy car, if you’re covered</span></div><div class="us"><span class="mk ok"><svg viewBox="0 0 24 24"><path d="M5 12.5l4.5 4.5L19 7.5" fill="none" stroke="#19180F" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg></span><span>A like-for-like car, on your drive</span></div></div>
+  <p class="sec-cta"><a class="btn btn-ink" href="#">Start your non-fault claim</a><a class="btn btn-yel" href="tel:08000480048"><svg viewBox="0 0 24 24" class="ph"><path d="M6.6 10.8a15.2 15.2 0 0 0 6.6 6.6l2.2-2.2a1.3 1.3 0 0 1 1.3-.3c1.2.4 2.5.6 3.8.6a1.3 1.3 0 0 1 1.3 1.3v3.4a1.3 1.3 0 0 1-1.3 1.3A18.3 18.3 0 0 1 2.2 4.5a1.3 1.3 0 0 1 1.3-1.3h3.4a1.3 1.3 0 0 1 1.3 1.3c0 1.3.2 2.6.6 3.8a1.3 1.3 0 0 1-.3 1.3z"/></svg>Call 0800 048 0048</a></p>
+</div></section>
+<div class="indep"><div class="wrap">Independent accident management company. Not GoSkippy, not an insurer — we help drivers with any insurer claim from the driver who hit them.</div></div>
+
+<section class="sec"><div class="wrap">
+  <h2>Why make your non-fault claim through us</h2>
+  <p class="sub">Nothing goes through your policy. Here’s what that means for you.</p>
+  <div class="cards3">
+    <div class="card"><span class="gic"><svg viewBox="0 0 24 24"><text x="12" y="19.5" text-anchor="middle" fill="currentColor" style="font-family:Archivo Black,sans-serif;font-size:22px">£</text></svg></span><h3>No excess fees to pay, ever</h3><p>Nothing to pay up front. Nothing to chase back.</p></div>
+    <div class="card"><span class="gic"><svg viewBox="0 0 24 24"><path d="M12 2l8 3.2v6.4c0 5-3.6 8.6-8 11.2C7.6 20.2 4 16.6 4 11.6V5.2z" fill="currentColor"/><path d="M8.5 12l2.5 2.5 4.8-4.8" fill="none" stroke="#19180F" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/></svg></span><h3>Keep your no claims bonus</h3><p>Nothing goes through your policy, so your no-claims is untouched.</p></div>
+    <div class="card"><span class="gic"><svg viewBox="0 0 24 24"><path d="M4.2 11.5l1.9-5A2.5 2.5 0 0 1 8.4 5h7.2a2.5 2.5 0 0 1 2.3 1.5l1.9 5A2.5 2.5 0 0 1 22 14v4a1.5 1.5 0 0 1-1.5 1.5h-.5a2 2 0 0 1-4 0H8a2 2 0 0 1-4 0h-.5A1.5 1.5 0 0 1 2 18v-4a2.5 2.5 0 0 1 2.2-2.5zM7.1 7.8L6 11h12l-1.1-3.2A.8.8 0 0 0 16.1 7H7.9a.8.8 0 0 0-.8.8zM6 15.5a1.3 1.3 0 1 0 0-2.6 1.3 1.3 0 0 0 0 2.6zm12 0a1.3 1.3 0 1 0 0-2.6 1.3 1.3 0 0 0 0 2.6z" fill="currentColor"/></svg></span><h3>Like-for-like car hire, 100% guaranteed</h3><p>Delivered to your drive. If yours is written off, you keep it until the money lands.</p></div>
+  </div>
+  <p class="sec-cta"><a class="btn btn-ink" href="#">Start your non-fault claim</a><a class="btn btn-yel" href="tel:08000480048"><svg viewBox="0 0 24 24" class="ph"><path d="M6.6 10.8a15.2 15.2 0 0 0 6.6 6.6l2.2-2.2a1.3 1.3 0 0 1 1.3-.3c1.2.4 2.5.6 3.8.6a1.3 1.3 0 0 1 1.3 1.3v3.4a1.3 1.3 0 0 1-1.3 1.3A18.3 18.3 0 0 1 2.2 4.5a1.3 1.3 0 0 1 1.3-1.3h3.4a1.3 1.3 0 0 1 1.3 1.3c0 1.3.2 2.6.6 3.8a1.3 1.3 0 0 1-.3 1.3z"/></svg>Call 0800 048 0048</a></p>
+</div></section>
+
+<section class="sec how"><div class="wrap">
+  <h2>How it works</h2>
+  <p class="sub"><b>Someone hit you. Their insurer has to put it right — not yours.</b> Most people don’t know that. We claim from their insurer instead.</p>
+  <ol class="steps">
+    <li><b>1</b><span><strong>Tell us what happened.</strong> One call, or your reg. That’s your bit done.</span></li>
+    <li><b>2</b><span><strong>Your handler takes it on.</strong> One person, in the UK, deals with the other driver’s insurer. If they ring you, send them to us.</span></li>
+    <li><b>3</b><span><strong>We put you back in a car.</strong> Like-for-like, on your drive, while yours is repaired.</span></li>
+    <li><b>4</b><span><strong>They pay. Not you.</strong> No excess, nothing on your policy, your no-claims untouched.</span></li>
+  </ol>
+  <p class="sec-cta"><a class="btn btn-ink" href="#">Start your non-fault claim</a><a class="btn btn-yel" href="tel:08000480048"><svg viewBox="0 0 24 24" class="ph"><path d="M6.6 10.8a15.2 15.2 0 0 0 6.6 6.6l2.2-2.2a1.3 1.3 0 0 1 1.3-.3c1.2.4 2.5.6 3.8.6a1.3 1.3 0 0 1 1.3 1.3v3.4a1.3 1.3 0 0 1-1.3 1.3A18.3 18.3 0 0 1 2.2 4.5a1.3 1.3 0 0 1 1.3-1.3h3.4a1.3 1.3 0 0 1 1.3 1.3c0 1.3.2 2.6.6 3.8a1.3 1.3 0 0 1-.3 1.3z"/></svg>Call 0800 048 0048</a></p>
+</div></section>
+
+<section class="faq"><div class="wrap">
+  <div><h2>Frequently asked questions</h2><p class="sub">The catch, and everything else people ask.</p></div>
+  <div>
+    <details open><summary>What’s the catch?</summary><div class="a">We recover our costs from the at-fault driver’s insurer, which is why it costs you nothing. If they refuse to accept fault, we argue it for you. In the rare case that fault can’t be established, you could be asked to cover the hire charges — which is why we tell you on the first call whether your claim is one we’d take on.</div></details>
+    <details><summary>Do I still have to speak to my insurer?</summary><div class="a">Only to let them know it happened. That’s a notification, not a claim. We handle everything else, including the call you’ll get from the other driver’s insurer.</div></details>
+    <details><summary>Will my premium go up?</summary><div class="a">Nothing goes through your policy, so there’s no claim on it. You’ll still need to tell your insurer about the incident at renewal, and how they price that is up to them. We won’t pretend otherwise.</div></details>
+    <details><summary>Are you an insurer?</summary><div class="a">No. We don’t sell insurance. We just make it pay.</div></details>
+  </div>
+</div></section>
+
+<footer class="foot"><div class="wrap">
+  <div class="fgrid">
+    <div><a class="brand" href="/"><span class="mcd"><span class="mcd1">MOT<svg class="om" viewBox="0 0 100 100"><circle cx="50" cy="50" r="50" fill="#F3CD3E"/><line x1="50" y1="50" x2="84.00" y2="50.00" stroke="#19180F" stroke-width="9" stroke-linecap="round"/><line x1="50" y1="50" x2="74.04" y2="74.04" stroke="#19180F" stroke-width="9" stroke-linecap="round"/><line x1="50" y1="50" x2="50.00" y2="84.00" stroke="#19180F" stroke-width="9" stroke-linecap="round"/><line x1="50" y1="50" x2="25.96" y2="74.04" stroke="#19180F" stroke-width="9" stroke-linecap="round"/><line x1="50" y1="50" x2="16.00" y2="50.00" stroke="#19180F" stroke-width="9" stroke-linecap="round"/><line x1="50" y1="50" x2="25.96" y2="25.96" stroke="#19180F" stroke-width="9" stroke-linecap="round"/><line x1="50" y1="50" x2="50.00" y2="16.00" stroke="#19180F" stroke-width="9" stroke-linecap="round"/><line x1="50" y1="50" x2="74.04" y2="25.96" stroke="#19180F" stroke-width="9" stroke-linecap="round"/><circle cx="50" cy="50" r="11" fill="#19180F"/></svg>R</span><span class="mcd2">CLAIMS DEPARTMENT</span></span></a><p style="margin-top:12px;color:var(--muted)">The claims department on your side.</p><p style="margin-top:10px;font-weight:700">0800 048 0048</p></div>
+    <div><h4>Claims</h4><ul><li>Start your claim</li><li>Non-fault accident</li><li>Courtesy car</li><li>Credit hire</li></ul></div>
+    <div><h4>Services</h4><ul><li>Accident management</li><li>Accident recovery</li><li>Vehicle replacement</li><li>Accident repair</li></ul></div>
+    <div><h4>Help</h4><ul><li>How it works</li><li>vs your insurer</li><li>FAQs</li><li>Contact</li><li>Complaints</li></ul></div>
+    <div><h4>Legal</h4><ul><li>Terms</li><li>Privacy</li><li>Cookies</li><li>Accessibility</li></ul></div>
+  </div>
+  <p class="legal">Motor Claims Department Ltd. [Regulatory status and FCA firm reference number exactly as on the FCA Register.] Registered in England and Wales, company number [00000000]. Registered office: [address]. © 2026.</p>
+</div></footer>
+<script>const t=document.getElementById('rt');t.innerHTML+=t.innerHTML;</script>
+</body></html>
