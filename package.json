@@ -1,0 +1,38 @@
+{
+  "name": "mcd-new-2.0",
+  "version": "0.1.0",
+  "private": true,
+  "description": "Motor Claims Department 2.0 marketing and lead-generation site",
+  "packageManager": "pnpm@10.33.0",
+  "engines": {
+    "node": ">=22.18"
+  },
+  "scripts": {
+    "dev": "next dev",
+    "prebuild": "pnpm lint:content && pnpm lint:css",
+    "build": "next build",
+    "start": "next start",
+    "lint": "next lint",
+    "lint:content": "node scripts/lint-content.mjs",
+    "lint:css": "node scripts/lint-css.mjs",
+    "typecheck": "tsc --noEmit",
+    "test": "node --test \"tests/unit/**/*.test.{mjs,ts}\"",
+    "test:e2e": "playwright test",
+    "check": "pnpm typecheck && pnpm lint && pnpm lint:content && pnpm lint:css && pnpm test"
+  },
+  "dependencies": {
+    "next": "15.5.25",
+    "react": "19.2.8",
+    "react-dom": "19.2.8"
+  },
+  "devDependencies": {
+    "@eslint/eslintrc": "^3.3.7",
+    "@playwright/test": "^1.63.0",
+    "@types/node": "^22.20.1",
+    "@types/react": "^19.2.18",
+    "@types/react-dom": "^19.2.7",
+    "eslint": "^9.39.5",
+    "eslint-config-next": "15.5.25",
+    "typescript": "^5.9.3"
+  }
+}

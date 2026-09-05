@@ -1,0 +1,61 @@
+/* Step 1 placeholder: shows the tokens and type. Replaced by the homepage in step 3. */
+.hero {
+  padding: var(--section-pad) 0;
+  min-height: calc(100vh - var(--nav-h));
+  display: grid;
+  align-content: center;
+  gap: 20px;
+}
+
+.eyebrow {
+  color: var(--ochre);
+  font-weight: var(--w-bold);
+  font-size: var(--fs-label);
+}
+
+.sub {
+  font-family: var(--display);
+  font-weight: var(--w-display);
+  font-size: var(--fs-h2);
+  line-height: var(--lh-h2);
+  letter-spacing: var(--ls-h2);
+}
+
+.ctas {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  margin-top: 8px;
+}
+
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: var(--btn-min);
+  padding: 0 24px;
+  border-radius: var(--r-pill);
+  font-weight: var(--w-bold);
+  font-size: var(--fs-btn);
+  text-decoration: none;
+  transition: transform var(--motion), background var(--motion);
+}
+
+.btn:hover {
+  transform: translateY(-1px);
+}
+
+.btnInk {
+  background: var(--ink);
+  color: var(--on-ink-button);
+}
+
+.btnYellow {
+  background: var(--yellow);
+  color: var(--on-yellow);
+}
+
+.wait {
+  color: var(--muted);
+  font-size: var(--fs-label);
+}

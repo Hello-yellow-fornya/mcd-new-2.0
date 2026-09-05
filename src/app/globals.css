@@ -1,0 +1,141 @@
+/* Base styles shared by every page. Component styles live next to their components. */
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  -webkit-text-size-adjust: 100%;
+  background: var(--cream);
+  color-scheme: light;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  html {
+    scroll-behavior: smooth;
+  }
+}
+
+body {
+  font-family: var(--body);
+  font-size: var(--fs-body);
+  line-height: var(--lh-body);
+  color: var(--ink);
+  background: var(--cream);
+  -webkit-font-smoothing: antialiased;
+}
+
+h1,
+h2,
+h3 {
+  font-family: var(--display);
+  font-weight: var(--w-display);
+  line-height: var(--lh-h2);
+  letter-spacing: var(--ls-h2);
+}
+
+h1 {
+  font-size: var(--fs-h1);
+  line-height: var(--lh-h1);
+  letter-spacing: var(--ls-h1);
+  text-wrap: balance;
+}
+
+h2 {
+  font-size: var(--fs-h2);
+}
+
+h3 {
+  font-size: var(--fs-h3);
+  line-height: var(--lh-h3);
+}
+
+p,
+li {
+  max-width: var(--measure);
+}
+
+a {
+  color: inherit;
+}
+
+img,
+svg,
+video {
+  max-width: 100%;
+  height: auto;
+  display: block;
+}
+
+button,
+input,
+select,
+textarea {
+  font: inherit;
+  color: inherit;
+}
+
+mark {
+  background: transparent;
+  color: inherit;
+}
+
+/* §0 Highlight: a yellow bar under one or two words, never a box behind text. */
+.hl {
+  text-decoration: underline;
+  text-decoration-color: var(--hl-color);
+  text-decoration-thickness: var(--hl-thickness);
+  text-underline-offset: var(--hl-offset);
+  text-decoration-skip-ink: none;
+}
+
+/* Appendix §9: focus ring 2px ink, 2px offset; white on dark surfaces. */
+:focus-visible {
+  outline: var(--focus-ring);
+  outline-offset: var(--focus-offset);
+}
+
+.on-dark :focus-visible,
+.on-dark:focus-visible {
+  outline: var(--focus-ring-on-dark);
+}
+
+/* Skip link: first focusable element on every page. */
+.skip {
+  position: absolute;
+  left: -999px;
+  top: 0;
+  z-index: 20;
+  padding: 8px 12px;
+  background: var(--ink);
+  color: var(--on-ink);
+  font-weight: var(--w-bold);
+}
+
+.skip:focus {
+  left: 8px;
+}
+
+/* Grid: max-width 1140px with 24px gutters. */
+.wrap {
+  max-width: var(--grid-max);
+  margin: 0 auto;
+  padding: 0 var(--gutter);
+}
+
+/* Visually hidden, still read by assistive tech. */
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}

@@ -1,0 +1,35 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "content.rules.json",
+  "description": "Rules for scripts/lint-content.mjs (CLAUDE.md appendix §10).",
+  "type": "object",
+  "properties": {
+    "paths": { "type": "array", "items": { "type": "string" }, "description": "Directories or files to lint, relative to the repo root." },
+    "extensions": { "type": "array", "items": { "type": "string" } },
+    "rules": {
+      "type": "object",
+      "properties": {
+        "no-exclamation": { "type": "boolean" },
+        "no-all-caps-headings": { "type": "boolean" },
+        "no-week-phrasing": { "type": "boolean" },
+        "banned-phrases": { "type": "boolean" }
+      },
+      "additionalProperties": false
+    },
+    "allowedCaps": { "type": "array", "items": { "type": "string" }, "description": "Acronyms allowed in headings." },
+    "bannedPhrases": { "type": "array", "items": { "type": "string" }, "description": "Case-insensitive; curly apostrophes are normalised." },
+    "bannedPatterns": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "pattern": { "type": "string" },
+          "flags": { "type": "string" },
+          "message": { "type": "string" }
+        },
+        "required": ["pattern"]
+      }
+    }
+  },
+  "required": ["paths"]
+}
