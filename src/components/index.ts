@@ -15,3 +15,6 @@ export { Benefits } from './Benefits/Benefits';
 export { Steps } from './Steps/Steps';
 export { Faq } from './Faq/Faq';
 export { SiteFooter } from './SiteFooter/SiteFooter';
+export { Prose } from './Prose/Prose';
+export { Callout } from './Callout/Callout';
+export { RegBox } from './RegBox/RegBox';

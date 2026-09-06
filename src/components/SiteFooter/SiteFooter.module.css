@@ -84,3 +84,19 @@
     grid-column: 1 / -1;
   }
 }
+
+/* "Cookie settings" reopens the consent banner; styled as a link. */
+.linkButton {
+  background: none;
+  border: 0;
+  padding: 0;
+  font: inherit;
+  color: inherit;
+  cursor: pointer;
+}
+
+.linkButton:hover {
+  text-decoration: underline;
+  text-decoration-color: var(--yellow);
+  text-decoration-thickness: 2px;
+}

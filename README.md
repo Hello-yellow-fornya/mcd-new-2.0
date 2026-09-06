@@ -44,7 +44,7 @@ The Vercel project is **`mcd-new-2-0`** (team `fornya`), production at `https://
 ```
 CLAUDE.md               the build brief
 design/                 signed-off HTML mockups, nav and font options, the logo
-content/                MDX pages with frontmatter (from step 5)
+content/                MDX pages with frontmatter (utility pages; the SEO set follows)
 content.rules.json      content lint rules (appendix §10)
 scripts/                lint-content.mjs, lint-css.mjs
 src/app/                App Router routes and global CSS
@@ -64,6 +64,18 @@ tests/e2e/              Playwright (390×844, 430×932 and desktop projects)
 - ink text on yellow, pale and green, never white or cream; yellow type only on ink buttons
 - no coral, marine, sky or stone: the 1.0 palette does not exist here
 - the highlight is a bar under the words (`.hl` in `globals.css`), never a box behind them; the band's chip is the one exception
+
+## Add a page
+
+Utility pages (about, contact, the legal set) are MDX files under `content/utility/<slug>.mdx`. The route comes from the `slug` in the frontmatter. Adding a page is "add a file, open a PR"; every PR gets a Vercel preview. Frontmatter (appendix §10): `slug`, `template` (`utility` for now; the SEO template set follows), `title` (≤60 characters), `description` (≤155), `kicker`, `h1`, `lead` (rendered as the page's H2), `lastReviewed`, `author`, `draft`. In the body, H2s get GitHub-style ids, and `<Callout>` (with `variant="catch"` for the one catch wording) and `<Muted>` are available. Links to pages that do not build yet render as plain text. `pnpm lint:content` runs before every build and stops it on an exclamation mark, an all-caps heading, "week(s)", or a banned phrase.
+
+## Claim-now and the claims API
+
+`/claim-now/` is the stub: a hero, the reg box, and the `#claim-flow` slot. The reg box posts to `/api/claim-start/` (the site's own route handler: honeypot, rate limit, reg validation), which forwards to the shared 1.0 claims API when `CLAIMS_API_URL` and `CLAIMS_API_KEY` are set, always with `source: "mcd2"`, and otherwise acknowledges with a stub reference. There is no claims service in this repo. Ollie's question flow mounts on `#claim-flow` (`data-claim-flow-mount`, with `data-ref` and `data-reg` once the reg is accepted) exactly as in 1.0; when it completes it sends the visitor to `/claim-now/thank-you/?ref=…`, which fires the conversion.
+
+## Tracking and consent
+
+See `docs/tracking.md`: 2.0's own GTM container loads only after consent, the banner is the 1.0 banner in 2.0 colours, the choice is one cookie (`mcd2_consent`), and every `dataLayer` event is specified there. Legal pages carry page views only.
 
 ## Add an insurer landing page
 

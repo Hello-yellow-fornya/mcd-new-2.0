@@ -29,6 +29,10 @@ export default defineConfig({
     timeout: 240_000,
     // The staging rule is exercised as it will run on Vercel: the site URL is
     // the project's own .vercel.app address, so every host is staging.
-    env: { NEXT_PUBLIC_SITE_URL: process.env.NEXT_PUBLIC_SITE_URL || 'https://mcd-new-2-0.vercel.app' },
+    // A test container id so the consent path can be exercised; the loader request itself is blocked in tests.
+    env: {
+      NEXT_PUBLIC_SITE_URL: process.env.NEXT_PUBLIC_SITE_URL || 'https://mcd-new-2-0.vercel.app',
+      NEXT_PUBLIC_GTM_ID: process.env.NEXT_PUBLIC_GTM_ID || 'GTM-TEST0000',
+    },
   },
 });

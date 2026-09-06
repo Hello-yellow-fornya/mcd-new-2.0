@@ -4,6 +4,8 @@ import { site, siteUrl } from '@/lib/site';
 import { isStagingSite } from '@/lib/host';
 import { HostRobots } from '@/components/Robots/HostRobots';
 import { Sprite } from '@/components/Icon/Sprite';
+import { Analytics } from '@/components/Analytics/Analytics';
+import { ConsentBanner } from '@/components/Consent/ConsentBanner';
 import '@/styles/tokens.css';
 import './globals.css';
 
@@ -32,6 +34,8 @@ export const metadata: Metadata = {
 };
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
+  // 2.0's own GTM container (§0). Nothing loads without it, and nothing before consent.
+  const gtmId = process.env.NEXT_PUBLIC_GTM_ID;
   return (
     <html lang="en-GB" className={`${display.variable} ${body.variable}`}>
       <body>
@@ -41,6 +45,8 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         <Sprite />
         {children}
         <HostRobots />
+        <Analytics gtmId={gtmId} />
+        <ConsentBanner gtmId={gtmId} />
       </body>
     </html>
   );

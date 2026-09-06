@@ -1,0 +1,99 @@
+.regbox {
+  width: 100%;
+}
+
+.field {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  background: var(--white);
+  border-radius: var(--r-reg);
+  padding: 10px 8px 10px 18px;
+}
+
+.in {
+  flex: 1;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 1px;
+}
+
+.label {
+  font-size: 12px;
+  font-weight: var(--w-bold);
+  color: var(--muted);
+  letter-spacing: 0.02em;
+}
+
+.field input {
+  flex: 1;
+  min-width: 0;
+  width: 100%;
+  border: 0;
+  background: transparent;
+  font-family: var(--display);
+  font-weight: var(--w-display);
+  font-size: 30px;
+  letter-spacing: -0.02em;
+  text-transform: uppercase; /* allow: uppercase — the plate is uppercase by design */
+  color: var(--ink);
+  padding: 0;
+  line-height: 1.05;
+}
+
+.field input::placeholder {
+  color: var(--line);
+}
+
+.field input:focus-visible {
+  outline: none;
+}
+
+.field:focus-within {
+  outline: var(--focus-ring);
+  outline-offset: var(--focus-offset);
+}
+
+.arrow {
+  width: 48px;
+  height: 48px;
+  border-radius: var(--r-circle);
+  background: var(--yellow);
+  color: var(--on-yellow);
+  border: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex: none;
+  cursor: pointer;
+}
+
+.arrow svg {
+  width: 24px;
+  height: 24px;
+}
+
+/* Ink reg card: white head, pale sub. */
+.card {
+  background: var(--ink);
+  color: var(--on-ink);
+  border-radius: var(--r-photo);
+  padding: 26px;
+  box-shadow: var(--shadow-float);
+}
+
+.cardHead {
+  font-family: var(--display);
+  font-weight: var(--w-display);
+  font-size: 26px;
+  letter-spacing: -0.02em;
+  line-height: 1.1;
+  margin-bottom: 4px;
+}
+
+.cardSub {
+  color: var(--pale);
+  font-size: 15px;
+  margin-bottom: 16px;
+}

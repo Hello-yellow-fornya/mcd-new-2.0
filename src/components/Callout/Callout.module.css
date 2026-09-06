@@ -1,0 +1,16 @@
+.callout {
+  background: var(--cream);
+  border-left: 4px solid var(--yellow);
+  border-radius: 0 var(--r-card) var(--r-card) 0;
+  padding: 18px 22px;
+  margin: 20px 0 24px;
+  max-width: 68ch;
+}
+
+.lead {
+  display: block;
+  font-family: var(--display);
+  font-weight: var(--w-display);
+  font-size: 18px;
+  margin-bottom: 6px;
+}
