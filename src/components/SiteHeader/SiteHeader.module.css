@@ -132,10 +132,12 @@
 }
 
 @media (max-width: 820px) {
+  /* 64px including the hairline, so the fold-locked hero's maths are exact. */
   .row {
     gap: 12px;
     padding: 0 14px 0 16px;
-    height: var(--nav-h);
+    min-height: 0;
+    height: calc(var(--nav-h) - 1px);
   }
 
   .links,
