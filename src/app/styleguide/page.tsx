@@ -20,6 +20,7 @@ import {
 } from '@/components';
 import { hero } from '@/data/copy';
 import { isProduction } from '@/lib/staging';
+import { allClaims, isSubstantiated } from '@/lib/claims';
 import { site } from '@/lib/site';
 import styles from './styleguide.module.css';
 
@@ -96,6 +97,14 @@ export default function StyleguidePage() {
             <div className={styles.gridWrap}>
               <ProofGrid />
             </div>
+            <div className={styles.label}>Claims (src/data/claims.json): unsubstantiated ones render on previews only, never on production</div>
+            <ul className={styles.claims}>
+              {allClaims().map((c) => (
+                <li key={c.id}>
+                  <b>{c.text}</b> — {isSubstantiated(c) ? `substantiated: ${c.evidence}` : 'not yet substantiated'}
+                </li>
+              ))}
+            </ul>
             <div className={styles.label}>Highlight: the bar under one or two words</div>
             <h2>
               Choose the <span className="hl">smarter way</span> to claim.

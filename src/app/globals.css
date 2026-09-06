@@ -140,9 +140,3 @@ mark {
   white-space: nowrap;
   border: 0;
 }
-
-/* Previews show unsubstantiated claims with a dotted outline (appendix §6); they do not render on production. */
-[data-unsubstantiated] {
-  outline: 1px dotted var(--ochre);
-  outline-offset: 2px;
-}
