@@ -20,6 +20,8 @@ export type Frontmatter = {
   kicker?: string;
   /** The visible headline. Defaults to title. */
   h1?: string;
+  /** One or two words of the H1 that carry the yellow bar (§0). */
+  highlight?: string;
   lead?: string;
   /** ISO date of the last editorial review. */
   lastReviewed: string;

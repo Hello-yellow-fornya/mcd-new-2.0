@@ -69,3 +69,11 @@
     margin-bottom: 0;
   }
 }
+
+.inline {
+  margin: 0 0 24px;
+}
+
+.inline .a {
+  max-width: none;
+}

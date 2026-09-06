@@ -1,0 +1,19 @@
+.ph {
+  display: flex;
+  align-items: flex-end;
+  padding: 16px;
+  border-radius: var(--r-photo);
+  overflow: hidden;
+  color: var(--muted);
+  font-size: 13px;
+  line-height: 1.4;
+}
+
+.white {
+  background: var(--white);
+  border: var(--border);
+}
+
+.cream {
+  background: var(--cream);
+}

@@ -69,6 +69,13 @@ export const strip = [
   { icon: 'person', text: 'A named UK handler' },
 ] as const;
 
+/** The keeps strip on the SEO templates: three things you keep. */
+export const keeps = [
+  { icon: 'pound', label: 'No excess to pay' },
+  { icon: 'shield', label: 'Keep your no claims bonus' },
+  { icon: 'car', label: 'Like-for-like car hire' },
+] as const;
+
 export const band = {
   l0: 'Your insurer has a claims department.',
   l1: 'It works for your insurer.',

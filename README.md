@@ -43,8 +43,8 @@ The Vercel project is **`mcd-new-2-0`** (team `fornya`), production at `https://
 
 ```
 CLAUDE.md               the build brief
-design/                 signed-off HTML mockups, nav and font options, the logo
-content/                MDX pages with frontmatter (utility pages; the SEO set follows)
+design/                 signed-off 2.0 mockups, nav and font options, the logo; the 1.0 tpl-*.html template mockups and the sitemap
+content/                MDX pages with frontmatter: the SEO set, utility pages, Phase 2/3 drafts
 content.rules.json      content lint rules (appendix §10)
 scripts/                lint-content.mjs, lint-css.mjs
 src/app/                App Router routes and global CSS
@@ -67,7 +67,30 @@ tests/e2e/              Playwright (390×844, 430×932 and desktop projects)
 
 ## Add a page
 
-Utility pages (about, contact, the legal set) are MDX files under `content/utility/<slug>.mdx`. The route comes from the `slug` in the frontmatter. Adding a page is "add a file, open a PR"; every PR gets a Vercel preview. Frontmatter (appendix §10): `slug`, `template` (`utility` for now; the SEO template set follows), `title` (≤60 characters), `description` (≤155), `kicker`, `h1`, `lead` (rendered as the page's H2), `lastReviewed`, `author`, `draft`. In the body, H2s get GitHub-style ids, and `<Callout>` (with `variant="catch"` for the one catch wording) and `<Muted>` are available. Links to pages that do not build yet render as plain text. `pnpm lint:content` runs before every build and stops it on an exclamation mark, an all-caps heading, "week(s)", or a banned phrase.
+Pages are MDX files under `content/<section>/<slug>.mdx`. The route comes from the `slug` in the frontmatter, not the folder. Adding a page is "add a file, open a PR"; every PR gets a Vercel preview.
+
+```bash
+pnpm new-page --template pillar --slug /accident-recovery/ --title "Accident recovery"
+```
+
+That copies the template's lorem-ipsum skeleton from `content/_templates/` as a draft. Write the page, remove `draft: true`, open a PR. Frontmatter fields (appendix §10):
+
+| Field | Purpose |
+|---|---|
+| `slug`, `template` | The route and one of `pillar`, `process`, `comparison`, `guide`, `location`, `article`, `utility` |
+| `title`, `description` | `<title>` (≤60 characters) and meta description (≤155) |
+| `kicker`, `h1`, `highlight`, `lead` | The hero: eyebrow, H1, the one or two words of the H1 that carry the yellow bar, and the lead, which renders as the page's H2 |
+| `lastReviewed`, `author` | The meta line and Article schema |
+| `breadcrumb` | Parent pages in order; Home is added |
+| `photo` | `alt` and a production `note` until the real photo exists |
+| `faq` | Rendered after the body and emitted as FAQPage schema from the same data |
+| `related` | Slugs of related pages; drafts are dropped at build time |
+| `schemaType`, `steps` | Override the template's schema; HowTo steps by heading id |
+| `draft` | `true` keeps the page out of the build and the sitemap |
+
+The templates (`src/templates/ContentPage.tsx`) come from the 1.0 `design/tpl-*.html` mockups restyled to 2.0: breadcrumb, text hero, the keeps strip (not on guide and article), the sticky "On this page" list beside the prose, the FAQ, the CTA pair, related pages, the band. In the body: H2s become the "On this page" list (ids are GitHub-style slugs of the heading text; H2s starting "Step 1." feed HowTo schema), and `<Callout>`, `<Steps>`, `<ThemUs>`, `<Figure>` and `<Muted>` are available. Links to pages that do not build yet render as plain text, in prose, the header and the footer alike, so nothing 404s.
+
+`pnpm stubs` creates a draft file for every sitemap page that has none; drafts for Phase 2 and 3 are in place. `pnpm lint:content` runs before every build and stops it on an exclamation mark, an all-caps heading, "week(s)", or a banned phrase.
 
 ## Claim-now and the claims API
 

@@ -1,0 +1,33 @@
+.crumbs {
+  font-size: 14px;
+  color: var(--muted);
+  padding-top: 18px;
+}
+
+.crumbs ol {
+  list-style: none;
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
+.crumbs li + li::before {
+  content: '/';
+  margin-right: 8px;
+  color: var(--line);
+}
+
+.crumbs a {
+  text-decoration: none;
+}
+
+.crumbs a:hover {
+  text-decoration: underline;
+  text-decoration-color: var(--yellow);
+  text-decoration-thickness: 2px;
+}
+
+.crumbs [aria-current] {
+  color: var(--ink);
+  font-weight: var(--w-bold);
+}

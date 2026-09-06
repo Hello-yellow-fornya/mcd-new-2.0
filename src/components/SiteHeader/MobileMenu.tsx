@@ -9,17 +9,13 @@ import { cta, nav, type NavItem } from '@/data/copy';
 import { site } from '@/lib/site';
 import styles from './SiteHeader.module.css';
 
-function flatten(items: readonly NavItem[]): NavItem[] {
-  return items.flatMap((i) => (i.children ? [i, ...i.children] : [i]));
-}
-
 /**
  * Mobile: ink "Call now" pill and burger hard right (§0). The burger opens a
  * full-width drawer on cream (design/mcd-2-0-nav-options.png): the proof
  * line, the links with hairline dividers, a full-width ink start button and
  * an outlined call button.
  */
-export function MobileMenu() {
+export function MobileMenu({ items }: { items: NavItem[] }) {
   const [open, setOpen] = useState(false);
   const id = useId();
   const pathname = usePathname();
@@ -36,8 +32,6 @@ export function MobileMenu() {
       document.documentElement.style.overflow = '';
     };
   }, [open]);
-
-  const items: NavItem[] = [...flatten(nav.links).filter((i) => !i.children), ...nav.drawerExtra];
 
   return (
     <div className={styles.mobile}>
