@@ -25,14 +25,20 @@ export function isSubstantiated(c: Claim): boolean {
 
 /**
  * Whether a claim renders (appendix §6). Production: substantiated only.
- * Previews: everything, and the component marks the unsubstantiated ones so
- * the layout can be reviewed and the gap is visible.
+ * Previews: everything, so the layout can be reviewed; the unsubstantiated
+ * ones carry a data-unsubstantiated attribute (no visible marker) and are
+ * listed on /styleguide/.
  */
 export function claimVisible(c: Claim, production: boolean = isProduction()): boolean {
   return isSubstantiated(c) || !production;
 }
 
-/** Attribute to spread on the element showing a claim: marks the unsubstantiated ones on previews. */
+/** Attributes to spread on the element showing a claim; data-unsubstantiated is invisible and is for tests and tooling. */
 export function claimAttrs(c: Claim): { 'data-claim': string; 'data-unsubstantiated'?: '' } {
   return isSubstantiated(c) ? { 'data-claim': c.id } : { 'data-claim': c.id, 'data-unsubstantiated': '' };
+}
+
+/** Every claim, for the styleguide's status list. */
+export function allClaims(): Claim[] {
+  return claims;
 }
