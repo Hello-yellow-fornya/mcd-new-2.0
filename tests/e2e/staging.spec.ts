@@ -21,7 +21,7 @@ test('robots.txt disallows everything and names the sitemap on the site URL', as
   const robots = await (await request.get('/robots.txt')).text();
   expect(robots).toContain('Disallow: /');
   expect(robots).not.toContain('Allow: /');
-  expect(robots).toContain(`Sitemap: ${SITE}/sitemap.xml`);
+  expect(robots).toMatch(new RegExp(`^Sitemap: ${SITE}/sitemap\\.xml$`, 'm'));
   const withHost = await (await request.get('/robots.txt', { headers: { host: SITE_HOST } })).text();
   expect(withHost).toContain('Disallow: /');
 });

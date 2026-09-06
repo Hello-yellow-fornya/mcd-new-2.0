@@ -1,7 +1,7 @@
 import type { MetadataRoute } from 'next';
 import { headers } from 'next/headers';
 import { isLiveHost } from '@/lib/host';
-import { absoluteUrl } from '@/lib/site';
+import { siteUrl } from '@/lib/site';
 
 // Served per request so it can follow the host rule (appendix §2a).
 export const dynamic = 'force-dynamic';
@@ -12,6 +12,7 @@ export default async function robots(): Promise<MetadataRoute.Robots> {
   const host = h.get('x-forwarded-host') ?? h.get('host');
   return {
     rules: isLiveHost(host) ? { userAgent: '*', allow: '/', disallow: ['/claim/', '/styleguide/'] } : { userAgent: '*', disallow: '/' },
-    sitemap: absoluteUrl('/sitemap.xml'),
+    // A file path, so no trailing slash (absoluteUrl adds one for page routes).
+    sitemap: new URL('/sitemap.xml', siteUrl).toString(),
   };
 }
