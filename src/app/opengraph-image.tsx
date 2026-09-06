@@ -37,9 +37,12 @@ export default async function OpenGraphImage() {
           <div style={{ fontSize: 17, letterSpacing: 2.4, marginTop: 6 }}>CLAIMS DEPARTMENT</div>
         </div>
         <div style={{ display: 'flex', flexDirection: 'column' }}>
-          <div style={{ display: 'flex', fontFamily: 'Archivo Black', fontSize: 108, lineHeight: 1.02, letterSpacing: -3 }}>
-            <span style={{ borderBottom: '14px solid #F3CD3E', paddingBottom: 2 }}>Non-fault</span>
-            <span style={{ marginLeft: 26 }}>accident?</span>
+          <div style={{ display: 'flex', alignItems: 'flex-start', gap: 28, fontFamily: 'Archivo Black', fontSize: 108, lineHeight: 1, letterSpacing: -3 }}>
+            <div style={{ display: 'flex', flexDirection: 'column' }}>
+              <span>Non-fault</span>
+              <div style={{ height: 15, background: '#F3CD3E', marginTop: -6, borderRadius: 2 }} />
+            </div>
+            <span>accident?</span>
           </div>
           <div style={{ display: 'flex', fontFamily: 'Archivo Black', fontSize: 44, lineHeight: 1.2, marginTop: 22, letterSpacing: -1 }}>Choose the smarter way to claim.</div>
         </div>
