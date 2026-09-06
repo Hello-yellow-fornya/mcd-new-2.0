@@ -4,6 +4,7 @@ import { CookieSettingsButton } from '@/components/Consent/ConsentBanner';
 import { footer } from '@/data/copy';
 import { site } from '@/lib/site';
 import { isProduction } from '@/lib/staging';
+import { isLinkable } from '@/lib/content';
 import styles from './SiteFooter.module.css';
 
 /**
@@ -37,7 +38,7 @@ export function SiteFooter() {
               <h4 className={styles.h4}>{col.h}</h4>
               <ul className={styles.list}>
                 {col.items.map((it) => (
-                  <li key={it.label}>{it.href ? <Link href={it.href}>{it.label}</Link> : <span className={styles.soon}>{it.label}</span>}</li>
+                  <li key={it.label}>{it.href && isLinkable(it.href) ? <Link href={it.href}>{it.label}</Link> : <span className={styles.soon}>{it.label}</span>}</li>
                 ))}
                 {col.h === 'Legal' ? (
                   <li>

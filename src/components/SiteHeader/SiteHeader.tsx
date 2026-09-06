@@ -3,7 +3,8 @@ import { Button } from '@/components/Button/Button';
 import { NavLinks } from './NavLinks';
 import { MobileMenu } from './MobileMenu';
 import { ProofChip } from './ProofChip';
-import { cta, nav } from '@/data/copy';
+import { cta, nav, type NavItem } from '@/data/copy';
+import { isLinkable } from '@/lib/content';
 import { site } from '@/lib/site';
 import styles from './SiteHeader.module.css';
 
@@ -15,12 +16,22 @@ import styles from './SiteHeader.module.css';
  * 64px: logo left at 30px, ink "Call now" pill and burger hard right, nothing
  * else; the proof line lives in the drawer.
  */
+/** Items whose page does not build yet lose their href and render as text (nothing 404s). */
+function linkable(items: readonly NavItem[]): NavItem[] {
+  return items.map((i) => ({
+    ...i,
+    href: i.href && isLinkable(i.href) ? i.href : undefined,
+    children: i.children ? linkable(i.children) : undefined,
+  }));
+}
+
 export function SiteHeader() {
+  const links = linkable(nav.links);
   return (
     <header className={styles.nav} data-site-header>
       <div className={`wrap ${styles.row}`}>
         <Logo />
-        <NavLinks items={nav.links} className={styles.links} />
+        <NavLinks items={links} className={styles.links} />
         <ProofChip className={styles.chip} />
         <Button href={site.phone.href} variant="yellow" size="sm" icon="phone" className={styles.call} data-cta="call">
           {site.phone.display}
@@ -28,7 +39,7 @@ export function SiteHeader() {
         <Button href={nav.claimHref} variant="ink" size="sm" className={styles.start} data-cta="start">
           {cta.startShort}
         </Button>
-        <MobileMenu />
+        <MobileMenu items={[...links.flatMap((i) => (i.children ? [i, ...i.children] : [i])).filter((i) => !i.children), ...linkable(nav.drawerExtra)]} />
       </div>
     </header>
   );

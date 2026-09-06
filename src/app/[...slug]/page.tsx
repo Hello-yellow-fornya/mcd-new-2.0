@@ -1,14 +1,12 @@
 import type { Metadata } from 'next';
 import { notFound } from 'next/navigation';
 import { getLivePages, getPage } from '@/lib/content';
+import { ContentPage } from '@/templates/ContentPage';
 import { UtilityPage } from '@/templates/UtilityPage';
 
-
-/** Every non-draft utility page becomes a static route. The SEO template set follows in its own step. */
+/** Every non-draft content page becomes a static route (appendix §5). */
 export function generateStaticParams() {
-  return getLivePages()
-    .filter((p) => p.frontmatter.template === 'utility')
-    .map((p) => ({ slug: p.frontmatter.slug.split('/').filter(Boolean) }));
+  return getLivePages().map((p) => ({ slug: p.frontmatter.slug.split('/').filter(Boolean) }));
 }
 
 function slugOf(parts: string[]) {
@@ -31,6 +29,7 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
 export default async function Route({ params }: { params: Promise<{ slug: string[] }> }) {
   const { slug } = await params;
   const page = getPage(slugOf(slug));
-  if (!page || page.frontmatter.draft || page.frontmatter.template !== 'utility') notFound();
-  return <UtilityPage page={page} />;
+  if (!page || page.frontmatter.draft) notFound();
+  if (page.frontmatter.template === 'utility') return <UtilityPage page={page} />;
+  return <ContentPage page={page} />;
 }

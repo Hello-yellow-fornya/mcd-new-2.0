@@ -1,0 +1,598 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>motorclaimsdepartment.co.uk — Site Map</title>
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+    background: #F0F2F5;
+    color: #1F2D3D;
+    padding: 32px 24px;
+  }
+
+  header {
+    max-width: 1400px;
+    margin: 0 auto 32px;
+  }
+
+  header h1 {
+    font-size: 22px;
+    font-weight: 700;
+    color: #1F2D3D;
+  }
+
+  header p {
+    font-size: 13px;
+    color: #666;
+    margin-top: 4px;
+  }
+
+  .legend {
+    display: flex;
+    gap: 16px;
+    flex-wrap: wrap;
+    margin-top: 16px;
+  }
+
+  .legend-item {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 12px;
+    color: #444;
+  }
+
+  .legend-dot {
+    width: 12px;
+    height: 12px;
+    border-radius: 3px;
+    flex-shrink: 0;
+  }
+
+  .map {
+    max-width: 1400px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+    gap: 20px;
+  }
+
+  .pillar {
+    background: #fff;
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0 1px 4px rgba(0,0,0,0.08);
+  }
+
+  .pillar-header {
+    padding: 12px 14px;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: #fff;
+  }
+
+  .pillar-root {
+    padding: 10px 14px;
+    font-size: 12px;
+    font-weight: 600;
+    border-bottom: 1px solid #eee;
+    background: rgba(0,0,0,0.03);
+  }
+
+  .pillar-root a {
+    color: inherit;
+    text-decoration: none;
+  }
+
+  .page-list {
+    list-style: none;
+    padding: 6px 0;
+  }
+
+  .page-item {
+    padding: 5px 14px 5px 22px;
+    font-size: 11.5px;
+    color: #2C3E50;
+    border-bottom: 1px solid #F8F9FA;
+    position: relative;
+  }
+
+  .page-item::before {
+    content: "";
+    position: absolute;
+    left: 12px;
+    top: 0;
+    bottom: 0;
+    width: 1px;
+    background: #DDD;
+  }
+
+  .page-item::after {
+    content: "";
+    position: absolute;
+    left: 12px;
+    top: 50%;
+    width: 6px;
+    height: 1px;
+    background: #DDD;
+  }
+
+  .page-item.depth-3 {
+    padding-left: 32px;
+  }
+
+  .page-item.depth-3::before {
+    left: 22px;
+  }
+
+  .page-item.depth-3::after {
+    left: 22px;
+    width: 6px;
+  }
+
+  .page-item.depth-4 {
+    padding-left: 42px;
+  }
+
+  .page-item.depth-4::before {
+    left: 32px;
+  }
+
+  .page-item.depth-4::after {
+    left: 32px;
+  }
+
+  .slug {
+    font-family: "Courier New", monospace;
+    font-size: 10.5px;
+    color: #555;
+    display: block;
+    margin-top: 1px;
+  }
+
+  .page-label {
+    font-size: 11px;
+    font-weight: 500;
+    color: #1F2D3D;
+    line-height: 1.3;
+  }
+
+  .vol {
+    display: inline-block;
+    font-size: 9px;
+    color: #888;
+    margin-left: 4px;
+    vertical-align: middle;
+  }
+
+  /* Section colours */
+  .c-homepage    { background: #4A4A4A; }
+  .c-amc         { background: #1A5276; }
+  .c-ams         { background: #1F618D; }
+  .c-nfa         { background: #1E8449; }
+  .c-nfc         { background: #239B56; }
+  .c-credit      { background: #B03A2E; }
+  .c-process     { background: #9A7D0A; }
+  .c-locations   { background: #117A65; }
+  .c-resource    { background: #7D3C98; }
+  .c-advice      { background: #6C3483; }
+  .c-insights    { background: #1A5276; }
+  .c-utility     { background: #626567; }
+
+  .pillar.wide {
+    grid-column: span 2;
+  }
+
+  @media (max-width: 600px) {
+    .pillar.wide { grid-column: span 1; }
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <h1>motorclaimsdepartment.co.uk &mdash; Recommended Site Structure</h1>
+  <p>New build replacing rtaclaims.co.uk &mdash; July 2026</p>
+  <div class="legend">
+    <div class="legend-item"><div class="legend-dot" style="background:#1E8449"></div> Phase 1 &mdash; Launch</div>
+    <div class="legend-item"><div class="legend-dot" style="background:#2471A3"></div> Phase 2 &mdash; Content (0&ndash;3 months)</div>
+    <div class="legend-item"><div class="legend-dot" style="background:#7F8C8D"></div> Phase 3 &mdash; Expansion</div>
+  </div>
+</header>
+
+<div class="map">
+
+  <!-- HOMEPAGE -->
+  <div class="pillar">
+    <div class="pillar-header c-homepage">Homepage</div>
+    <div class="pillar-root">
+      <span class="page-label">/</span>
+    </div>
+  </div>
+
+  <!-- ACCIDENT MANAGEMENT COMPANY -->
+  <div class="pillar">
+    <div class="pillar-header c-amc">Accident Management Company</div>
+    <div class="pillar-root">
+      <span class="page-label">/accident-management-company/</span>
+      <span class="vol">700 vol</span>
+    </div>
+    <ul class="page-list">
+      <li class="page-item depth-3">
+        <span class="page-label">How it works</span>
+        <span class="slug">/how-it-works/</span>
+      </li>
+      <li class="page-item depth-3">
+        <span class="page-label">vs Insurance company</span>
+        <span class="slug">/accident-management-vs-insurance/</span>
+      </li>
+    </ul>
+  </div>
+
+  <!-- ACCIDENT MANAGEMENT SERVICES -->
+  <div class="pillar wide">
+    <div class="pillar-header c-ams">Accident Management Services</div>
+    <div class="pillar-root">
+      <span class="page-label">/accident-management-services/</span>
+    </div>
+    <ul class="page-list">
+      <li class="page-item depth-3">
+        <span class="page-label">Accident Recovery</span>
+        <span class="slug">/accident-recovery/</span>
+      </li>
+      <li class="page-item depth-3">
+        <span class="page-label">Accident Repair</span>
+        <span class="slug">/accident-repair/</span>
+      </li>
+      <li class="page-item depth-3">
+        <span class="page-label">Vehicle Replacement</span>
+        <span class="vol">150 vol</span>
+        <span class="slug">/vehicle-replacement/</span>
+      </li>
+      <li class="page-item depth-4">
+        <span class="page-label">Will I get like for like?</span>
+        <span class="slug">/vehicle-replacement/will-i-get-a-like-for-like-replacement/</span>
+      </li>
+      <li class="page-item depth-3">
+        <span class="page-label">Claims Management</span>
+        <span class="slug">/claims-management/</span>
+      </li>
+      <li class="page-item depth-3">
+        <span class="page-label">Motorbike Accident Claims</span>
+        <span class="slug">/motorbike-accident-claims/</span>
+      </li>
+      <li class="page-item depth-3">
+        <span class="page-label">Personal Injury Claims</span>
+        <span class="slug">/personal-injury-claims/</span>
+      </li>
+      <li class="page-item depth-4">
+        <span class="page-label">Shock after a car accident</span>
+        <span class="vol">100 vol</span>
+        <span class="slug">/personal-injury-claims/shock-after-a-car-accident/</span>
+      </li>
+      <li class="page-item depth-3">
+        <span class="page-label">Electric Vehicle Recovery</span>
+        <span class="slug">/electric-vehicle-recovery/</span>
+      </li>
+    </ul>
+  </div>
+
+  <!-- NON-FAULT ACCIDENT -->
+  <div class="pillar">
+    <div class="pillar-header c-nfa">Non-Fault Accident</div>
+    <div class="pillar-root">
+      <span class="page-label">/non-fault-accident/</span>
+    </div>
+    <ul class="page-list">
+      <li class="page-item depth-3">
+        <span class="page-label">Road Traffic Accident Claims</span>
+        <span class="slug">/road-traffic-accident-claims/</span>
+      </li>
+      <li class="page-item depth-3">
+        <span class="page-label">Courtesy Car</span>
+        <span class="vol">1,150 vol</span>
+        <span class="slug">/non-fault-accident-courtesy-car/</span>
+      </li>
+      <li class="page-item depth-3">
+        <span class="page-label">Car Written Off Not My Fault</span>
+        <span class="vol">150 vol KD:0</span>
+        <span class="slug">/car-written-off-not-my-fault/</span>
+      </li>
+      <li class="page-item depth-3">
+        <span class="page-label">Total Loss</span>
+        <span class="vol">280 vol</span>
+        <span class="slug">/total-loss/</span>
+      </li>
+      <li class="page-item depth-3">
+        <span class="page-label">Motorway Accident</span>
+        <span class="slug">/motorway-accident/</span>
+      </li>
+      <li class="page-item depth-3">
+        <span class="page-label">Car Insurance Claim Not My Fault</span>
+        <span class="slug">/car-insurance-claims-not-my-fault/</span>
+      </li>
+    </ul>
+  </div>
+
+  <!-- NON-FAULT CLAIM -->
+  <div class="pillar">
+    <div class="pillar-header c-nfc">Non-Fault Claim</div>
+    <div class="pillar-root">
+      <span class="page-label">/non-fault-claim/</span>
+      <span class="vol">200 vol</span>
+    </div>
+    <ul class="page-list">
+      <li class="page-item depth-3">
+        <span class="page-label">What is a non-fault claim?</span>
+        <span class="slug">/what-is-a-non-fault-claim/</span>
+      </li>
+      <li class="page-item depth-3">
+        <span class="page-label">Third Party Insurance Claim</span>
+        <span class="vol">1,500 vol</span>
+        <span class="slug">/third-party-insurance-claim/</span>
+      </li>
+    </ul>
+  </div>
+
+  <!-- CREDIT HIRE -->
+  <div class="pillar">
+    <div class="pillar-header c-credit">Credit Hire</div>
+    <div class="pillar-root">
+      <span class="page-label">/credit-hire/</span>
+      <span class="vol">150 vol KD:0</span>
+    </div>
+  </div>
+
+  <!-- CLAIMS PROCESS -->
+  <div class="pillar">
+    <div class="pillar-header c-process">Car Accident Claims Process</div>
+    <div class="pillar-root">
+      <span class="page-label">/car-accident-claims-process/</span>
+    </div>
+    <ul class="page-list">
+      <li class="page-item depth-3">
+        <span class="page-label">Reporting an Accident</span>
+        <span class="slug">/reporting-an-accident/</span>
+      </li>
+      <li class="page-item depth-3">
+        <span class="page-label">What to Do After a Car Accident</span>
+        <span class="vol">400 vol</span>
+        <span class="slug">/what-to-do-after-a-car-accident/</span>
+      </li>
+      <li class="page-item depth-3">
+        <span class="page-label">Assessing Liability</span>
+        <span class="slug">/assessing-liability/</span>
+      </li>
+      <li class="page-item depth-3">
+        <span class="page-label">Managing Your Claim</span>
+        <span class="slug">/managing-your-claim/</span>
+      </li>
+    </ul>
+  </div>
+
+  <!-- LOCATIONS -->
+  <div class="pillar wide">
+    <div class="pillar-header c-locations">Our Locations</div>
+    <div class="pillar-root">
+      <span class="page-label">/our-locations/</span>
+    </div>
+    <ul class="page-list">
+      <li class="page-item depth-3">
+        <span class="page-label">London</span>
+        <span class="vol">700+ vol &mdash; carries "accident management company" keyword</span>
+        <span class="slug">/accident-management-services-london/</span>
+      </li>
+      <li class="page-item depth-3">
+        <span class="page-label">Essex</span>
+        <span class="slug">/accident-management-services-essex/</span>
+      </li>
+      <li class="page-item depth-3">
+        <span class="page-label">Romford</span>
+        <span class="slug">/accident-management-services-romford/</span>
+      </li>
+      <li class="page-item depth-3">
+        <span class="page-label">Ilford</span>
+        <span class="slug">/accident-management-services-ilford/</span>
+      </li>
+      <li class="page-item depth-3">
+        <span class="page-label">Glasgow</span>
+        <span class="vol">350 vol KD:1</span>
+        <span class="slug">/accident-management-services-glasgow/</span>
+      </li>
+      <li class="page-item depth-3">
+        <span class="page-label">Birmingham</span>
+        <span class="vol">100 vol</span>
+        <span class="slug">/accident-management-services-birmingham/</span>
+      </li>
+    </ul>
+  </div>
+
+  <!-- RESOURCE HUB -->
+  <div class="pillar wide">
+    <div class="pillar-header c-resource">Resource Hub</div>
+    <div class="pillar-root">
+      <span class="page-label">/resource/</span>
+    </div>
+    <ul class="page-list">
+
+      <li class="page-item depth-3">
+        <span class="page-label">How to Check if a Car is Insured</span>
+        <span class="vol">~76,000 vol &mdash; biggest traffic opportunity on site</span>
+        <span class="slug">/how-to-check-if-a-car-is-insured/</span>
+      </li>
+
+      <li class="page-item depth-3">
+        <span class="page-label">Will a Non-Fault Accident Affect My Insurance?</span>
+        <span class="vol">700 vol KD:0</span>
+        <span class="slug">/will-a-non-fault-accident-affect-my-insurance/</span>
+      </li>
+      <li class="page-item depth-4">
+        <span class="page-label">No Claims Bonus</span>
+        <span class="vol">200 vol</span>
+        <span class="slug">/will-a-non-fault-accident-affect-my-insurance/no-claims-bonus/</span>
+      </li>
+      <li class="page-item depth-4">
+        <span class="page-label">Will Insurance Go Up?</span>
+        <span class="vol">50 vol KD:0</span>
+        <span class="slug">/will-a-non-fault-accident-affect-my-insurance/will-insurance-go-up/</span>
+      </li>
+
+      <li class="page-item depth-3">
+        <span class="page-label">What to Do After a Car Accident</span>
+        <span class="vol">600 vol</span>
+        <span class="slug">/what-to-do-after-a-car-accident/</span>
+      </li>
+      <li class="page-item depth-4">
+        <span class="page-label">Minor Car Accident</span>
+        <span class="vol">700 vol</span>
+        <span class="slug">/what-to-do-after-a-car-accident/minor-car-accident/</span>
+      </li>
+      <li class="page-item depth-4">
+        <span class="page-label">What Details to Exchange</span>
+        <span class="vol">150 vol</span>
+        <span class="slug">/what-to-do-after-a-car-accident/what-details-to-exchange/</span>
+      </li>
+
+      <li class="page-item depth-3">
+        <span class="page-label">How to Prove Fault</span>
+        <span class="slug">/how-to-prove-fault/</span>
+      </li>
+      <li class="page-item depth-4">
+        <span class="page-label">Car Park Accidents</span>
+        <span class="vol">170 vol KD:0</span>
+        <span class="slug">/how-to-prove-fault/car-park-accidents/</span>
+      </li>
+      <li class="page-item depth-4" style="padding-left:52px">
+        <span class="page-label">Someone Hit My Parked Car</span>
+        <span class="vol">100 vol KD:0</span>
+        <span class="slug">/how-to-prove-fault/car-park-accidents/parked-car/</span>
+      </li>
+      <li class="page-item depth-4">
+        <span class="page-label">Car Accident Reversing</span>
+        <span class="vol">160 vol KD:0</span>
+        <span class="slug">/how-to-prove-fault/car-accident-reversing/</span>
+      </li>
+      <li class="page-item depth-4">
+        <span class="page-label">Rear-End Collision</span>
+        <span class="vol">600 vol</span>
+        <span class="slug">/how-to-prove-fault/rear-end-collision/</span>
+      </li>
+      <li class="page-item depth-4">
+        <span class="page-label">Side-Impact Collision (T-Bone)</span>
+        <span class="vol">400 vol</span>
+        <span class="slug">/how-to-prove-fault/side-impact-collision/</span>
+      </li>
+
+      <li class="page-item depth-3">
+        <span class="page-label">I Have Had an Accident</span>
+        <span class="slug">/had-accident/</span>
+      </li>
+      <li class="page-item depth-4">
+        <span class="page-label">How to Check if the Other Driver is Insured</span>
+        <span class="slug">/had-accident/how-to-check-if-a-car-is-insured/</span>
+      </li>
+      <li class="page-item depth-4">
+        <span class="page-label">Should I Settle Privately?</span>
+        <span class="slug">/had-accident/should-i-settle-privately/</span>
+      </li>
+
+      <li class="page-item depth-3">
+        <span class="page-label">Do I Have to Pay Excess if Not My Fault?</span>
+        <span class="vol">100 vol KD:2</span>
+        <span class="slug">/do-i-have-to-pay-excess-if-not-my-fault/</span>
+      </li>
+
+    </ul>
+  </div>
+
+  <!-- RESOURCE — ADVICE -->
+  <div class="pillar">
+    <div class="pillar-header c-advice">Resource Hub &mdash; Advice</div>
+    <div class="pillar-root">
+      <span class="page-label">/resource/advice/</span>
+    </div>
+    <ul class="page-list">
+      <li class="page-item depth-3">
+        <span class="page-label">Hit by an Uninsured Driver</span>
+        <span class="slug">/advice/what-to-do-if-hit-by-uninsured-driver/</span>
+      </li>
+      <li class="page-item depth-3">
+        <span class="page-label">Dash Cam &amp; Non-Fault Accidents</span>
+        <span class="slug">/advice/dash-cam-non-fault-accident/</span>
+      </li>
+      <li class="page-item depth-3">
+        <span class="page-label">Van Driver Accident Guide</span>
+        <span class="slug">/advice/van-driver-accident-guide/</span>
+      </li>
+      <li class="page-item depth-3">
+        <span class="page-label">Motorcycle Rider Accident Guide</span>
+        <span class="slug">/advice/motorcycle-rider-accident-guide/</span>
+      </li>
+      <li class="page-item depth-3">
+        <span class="page-label">Driving in Bad Weather</span>
+        <span class="slug">/advice/driving-in-bad-weather/</span>
+      </li>
+      <li class="page-item depth-3" style="color:#999; font-style:italic;">
+        <span class="page-label">+ future articles (open-ended)</span>
+        <span class="slug">/advice/[article-slug]/</span>
+      </li>
+    </ul>
+  </div>
+
+  <!-- RESOURCE — INSIGHTS -->
+  <div class="pillar">
+    <div class="pillar-header c-insights">Resource Hub &mdash; Insights</div>
+    <div class="pillar-root">
+      <span class="page-label">/resource/insights/</span>
+    </div>
+    <ul class="page-list">
+      <li class="page-item depth-3">
+        <span class="page-label">UK Whiplash Reform Explained</span>
+        <span class="slug">/insights/whiplash-reform-update/</span>
+      </li>
+      <li class="page-item depth-3">
+        <span class="page-label">Repair Costs &amp; Total Loss Trends</span>
+        <span class="slug">/insights/repair-costs-and-total-loss-trends/</span>
+      </li>
+      <li class="page-item depth-3" style="color:#999; font-style:italic;">
+        <span class="page-label">+ future data &amp; news articles (open-ended)</span>
+        <span class="slug">/insights/[article-slug]/</span>
+      </li>
+    </ul>
+    <div style="padding: 8px 14px; font-size: 10.5px; color: #666; border-top: 1px solid #eee; line-height: 1.4;">
+      Purpose: earn backlinks &amp; press coverage to build domain authority on the new domain.
+    </div>
+  </div>
+
+  <!-- UTILITY -->
+  <div class="pillar">
+    <div class="pillar-header c-utility">Utility</div>
+    <div class="pillar-root">
+      <span class="page-label">/claim-now/</span>
+    </div>
+    <ul class="page-list">
+      <li class="page-item depth-3">
+        <span class="page-label">About Us</span>
+        <span class="slug">/about-us/</span>
+      </li>
+      <li class="page-item depth-3">
+        <span class="page-label">Contact Us</span>
+        <span class="slug">/contact-us/</span>
+      </li>
+      <li class="page-item depth-3">
+        <span class="page-label">Privacy Policy</span>
+        <span class="slug">/privacy-policy/</span>
+      </li>
+    </ul>
+  </div>
+
+</div><!-- /map -->
+
+</body>
+</html>

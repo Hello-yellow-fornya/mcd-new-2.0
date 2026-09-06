@@ -1,0 +1,4 @@
+.faqHeading {
+  margin-top: 44px;
+  scroll-margin-top: calc(var(--nav-h) + 20px);
+}
