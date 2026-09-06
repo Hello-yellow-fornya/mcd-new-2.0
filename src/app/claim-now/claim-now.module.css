@@ -7,7 +7,7 @@
 }
 
 .kicker {
-  color: var(--ochre);
+  color: var(--ochre-text);
   font-weight: var(--w-bold);
   font-size: var(--fs-label);
   margin-bottom: 12px;

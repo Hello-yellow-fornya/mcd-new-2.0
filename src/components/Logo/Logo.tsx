@@ -26,11 +26,12 @@ export function Mark({ className }: { className?: string }) {
 
 export function Logo({ href = '/', className }: { href?: string; className?: string }) {
   return (
-    <Link href={href} className={[styles.brand, className].filter(Boolean).join(' ')} aria-label="Motor Claims Department, home">
-      <span className={styles.lockup} aria-hidden="true">
+    <Link href={href} className={[styles.brand, className].filter(Boolean).join(' ')} title="Motor Claims Department, home">
+      <span className={styles.lockup}>
         <span className={styles.line1}>
           MOT
-          <Mark className={styles.om} />R
+          <Mark className={styles.om} />
+          <span className="sr-only">O</span>R
         </span>
         <span className={styles.line2}>CLAIMS DEPARTMENT</span>
       </span>

@@ -11,7 +11,7 @@ import styles from './SiteFooter.module.css';
  * The footer (§0, mockup .foot): logo, strapline and phone; four link
  * columns; the legal line. The FCA line comes from FCA_STATUS_LINE (appendix
  * §11): a visible [TODO] on preview, and the production build stops until it
- * is set. Column headings are sentence case (§0), not the mockup's caps.
+ * is set. Column headings are sentence case (§0), not the mockup's caps, and h3s so heading order holds after a page's h2s.
  */
 export function SiteFooter() {
   const fca = process.env.FCA_STATUS_LINE?.trim();
@@ -35,7 +35,7 @@ export function SiteFooter() {
           </div>
           {footer.columns.map((col) => (
             <div key={col.h}>
-              <h4 className={styles.h4}>{col.h}</h4>
+              <h3 className={styles.h3}>{col.h}</h3>
               <ul className={styles.list}>
                 {col.items.map((it) => (
                   <li key={it.label}>{it.href && isLinkable(it.href) ? <Link href={it.href}>{it.label}</Link> : <span className={styles.soon}>{it.label}</span>}</li>

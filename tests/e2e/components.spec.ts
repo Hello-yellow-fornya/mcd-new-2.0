@@ -15,7 +15,7 @@ test('header: sticky cream bar at 84px desktop / 64px mobile with the logo hard 
   await expect(header).toHaveCSS('background-color', 'rgb(247, 245, 239)');
   const box = await header.boundingBox();
   expect(Math.round(box!.height)).toBe(isMobile(page) ? 64 : 85); // mobile includes the hairline; desktop adds it
-  const logo = header.locator('a[aria-label="Motor Claims Department, home"]');
+  const logo = header.locator('a[title="Motor Claims Department, home"]');
   await expect(logo).toBeVisible();
   const motor = logo.locator('span > span').first();
   await expect(motor).toHaveCSS('font-size', isMobile(page) ? '30px' : '34px');
@@ -108,10 +108,10 @@ test('faq: details accordion with the first open', async ({ page }) => {
 test('footer: logo, phone, four columns and a visible FCA placeholder on staging', async ({ page }) => {
   const foot = page.locator('[data-site-footer]');
   await expect(foot.getByRole('link', { name: '0800 048 0048' })).toBeVisible();
-  await expect(foot.locator('h4')).toHaveText(['Claims', 'Services', 'Help', 'Legal']);
+  await expect(foot.locator('h3')).toHaveText(['Claims', 'Services', 'Help', 'Legal']);
   await expect(foot).toContainText('[TODO');
-  const h4 = foot.locator('h4').first();
-  await expect(h4).toHaveCSS('text-transform', 'none');
+  const h3 = foot.locator('h3').first();
+  await expect(h3).toHaveCSS('text-transform', 'none');
 });
 
 test('review band renders the sample cards on staging and pauses on hover', async ({ page }) => {

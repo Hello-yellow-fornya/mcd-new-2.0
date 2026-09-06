@@ -6,6 +6,8 @@ import localFont from 'next/font/local';
  *
  * display: Archivo Black 400 — headlines, big print, card titles, the band.
  * body:    Archivo 400 / 700 — everything else.
+ * The .woff copies of Archivo Black 400 and Archivo 700 exist only for the
+ * Open Graph image renderer, which cannot read WOFF2.
  */
 export const display = localFont({
   src: './archivo-black-latin-400-normal.woff2',
