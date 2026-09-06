@@ -91,3 +91,26 @@ test('the 404 is branded', async ({ page }) => {
   await expect(page.locator('[data-site-header]')).toBeVisible();
   await expect(page.locator('[data-site-footer]')).toBeVisible();
 });
+
+test('desktop: page-specific JS is at most 15 kB above Next’s runtime', async ({ page }) => {
+  test.skip(isMobile(page), 'measured once, on desktop');
+  const scripts = async (path: string) => {
+    await page.goto(path);
+    return page.evaluate(() =>
+      Object.fromEntries(
+        (performance.getEntriesByType('resource') as PerformanceResourceTiming[])
+          .filter((r) => new URL(r.name).pathname.endsWith('.js'))
+          .map((r) => [new URL(r.name).pathname, r.encodedBodySize]),
+      ),
+    );
+  };
+  const home = await scripts('/');
+  const other = await scripts('/nothing-here/');
+  // Next's runtime: the scripts every page loads. The budget is what the homepage adds on top.
+  const runtime = Object.keys(home).filter((k) => k in other);
+  const extra = Object.entries(home)
+    .filter(([k]) => !runtime.includes(k))
+    .reduce((sum, [, size]) => sum + size, 0);
+  expect(runtime.length).toBeGreaterThan(0);
+  expect(extra, `homepage-only JS: ${(extra / 1024).toFixed(1)} kB`).toBeLessThanOrEqual(15 * 1024);
+});

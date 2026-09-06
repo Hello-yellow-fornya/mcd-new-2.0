@@ -14,6 +14,8 @@ export const cta = {
   startOnline: 'Or start your no-fault claim online',
   call: `Call ${site.phone.display}`,
   callNow: 'Call now',
+  /** The mobile hero's big pill, lower case as in the mobile mockup (a deliberate exception, CLAUDE.md §0). */
+  callNowHero: 'call now',
 } as const;
 
 export type NavItem = {
