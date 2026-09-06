@@ -1,0 +1,104 @@
+.section {
+  padding: 56px 0 48px;
+  background: var(--white);
+}
+
+.head,
+.row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 24px;
+  padding: 14px 0;
+  border-bottom: 1px solid var(--line);
+}
+
+.head {
+  font-size: var(--fs-label);
+  font-weight: var(--w-bold);
+  color: var(--muted);
+}
+
+.head div:last-child {
+  color: var(--ink);
+}
+
+.row > div {
+  display: flex;
+  gap: 12px;
+  align-items: flex-start;
+  font-size: 16px;
+}
+
+.them {
+  color: var(--muted);
+}
+
+.us {
+  font-weight: var(--w-bold);
+}
+
+.mk {
+  flex: none;
+  width: 26px;
+  height: 26px;
+  border-radius: var(--r-circle);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--ink);
+}
+
+.mk svg {
+  width: 15px;
+  height: 15px;
+}
+
+.ok {
+  background: var(--yellow);
+  color: var(--on-yellow);
+}
+
+.no {
+  border: 1.5px solid var(--ink);
+}
+
+@media (max-width: 820px) {
+  .section {
+    padding: 6px 0 26px;
+  }
+
+  .table {
+    border-top: 1px solid var(--line);
+  }
+
+  .head {
+    gap: 12px;
+    padding: 8px 0 6px;
+    font-size: 12px;
+    border-bottom: 0;
+  }
+
+  .row {
+    gap: 12px;
+    padding: 9px 0;
+    border-bottom: 0;
+    border-top: 1px solid var(--line);
+  }
+
+  .row > div {
+    gap: 10px;
+    font-size: 14px;
+    line-height: 1.4;
+  }
+
+  .mk {
+    width: 24px;
+    height: 24px;
+    margin-top: -1px;
+  }
+
+  .mk svg {
+    width: 14px;
+    height: 14px;
+  }
+}

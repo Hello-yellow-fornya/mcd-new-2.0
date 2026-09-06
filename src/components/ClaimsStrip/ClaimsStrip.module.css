@@ -1,0 +1,86 @@
+.strip {
+  background: var(--ink);
+  color: var(--yellow);
+  overflow: hidden;
+  font-weight: var(--w-bold);
+  font-size: 16px;
+}
+
+.track {
+  list-style: none;
+  display: flex;
+  gap: 44px;
+  width: max-content;
+  padding: 12px 24px;
+  animation: tk 36s linear infinite;
+}
+
+.strip:hover .track,
+.strip:active .track,
+.strip:focus-within .track {
+  animation-play-state: paused;
+}
+
+.item {
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+  white-space: nowrap;
+  max-width: none;
+}
+
+.circle {
+  flex: none;
+}
+
+@keyframes tk {
+  from {
+    transform: translateX(0);
+  }
+
+  to {
+    transform: translateX(-50%);
+  }
+}
+
+@media (max-width: 820px) {
+  .strip {
+    height: var(--strip-h);
+    display: flex;
+    align-items: center;
+    font-size: 15px;
+  }
+
+  .track {
+    gap: 36px;
+    padding: 10px 18px;
+  }
+
+  .item {
+    gap: 10px;
+  }
+
+  .circle {
+    width: 28px;
+    height: 28px;
+  }
+
+  .circle svg {
+    width: 16px;
+    height: 16px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .strip {
+    overflow-x: auto;
+  }
+
+  .track {
+    animation: none;
+  }
+
+  .track li[aria-hidden] {
+    display: none;
+  }
+}

@@ -1,0 +1,67 @@
+.band {
+  background: var(--ink);
+  color: var(--on-ink);
+  padding: 64px 0 60px;
+}
+
+.l0,
+.h2 {
+  font-family: var(--display);
+  font-weight: var(--w-display);
+  font-size: var(--fs-band);
+  line-height: 1.08;
+  letter-spacing: -0.02em;
+  color: var(--on-ink);
+  max-width: none;
+}
+
+.l1,
+.l2 {
+  display: block;
+}
+
+.l1 {
+  margin-top: 0.2em;
+}
+
+.l2 {
+  margin-top: 0.35em;
+}
+
+/* The chip: the one box behind text (§0). */
+.chip {
+  display: inline-block;
+  background: var(--yellow);
+  color: var(--on-yellow);
+  font: inherit;
+  line-height: 1.05;
+  padding: 0.06em 0.18em 0.1em;
+  border-radius: var(--r-chip);
+}
+
+.ctas {
+  display: flex;
+  gap: 10px;
+  margin-top: 26px;
+}
+
+@media (max-width: 820px) {
+  .band {
+    padding: 56px 0 50px;
+  }
+
+  .l0,
+  .h2 {
+    font-size: 26px;
+    line-height: 1.1;
+  }
+
+  .l1 {
+    white-space: nowrap;
+  }
+
+  .ctas {
+    gap: 8px;
+    margin-top: 18px;
+  }
+}
