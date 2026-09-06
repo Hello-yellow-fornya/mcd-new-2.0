@@ -1,0 +1,47 @@
+.prose {
+  max-width: 68ch;
+}
+
+.prose h2 {
+  font-size: clamp(24px, 2.6vw, 30px);
+  margin-top: 44px;
+  margin-bottom: 14px;
+  scroll-margin-top: calc(var(--nav-h) + 20px);
+}
+
+.prose h2:first-child {
+  margin-top: 0;
+}
+
+.prose h3 {
+  margin-top: 26px;
+  margin-bottom: 8px;
+}
+
+.prose p {
+  margin-bottom: 16px;
+}
+
+.prose ul,
+.prose ol {
+  margin: 0 0 16px 22px;
+}
+
+.prose li {
+  margin-bottom: 6px;
+}
+
+.prose a {
+  text-decoration: underline;
+  text-decoration-color: var(--yellow);
+  text-decoration-thickness: 2px;
+  text-underline-offset: 0.15em;
+}
+
+.prose :global(.muted) {
+  color: var(--muted);
+}
+
+.prose :global(.draft-link) {
+  color: var(--muted);
+}

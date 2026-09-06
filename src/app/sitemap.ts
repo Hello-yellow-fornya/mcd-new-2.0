@@ -1,7 +1,18 @@
 import type { MetadataRoute } from 'next';
+import { getLivePages } from '@/lib/content';
 import { absoluteUrl } from '@/lib/site';
 
-/** The homepage for now; content pages are added with their steps. Never /claim/* or drafts (appendix §5). */
+/** The homepage and live content pages; never /claim/*, /claim-now/thank-you/, drafts or the styleguide (appendix §5). */
 export default function sitemap(): MetadataRoute.Sitemap {
-  return [{ url: absoluteUrl('/'), lastModified: new Date(), changeFrequency: 'weekly', priority: 1 }];
+  const pages = getLivePages().filter((p) => p.frontmatter.template === 'utility' && !p.frontmatter.slug.startsWith('/claim/'));
+  return [
+    { url: absoluteUrl('/'), lastModified: new Date(), changeFrequency: 'weekly', priority: 1 },
+    { url: absoluteUrl('/claim-now/'), lastModified: new Date(), changeFrequency: 'monthly', priority: 0.9 },
+    ...pages.map((p) => ({
+      url: absoluteUrl(p.frontmatter.slug),
+      lastModified: new Date(p.frontmatter.lastReviewed),
+      changeFrequency: 'monthly' as const,
+      priority: 0.5,
+    })),
+  ];
 }

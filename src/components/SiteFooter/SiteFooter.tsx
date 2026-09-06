@@ -1,5 +1,6 @@
 import Link from 'next/link';
 import { Logo } from '@/components/Logo/Logo';
+import { CookieSettingsButton } from '@/components/Consent/ConsentBanner';
 import { footer } from '@/data/copy';
 import { site } from '@/lib/site';
 import { isProduction } from '@/lib/staging';
@@ -38,6 +39,11 @@ export function SiteFooter() {
                 {col.items.map((it) => (
                   <li key={it.label}>{it.href ? <Link href={it.href}>{it.label}</Link> : <span className={styles.soon}>{it.label}</span>}</li>
                 ))}
+                {col.h === 'Legal' ? (
+                  <li>
+                    <CookieSettingsButton className={styles.linkButton} />
+                  </li>
+                ) : null}
               </ul>
             </div>
           ))}

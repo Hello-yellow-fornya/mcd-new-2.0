@@ -181,3 +181,9 @@ export const footer = {
 } as const;
 
 export const reviewsHead = { h2: 'What drivers say' } as const;
+
+/** The one wording for "the catch" (appendix §11, pending MCD's policy): the FAQ answer, reused wherever the catch is stated. */
+export const theCatch = {
+  lead: 'The catch',
+  text: faq.items[0].a,
+} as const;
