@@ -78,7 +78,7 @@ export function HomeHero({ h1, h2, sub }: Props) {
         <ProofGrid className={styles.grid} />
         <div className={styles.mobileCtas}>
           <Button href={site.phone.href} variant="ink" size="hero" icon="phone" data-cta="call">
-            {cta.callNow}
+            {cta.callNowHero}
           </Button>
           <WaitRow className={styles.mobileWait} />
           <Button href={nav.claimHref} variant="outline-ink" iconAfter="arrow" block className={styles.online} data-cta="start-online">
