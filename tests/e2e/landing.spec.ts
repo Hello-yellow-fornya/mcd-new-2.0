@@ -50,7 +50,7 @@ test('mobile: the fold lock holds with the sub line, and Call now is the primary
   const sub = page.locator('[data-hero] p').first();
   await expect(sub).toHaveText('The smarter way to claim for no-fault accidents.');
   const call = page.locator('[data-hero] a[data-cta="call"]:visible');
-  await expect(call).toHaveText(/Call now/);
+  await expect(call).toHaveText(/call now/);
   const online = await page.locator('[data-hero] a[data-cta="start-online"]').boundingBox();
   expect(online!.y + online!.height).toBeLessThanOrEqual(strip!.y + 0.5);
 });
