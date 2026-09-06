@@ -28,8 +28,7 @@
 }
 
 .sub {
-  color: var(--muted);
-  margin: -12px 0 22px;
+  display: none;
 }
 
 .desktopCtas {
@@ -92,10 +91,14 @@
     white-space: nowrap;
   }
 
+  /* Landing pages: a short centred line under the H2 (mobile mockup .h2). */
   .sub {
+    display: block;
     text-align: center;
     font-size: 16px;
+    color: var(--muted);
     margin: 12px auto 0;
+    max-width: none;
   }
 
   .desktopCtas,

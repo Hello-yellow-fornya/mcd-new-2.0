@@ -12,7 +12,7 @@ function Hl({ t }: { t: Highlighted }) {
   return (
     <>
       {t.before}
-      <span className="hl">{t.highlight}</span>
+      {t.highlight ? <span className="hl">{t.highlight}</span> : null}
       {t.after}
     </>
   );
@@ -40,7 +40,7 @@ function WaitRow({ className }: { className?: string }) {
 type Props = {
   h1: Highlighted;
   h2: Highlighted;
-  /** Landing pages put a short sub under the H2 on mobile. */
+  /** Landing pages put a short line under the H2, mobile only. */
   sub?: string;
 };
 
