@@ -1,0 +1,248 @@
+<!doctype html><html lang="en-GB"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Motor Claims Department — mobile homepage (brand guidelines v1.0)</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@500;600;700&display=swap" rel="stylesheet">
+<style>
+:root{--yel:#FFD400;--ink:#19180F;--cream:#F7F5EF;--white:#FFFFFF;--grey:#54524A;--ochre:#B08900;--pale:#FFF6C9;--line:#E6E2D6}
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:'Quicksand',system-ui,sans-serif;font-weight:500;color:var(--grey);background:var(--white);font-size:17px;line-height:1.65}
+a{color:inherit;text-decoration:none}
+h1,h2,h3{color:var(--ink);font-weight:700}
+h1{font-size:clamp(40px,5.2vw,64px);line-height:1.05;letter-spacing:-0.02em}
+h2{font-size:clamp(30px,3.4vw,42px);line-height:1.15;letter-spacing:-0.02em;margin-bottom:12px}
+h3{font-size:22px;line-height:1.3}
+.wrap{max-width:1140px;margin:0 auto;padding:0 24px}
+.hl{background:linear-gradient(transparent 55%,var(--yel) 55%)}
+.chipmark{background:var(--yel);color:var(--ink);padding:0 .18em;border-radius:6px}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:10px;border-radius:999px;padding:0 24px;min-height:52px;font-weight:700;font-size:16px}
+.btn-ink{background:var(--ink);color:var(--white)} .btn-out{border:1.5px solid var(--ink);color:var(--ink)} .btn-yel{background:var(--yel);color:var(--ink)}
+.ph{width:18px;height:18px}
+.eyebrow{color:var(--ochre);font-weight:700;font-size:14px;margin-bottom:8px}
+.chip{width:44px;height:44px;border-radius:50%;background:var(--yel);display:inline-flex;align-items:center;justify-content:center;flex:none} .chip svg{width:24px;height:24px}
+/* wordmark */
+.mark{display:inline-flex;flex-direction:column;line-height:1.05;font-weight:700;font-size:20px;color:var(--ink);letter-spacing:-0.01em}
+.mark .l2 span{background:var(--yel);padding:0 .18em;border-radius:5px}
+.mark.onyel .l2 span{background:var(--ink);color:var(--yel)}
+/* nav */
+.nav{position:sticky;top:0;z-index:20;background:var(--white);box-shadow:0 1px 0 var(--line)}
+.nav .wrap{display:flex;align-items:center;gap:28px;min-height:80px}
+.links{display:flex;gap:24px;margin-left:auto;font-weight:600;color:var(--ink);font-size:16px}
+.nav .call{display:inline-flex;align-items:center;gap:8px;font-weight:700;color:var(--ink)}
+/* hero: the one full-bleed yellow panel */
+.hero{background:var(--yel)}
+.hero .wrap{display:grid;grid-template-columns:1.05fr .95fr;gap:40px;align-items:center;padding:64px 24px 48px}
+.hero p.lead{color:var(--ink);font-size:clamp(17px,1.6vw,20px);max-width:44ch;margin:18px 0 24px;font-weight:500}
+.hero .cta{display:flex;gap:12px;flex-wrap:wrap}
+.hero .btn-ink{box-shadow:0 8px 20px rgba(25,24,15,.18)}
+.illo{width:100%;height:auto}
+.worries{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;padding:0 24px 40px}
+.worry{background:var(--white);border-radius:20px;padding:20px;display:flex;gap:14px;align-items:flex-start}
+.worry b{display:block;color:var(--ink);font-size:17px;margin-bottom:2px} .worry span{font-size:15px}
+/* sections */
+.sec{padding:72px 0} .cream{background:var(--cream)}
+.sub{max-width:56ch;margin-bottom:28px}
+.cards3{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
+.card{background:var(--white);border-radius:20px;padding:26px;border:1px solid var(--line)} .cream .card{border:0}
+.card .chip{margin-bottom:14px} .card h3{margin-bottom:8px} .card p{font-size:15px}
+.steps{display:grid;grid-template-columns:repeat(4,1fr);gap:18px;margin-top:8px}
+.step{background:var(--cream);border-radius:20px;padding:24px}
+.step .n{display:inline-flex;width:34px;height:34px;border-radius:50%;background:var(--yel);color:var(--ink);align-items:center;justify-content:center;font-weight:700;margin-bottom:12px}
+.step h3{font-size:20px;margin-bottom:6px} .step p{font-size:15px}
+/* new way / old way */
+.ways{display:grid;grid-template-columns:1fr 1fr;gap:24px}
+.way{background:var(--white);border-radius:20px;padding:28px;border:1px solid var(--line)}
+.way ul{list-style:none} .way li{display:flex;gap:12px;align-items:flex-start;padding:8px 0;font-size:16px;color:var(--ink)}
+.way.old li{color:var(--grey)}
+.mk{flex:none;width:28px;height:28px;border-radius:50%;display:flex;align-items:center;justify-content:center} .mk svg{width:16px;height:16px} .mk.ok{background:var(--yel)} .mk.no{border:1.5px solid var(--ink)}
+/* handler */
+.handler{display:grid;grid-template-columns:.9fr 1.1fr;gap:40px;align-items:center}
+.photo{aspect-ratio:4/3;border-radius:24px;background:var(--pale);border:1.5px solid var(--line);position:relative;display:flex;align-items:flex-end;padding:16px;font-size:13px}
+.photo .cap{position:absolute;left:-10px;bottom:22px;background:var(--yel);color:var(--ink);font-weight:700;padding:8px 14px;border-radius:999px;font-size:14px}
+blockquote{color:var(--ink);font-weight:700;font-size:clamp(24px,2.6vw,32px);line-height:1.2;letter-spacing:-0.02em;margin-bottom:14px}
+/* tags */
+.tags{display:flex;gap:10px;flex-wrap:wrap;margin-top:16px}
+.tag{border:1.5px solid var(--ink);color:var(--ink);border-radius:999px;padding:8px 16px;font-weight:600;font-size:15px} .tag.on{background:var(--ink);color:var(--white)}
+/* faq */
+.faq{display:grid;grid-template-columns:.8fr 1.2fr;gap:48px;align-items:start}
+details{border-top:1px solid var(--line)} details:last-child{border-bottom:1px solid var(--line)}
+summary{list-style:none;cursor:pointer;padding:16px 40px 16px 0;font-weight:700;color:var(--ink);font-size:18px;position:relative} summary::-webkit-details-marker{display:none}
+summary::after{content:"+";position:absolute;right:0;top:12px;font-size:24px;color:var(--ink)} details[open] summary::after{content:"\2013"}
+details .a{padding:0 40px 18px 0}
+/* final cta + footer */
+.final{background:var(--ink);color:var(--white)} .final .wrap{padding:64px 24px;display:grid;grid-template-columns:1fr auto;gap:32px;align-items:center}
+.final h2{color:var(--white)} .final p{color:rgba(255,255,255,.8)}
+.foot{background:var(--ink);color:rgba(255,255,255,.85);border-top:1px solid rgba(255,255,255,.12);padding:48px 0 40px;font-size:15px}
+.foot .wrap{display:grid;grid-template-columns:1.4fr 1fr 1fr 1fr;gap:28px}
+.foot .mark{color:var(--white)} .foot h4{color:var(--yel);font-size:14px;margin-bottom:10px} .foot ul{list-style:none} .foot li{margin-bottom:6px}
+.foot .tel{color:var(--yel);font-weight:700;font-size:22px}
+.legal{grid-column:1/-1;font-size:12px;color:rgba(255,255,255,.55);margin-top:16px}
+.callbar{display:none}
+@media (max-width:820px){
+  .links,.nav .call{display:none}
+  .nav .wrap{min-height:64px}
+  .hero .wrap{grid-template-columns:1fr;gap:20px;padding:36px 20px 24px}
+  .hero .cta .btn{width:100%}
+  .worries{grid-template-columns:1fr;gap:10px;padding:0 20px 32px}
+  .sec{padding:48px 0}
+  .cards3,.steps,.ways,.handler,.faq,.foot .wrap{grid-template-columns:1fr}
+  .final .wrap{grid-template-columns:1fr;padding:48px 24px}
+  .callbar{display:block;position:fixed;left:0;right:0;bottom:0;padding:10px 16px;background:var(--white);box-shadow:0 -1px 0 var(--line);z-index:30}
+  .callbar .btn{width:100%}
+  .foot{padding-bottom:110px}
+}
+.hero .worries{grid-template-columns:repeat(3,1fr)}
+@media (max-width:820px){.hero .worries{grid-template-columns:1fr}.illo{max-width:260px;margin:4px auto 0}}
+.hero .worries{align-items:stretch}
+.worry{align-items:center;min-height:100%}
+.worry>div>span{display:block}
+.worry .chip{display:inline-flex}
+
+/* mobile file: the desktop page, stacked */
+html{background:#D9D4C8} body{max-width:430px;margin:0 auto;min-height:100vh;box-shadow:0 0 0 1px var(--line);font-size:16px}
+.wrap{padding:0 18px}
+.nav .wrap{min-height:64px;display:flex;justify-content:space-between;gap:12px}
+.links,.nav .call,.nav>.wrap>.btn{display:none!important}
+.mright{display:flex;align-items:center;gap:12px;margin-left:auto}
+.pill.sm{display:inline-flex;align-items:center;gap:7px;min-height:38px;padding:0 14px;border-radius:999px;background:var(--ink);color:var(--white);font-weight:700;font-size:14px} .pill.sm .ph{width:15px;height:15px}
+.burger{width:22px;height:16px;display:flex;flex-direction:column;justify-content:space-between;background:none;border:0;padding:0} .burger i{display:block;height:2px;border-radius:2px;background:var(--ink)}
+.mark{font-size:17px}
+.hero .wrap{display:block;padding:28px 18px 8px}
+h1{font-size:40px}
+.hero p.lead{font-size:16px;margin:12px 0 18px}
+.hero .cta{display:block}
+.hero .cta .btn{width:100%;min-height:56px;font-size:17px}
+.hero .proof{display:flex;justify-content:center;gap:16px;font-size:13px;color:var(--ink);margin:12px 0 14px;font-weight:600}
+.hero .proof span{display:inline-flex;align-items:center;gap:6px} .hero .proof i{width:16px;height:16px;border-radius:50%;background:var(--ink);display:inline-flex;align-items:center;justify-content:center} .hero .proof i svg{stroke:var(--yel)}
+.illo{max-width:250px;margin:18px auto 0;display:block}
+.hero .worries{grid-template-columns:1fr;gap:10px;padding:18px 18px 28px}
+.sec{padding:40px 0}
+.cards3,.steps,.ways,.handler,.faq,.foot .wrap{grid-template-columns:1fr}
+.steps{gap:12px} .step{padding:20px}
+.final .wrap{grid-template-columns:1fr;padding:44px 18px}
+.final .cta .btn{width:100%}
+.callbar{display:block;position:fixed;left:0;right:0;bottom:0;padding:10px 16px;background:var(--white);box-shadow:0 -1px 0 var(--line);z-index:30;transform:translateY(110%);transition:transform .2s ease-out} .callbar.show{transform:none}
+.callbar .btn{width:100%;max-width:398px;margin:0 auto}
+.foot{padding-bottom:110px}
+h2{font-size:28px}
+.hero .chipmark{background:var(--ink);color:var(--yel)}
+
+/* fold-locked hero: one flexible gap between the worries and the call block */
+.hero{min-height:calc(100dvh - 64px);display:flex;flex-direction:column}
+.hero .wrap{display:flex!important;flex-direction:column;flex:1;padding:24px 18px 0!important}
+.hero .wrap>div{display:flex;flex-direction:column;flex:1}
+h1{font-size:40px;line-height:1.02}
+.hero p.lead{margin:12px 0 14px}
+.hero .worries{display:grid;grid-template-columns:1fr;gap:8px;padding:0;margin:0}
+.hero .worry{padding:11px 14px;border-radius:16px;gap:12px}
+.hero .worry .chip{width:36px;height:36px} .hero .worry .chip svg{width:20px;height:20px}
+.hero .worry b{font-size:15px} .hero .worry>div>span{font-size:13px;line-height:1.35}
+.hero .cta{margin-top:auto;padding-top:18px}
+.hero .cta .btn{min-height:54px}
+.hero .proof{margin:10px 0 12px}
+.hero .btn-out{margin:0}
+
+/* spacing rules: line gaps are measured from the top of a highlight chip, not the glyphs;
+   a fold-locked hero has exactly one flexible gap and it is never the largest gap on screen */
+h1{font-size:48px;line-height:1.04}
+h1 .chipmark{display:inline-block;margin-top:.14em;line-height:1.05;padding:.04em .18em .06em}
+.hero p.lead{font-size:17px;line-height:1.5;margin:14px 0 18px}
+.hero .worries{gap:10px}
+.hero .worry{padding:14px 16px}
+.hero .worry b{font-size:16px} .hero .worry>div>span{font-size:14px}
+.hero .cta{padding-top:24px}
+</style></head><body>
+<header class="nav"><div class="wrap">
+  <a class="mark" href="/"><span class="l1">motor claims</span><span class="l2"><span>department</span></span></a>
+  <nav class="links"><a href="#how">How it works</a><a href="#catch">What’s the catch?</a><a href="#who">Who we help</a></nav>
+  <a class="call" href="tel:08000480048"><svg class="ph" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 4h4l2 5-2.5 1.5a11 11 0 0 0 5 5L15 13l5 2v4a2 2 0 0 1-2 2A16 16 0 0 1 3 6a2 2 0 0 1 2-2z"/></svg>0800 048 0048</a>
+  <a class="btn btn-ink" href="#start" style="min-height:46px">Start your claim</a>
+  <div class="mright"><a class="pill sm" href="tel:08000480048"><svg class="ph" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 4h4l2 5-2.5 1.5a11 11 0 0 0 5 5L15 13l5 2v4a2 2 0 0 1-2 2A16 16 0 0 1 3 6a2 2 0 0 1 2-2z"/></svg>Call now</a><button class="burger" aria-label="Menu"><i></i><i></i><i></i></button></div>
+</div></header>
+
+<section class="hero">
+  <div class="wrap">
+    <div>
+      <p class="eyebrow" style="color:var(--ink)">Just been hit? Start here.</p>
+      <h1>Not your fault?<br><span class="chipmark">It’s handled.</span></h1>
+      <p class="lead">The other driver’s insurer pays. Nothing goes through your policy. One person owns your claim from the first call to the keys back.</p>
+      <div class="worries">
+    <div class="worry"><span class="chip"><svg viewBox="0 0 24 24" fill="none" stroke="#19180F" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 6.5c-1-1-2.5-1.3-3.7-.6C9.7 6.8 10 9 10 11v5c0 2-1 3-2.5 3.5M7 13.5h6M7 19.5h10"/></svg></span><div><b>Will it cost me?</b><span>No. No excess, nothing to chase back.</span></div></div>
+    <div class="worry"><span class="chip"><svg viewBox="0 0 24 24" fill="none" stroke="#19180F" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3l7 3v6c0 4-3 7-7 9-4-2-7-5-7-9V6z"/><path d="M9 12l2 2 4-4"/></svg></span><div><b>Will I lose my bonus?</b><span>No. Your no-claims is untouched.</span></div></div>
+    <div class="worry"><span class="chip"><svg viewBox="0 0 24 24" fill="none" stroke="#19180F" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 15l1.5-5A2 2 0 0 1 8.4 8.5h7.2a2 2 0 0 1 1.9 1.5L19 15"/><rect x="3.5" y="15" width="17" height="4.5" rx="1.5"/><circle cx="7.5" cy="19.5" r="1.4"/><circle cx="16.5" cy="19.5" r="1.4"/></svg></span><div><b>Will I be without a car?</b><span>No. A like-for-like car on your drive.</span></div></div>
+  </div><div class="cta"><a class="btn btn-ink" href="tel:08000480048"><svg class="ph" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 4h4l2 5-2.5 1.5a11 11 0 0 0 5 5L15 13l5 2v4a2 2 0 0 1-2 2A16 16 0 0 1 3 6a2 2 0 0 1 2-2z"/></svg>Call 0800 048 0048</a><p class="proof"><span><i><svg viewBox="0 0 24 24" fill="none" stroke="#19180F" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="width:9px;height:9px"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3.5 2"/></svg></i>Avg wait 1 min</span><span><i><svg viewBox="0 0 24 24" fill="none" stroke="#19180F" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="width:9px;height:9px"><path d="M13 3L5 13h6l-1 8 8-10h-6z"/></svg></i>Fastest way to claim</span></p><a class="btn btn-out" href="#start">Or start your claim online <svg viewBox="0 0 24 24" fill="none" stroke="#19180F" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="width:18px;height:18px"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a></div>
+    </div>
+    
+  </div>
+  </section>
+
+<section class="sec" id="how"><div class="wrap">
+  <p class="eyebrow">How it works</p>
+  <h2>Your claim, <span class="hl">without the chaos</span></h2>
+  <p class="sub">Someone hit you. Their insurer has to put it right — not yours. Most people don’t know that. We claim from their insurer instead.</p>
+  <div class="steps">
+    <div class="step"><span class="n">1</span><h3>Tell us what happened</h3><p>One call, or your reg. That’s your bit done.</p></div>
+    <div class="step"><span class="n">2</span><h3>Your handler takes it on</h3><p>One person, in the UK, deals with the other driver’s insurer.</p></div>
+    <div class="step"><span class="n">3</span><h3>We put you back in a car</h3><p>Like-for-like, on your drive, while yours is repaired.</p></div>
+    <div class="step"><span class="n">4</span><h3>They pay. Not you.</h3><p>No excess, nothing on your policy, your no-claims untouched.</p></div>
+  </div>
+</div></section>
+
+<section class="sec cream"><div class="wrap">
+  <p class="eyebrow">Call us before you call your insurer</p>
+  <h2>We know <span class="hl">a shortcut</span></h2>
+  <p class="sub">Your insurer’s claims department is paid by your insurer. Ours is paid by the insurer of the driver who hit you — which is why it costs you nothing.</p>
+  <div class="ways">
+    <div class="way new"><p class="eyebrow">The new way</p><h3>Call Motor Claims Department</h3><ul>
+      <li><span class="mk ok"><svg viewBox="0 0 24 24" fill="none" stroke="#19180F" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg></span><span>Speak to a UK-based handler in minutes, not a queue</span></li>
+      <li><span class="mk ok"><svg viewBox="0 0 24 24" fill="none" stroke="#19180F" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg></span><span>One named person on your claim from first call to keys back</span></li>
+      <li><span class="mk ok"><svg viewBox="0 0 24 24" fill="none" stroke="#19180F" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg></span><span>No excess, nothing on your policy, your no-claims untouched</span></li>
+      <li><span class="mk ok"><svg viewBox="0 0 24 24" fill="none" stroke="#19180F" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg></span><span>A like-for-like car on your drive while yours is fixed</span></li></ul></div>
+    <div class="way old"><p class="eyebrow">The old way</p><h3>Call your insurer</h3><ul>
+      <li><span class="mk no"><svg viewBox="0 0 24 24" fill="none" stroke="#19180F" stroke-width="2" stroke-linecap="round"><path d="M7 7l10 10M17 7L7 17"/></svg></span><span>Wait on hold, then repeat your story to whoever picks up</span></li>
+      <li><span class="mk no"><svg viewBox="0 0 24 24" fill="none" stroke="#19180F" stroke-width="2" stroke-linecap="round"><path d="M7 7l10 10M17 7L7 17"/></svg></span><span>Pay your excess up front and chase it back later</span></li>
+      <li><span class="mk no"><svg viewBox="0 0 24 24" fill="none" stroke="#19180F" stroke-width="2" stroke-linecap="round"><path d="M7 7l10 10M17 7L7 17"/></svg></span><span>A claim on your record, and your no-claims takes the hit</span></li>
+      <li><span class="mk no"><svg viewBox="0 0 24 24" fill="none" stroke="#19180F" stroke-width="2" stroke-linecap="round"><path d="M7 7l10 10M17 7L7 17"/></svg></span><span>A small courtesy car, if your policy includes one at all</span></li></ul></div>
+  </div>
+</div></section>
+
+<section class="sec"><div class="wrap handler">
+  <div class="photo"><span class="cap">Your handler</span>Photo: real handler, mid-call, real desk · shot warm, slightly over</div>
+  <div>
+    <p class="eyebrow">Someone competent has taken over</p>
+    <blockquote>“I’m Dani. I’ll own your claim until your keys are back.”</blockquote>
+    <p>Every claim has one person on it, start to finish. They call you back when they say they will. They’re in the UK. You’ll have their name, and they’ll know yours.</p>
+    <p style="margin-top:14px"><a href="#" style="color:var(--ochre);font-weight:700">Meet the department →</a></p>
+  </div>
+</div></section>
+
+<section class="sec cream" id="who"><div class="wrap">
+  <p class="eyebrow">Who we help</p>
+  <h2>Cars, vans, bikes, <span class="hl">fleets and passengers</span></h2>
+  <div class="tags"><span class="tag on">Non-fault accidents</span><span class="tag">Motorbike claims</span><span class="tag">Taxi &amp; fleet</span><span class="tag">Van drivers</span><span class="tag">Passengers</span></div>
+</div></section>
+
+<section class="sec" id="catch"><div class="wrap faq">
+  <div><p class="eyebrow">Straight answers</p><h2>What’s <span class="hl">the catch?</span></h2><p>There’s one. Here it is, in the same size as everything else.</p></div>
+  <div>
+    <details open><summary>What’s the catch?</summary><div class="a">We recover our costs from the at-fault driver’s insurer, which is why it costs you nothing. If they refuse to accept fault, we argue it for you. In the rare case that fault can’t be established, you could be asked to cover the hire charges — which is why we tell you on the first call whether your claim is one we’d take on.</div></details>
+    <details><summary>Do I speak to my insurer?</summary><div class="a">Only to let them know it happened. That’s a notification, not a claim. We handle everything else, including the call you’ll get from the other driver’s insurer.</div></details>
+    <details><summary>Will my premium go up?</summary><div class="a">Nothing goes through your policy, so there’s no claim on it. You’ll still need to tell your insurer about the incident at renewal, and how they price that is up to them. We won’t pretend otherwise.</div></details>
+    <details><summary>Are you an insurer?</summary><div class="a">No. We don’t sell insurance. We just make it pay.</div></details>
+  </div>
+</div></section>
+
+<section class="final"><div class="wrap">
+  <div><h2>One call <span class="chipmark">sorts the lot.</span></h2><p>Tell us what happened and we’ll get straight on it. Nothing to pay. Nothing on your policy.</p></div>
+  <div class="cta" style="display:flex;gap:12px;flex-wrap:wrap"><a class="btn btn-yel" href="#start">Start your claim</a><a class="btn btn-out" style="border-color:#fff;color:#fff" href="tel:08000480048"><svg class="ph" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 4h4l2 5-2.5 1.5a11 11 0 0 0 5 5L15 13l5 2v4a2 2 0 0 1-2 2A16 16 0 0 1 3 6a2 2 0 0 1 2-2z"/></svg>0800 048 0048</a></div>
+</div></section>
+
+<footer class="foot"><div class="wrap">
+  <div><a class="mark" href="/"><span class="l1">motor claims</span><span class="l2"><span>department</span></span></a><p style="margin-top:12px">The claims department on your side.</p><p style="margin-top:8px"><a class="tel" href="tel:08000480048">0800 048 0048</a></p></div>
+  <div><h4>Claims</h4><ul><li>Start your claim</li><li>Non-fault accidents</li><li>Courtesy car</li><li>Credit hire</li></ul></div>
+  <div><h4>Help</h4><ul><li>How it works</li><li>What’s the catch?</li><li>Contact</li><li>Complaints</li></ul></div>
+  <div><h4>Legal</h4><ul><li>Terms</li><li>Privacy</li><li>Cookies</li></ul></div>
+  <p class="legal">Motor Claims Department Ltd. [Regulatory status and FCA firm reference number exactly as on the FCA Register.] Registered in England and Wales. © 2026.</p>
+</div></footer>
+<div class="callbar"><a class="btn btn-ink" href="tel:08000480048"><svg class="ph" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 4h4l2 5-2.5 1.5a11 11 0 0 0 5 5L15 13l5 2v4a2 2 0 0 1-2 2A16 16 0 0 1 3 6a2 2 0 0 1 2-2z"/></svg>Call 0800 048 0048</a></div>
+<script>const cb=document.querySelector(".callbar"),hero=document.querySelector(".hero");const f=()=>cb.classList.toggle("show",window.scrollY>hero.offsetTop+hero.offsetHeight-80);f();addEventListener("scroll",f,{passive:true});</script>
+</body></html>
