@@ -1,0 +1,11 @@
+{
+  "$comment": "One insurer landing page (CLAUDE.md §0, appendix §6). The insurer name appears only where this file puts it: the H1 and the independence line. Facts, if any, render verbatim with their source and date.",
+  "slug": "goskippy",
+  "insurer": "GoSkippy",
+  "title": "Insured with GoSkippy? Call us before you call your insurer",
+  "description": "Hit by someone else? The other driver’s insurer pays. No excess, your no-claims untouched, a like-for-like car on your drive.",
+  "h1": { "before": "Insured with ", "highlight": "GoSkippy?", "after": "" },
+  "h2": { "before": "Call us before you call your insurer.", "highlight": "", "after": "" },
+  "mobileSub": "The smarter way to claim for no-fault accidents.",
+  "facts": []
+}

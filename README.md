@@ -65,6 +65,18 @@ tests/e2e/              Playwright (390×844, 430×932 and desktop projects)
 - no coral, marine, sky or stone: the 1.0 palette does not exist here
 - the highlight is a bar under the words (`.hl` in `globals.css`), never a box behind them; the band's chip is the one exception
 
+## Add an insurer landing page
+
+Landing pages live at `/claim/<slug>/`, one JSON file each in `src/data/landing/`, rendered by `src/templates/LandingPage.tsx` from `design/mcd-2-0-goskippy-landing*.html`. Copy `goskippy.json`, change `slug`, `insurer`, `title`, `description`, `h1` and (if needed) `h2` and `mobileSub`, and the page builds. Rules that hold in code:
+
+- The insurer name may appear only in the H1 and the independence line (the template renders the line from `insurer`). `validateLanding` fails the build if it turns up in the description, H2, sub line or facts.
+- Every `/claim/*` page is `noindex, nofollow` (header and meta), canonical to itself, off the sitemap, and disallowed in `robots.txt` on a live host.
+- The independence line renders directly under the hero and strip.
+- Sourced facts go in `facts[]` with `label`, `theirs`, `ours`, `source`, `sourceUrl` and `checkedOn`, rendered verbatim with the date. Leave the array empty and the section does not render.
+- Proof claims (the wait row, the 90-minute card, the header chip) follow `src/data/claims.json` as everywhere else.
+
+`tests/e2e/landing.spec.ts` covers all of it, including the fold lock at 390×844 and 430×932.
+
 ## Deploy
 
 Push to a branch and open a PR: Vercel (`mcd-new-2-0`) builds a preview at `mcd-new-2-0-git-<branch>-fornya.vercel.app` and comments the URL on the PR. Merging to `main` deploys the production build, which stays at the `*.vercel.app` address, protected and noindexed. `pnpm build` runs the content and CSS lints first and stops on a hit.
