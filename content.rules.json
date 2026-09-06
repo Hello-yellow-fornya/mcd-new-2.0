@@ -1,0 +1,33 @@
+{
+  "$schema": "./scripts/content.rules.schema.json",
+  "paths": ["content", "src/data"],
+  "extensions": [".mdx", ".md"],
+  "rules": {
+    "no-exclamation": true,
+    "no-all-caps-headings": true,
+    "no-week-phrasing": true,
+    "banned-phrases": true
+  },
+  "allowedCaps": ["MCD", "UK", "FCA", "GB", "DVLA", "FAQ", "FAQs", "TODO", "GDPR", "AB12", "CDE", "SVG", "URL", "ID", "GTM", "H1", "H2"],
+  "bannedPhrases": [
+    "premium won't go up",
+    "premium will not go up",
+    "premium won't rise",
+    "premium will not rise",
+    "won't affect your premium",
+    "will not affect your premium",
+    "no effect on your premium",
+    "no win no fee",
+    "no win, no fee",
+    "guaranteed repair time",
+    "fat cat",
+    "fat cats"
+  ],
+  "bannedPatterns": [
+    {
+      "pattern": "\\b(repairs?|repaired|fixed|back on the road)\\b[^.]{0,40}\\b(within|in under|in just)\\s+\\d+\\s*(hours?|days?|weeks?)\\b",
+      "flags": "i",
+      "message": "Repair timescales are not promised."
+    }
+  ]
+}
