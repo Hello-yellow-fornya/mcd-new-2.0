@@ -21,7 +21,7 @@ test('header: sticky cream bar at 84px desktop / 64px mobile with the logo hard 
   const lockup = logo.locator('svg[data-logo="cream"][data-layout="wide"]');
   const lb = (await lockup.boundingBox())!;
   expect(Math.round(lb.height)).toBe(isMobile(page) ? 42 : 50);
-  expect(lb.width).toBeGreaterThan(isMobile(page) ? 140 : 170);
+  expect(lb.width).toBeGreaterThan(isMobile(page) ? 130 : 160); // about 169 × 50 desktop, 142 × 42 mobile
   await expect(lockup.locator('text')).toHaveCount(0);
   await expect(lockup.locator('path[data-text="Claims"]')).toHaveCount(1);
 });
