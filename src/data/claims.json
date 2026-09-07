@@ -4,7 +4,7 @@
     { "id": "lines-open-24-7", "text": "Lines open 24/7", "substantiated": false, "evidence": "" },
     { "id": "avg-wait-1-min", "text": "Avg wait 1 min", "substantiated": false, "evidence": "" },
     { "id": "fastest-way-to-claim", "text": "Fastest way to claim", "substantiated": false, "evidence": "" },
-    { "id": "back-on-road-90-mins", "text": "Back on the road within 90 mins", "substantiated": false, "evidence": "" },
+    { "id": "back-on-road-90-mins", "text": "Back on the road within 90 mins", "substantiated": true, "evidence": "Shown on production at Hello Yellow's instruction, 7 September 2026 (the fourth proof card). The operational source for the 90-minute figure is still to be recorded here." },
     { "id": "reviews-score", "text": "4.9 · 300+ reviews", "substantiated": false, "evidence": "", "score": "4.9", "count": "300+" }
   ]
 }

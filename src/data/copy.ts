@@ -53,12 +53,26 @@ export const hero = {
   h2: { before: 'Choose the ', highlight: 'smarter way', after: ' to claim.' },
 } as const;
 
-export const proofGrid = [
+export type ProofCard = { [key: string]: unknown; icon: 'shield' | 'pound' | 'car' | 'bolt' | 'person' | 'doc'; title: string; sub: string; claim?: string; fallback?: ProofCard };
+
+/**
+ * The 2×2 proof grid. The 90-minute card carries a substantiation-gated
+ * claim (appendix §6): on production it renders only once the claim has
+ * evidence in src/data/claims.json, and until then its fallback keeps the
+ * grid at four cards.
+ */
+export const proofGrid: readonly ProofCard[] = [
   { icon: 'shield', title: 'Protect your\nno claims', sub: 'Keep your no claims bonus safe.' },
   { icon: 'pound', title: 'No excess\nto pay', sub: 'Our service is free for non-fault drivers.' },
   { icon: 'car', title: 'Like-for-like\nreplacement', sub: 'Car, van or bike, whatever your cover.' },
-  { icon: 'bolt', title: 'Back on the road\nwithin 90 mins', sub: 'Nationwide recovery and rapid mobilisation.', claim: 'back-on-road-90-mins' },
-] as const;
+  {
+    icon: 'bolt',
+    title: 'Back on the road\nwithin 90 mins',
+    sub: 'Nationwide recovery and rapid mobilisation.',
+    claim: 'back-on-road-90-mins',
+    fallback: { icon: 'person', title: 'A named\nUK handler', sub: 'One person, from first call to keys back.' },
+  },
+];
 
 export const strip = [
   { icon: 'check', text: 'Non-fault claims handled for you' },
