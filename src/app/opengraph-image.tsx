@@ -19,13 +19,13 @@ export default async function OpenGraphImage() {
   const [display, body, lockup] = await Promise.all([
     readFile(join(fonts, 'archivo-black-latin-400-normal.woff')),
     readFile(join(fonts, 'archivo-latin-700-normal.woff')),
-    readFile(join(process.cwd(), 'public', 'logo', 'claims247-logo-on-cream.svg'), 'utf8'),
+    readFile(join(process.cwd(), 'public', 'logo', 'claims247-logo-wide-on-cream.svg'), 'utf8'),
   ]);
   const logoSrc = `data:image/svg+xml;base64,${Buffer.from(lockup).toString('base64')}`;
   return new ImageResponse(
     (
       <div style={{ width: '100%', height: '100%', display: 'flex', flexDirection: 'column', justifyContent: 'space-between', background: '#F7F5EF', color: '#19180F', padding: 72, fontFamily: 'Archivo' }}>
-        <img src={logoSrc} width={248} height={120} alt="" style={{ marginLeft: -24, marginTop: -24 }} />
+        <img src={logoSrc} width={300} height={98} alt="" style={{ marginLeft: -10, marginTop: -10 }} />
         <div style={{ display: 'flex', flexDirection: 'column' }}>
           <div style={{ display: 'flex', alignItems: 'flex-start', gap: 28, fontFamily: 'Archivo Black', fontSize: 108, lineHeight: 1, letterSpacing: -3 }}>
             <div style={{ display: 'flex', flexDirection: 'column' }}>

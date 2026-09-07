@@ -92,13 +92,16 @@ export default function StyleguidePage() {
                 <IconCircle key={n} name={n} variant="pale" size={16} iconSize={9} />
               ))}
             </div>
-            <div className={styles.label}>Logo (design/logo, §4a): the lockup by surface at 34px, then the proof grid alone</div>
+            <div className={styles.label}>Logo (design/logo, §4a): the wide lockup by surface at 50px, the compact signed-off arrangement, then the proof grid alone</div>
             <div style={{ display: 'flex', flexWrap: 'wrap', gap: 12 }}>
               {(['light', 'cream', 'yellow', 'ink', 'mono-ink', 'mono-white'] as const).map((surface) => (
                 <span key={surface} title={surface} style={{ display: 'inline-flex', padding: '12px 16px', borderRadius: 12, background: surface === 'yellow' ? 'var(--yellow)' : surface === 'ink' || surface === 'mono-white' ? 'var(--ink)' : surface === 'cream' ? 'var(--cream)' : 'var(--white)', border: '1px solid var(--line)' }}>
                   <Lockup surface={surface} />
                 </span>
               ))}
+              <span title="compact" style={{ display: 'inline-flex', padding: '12px 16px', borderRadius: 12, background: 'var(--white)', border: '1px solid var(--line)' }}>
+                <Lockup surface="light" layout="compact" />
+              </span>
             </div>
             <div className={styles.gridWrap}>
               <ProofGrid />

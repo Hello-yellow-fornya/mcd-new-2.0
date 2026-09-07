@@ -17,9 +17,11 @@ test('header: sticky cream bar at 84px desktop / 64px mobile with the logo hard 
   expect(Math.round(box!.height)).toBe(isMobile(page) ? 64 : 85); // mobile includes the hairline; desktop adds it
   const logo = header.locator('a[title="Claims 24/7, home"]');
   await expect(logo).toBeVisible();
-  // The on-cream lockup at 34px desktop / 30px mobile, the wordmark as outlines (no <text> to fall back)
-  const lockup = logo.locator('svg[data-logo="cream"]');
-  expect(Math.round((await lockup.boundingBox())!.height)).toBe(isMobile(page) ? 30 : 34);
+  // The wide on-cream lockup at 50px desktop / 42px mobile, the wordmark as outlines (no <text> to fall back)
+  const lockup = logo.locator('svg[data-logo="cream"][data-layout="wide"]');
+  const lb = (await lockup.boundingBox())!;
+  expect(Math.round(lb.height)).toBe(isMobile(page) ? 42 : 50);
+  expect(lb.width).toBeGreaterThan(isMobile(page) ? 140 : 170);
   await expect(lockup.locator('text')).toHaveCount(0);
   await expect(lockup.locator('path[data-text="Claims"]')).toHaveCount(1);
 });
