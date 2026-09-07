@@ -65,7 +65,7 @@ for (const block of blocks) {
       `---
 slug: ${slug}
 template: ${templateFor(slug, section)}
-title: "${safe} | Motor Claims Department"
+title: "${safe} | Claims 24/7"
 description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. One focused sentence of at most 155 characters."
 h1: "${safe}"
 lead: "Lorem ipsum dolor sit amet, consectetur adipiscing elit."

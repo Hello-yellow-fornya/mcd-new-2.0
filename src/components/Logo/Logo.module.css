@@ -1,72 +1,41 @@
+/* The Claims 24/7 lockup (CLAUDE.md §4a): height from --logo-h, width from the artwork. */
 .brand {
   display: inline-flex;
+  line-height: 0;
   text-decoration: none;
-  color: var(--ink);
+  flex: none;
 }
 
 .lockup {
-  display: inline-flex;
-  flex-direction: column;
-  line-height: 1;
-  color: inherit;
+  display: block;
+  height: var(--logo-h);
+  width: auto;
+  overflow: visible;
 }
 
-/* MOTOR: Archivo Black at the logo height (34px desktop, 30px mobile), tracking -0.035em. */
-.line1 {
-  font-family: var(--display);
-  font-weight: var(--w-display);
-  font-size: var(--logo-h);
-  letter-spacing: -0.035em;
-  white-space: nowrap;
-  display: inline-flex;
-  align-items: baseline;
+/* Surfaces: currentColor is the wordmark, the speed lines and the hub; --logo-accent is the ring. */
+.light,
+.cream {
+  color: var(--ink);
+  --logo-accent: var(--yellow);
 }
 
-.om {
-  display: inline-block;
-  width: 0.74em;
-  height: 0.74em;
-  vertical-align: -0.02em;
-  align-self: center;
-  transform: translateY(0.02em);
+.yellow {
+  color: var(--ink);
+  --logo-accent: var(--ink);
 }
 
-/* CLAIMS DEPARTMENT: Archivo 700 tracked .14em, ~31% of the logo height. */
-.line2 {
-  font-family: var(--body);
-  font-weight: var(--w-bold);
-  font-size: calc(var(--logo-h) * 0.31);
-  letter-spacing: 0.14em;
-  margin-top: 3px;
-  white-space: nowrap;
-}
-
-.disc {
-  fill: var(--yellow);
-}
-
-.spoke {
-  stroke: var(--ink);
-}
-
-.hub {
-  fill: var(--ink);
-}
-
-/* Mono: on ink surfaces the disc takes the text colour and the spokes the background. */
-.brand.onInk,
-.onInk {
+.ink {
   color: var(--white);
+  --logo-accent: var(--yellow);
 }
 
-.onInk .disc {
-  fill: var(--white);
+.monoInk {
+  color: var(--ink);
+  --logo-accent: var(--ink);
 }
 
-.onInk .spoke {
-  stroke: var(--ink);
-}
-
-.onInk .hub {
-  fill: var(--ink);
+.monoWhite {
+  color: var(--white);
+  --logo-accent: var(--white);
 }

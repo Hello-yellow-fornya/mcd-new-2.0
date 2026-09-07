@@ -59,9 +59,39 @@
   border: 1.5px solid var(--ink);
 }
 
+/* Mobile: the landing page's density (ThemUs.module.css). */
 @media (max-width: 820px) {
-  .head,
+  .tu {
+    margin: 18px 0;
+  }
+
+  .head {
+    gap: 12px;
+    padding: 8px 0 6px;
+    font-size: 12px;
+    border-bottom: 0;
+  }
+
   .row {
+    gap: 12px;
+    padding: 9px 0;
+    border-bottom: 0;
+    border-top: var(--border);
+  }
+
+  .row > div {
     gap: 10px;
+    font-size: 14px;
+    line-height: 1.4;
+  }
+
+  .mk {
+    width: 24px;
+    height: 24px;
+  }
+
+  .mk svg {
+    width: 14px;
+    height: 14px;
   }
 }

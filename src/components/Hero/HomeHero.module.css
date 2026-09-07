@@ -37,24 +37,6 @@
   flex-wrap: wrap;
 }
 
-/* The wait row: 14px muted, pale 16px circles (mockup .proof). */
-.wait {
-  list-style: none;
-  display: flex;
-  gap: 18px;
-  font-size: var(--fs-label);
-  color: var(--muted);
-  margin-top: 14px;
-}
-
-.wait li {
-  display: inline-flex;
-  align-items: center;
-  gap: 7px;
-  max-width: none;
-  white-space: nowrap;
-}
-
 
 .mobileCtas {
   display: none;
@@ -127,12 +109,12 @@
     gap: 9px;
   }
 
-  .mobileWait .pic {
+  .mobileWait li > span:first-child {
     width: 17px;
     height: 17px;
   }
 
-  .mobileWait .pic svg {
+  .mobileWait li > span:first-child svg {
     width: 11px;
     height: 11px;
   }

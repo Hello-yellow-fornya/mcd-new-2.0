@@ -1,5 +1,5 @@
 import { MDXRemote } from 'next-mdx-remote/rsc';
-import { ArticleLayout, Band, Breadcrumb, Faq, HeroText, JsonLd, KeepsStrip, PhotoPlaceholder, RelatedPages, SectionCta, SiteFooter, SiteHeader } from '@/components';
+import { ArticleLayout, Band, Breadcrumb, Faq, HeroText, JsonLd, KeepsStrip, RelatedPages, SectionCta, SiteFooter, SiteHeader } from '@/components';
 import { getPage, isLive, type Page } from '@/lib/content';
 import { pageSchema } from '@/lib/content/schema';
 import remarkHeadingIds from '@/lib/content/remark-heading-ids';
@@ -49,7 +49,8 @@ function related(page: Page) {
 /**
  * The SEO page templates (appendix §5) in 2.0 styling: pillar, process,
  * comparison, guide, location, article. One shell, varied by template:
- * breadcrumb, text hero, keeps strip, TOC + prose, FAQ from frontmatter,
+ * breadcrumb, text hero (no photo slot until real images exist: the text
+ * column runs full width), keeps strip, TOC + prose, FAQ from frontmatter,
  * CTA pair, related pages, band. Schema is generated from the same data.
  */
 export function ContentPage({ page }: { page: Page }) {
@@ -71,13 +72,12 @@ export function ContentPage({ page }: { page: Page }) {
           highlight={fm.highlight}
           lead={fm.lead}
           meta={{ lastReviewed: formatReviewed(fm.lastReviewed), author: fm.author }}
-          photo={fm.photo ? <PhotoPlaceholder label={fm.photo.alt} note={fm.photo.note} /> : undefined}
         />
         {keepsStripOn.has(fm.template) && <KeepsStrip />}
         <ArticleLayout toc={toc}>
           <Body page={page} />
           <FaqBlock page={page} />
-          <SectionCta />
+          <SectionCta compact />
         </ArticleLayout>
         {rel.length > 0 && <RelatedPages items={rel} />}
         <Band />

@@ -1,6 +1,8 @@
 export { Sprite } from './Icon/Sprite';
 export { Icon, IconCircle } from './Icon/Icon';
-export { Logo, Mark } from './Logo/Logo';
+export { Logo, Lockup } from './Logo/Logo';
+export type { LogoSurface } from './Logo/Logo';
+export { WaitRow } from './Hero/WaitRow';
 export { Button } from './Button/Button';
 export { SectionCta } from './SectionCta/SectionCta';
 export { SiteHeader } from './SiteHeader/SiteHeader';

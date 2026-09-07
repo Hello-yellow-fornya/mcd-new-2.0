@@ -7,10 +7,11 @@
   max-width: 68ch;
 }
 
+/* Archivo 700: callouts do not use the display face (only H1–H3, card titles and the band do). */
 .lead {
   display: block;
-  font-family: var(--display);
-  font-weight: var(--w-display);
-  font-size: 18px;
+  font-family: var(--body);
+  font-weight: var(--w-bold);
+  font-size: 17px;
   margin-bottom: 6px;
 }

@@ -1,5 +1,5 @@
-import type { ReactNode } from 'react';
 import { Button } from '@/components/Button/Button';
+import { WaitRow } from '@/components/Hero/WaitRow';
 import { site } from '@/lib/site';
 import { cta, nav } from '@/data/copy';
 import styles from './HeroText.module.css';
@@ -12,8 +12,7 @@ type Props = {
   /** The page's H2 (§0: the H2 rule on every page). */
   lead?: string;
   meta?: { lastReviewed?: string; author?: string };
-  photo?: ReactNode;
-  /** pair: Start (ink) + Call (yellow). call: the Call button alone. */
+  /** pair: Start (ink) + Call (yellow) with the wait row. call: the Call button alone. */
   cta?: 'pair' | 'call' | 'none';
 };
 
@@ -31,45 +30,50 @@ function Title({ title, highlight }: { title: string; highlight?: string }) {
   );
 }
 
-/** Text hero from the SEO templates: eyebrow, H1 with the bar, the lead as the H2, CTA pair, meta line, photo slot. */
-export function HeroText({ kicker, title, highlight, lead, meta, photo, cta: ctaMode = 'pair' }: Props) {
+/**
+ * Text hero from the SEO templates: eyebrow, H1 with the bar, the lead as the
+ * H2 in Archivo (only H1–H3, card titles and the band use the display face),
+ * the CTA pair with the wait row, the meta line. One column: the photo slot
+ * is gone until real images exist, so the text runs full width. Desktop fits
+ * the headline, lead, both CTAs and the wait row inside 1280×720; mobile puts
+ * Call first and full width, the wait row under it, Start in ink beneath.
+ */
+export function HeroText({ kicker, title, highlight, lead, meta, cta: ctaMode = 'pair' }: Props) {
   return (
     <section className={styles.hero} data-hero>
       <div className={`wrap ${styles.heroIn}`}>
-        <div>
-          {kicker && <p className={styles.kicker}>{kicker}</p>}
-          <h1 className={styles.h1}>
-            <Title title={title} highlight={highlight} />
-          </h1>
-          {lead && <h2 className={styles.lead}>{lead}</h2>}
-          {ctaMode !== 'none' && (
-            <div className={styles.ctaRow}>
-              {ctaMode === 'pair' && (
-                <Button href={nav.claimHref} variant="ink" data-cta="start">
-                  {cta.start}
-                </Button>
-              )}
-              <Button href={site.phone.href} variant="yellow" icon="phone" data-cta="call">
-                {cta.call}
+        {kicker && <p className={styles.kicker}>{kicker}</p>}
+        <h1 className={styles.h1}>
+          <Title title={title} highlight={highlight} />
+        </h1>
+        {lead && <h2 className={styles.lead}>{lead}</h2>}
+        {ctaMode !== 'none' && (
+          <div className={styles.ctaRow}>
+            {ctaMode === 'pair' && (
+              <Button href={nav.claimHref} variant="ink" className={styles.start} data-cta="start">
+                {cta.start}
               </Button>
-            </div>
-          )}
-          {meta && (meta.lastReviewed || meta.author) && (
-            <p className={styles.meta}>
-              {meta.lastReviewed && (
-                <span>
-                  Last reviewed <b>{meta.lastReviewed}</b>
-                </span>
-              )}
-              {meta.author && (
-                <span>
-                  By <b>{meta.author}</b>
-                </span>
-              )}
-            </p>
-          )}
-        </div>
-        {photo && <div className={styles.photo}>{photo}</div>}
+            )}
+            <Button href={site.phone.href} variant="yellow" icon="phone" className={styles.call} data-cta="call">
+              {cta.call}
+            </Button>
+            <WaitRow className={styles.wait} />
+          </div>
+        )}
+        {meta && (meta.lastReviewed || meta.author) && (
+          <p className={styles.meta}>
+            {meta.lastReviewed && (
+              <span>
+                Last reviewed <b>{meta.lastReviewed}</b>
+              </span>
+            )}
+            {meta.author && (
+              <span>
+                By <b>{meta.author}</b>
+              </span>
+            )}
+          </p>
+        )}
       </div>
     </section>
   );

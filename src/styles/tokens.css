@@ -78,7 +78,7 @@
   --grid-max: 1140px;
   --gutter: 24px;
   --nav-h: 84px;         /* §0 header: 84px desktop, 64px mobile */
-  --logo-h: 34px;        /* §0 logo: 34px desktop, 30px mobile (font-size of the MOTOR line) */
+  --logo-h: 50px;        /* §4a: the wide Claims 24/7 lockup, 50px desktop, 42px mobile (the MOTOR lockup's footprint) */
   --strip-h: 52px;       /* the ClaimsStrip on mobile; the hero is fold-locked against nav + strip */
   --hero-pad: 56px 24px 52px; /* desktop hero (.hero .wrap padding) */
 
@@ -122,7 +122,7 @@
   :root {
     --section-pad: 48px;
     --nav-h: 64px;
-    --logo-h: 30px;
+    --logo-h: 42px;
     --fs-h1: 54px;
     --lh-h1: 1.08;
     --fs-h1-sub: 19px;

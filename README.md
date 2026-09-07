@@ -1,6 +1,6 @@
-# Motor Claims Department 2.0
+# Claims 24/7 (Motor Claims Department 2.0)
 
-The second Motor Claims Department front end: same company, same claims, louder brand. Next.js 15 (App Router, TypeScript) on Vercel; claims post to the shared 1.0 claims API. `CLAUDE.md` is the build brief (§0 is what differs from 1.0; the appendix carries the shared behaviours); everything in `design/` is the visual and structural spec and is reproduced, not redesigned.
+The second Motor Claims Department front end, trading as Claims 24/7: same company, same claims, louder brand. Next.js 15 (App Router, TypeScript) on Vercel; claims post to the shared 1.0 claims API. `CLAUDE.md` is the build brief (§0 is what differs from 1.0; the appendix carries the shared behaviours); everything in `design/` is the visual and structural spec and is reproduced, not redesigned.
 
 ## Run locally
 

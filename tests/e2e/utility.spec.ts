@@ -2,7 +2,7 @@ import { test, expect } from '@playwright/test';
 
 // About, contact and the legal set from content/utility/*.mdx.
 const pages = [
-  ['/about-us/', 'About Motor Claims Department'],
+  ['/about-us/', 'About Claims 24/7'],
   ['/contact-us/', 'Contact us'],
   ['/privacy-policy/', 'Privacy policy'],
   ['/terms/', 'Terms of business'],

@@ -71,7 +71,7 @@ test('desktop: two-column hero with the proof grid to the right of the copy', as
 });
 
 test('head: title, canonical, Organization and WebSite schema; the FAQ schema matches the visible FAQ', async ({ page }) => {
-  await expect(page).toHaveTitle(/Motor Claims Department/);
+  await expect(page).toHaveTitle(/Claims 24\/7/);
   await expect(page.locator('link[rel="canonical"]')).toHaveAttribute('href', 'https://mcd-new-2-0.vercel.app/');
   const blocks = await page.locator('script[type="application/ld+json"]').allTextContents();
   const types = blocks.flatMap((b) => {

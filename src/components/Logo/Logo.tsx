@@ -1,40 +1,69 @@
 import Link from 'next/link';
+import { lockupFrame, mark, markTransform, wide, wordmark } from './lockup.generated';
+import { site } from '@/lib/site';
 import styles from './Logo.module.css';
 
 /**
- * The horizontal lockup from the mockups: "MOT" + the mark as the second O +
- * "R" in Archivo Black, "CLAIMS DEPARTMENT" beneath in Archivo 700 tracked
- * .14em and sized to MOTOR's width. In 2.0 the disc is yellow with ink
- * spokes (§0). The second line is the logo's lettering, set as text so it
- * stays selectable; it is the one place caps appear.
+ * Which surface the lockup sits on (CLAUDE.md §4a). The variant follows:
+ * light and cream take ink words with the yellow ring; yellow takes all ink;
+ * ink takes white words with the yellow ring; the two monos are one colour.
+ * The speed lines always match the wordmark colour.
  */
-export function Mark({ className }: { className?: string }) {
-  const spokes = [0, 45, 90, 135, 180, 225, 270, 315].map((deg) => {
-    const r = (deg * Math.PI) / 180;
-    return { x: (50 + 34 * Math.cos(r)).toFixed(2), y: (50 + 34 * Math.sin(r)).toFixed(2) };
-  });
+export type LogoSurface = 'light' | 'cream' | 'yellow' | 'ink' | 'mono-ink' | 'mono-white';
+
+const surfaceClass: Record<LogoSurface, string> = {
+  light: styles.light,
+  cream: styles.cream,
+  yellow: styles.yellow,
+  ink: styles.ink,
+  'mono-ink': styles.monoInk,
+  'mono-white': styles.monoWhite,
+};
+
+type LockupProps = {
+  surface?: LogoSurface;
+  /** wide (default): the wordmark at the mark's full height beside the stopwatch, for the header and footer. compact: the signed-off lockup with the words tucked into the opening. */
+  layout?: 'wide' | 'compact';
+  className?: string;
+  /** Decorative when the parent link carries the name. */
+  decorative?: boolean;
+};
+
+/**
+ * The horizontal lockup as inline SVG: "Claims" over "24/7" beside the
+ * stopwatch, the wordmark as outlines cut from the self-hosted Archivo Black
+ * at build time (scripts/logo-build.mjs), so it never falls back to another
+ * face. The viewBox is the content box, so the height maps to the artwork.
+ */
+export function Lockup({ surface = 'light', layout = 'wide', className, decorative }: LockupProps) {
+  const box = layout === 'wide' ? wide.box : lockupFrame.box;
+  const markT = layout === 'wide' ? wide.markTransform : markTransform;
   return (
-    <svg className={className} viewBox="0 0 100 100" aria-hidden="true" focusable="false">
-      <circle cx="50" cy="50" r="50" className={styles.disc} />
-      {spokes.map((s) => (
-        <line key={`${s.x},${s.y}`} x1="50" y1="50" x2={s.x} y2={s.y} className={styles.spoke} strokeWidth="9" strokeLinecap="round" />
-      ))}
-      <circle cx="50" cy="50" r="11" className={styles.hub} />
+    <svg
+      className={[styles.lockup, surfaceClass[surface], className].filter(Boolean).join(' ')}
+      viewBox={`${box.x} ${box.y} ${box.width} ${box.height}`}
+      role={decorative ? undefined : 'img'}
+      aria-label={decorative ? undefined : site.name}
+      aria-hidden={decorative || undefined}
+      focusable="false"
+      data-logo={surface}
+      data-layout={layout}
+    >
+      <g transform={markT}>{mark}</g>
+      <g transform={layout === 'wide' ? wide.wordmarkTransform : undefined}>
+        {wordmark.map((w) => (
+          <path key={w.text} d={w.d} fill="currentColor" data-text={w.text} />
+        ))}
+      </g>
     </svg>
   );
 }
 
-export function Logo({ href = '/', className }: { href?: string; className?: string }) {
+/** The header and footer logo: the wide lockup as a home link at --logo-h (50px desktop, 42px mobile). */
+export function Logo({ href = '/', surface = 'cream', className }: { href?: string; surface?: LogoSurface; className?: string }) {
   return (
-    <Link href={href} className={[styles.brand, className].filter(Boolean).join(' ')} title="Motor Claims Department, home">
-      <span className={styles.lockup}>
-        <span className={styles.line1}>
-          MOT
-          <Mark className={styles.om} />
-          <span className="sr-only">O</span>R
-        </span>
-        <span className={styles.line2}>CLAIMS DEPARTMENT</span>
-      </span>
+    <Link href={href} className={[styles.brand, className].filter(Boolean).join(' ')} title={`${site.name}, home`} aria-label={`${site.name}, home`}>
+      <Lockup surface={surface} decorative />
     </Link>
   );
 }

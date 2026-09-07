@@ -11,7 +11,7 @@ export function ThemUs({ cta = true }: { cta?: boolean }) {
   return (
     <section className={styles.section} id="ways" data-them-us>
       <div className="wrap">
-        <div className={styles.table} role="table" aria-label="Their claims department compared with your MCD claims handler">
+        <div className={styles.table} role="table" aria-label="Their claims department compared with your Claims 24/7 handler">
           <div className={styles.head} role="row">
             {themUs.heads.map((h) => (
               <div key={h} role="columnheader">

@@ -8,8 +8,8 @@ import { isLinkable } from '@/lib/content';
 import styles from './SiteFooter.module.css';
 
 /**
- * The footer (§0, mockup .foot): logo, strapline and phone; four link
- * columns; the legal line. The FCA line comes from FCA_STATUS_LINE (appendix
+ * The footer: an ink surface carrying the on-ink lockup (CLAUDE.md §4a),
+ * strapline and phone; four link columns; the legal line. The FCA line comes from FCA_STATUS_LINE (appendix
  * §11): a visible [TODO] on preview, and the production build stops until it
  * is set. Column headings are sentence case (§0), not the mockup's caps, and h3s so heading order holds after a page's h2s.
  */
@@ -24,7 +24,7 @@ export function SiteFooter() {
       <div className="wrap">
         <div className={styles.grid}>
           <div>
-            <Logo />
+            <Logo surface="ink" />
             <p className={styles.strap}>{footer.strapline}</p>
             <p className={styles.phone}>
               <a href={site.phone.href} data-cta="call">
@@ -50,7 +50,7 @@ export function SiteFooter() {
           ))}
         </div>
         <p className={styles.legal}>
-          {site.legalName}. {fca ?? <span className={styles.todo}>[TODO: regulatory status and FCA firm reference number exactly as on the FCA Register]</span>} Registered in England and
+          {site.legalLine}. {fca ?? <span className={styles.todo}>[TODO: regulatory status and FCA firm reference number exactly as on the FCA Register]</span>} Registered in England and
           Wales, company number <span className={styles.todo}>[00000000]</span>. Registered office: <span className={styles.todo}>[address]</span>. © {year}.
         </p>
       </div>

@@ -94,10 +94,10 @@ export const themUs = {
 } as const;
 
 export const independence = {
-  generic: 'Independent accident management company. Not an insurer — we help drivers with any insurer claim from the driver who hit them.',
+  generic: 'Independent accident management company. Not an insurer — Claims 24/7 helps drivers with any insurer claim from the driver who hit them.',
   /** Landing pages name the insurer here and in the H1 only (§0). */
   forInsurer: (insurer: string) =>
-    `Independent accident management company. Not ${insurer}, not an insurer — we help drivers with any insurer claim from the driver who hit them.`,
+    `Independent accident management company. Not ${insurer}, not an insurer — Claims 24/7 helps drivers with any insurer claim from the driver who hit them.`,
 } as const;
 
 export const benefits = {
@@ -189,7 +189,7 @@ export const footer = {
 
 export const reviewsHead = { h2: 'What drivers say' } as const;
 
-/** The one wording for "the catch" (appendix §11, pending MCD's policy): the FAQ answer, reused wherever the catch is stated. */
+/** The one wording for "the catch" (appendix §11, pending the company's policy): the FAQ answer, reused wherever the catch is stated. */
 export const theCatch = {
   lead: 'The catch',
   text: faq.items[0].a,
