@@ -26,7 +26,6 @@ export { PhotoPlaceholder } from './PhotoPlaceholder/PhotoPlaceholder';
 export { KeepsStrip } from './KeepsStrip/KeepsStrip';
 export { Toc } from './Toc/Toc';
 export { ArticleLayout } from './ArticleLayout/ArticleLayout';
-export { RelatedPages } from './RelatedPages/RelatedPages';
 export { JsonLd } from './JsonLd/JsonLd';
 export { StepCards } from './StepCards/StepCards';
 export { ThemUsTable } from './ThemUsTable/ThemUsTable';

@@ -1,18 +1,17 @@
-import { NextResponse, type NextRequest } from 'next/server';
-import { isLiveHost } from '@/lib/host';
+import { NextResponse } from 'next/server';
 
 /**
- * Site-wide noindex on every deployment not served from a real domain
- * (CLAUDE.md §0, appendix §2a). The header is the authoritative signal; the
- * meta tag and robots.txt follow the same host rule elsewhere.
+ * Claims 24/7 is a PPC-only site: every page, on every host, is
+ * `noindex, nofollow` (the header here, the meta tag in the root layout, a
+ * disallow-all robots.txt, no sitemap). It must not compete with the 1.0
+ * site, which carries the same copy.
  */
-export function middleware(req: NextRequest) {
-  const host = req.headers.get('x-forwarded-host') ?? req.headers.get('host');
+export function middleware() {
   const res = NextResponse.next();
-  if (!isLiveHost(host)) res.headers.set('X-Robots-Tag', 'noindex, nofollow');
+  res.headers.set('X-Robots-Tag', 'noindex, nofollow');
   return res;
 }
 
 export const config = {
-  matcher: ['/((?!_next/static|_next/image|images/|fonts/|icons/).*)'],
+  matcher: ['/((?!_next/static|_next/image|images/|fonts/|icons/|favicons/|logo/).*)'],
 };

@@ -1,8 +1,6 @@
 import type { Metadata } from 'next';
 import { body, display } from '@/fonts';
 import { site, siteUrl } from '@/lib/site';
-import { isStagingSite } from '@/lib/host';
-import { HostRobots } from '@/components/Robots/HostRobots';
 import { Sprite } from '@/components/Icon/Sprite';
 import { Analytics } from '@/components/Analytics/Analytics';
 import { ConsentBanner } from '@/components/Consent/ConsentBanner';
@@ -10,19 +8,17 @@ import '@/styles/tokens.css';
 import './globals.css';
 
 export const metadata: Metadata = {
-  // Canonical, OG and sitemap URLs resolve against NEXT_PUBLIC_SITE_URL (§0).
+  // Canonical and OG URLs resolve against NEXT_PUBLIC_SITE_URL (§0).
   metadataBase: new URL(siteUrl),
   title: {
     default: site.name,
     template: `%s | ${site.name}`,
   },
   description: site.description,
-  // No real domain yet: every deployment is noindex, rendered statically.
-  // With a real domain the pages are indexable by default and HostRobots plus
-  // the middleware add noindex wherever the host is not that domain.
-  robots: isStagingSite()
-    ? { index: false, follow: false }
-    : { index: true, follow: true, 'max-image-preview': 'large' },
+  // Claims 24/7 is a PPC-only site: every page is noindex, nofollow on every
+  // host (meta here, X-Robots-Tag in the middleware, disallow-all robots.txt,
+  // no sitemap). Canonicals point to this site's own URL, never to 1.0.
+  robots: { index: false, follow: false },
   openGraph: {
     siteName: site.name,
     locale: site.locale,
@@ -44,7 +40,6 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         </a>
         <Sprite />
         {children}
-        <HostRobots />
         <Analytics gtmId={gtmId} />
         <ConsentBanner gtmId={gtmId} />
       </body>

@@ -34,7 +34,7 @@ function validate(file: string, fm: Record<string, unknown>): Frontmatter {
   const need = (k: string) => {
     if (fm[k] === undefined || fm[k] === '') throw new Error(`${file}: frontmatter "${k}" is required`);
   };
-  ['slug', 'template', 'title', 'description', 'lastReviewed', 'author'].forEach(need);
+  ['slug', 'template', 'title', 'description'].forEach(need);
   if (!templateNames.includes(fm.template as never)) throw new Error(`${file}: unknown template "${fm.template}"`);
   const slug = normaliseSlug(String(fm.slug));
   if (slug !== slug.toLowerCase()) throw new Error(`${file}: slug must be lowercase (${slug})`);

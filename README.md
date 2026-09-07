@@ -1,5 +1,7 @@
 # Claims 24/7 (Motor Claims Department 2.0)
 
+A PPC-only site: the content exists so a visitor arriving from an ad finds a full, credible site behind the landing page. It is not meant to rank and must not compete with the 1.0 site, which carries the same copy.
+
 The second Motor Claims Department front end, trading as Claims 24/7: same company, same claims, louder brand. Next.js 15 (App Router, TypeScript) on Vercel; claims post to the shared 1.0 claims API. `CLAUDE.md` is the build brief (§0 is what differs from 1.0; the appendix carries the shared behaviours); everything in `design/` is the visual and structural spec and is reproduced, not redesigned.
 
 ## Run locally
@@ -30,12 +32,12 @@ The Vercel project is **`mcd-new-2-0`** (team `fornya`), production at `https://
 |---|---|---|
 | Custom domain | none | none |
 | Deployment protection | **on** (Vercel project setting) | **on** |
-| `X-Robots-Tag: noindex, nofollow`, `<meta name="robots">`, disallow-all `robots.txt` | yes | yes |
-| Canonical URLs | `NEXT_PUBLIC_SITE_URL` (the `.vercel.app` URL) | same |
+| `X-Robots-Tag: noindex, nofollow`, `<meta name="robots">`, disallow-all `robots.txt` | yes, always | yes, always |
+| `sitemap.xml` | none | none |
+| Canonical URLs | `NEXT_PUBLIC_SITE_URL` (the 24/7 URL), never the 1.0 domain | same |
 
 - **Set `NEXT_PUBLIC_SITE_URL` in Vercel** to `https://mcd-new-2-0.vercel.app` for all environments. Unset, the site falls back to `VERCEL_PROJECT_PRODUCTION_URL`, then to `http://localhost:3000`.
-- The noindex is keyed off the request host against `NEXT_PUBLIC_SITE_URL`, never off `VERCEL_ENV` (`src/lib/host.ts`). While that URL is a `.vercel.app` address, every host is staging: `src/middleware.ts` sets the header, `src/app/robots.ts` serves disallow-all, and the root layout renders the noindex meta. When a real domain is set in that one variable and attached to the project, requests from that host (with or without `www`) become live and everything else stays noindexed. `tests/unit/staging.test.ts` and `tests/e2e/staging.spec.ts` cover both sides.
-- `/claim/*` carries `noindex, nofollow` on every host (`next.config.ts`).
+- **Every page is `noindex, nofollow` on every host**: content, homepage, landing pages, utility. `src/middleware.ts` and `next.config.ts` set the header, the root layout renders the meta tag, `src/app/robots.ts` serves disallow-all with no sitemap line, and there is no `sitemap.xml`. Nothing is keyed off the host or `VERCEL_ENV`; attaching a domain changes canonicals only. `tests/e2e/staging.spec.ts` walks every route and checks the header, the meta, the canonical host, and that no page links to the 1.0 domain.
 - Deployment protection is a Vercel project setting (Settings → Deployment Protection). It sits on top of the noindex, not instead of it.
 - Per-environment variables live in Vercel. No secrets in the repo; `.env.example` lists what exists.
 
@@ -80,17 +82,16 @@ That copies the template's lorem-ipsum skeleton from `content/_templates/` as a 
 | `slug`, `template` | The route and one of `pillar`, `process`, `comparison`, `guide`, `location`, `article`, `utility` |
 | `title`, `description` | `<title>` (≤60 characters) and meta description (≤155) |
 | `kicker`, `h1`, `highlight`, `lead` | The hero: eyebrow, H1, the one or two words of the H1 that carry the yellow bar, and the lead, which renders as the page's H2 |
-| `lastReviewed`, `author` | The meta line and Article schema |
+| `lastReviewed`, `author` | Optional. Nothing renders (the site is not indexed); `author` names the Article schema author, otherwise the organisation |
 | `breadcrumb` | Parent pages in order; Home is added |
-| `photo` | `alt` and a production `note` until the real photo exists |
+| `keeps` | Show the keeps strip; defaults to on for pillar, process, comparison and location |
 | `faq` | Rendered after the body and emitted as FAQPage schema from the same data |
-| `related` | Slugs of related pages; drafts are dropped at build time |
 | `schemaType`, `steps` | Override the template's schema; HowTo steps by heading id |
-| `draft` | `true` keeps the page out of the build and the sitemap |
+| `draft` | `true` keeps the page out of the build |
 
-The templates (`src/templates/ContentPage.tsx`) come from the 1.0 `design/tpl-*.html` mockups restyled to 2.0: breadcrumb, text hero, the keeps strip (not on guide and article), the sticky "On this page" list beside the prose, the FAQ, the CTA pair, related pages, the band. In the body: H2s become the "On this page" list (ids are GitHub-style slugs of the heading text; H2s starting "Step 1." feed HowTo schema), and `<Callout>`, `<Steps>`, `<ThemUs>`, `<Figure>` and `<Muted>` are available. Links to pages that do not build yet render as plain text, in prose, the header and the footer alike, so nothing 404s.
+The templates (`src/templates/ContentPage.tsx`) come from the 1.0 `design/tpl-*.html` mockups restyled to 24/7: breadcrumb, text hero (H1 in Archivo Black, the lead in Archivo, no photo slot), the keeps strip (not on guide and article), the "On this page" list beside the prose (sticky on desktop, tap-to-open on mobile, only where a page has four or more sections), the FAQ, the CTA pair, the band. The ranking furniture (reviewed/author line, related pages) is gone; the schema (Organization as Claims 24/7, BreadcrumbList, the page entity, FAQPage from the visible questions) stays. The 22 launch pages were lifted from Alex's `tpl-*.html` files by `scripts/alex-to-mdx.py` (kept for reference; the MDX is now the source). In the body: H2s become the "On this page" list (ids are GitHub-style slugs of the heading text; H2s starting "Step 1." feed HowTo schema), and `<Callout>`, `<Steps>`, `<ThemUs>`, `<Figure>` and `<Muted>` are available. Links to pages that do not build yet render as plain text, in prose, the header and the footer alike, so nothing 404s.
 
-`pnpm stubs` creates a draft file for every sitemap page that has none; drafts for Phase 2 and 3 are in place. `pnpm lint:content` runs before every build and stops it on an exclamation mark, an all-caps heading, "week(s)", or a banned phrase.
+`pnpm stubs` creates a draft file for every page in the approved sitemap (`design/motorclaimsdepartment_sitemap.html`) that has none; drafts for Phase 2 and 3 are in place. `pnpm lint:content` runs before every build and stops it on an exclamation mark, an all-caps heading, "week(s)", or a banned phrase.
 
 ## Claim-now and the claims API
 
@@ -105,20 +106,20 @@ See `docs/tracking.md`: 2.0's own GTM container loads only after consent, the ba
 Landing pages live at `/claim/<slug>/`, one JSON file each in `src/data/landing/`, rendered by `src/templates/LandingPage.tsx` from `design/mcd-2-0-goskippy-landing*.html`. Copy `goskippy.json`, change `slug`, `insurer`, `title`, `description`, `h1` and (if needed) `h2` and `mobileSub`, and the page builds. Rules that hold in code:
 
 - The insurer name may appear only in the H1 and the independence line (the template renders the line from `insurer`). `validateLanding` fails the build if it turns up in the description, H2, sub line or facts.
-- Every `/claim/*` page is `noindex, nofollow` (header and meta), canonical to itself, off the sitemap, and disallowed in `robots.txt` on a live host.
+- Every `/claim/*` page, like every other page, is `noindex, nofollow` (header and meta) and canonical to itself.
 - The independence line renders directly under the hero and strip.
 - Sourced facts go in `facts[]` with `label`, `theirs`, `ours`, `source`, `sourceUrl` and `checkedOn`, rendered verbatim with the date. Leave the array empty and the section does not render.
 - Proof claims (the wait row, the 90-minute card, the header chip) follow `src/data/claims.json` as everywhere else.
 
 `tests/e2e/landing.spec.ts` covers all of it, including the fold lock at 390×844 and 430×932.
 
-## Icons, manifest and the Open Graph image
+## The logo, icons, manifest and the Open Graph image
 
-`src/app/icon.svg` is the mark alone on an ink tile (appendix §4a: the mark alone is allowed as favicon and avatar). `pnpm icons` cuts `apple-icon.png` and the 192 / 512 manifest PNGs from it with the pre-installed Chromium; `src/app/manifest.ts` lists them. `src/app/opengraph-image.tsx` renders the default share card for every route from the self-hosted fonts.
+`design/logo/` is the Claims 24/7 suite as delivered: six horizontal lockups (`claims247-logo-on-light`, `-on-cream`, `-on-yellow`, `-on-ink`, `-mono-ink`, `-mono-white`), the nine squares in `square/` (mark, lines, stacked × yellow / ink / white) and the favicon set in `favicons/` (`favicon-source.svg` plus PNGs at 16, 32, 48, 180, 192, 512 and 1024). The wordmark is `<text>` in those files on purpose. `pnpm logo` (prebuild) outlines every wordmark with the self-hosted Archivo Black into `public/logo/` and `src/components/Logo/lockup.generated.tsx`, derives the wide arrangement the header and footer use, and copies the favicon set to `public/favicons/`, `src/app/icon.svg` and `src/app/apple-icon.png`; `src/app/manifest.ts` lists the 192, 512 and 1024 icons. `pnpm logo:png` (Chromium, local) cuts the social avatar, the stacked square on yellow, to `public/logo/square/claims247-square-stacked-on-yellow.png`. `<Logo surface="light | cream | yellow | ink | mono-ink | mono-white">` picks the variant; the speed lines always match the wordmark colour. `src/app/opengraph-image.tsx` renders the default share card for every route from the self-hosted fonts.
 
 ## Audit
 
-With a production build running on port 3100 (`pnpm build && pnpm start -p 3100`), `pnpm audit:lh` runs Lighthouse mobile on the six representative pages and fails under the appendix §9 targets: Performance ≥ 90, Accessibility 100, SEO 100, Best practices ≥ 90. On staging the two crawlability audits fail by design (the noindex), so they are set aside; the SEO score reads 100 once the real domain is live.
+With a production build running on port 3100 (`pnpm build && pnpm start -p 3100`), `pnpm audit:lh` runs Lighthouse mobile on the six representative pages and fails under the appendix §9 targets: Performance ≥ 90, Accessibility 100, SEO 100, Best practices ≥ 90. The two crawlability audits fail by design (the site is never indexable), so they are set aside; the SEO number Lighthouse prints stays at 66 for that reason and the script treats the rest of the category as the target.
 
 ## Deploy
 
@@ -132,6 +133,4 @@ Do none of this until told.
 2. Set `NEXT_PUBLIC_SITE_URL` to the real domain and add the root domain and `www` to this project.
 3. Switch DNS.
 4. Remove deployment protection on production only.
-5. The noindex lifts on its own once the host matches `NEXT_PUBLIC_SITE_URL`; confirm there is no `X-Robots-Tag` and no robots meta on the real domain.
-6. Confirm `sitemap.xml` and `robots.txt` resolve on the real domain.
-7. Submit the sitemap in Search Console.
+5. The noindex does **not** lift: Claims 24/7 stays `noindex, nofollow` on the real domain too (it is a PPC-only site and must not compete with 1.0). Confirm the header, the meta and the disallow-all `robots.txt` on the real domain, and that canonicals carry it.

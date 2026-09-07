@@ -23,15 +23,14 @@ export type Frontmatter = {
   /** One or two words of the H1 that carry the yellow bar (§0). */
   highlight?: string;
   lead?: string;
-  /** ISO date of the last editorial review. */
-  lastReviewed: string;
-  author: string;
+  /** ISO date of the last editorial review. Optional: the site is not indexed, so no reviewed line renders. */
+  lastReviewed?: string;
+  author?: string;
+  /** Show the keeps strip (default: pillar, process, comparison and location do; guide and article do not). */
+  keeps?: boolean;
   /** Parent pages for the breadcrumb, in order. Home is added automatically. */
   breadcrumb?: Crumb[];
-  photo?: { alt: string; note?: string };
   faq?: FaqEntry[];
-  /** Slugs of related pages; drafts are dropped at build time. */
-  related?: string[];
   /** Service, Article, HowTo, LocalBusiness; the template picks a default. */
   schemaType?: 'Service' | 'Article' | 'HowTo' | 'LocalBusiness' | 'none';
   /** HowTo steps override: id must match a heading id in the body. By default the H2s starting "Step N." are used. */
