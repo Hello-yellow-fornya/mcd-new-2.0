@@ -20,7 +20,7 @@ let failed = false;
 
 for (const p of pages) {
   const out = join(dir, `${p.replace(/\W/g, '_') || 'home'}.json`);
-  const r = spawnSync('npx', ['-y', 'lighthouse@13', `${base}${p}`, '--quiet', `--chrome-flags=--headless=new --no-sandbox`, '--only-categories=performance,accessibility,seo,best-practices', '--output=json', `--output-path=${out}`], {
+  const r = spawnSync(process.env.LH_BIN ? 'node' : 'npx', [...(process.env.LH_BIN ? [process.env.LH_BIN] : ['-y', 'lighthouse@13']), `${base}${p}`, '--quiet', `--chrome-flags=--headless=new --no-sandbox`, '--only-categories=performance,accessibility,seo,best-practices', '--output=json', `--output-path=${out}`], {
     stdio: 'ignore',
     env: { ...process.env, CHROME_PATH: process.env.CHROME_PATH || process.env.PLAYWRIGHT_CHROMIUM_EXECUTABLE || '' },
   });

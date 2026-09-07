@@ -1,19 +1,16 @@
 import { MDXRemote } from 'next-mdx-remote/rsc';
-import { ArticleLayout, Band, Breadcrumb, Faq, HeroText, JsonLd, KeepsStrip, RelatedPages, SectionCta, SiteFooter, SiteHeader } from '@/components';
-import { getPage, isLive, type Page } from '@/lib/content';
+import { ArticleLayout, Band, Breadcrumb, Faq, HeroText, JsonLd, KeepsStrip, SectionCta, SiteFooter, SiteHeader } from '@/components';
+import { isLive, type Page } from '@/lib/content';
 import { pageSchema } from '@/lib/content/schema';
 import remarkHeadingIds from '@/lib/content/remark-heading-ids';
 import { mdxComponents } from './mdx-components';
 import styles from './ContentPage.module.css';
 
-/** Which templates carry the keeps strip (appendix §5: guide and article do not). */
+/** Which templates carry the keeps strip by default (appendix §5: guide and article do not); frontmatter `keeps` overrides. */
 const keepsStripOn = new Set(['pillar', 'process', 'comparison', 'location']);
 
-export function formatReviewed(iso: string): string {
-  const d = new Date(iso);
-  if (Number.isNaN(d.getTime())) return iso;
-  return d.toLocaleDateString('en-GB', { day: 'numeric', month: 'long', year: 'numeric' });
-}
+/** The jump list stays where a page is long: this many entries, the FAQ included. */
+const TOC_MIN = 4;
 
 function crumbsFor(page: Page) {
   const fm = page.frontmatter;
@@ -39,26 +36,20 @@ function FaqBlock({ page }: { page: Page }) {
   );
 }
 
-function related(page: Page) {
-  return (page.frontmatter.related ?? [])
-    .map((slug) => getPage(slug))
-    .filter((p): p is Page => !!p && !p.frontmatter.draft)
-    .map((p) => ({ href: p.frontmatter.slug, title: p.frontmatter.h1 ?? p.frontmatter.title, description: p.frontmatter.description }));
-}
-
 /**
- * The SEO page templates (appendix §5) in 2.0 styling: pillar, process,
- * comparison, guide, location, article. One shell, varied by template:
- * breadcrumb, text hero (no photo slot until real images exist: the text
- * column runs full width), keeps strip, TOC + prose, FAQ from frontmatter,
- * CTA pair, related pages, band. Schema is generated from the same data.
+ * The content page templates (appendix §5) in the 24/7 skin: pillar,
+ * process, comparison, guide, location, article. One shell, varied by
+ * template: breadcrumb, text hero (no photo slot until real images exist:
+ * the text column runs full width), keeps strip, jump list + prose, FAQ
+ * from frontmatter, the CTA pair, the band. The site is not indexed, so the
+ * ranking furniture (reviewed/author line, related pages) is gone; the
+ * schema stays because crawlers that ignore noindex still read it.
  */
 export function ContentPage({ page }: { page: Page }) {
   const fm = page.frontmatter;
   const crumbs = crumbsFor(page);
   const toc = page.headings.filter((h) => h.depth === 2).map((h) => ({ id: h.id, text: h.text }));
   if (fm.faq?.length) toc.push({ id: 'faq', text: 'Frequently asked questions' });
-  const rel = related(page);
   const visibleCrumbs = crumbs.slice(0, -1).map((c) => (isLive(c.href) || c.href === '/' ? c : { ...c, href: '' }));
 
   return (
@@ -66,20 +57,13 @@ export function ContentPage({ page }: { page: Page }) {
       <SiteHeader />
       <main id="main" data-template={fm.template}>
         <Breadcrumb items={[...visibleCrumbs.map((c) => ({ href: c.href, label: c.label })), { href: fm.slug, label: fm.h1 ?? fm.title }]} schema={false} />
-        <HeroText
-          kicker={fm.kicker}
-          title={fm.h1 ?? fm.title}
-          highlight={fm.highlight}
-          lead={fm.lead}
-          meta={{ lastReviewed: formatReviewed(fm.lastReviewed), author: fm.author }}
-        />
-        {keepsStripOn.has(fm.template) && <KeepsStrip />}
-        <ArticleLayout toc={toc}>
+        <HeroText kicker={fm.kicker} title={fm.h1 ?? fm.title} highlight={fm.highlight} lead={fm.lead} />
+        {(fm.keeps ?? keepsStripOn.has(fm.template)) && <KeepsStrip />}
+        <ArticleLayout toc={toc.length >= TOC_MIN ? toc : []}>
           <Body page={page} />
           <FaqBlock page={page} />
           <SectionCta compact />
         </ArticleLayout>
-        {rel.length > 0 && <RelatedPages items={rel} />}
         <Band />
       </main>
       <SiteFooter />

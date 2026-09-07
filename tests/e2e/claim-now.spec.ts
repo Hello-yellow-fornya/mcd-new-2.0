@@ -4,14 +4,13 @@ import { test, expect } from '@playwright/test';
 // posting through the site's own endpoint to the shared claims API with
 // source "mcd2". No CLAIMS_API_URL in tests, so the endpoint acknowledges.
 
-test('page: one H1 with the bar, an H2, the reg card, the aside, canonical, in the sitemap', async ({ page, request }) => {
+test('page: one H1 with the bar, an H2, the reg card, the aside, canonical', async ({ page }) => {
   await page.goto('/claim-now/');
   await expect(page.locator('h1')).toHaveText('Start your non-fault claim');
   await expect(page.locator('h1 .hl')).toHaveText('non-fault');
   await expect(page.locator('[data-hero] h2')).toBeVisible();
   await expect(page.getByTestId('regbox')).toBeVisible();
   await expect(page.locator('link[rel="canonical"]')).toHaveAttribute('href', 'https://mcd-new-2-0.vercel.app/claim-now/');
-  expect(await (await request.get('/sitemap.xml')).text()).toContain('/claim-now/</loc>');
 });
 
 test('the reg box formats as you type, posts, shows the reference and sets the slot attributes', async ({ page }) => {

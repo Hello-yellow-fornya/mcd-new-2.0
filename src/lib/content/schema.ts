@@ -54,9 +54,9 @@ export function pageSchema(page: Page, crumbs: { href: string; label: string }[]
       '@type': 'Article',
       headline: fm.h1 ?? fm.title,
       description: fm.description,
-      author: { '@type': 'Person', name: fm.author },
+      author: fm.author ? { '@type': 'Person', name: fm.author } : { '@id': absoluteUrl('/#org') },
       publisher: { '@id': absoluteUrl('/#org') },
-      dateModified: fm.lastReviewed,
+      ...(fm.lastReviewed ? { dateModified: fm.lastReviewed } : {}),
       mainEntityOfPage: url,
     });
   }

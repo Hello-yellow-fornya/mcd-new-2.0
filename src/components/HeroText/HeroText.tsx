@@ -11,7 +11,6 @@ type Props = {
   highlight?: string;
   /** The page's H2 (§0: the H2 rule on every page). */
   lead?: string;
-  meta?: { lastReviewed?: string; author?: string };
   /** pair: Start (ink) + Call (yellow) with the wait row. call: the Call button alone. */
   cta?: 'pair' | 'call' | 'none';
 };
@@ -33,12 +32,13 @@ function Title({ title, highlight }: { title: string; highlight?: string }) {
 /**
  * Text hero from the SEO templates: eyebrow, H1 with the bar, the lead as the
  * H2 in Archivo (only H1–H3, card titles and the band use the display face),
- * the CTA pair with the wait row, the meta line. One column: the photo slot
+ * the CTA pair with the wait row. No reviewed/author line (the site is not
+ * indexed). One column: the photo slot
  * is gone until real images exist, so the text runs full width. Desktop fits
  * the headline, lead, both CTAs and the wait row inside 1280×720; mobile puts
  * Call first and full width, the wait row under it, Start in ink beneath.
  */
-export function HeroText({ kicker, title, highlight, lead, meta, cta: ctaMode = 'pair' }: Props) {
+export function HeroText({ kicker, title, highlight, lead, cta: ctaMode = 'pair' }: Props) {
   return (
     <section className={styles.hero} data-hero>
       <div className={`wrap ${styles.heroIn}`}>
@@ -59,20 +59,6 @@ export function HeroText({ kicker, title, highlight, lead, meta, cta: ctaMode = 
             </Button>
             <WaitRow className={styles.wait} />
           </div>
-        )}
-        {meta && (meta.lastReviewed || meta.author) && (
-          <p className={styles.meta}>
-            {meta.lastReviewed && (
-              <span>
-                Last reviewed <b>{meta.lastReviewed}</b>
-              </span>
-            )}
-            {meta.author && (
-              <span>
-                By <b>{meta.author}</b>
-              </span>
-            )}
-          </p>
         )}
       </div>
     </section>

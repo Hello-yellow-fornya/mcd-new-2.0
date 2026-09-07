@@ -98,8 +98,8 @@ test.describe('the twelve launch pages', () => {
         await expect(toc.locator('a').first()).toBeHidden();
         await toggle.click();
         await expect(toc.locator('a').first()).toBeVisible();
-        // Step cards and related pages stack at equal height
-        for (const sel of ['[data-step-cards] li', '[data-related] a']) {
+        // Step cards stack at equal height
+        for (const sel of ['[data-step-cards] li']) {
           const hs = await page.locator(sel).evaluateAll((els) => els.map((el) => Math.round(el.getBoundingClientRect().height)));
           if (hs.length > 1) expect(new Set(hs).size).toBe(1);
         }
@@ -163,10 +163,5 @@ test.describe('the twelve launch pages', () => {
     await expect(foot.locator('a', { hasText: 'Accident recovery' })).toHaveCount(0);
     await expect(foot.getByText('Accident recovery')).toBeVisible();
     expect((await request.get('/accident-recovery/')).status()).toBe(404);
-    const sitemap = await (await request.get('/sitemap.xml')).text();
-    expect(sitemap).toContain(`${SITE}/credit-hire/</loc>`);
-    expect(sitemap).not.toContain('/accident-recovery/');
-    expect(sitemap).not.toContain('/styleguide/');
-    expect(sitemap).not.toContain('/claim/');
   });
 });

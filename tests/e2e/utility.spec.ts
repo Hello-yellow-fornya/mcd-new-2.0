@@ -11,7 +11,7 @@ const pages = [
 ] as const;
 
 for (const [path, h1] of pages) {
-  test(`${path}: builds with one H1, an H2, ids on the section headings, canonical, and is in the sitemap`, async ({ page, request }) => {
+  test(`${path}: builds with one H1, an H2, ids on the section headings, canonical`, async ({ page }) => {
     const res = await page.goto(path);
     expect(res?.status()).toBe(200);
     await expect(page.locator('h1')).toHaveCount(1);
@@ -20,7 +20,6 @@ for (const [path, h1] of pages) {
     const ids = await page.locator('main h2[id]').evaluateAll((els) => els.map((e) => e.id));
     expect(ids.length).toBeGreaterThan(0);
     await expect(page.locator('link[rel="canonical"]')).toHaveAttribute('href', `https://mcd-new-2-0.vercel.app${path}`);
-    expect(await (await request.get('/sitemap.xml')).text()).toContain(`${path}</loc>`);
     await expect(page.locator('[data-site-header]')).toBeVisible();
     await expect(page.locator('[data-site-footer]')).toBeVisible();
   });

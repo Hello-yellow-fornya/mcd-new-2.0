@@ -1,29 +1,45 @@
 import { test, expect } from '@playwright/test';
 
-// The build under test has NEXT_PUBLIC_SITE_URL set to the project's own
-// .vercel.app address (playwright.config.ts), so every deployment is staging
-// (CLAUDE.md §0): noindex header, noindex meta, disallow-all robots, canonicals
-// on the .vercel.app URL.
-const SITE = 'https://mcd-new-2-0.vercel.app';
-const SITE_HOST = new URL(SITE).host;
+import { getLivePages } from '../../src/lib/content/index.ts';
 
-test('every route carries X-Robots-Tag noindex, whatever the host', async ({ request }) => {
-  for (const path of ['/', '/does-not-exist/']) {
+// Claims 24/7 is a PPC-only site and must not compete with the 1.0 site,
+// which carries the same copy: every page is noindex, nofollow (header, meta,
+// disallow-all robots.txt), there is no sitemap, canonicals point to this
+// site's own URL (NEXT_PUBLIC_SITE_URL, playwright.config.ts) and nothing
+// links to the 1.0 domain.
+const SITE = process.env.NEXT_PUBLIC_SITE_URL || 'https://mcd-new-2-0.vercel.app';
+const SITE_HOST = new URL(SITE).host;
+const OLD_DOMAIN = 'motorclaimsdepartment.co.uk';
+
+/** Every route the site serves: content pages, the homepage, claim-now, the landing pages, the styleguide, and a 404. */
+const everyRoute = ['/', '/claim-now/', '/claim-now/thank-you/', '/claim/goskippy/', '/styleguide/', '/does-not-exist/', ...getLivePages().map((p) => p.frontmatter.slug)];
+
+test('no page on the site is indexable, and no page links to the 1.0 domain', async ({ request }) => {
+  test.setTimeout(120_000);
+  expect(everyRoute.length).toBeGreaterThan(20);
+  for (const path of everyRoute) {
     const res = await request.get(path);
-    expect(res.headers()['x-robots-tag'], path).toBe('noindex, nofollow');
+    expect(res.headers()['x-robots-tag'], `${path} header`).toBe('noindex, nofollow');
+    const html = await res.text();
+    expect(html, `${path} meta`).toMatch(/<meta name="robots" content="noindex(, ?nofollow)?"/);
+    expect(html, `${path} links to the 1.0 domain`).not.toContain(OLD_DOMAIN);
+    const canonical = html.match(/<link rel="canonical" href="([^"]+)"/)?.[1];
+    if (res.status() === 200 && path !== '/styleguide/') {
+      expect(canonical, `${path} canonical`).toBe(`${SITE}${path}`);
+      expect(new URL(canonical!).host).toBe(SITE_HOST);
+    }
   }
-  // Even a request that claims the configured host is staging while that host is .vercel.app.
+  // Even a request that claims the configured host is noindex.
   const claimed = await request.get('/', { headers: { host: SITE_HOST } });
   expect(claimed.headers()['x-robots-tag']).toBe('noindex, nofollow');
 });
 
-test('robots.txt disallows everything and names the sitemap on the site URL', async ({ request }) => {
+test('robots.txt disallows everything and names no sitemap; there is no sitemap.xml', async ({ request }) => {
   const robots = await (await request.get('/robots.txt')).text();
   expect(robots).toContain('Disallow: /');
   expect(robots).not.toContain('Allow: /');
-  expect(robots).toMatch(new RegExp(`^Sitemap: ${SITE}/sitemap\\.xml$`, 'm'));
-  const withHost = await (await request.get('/robots.txt', { headers: { host: SITE_HOST } })).text();
-  expect(withHost).toContain('Disallow: /');
+  expect(robots).not.toMatch(/sitemap/i);
+  expect((await request.get('/sitemap.xml')).status()).toBe(404);
 });
 
 test('head has a static noindex meta and a canonical on the site URL', async ({ page }) => {
@@ -31,12 +47,6 @@ test('head has a static noindex meta and a canonical on the site URL', async ({ 
   await expect(page.locator('meta[name="robots"]')).toHaveAttribute('content', /noindex/);
   await expect(page.locator('link[rel="canonical"]')).toHaveAttribute('href', `${SITE}/`);
   await expect(page.locator('html')).toHaveAttribute('lang', 'en-GB');
-});
-
-test('sitemap lists the homepage on the site URL and no /claim/ routes', async ({ request }) => {
-  const xml = await (await request.get('/sitemap.xml')).text();
-  expect(xml).toContain(`<loc>${SITE}/</loc>`);
-  expect(xml).not.toContain('/claim/');
 });
 
 test('fonts are self-hosted: Archivo Black 400 and Archivo 400/700, nothing from Google', async ({ page }) => {
@@ -90,8 +100,8 @@ test('icons, manifest and the Open Graph image are served', async ({ page, reque
   const manifest = await (await request.get('/manifest.webmanifest')).json();
   expect(manifest.icons.map((i: { sizes: string }) => i.sizes)).toEqual(['192x192', '512x512', '1024x1024']);
   expect(manifest.name).toBe('Claims 24/7');
-  // The favicon set from design/logo/favicons, 16 to 1024, plus the social avatar
-  for (const path of ['/icon.svg', '/apple-icon.png', '/favicons/favicon.svg', ...[16, 32, 48, 64, 96, 128, 180, 192, 256, 384, 512, 1024].map((s) => `/favicons/favicon-${s}.png`), '/logo/square/claims247-stacked-yellow.png', '/logo/claims247-logo-on-cream.svg']) {
+  // The favicon set as delivered in design/logo/favicons (16 to 1024), the social avatar, and an outlined lockup and square
+  for (const path of ['/icon.svg', '/apple-icon.png', '/favicons/favicon.svg', ...[16, 32, 48, 180, 192, 512, 1024].map((s) => `/favicons/favicon-${s}.png`), '/logo/square/claims247-square-stacked-on-yellow.png', '/logo/square/claims247-square-stacked-on-yellow.svg', '/logo/claims247-logo-on-cream.svg']) {
     expect((await request.get(path)).status(), path).toBe(200);
   }
   const img = await request.get(new URL(og!).pathname);

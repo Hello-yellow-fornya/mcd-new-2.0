@@ -8,15 +8,10 @@ import { site } from '@/lib/site';
 import { mdxComponents } from './mdx-components';
 import styles from './UtilityPage.module.css';
 
-function formatReviewed(iso: string): string {
-  const d = new Date(iso);
-  return Number.isNaN(d.getTime()) ? iso : d.toLocaleDateString('en-GB', { day: 'numeric', month: 'long', year: 'numeric' });
-}
-
 /**
  * Utility pages (about, contact, the legal set) from content/utility/*.mdx.
  * Text hero: ochre eyebrow, H1, the lead as the page's H2 (the H2 rule holds
- * on every page, §0), the CTA pair, the reviewed date. Then the prose, the
+ * on every page, §0), the CTA pair. Then the prose, the
  * band and the footer. Organization and breadcrumb schema from frontmatter.
  */
 export function UtilityPage({ page }: { page: Page }) {
@@ -42,9 +37,6 @@ export function UtilityPage({ page }: { page: Page }) {
                 {cta.call}
               </Button>
             </div>
-            <p className={styles.meta}>
-              Last reviewed <b>{formatReviewed(fm.lastReviewed)}</b>
-            </p>
           </div>
         </section>
         <section className={styles.body}>

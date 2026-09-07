@@ -1,21 +1,18 @@
 import { test, expect, type Page } from '@playwright/test';
 
-// The insurer landing page (CLAUDE.md §0, appendix §6): noindex, off the
-// sitemap, canonical to self, the insurer name only in the H1 and the
+// The insurer landing page (CLAUDE.md §0, appendix §6): noindex, canonical to self, the insurer name only in the H1 and the
 // independence line, the independence line directly under the hero, and the
 // same fold lock as the homepage on mobile.
 
 const isMobile = (page: Page) => (page.viewportSize()?.width ?? 1280) <= 820;
 const PATH = '/claim/goskippy/';
 
-test('noindex header and meta, canonical to self, off the sitemap, disallowed in robots on a live host', async ({ page, request }) => {
+test('noindex header and meta, canonical to self', async ({ page }) => {
   const res = await page.goto(PATH);
   expect(res?.status()).toBe(200);
   expect(res?.headers()['x-robots-tag']).toContain('noindex');
   await expect(page.locator('meta[name="robots"]')).toHaveAttribute('content', /noindex/);
   await expect(page.locator('link[rel="canonical"]')).toHaveAttribute('href', `https://mcd-new-2-0.vercel.app${PATH}`);
-  const sitemap = await (await request.get('/sitemap.xml')).text();
-  expect(sitemap).not.toContain('/claim/');
 });
 
 test('the insurer is named only in the H1 and the independence line', async ({ page }) => {

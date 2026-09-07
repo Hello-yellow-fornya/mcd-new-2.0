@@ -8,12 +8,9 @@ const nextConfig: NextConfig = {
   images: {
     formats: ['image/avif', 'image/webp'],
   },
-  // The staging noindex is host-based and lives in src/middleware.ts (appendix §2a).
+  // Every page is noindex, nofollow (Claims 24/7 brief); src/middleware.ts sets the same header.
   async headers() {
-    return [
-      // Paid landing pages are never indexed (appendix §6), whatever the host.
-      { source: '/claim/:path*', headers: [{ key: 'X-Robots-Tag', value: 'noindex, nofollow' }] },
-    ];
+    return [{ source: '/:path*', headers: [{ key: 'X-Robots-Tag', value: 'noindex, nofollow' }] }];
   },
 };
 

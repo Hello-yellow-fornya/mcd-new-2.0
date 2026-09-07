@@ -1,5 +1,5 @@
 /**
- * Public origin for canonical, Open Graph and sitemap URLs (CLAUDE.md §0).
+ * Public origin for canonical and Open Graph URLs (CLAUDE.md §0).
  *
  * Configured from a single NEXT_PUBLIC_SITE_URL, set in Vercel to the
  * project's own *.vercel.app production URL until a real domain is chosen.
