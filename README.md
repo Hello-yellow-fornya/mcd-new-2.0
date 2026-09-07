@@ -119,7 +119,7 @@ Landing pages live at `/claim/<slug>/`, one JSON file each in `src/data/landing/
 
 ## Audit
 
-With a production build running on port 3100 (`pnpm build && pnpm start -p 3100`), `pnpm audit:lh` runs Lighthouse mobile on the six representative pages and fails under the appendix §9 targets: Performance ≥ 90, Accessibility 100, SEO 100, Best practices ≥ 90. On staging the two crawlability audits fail by design (the noindex), so they are set aside; the SEO score reads 100 once the real domain is live.
+With a production build running on port 3100 (`pnpm build && pnpm start -p 3100`), `pnpm audit:lh` runs Lighthouse mobile on the six representative pages and fails under the appendix §9 targets: Performance ≥ 90, Accessibility 100, SEO 100, Best practices ≥ 90. The two crawlability audits fail by design (the site is never indexable), so they are set aside; the SEO number Lighthouse prints stays at 66 for that reason and the script treats the rest of the category as the target.
 
 ## Deploy
 

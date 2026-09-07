@@ -2,10 +2,12 @@
 /**
  * Lighthouse mobile audit against a running production build (appendix §9):
  * Performance ≥ 90, Accessibility 100, SEO 100, Best practices ≥ 90 on every
- * template. On staging the noindex is by design, so the two crawlability
- * audits are set aside when judging SEO.
+ * template. Claims 24/7 is never indexable by design, so the two crawlability
+ * audits (is-crawlable, robots-txt) are set aside when judging SEO; the
+ * reported SEO number is Lighthouse's with those two counted.
  *
  *   pnpm build && pnpm start -p 3100 &  then  pnpm audit:lh
+ *   LH_BIN=<path to lighthouse/cli/index.js> uses a local install instead of npx.
  */
 import { spawnSync } from 'node:child_process';
 import { mkdtempSync, readFileSync } from 'node:fs';
@@ -34,7 +36,7 @@ for (const p of pages) {
   const seoFails = j.categories.seo.auditRefs.map((x) => j.audits[x.id]).filter((a) => a.score !== null && a.score < 1 && !STAGING_SEO.has(a.id));
   const a11yFails = j.categories.accessibility.auditRefs.map((x) => j.audits[x.id]).filter((a) => a.score !== null && a.score < 1);
   const ok = score('performance') >= 90 && a11yFails.length === 0 && seoFails.length === 0 && score('best-practices') >= 90;
-  console.log(`${ok ? 'ok  ' : 'FAIL'} ${p.padEnd(36)} perf ${score('performance')}  a11y ${score('accessibility')}  seo ${score('seo')}${seoFails.length ? '' : ' (100 off staging)'}  bp ${score('best-practices')}`);
+  console.log(`${ok ? 'ok  ' : 'FAIL'} ${p.padEnd(36)} perf ${score('performance')}  a11y ${score('accessibility')}  seo ${score('seo')}${seoFails.length ? '' : ' (100 with the noindex audits set aside)'}  bp ${score('best-practices')}`);
   for (const a of [...a11yFails, ...seoFails]) console.log(`       ${a.id}: ${a.title}`);
   if (!ok) failed = true;
 }
