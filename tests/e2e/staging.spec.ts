@@ -79,3 +79,25 @@ test('skip link is the first focusable element and targets main', async ({ page 
   await expect(skip).toHaveAttribute('href', '#main');
   await expect(page.locator('main#main')).toHaveCount(1);
 });
+
+test('icons, manifest and the Open Graph image are served', async ({ page, request }) => {
+  await page.goto('/');
+  await expect(page.locator('link[rel="icon"]').first()).toHaveAttribute('href', /icon\.svg/);
+  await expect(page.locator('link[rel="apple-touch-icon"]')).toHaveAttribute('href', /apple-icon\.png/);
+  await expect(page.locator('link[rel="manifest"]')).toHaveCount(1);
+  const og = await page.locator('meta[property="og:image"]').getAttribute('content');
+  expect(og).toMatch(/opengraph-image/);
+  const manifest = await (await request.get('/manifest.webmanifest')).json();
+  expect(manifest.icons.map((i: { sizes: string }) => i.sizes)).toEqual(['192x192', '512x512']);
+  for (const path of ['/icon.svg', '/apple-icon.png', '/icons/icon-192.png', '/icons/icon-512.png']) expect((await request.get(path)).status(), path).toBe(200);
+  const img = await request.get(new URL(og!).pathname);
+  expect(img.status()).toBe(200);
+  expect(img.headers()['content-type']).toContain('image/png');
+});
+
+test('accessibility basics the audit checks: heading order holds and the eyebrow colour passes AA', async ({ page }) => {
+  await page.goto('/about-us/');
+  const levels = await page.locator('h1, h2, h3, h4, h5, h6').evaluateAll((hs) => hs.map((h) => Number(h.tagName[1])));
+  for (let i = 1; i < levels.length; i++) expect(levels[i] - levels[i - 1], `heading ${i}`).toBeLessThanOrEqual(1);
+  await expect(page.locator('[data-hero] p').first()).toHaveCSS('color', 'rgb(133, 103, 0)');
+});

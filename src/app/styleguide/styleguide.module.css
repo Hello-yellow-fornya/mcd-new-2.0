@@ -1,7 +1,7 @@
 .label {
   font-size: 12px;
   font-weight: var(--w-bold);
-  color: var(--ochre);
+  color: var(--ochre-text);
   padding: 8px 24px;
   background: var(--pale);
   border-top: 1px solid var(--line);

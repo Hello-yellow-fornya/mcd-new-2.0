@@ -20,7 +20,9 @@
     "test:e2e": "playwright test",
     "check": "pnpm typecheck && pnpm lint && pnpm lint:content && pnpm lint:css && pnpm test",
     "new-page": "node scripts/new-page.mjs",
-    "stubs": "node scripts/stubs-from-sitemap.mjs"
+    "stubs": "node scripts/stubs-from-sitemap.mjs",
+    "icons": "node scripts/logo-icons.mjs",
+    "audit:lh": "node scripts/lighthouse.mjs"
   },
   "dependencies": {
     "github-slugger": "^2.0.0",

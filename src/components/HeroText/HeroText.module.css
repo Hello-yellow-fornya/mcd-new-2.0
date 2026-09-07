@@ -12,7 +12,7 @@
 
 .kicker {
   font-size: var(--fs-label);
-  color: var(--ochre);
+  color: var(--ochre-text);
   font-weight: var(--w-bold);
   margin-bottom: 12px;
 }

@@ -16,7 +16,8 @@
   --yellow: #f3cd3e; /* the one bright: buttons, chips, icon circles, underlines */
   --cream: #f7f5ef;  /* page and hero background */
   --pale: #fbf0bf;   /* tints */
-  --ochre: #b08900;  /* eyebrows, stars */
+  --ochre: #b08900;  /* stars and icons (§0) */
+  --ochre-text: #856700; /* ochre for text at small sizes: 4.9:1 on cream, 5.3:1 on white, so eyebrows and footer headings pass AA */
   --muted: #54524a;  /* secondary text */
   --line: #e6e2d6;   /* hairlines and borders */
   --green: #7dc24a;  /* functional "handled"/tick state only */

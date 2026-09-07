@@ -32,13 +32,13 @@
 }
 
 /* Archivo Black 13px, ochre, tracked (mockup .foot h4) in sentence case. */
-.h4 {
+.h3 {
   font-family: var(--display);
   font-weight: var(--w-display);
   font-size: 13px;
   letter-spacing: 0.06em;
   margin-bottom: 10px;
-  color: var(--ochre);
+  color: var(--ochre-text);
 }
 
 .list {
@@ -71,7 +71,7 @@
 }
 
 .todo {
-  color: var(--ochre);
+  color: var(--ochre-text);
   font-weight: var(--w-bold);
 }
 

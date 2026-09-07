@@ -112,6 +112,14 @@ Landing pages live at `/claim/<slug>/`, one JSON file each in `src/data/landing/
 
 `tests/e2e/landing.spec.ts` covers all of it, including the fold lock at 390×844 and 430×932.
 
+## Icons, manifest and the Open Graph image
+
+`src/app/icon.svg` is the mark alone on an ink tile (appendix §4a: the mark alone is allowed as favicon and avatar). `pnpm icons` cuts `apple-icon.png` and the 192 / 512 manifest PNGs from it with the pre-installed Chromium; `src/app/manifest.ts` lists them. `src/app/opengraph-image.tsx` renders the default share card for every route from the self-hosted fonts.
+
+## Audit
+
+With a production build running on port 3100 (`pnpm build && pnpm start -p 3100`), `pnpm audit:lh` runs Lighthouse mobile on the six representative pages and fails under the appendix §9 targets: Performance ≥ 90, Accessibility 100, SEO 100, Best practices ≥ 90. On staging the two crawlability audits fail by design (the noindex), so they are set aside; the SEO score reads 100 once the real domain is live.
+
 ## Deploy
 
 Push to a branch and open a PR: Vercel (`mcd-new-2-0`) builds a preview at `mcd-new-2-0-git-<branch>-fornya.vercel.app` and comments the URL on the PR. Merging to `main` deploys the production build, which stays at the `*.vercel.app` address, protected and noindexed. `pnpm build` runs the content and CSS lints first and stops on a hit.
