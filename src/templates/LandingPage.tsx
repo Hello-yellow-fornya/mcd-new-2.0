@@ -39,7 +39,7 @@ function Facts({ facts }: { facts: LandingConfig['facts'] }) {
           <div className={`${styles.row} ${styles.head}`} role="row">
             <div role="columnheader">What</div>
             <div role="columnheader">Claiming on your policy</div>
-            <div role="columnheader">Claiming through MCD</div>
+            <div role="columnheader">Claiming through Claims 24/7</div>
           </div>
           {facts.map((f) => (
             <div key={f.label} className={styles.row} role="row">

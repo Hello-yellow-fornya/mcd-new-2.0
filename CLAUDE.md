@@ -7,6 +7,8 @@ The second Motor Claims Department front end: same company, same claims, louder 
 Read this first; the rest of the document is the 1.0 brief with 2.0 values, kept whole so the behaviours (staging, consent, compliance, tests) are identical across both sites.
 
 - **Design files** in `/design/`: `mcd-2-0-homepage-concept.html` (desktop homepage, signed off), `mcd-2-0-homepage-mobile-v2.html` (mobile homepage, signed off — fold-locked hero, the spec for mobile), `mcd-2-0-goskippy-landing.html` and `mcd-2-0-goskippy-landing-mobile.html` (insurer landing page, desktop and mobile), `mcd-2-0-nav-options.png` (option 4 is the header), `mcd-logo-motor-mark.png` and `mcd-logo-mono-and-square.png` (the logo; in 2.0 the disc is yellow #F3CD3E with ink spokes), `mcd-2-0-font-options.png` (C is the pairing).
+- **Name (2.0 only):** the site trades as **Claims 24/7**. Every title, meta, Open Graph card, the Organization schema name, UI copy and the wordmark say "Claims 24/7"; the legal line stays "Motor Claims Department Ltd, trading as Claims 24/7" pending the client. Independence line: "Independent accident management company. Not an insurer — Claims 24/7 helps drivers with any insurer claim from the driver who hit them."
+- **Footer surface (amends the token note below):** the footer sits on ink and carries the on-ink lockup.
 - **Tokens (replace §3):** `ink #19180F`, `yellow #F3CD3E` (the one bright — buttons, chips, icon circles, underlines), `cream #F7F5EF` (hero, header, cards and footer; the page body is white, as the mockups set it), `pale #FBF0BF` (tints), `ochre #B08900` (eyebrows, stars), `muted #54524A`, `line #E6E2D6`, `green #7DC24A` (functional only). Ink text on yellow; yellow text on ink buttons. No coral, no marine, no shards, no photography in the hero.
 - **Type (replace §4):** `display` Archivo Black 400 for headlines, big print, card titles, the band; `body` Archivo 400/700 for everything else. Self-host both as WOFF2. Sentence case, no exclamation marks.
 - **Highlight:** a bar under one or two words — `text-decoration: underline` in yellow, thickness .14em, offset .08em, `text-decoration-skip-ink: none` — never a box behind text except the band's chip.
@@ -130,17 +132,15 @@ Each maps to markup in the templates. Names are suggestions; keep them consisten
 
 ---
 
-## 4a. Logo (signed off)
+## 4a. Logo (Claims 24/7 suite, replaces the MOTOR lockup)
 
-Source: `design/mcd-logo-motor-mark.png` and `design/mcd-logo-mono-and-square.png`. Build the logo as an SVG component from the spec below rather than tracing the PNGs; the type is Libre Franklin 900 and Public Sans 700 set as outlines.
+Sources in `design/logo/`. The three signed-off lockups (`claims247-logo-on-light.svg`, `-on-yellow`, `-on-ink`) keep the wordmark as `<text>` on purpose so the words stay editable; `scripts/logo-build.mjs` (prebuild, `pnpm logo`) derives the rest of the suite and converts every wordmark to outlines with the self-hosted Archivo Black, writing the build output to `public/logo/`, so the type never falls back to another face.
 
-- **Horizontal lockup:** "MOTOR" in Libre Franklin 900, tracking −0.035em, with the mark replacing the second O; "CLAIMS DEPARTMENT" in Public Sans 700, tracking ~0.01em, sized so its width equals MOTOR's exactly, 6px below.
-- **The mark:** a disc with an eight-spoke burst and a hub — spokes at 45° intervals, stroke 9/100 of the disc diameter, round caps, hub radius 11/100. Disc `coral`, spokes and hub `ink` on paper and marine; disc `ink-900`, spokes `coral` on coral surfaces; in mono the disc takes the text colour and the spokes take the background.
-- **States:** mono ink on paper, mono white on marine, mono ink-900 on coral. No other colourings.
-- **Square:** mark stacked over "MCD" (Libre Franklin 900, tracking −0.04em), on a 32px-radius tile; marine, paper and coral versions. This is the favicon, app icon and social avatar at 16, 32, 180, 512 and 1024.
-- **Mark alone:** allowed as favicon and avatar only.
-- **Clear space:** the height of the M on all sides. **Minimum size:** horizontal lockup 120px wide; square 24px.
-- **Header** uses the mono white horizontal lockup; **footer** uses the same in ink on white; the square is the favicon.
+- **Horizontal lockups:** `claims247-logo-on-light`, `-on-cream`, `-on-yellow`, `-on-ink`, `-mono-ink`, `-mono-white`. "Claims" over "24/7" in Archivo Black beside the stopwatch mark with its five speed lines. **Rule: the speed lines always match the wordmark colour** (and the hub); the ring, crown, hand, ticks and arrow are the accent: yellow on light, cream and ink; ink on yellow; the wordmark colour in the monos.
+- **Squares** in `design/logo/square/`: `mark`, `mark-with-lines` and `stacked` (mark over "Claims 24/7"), each on yellow, ink and white. The stacked square on yellow is the social avatar.
+- **Favicons** in `design/logo/favicons/`: `favicon.svg` (the mark on yellow) and, cut by `pnpm logo:png` into `public/favicons/`, PNGs at 16, 32, 48, 64, 96, 128, 180, 192, 256, 384, 512 and 1024. `src/app/icon.svg` and `apple-icon.png` come from the same source; the manifest points at the 192, 512 and 1024 PNGs.
+- **Component:** `<Logo surface="light | cream | yellow | ink | mono-ink | mono-white" />` picks the variant by surface and renders the lockup inline from `lockup.generated.tsx`. **Header:** on-cream (on-light on a white surface) at 34px tall desktop, 30px mobile. **Footer:** on-ink.
+- **Clear space:** the height of "24/7" on all sides. **Minimum size:** horizontal lockup 100px wide; squares 24px.
 
 ---
 

@@ -15,10 +15,13 @@ test('header: sticky cream bar at 84px desktop / 64px mobile with the logo hard 
   await expect(header).toHaveCSS('background-color', 'rgb(247, 245, 239)');
   const box = await header.boundingBox();
   expect(Math.round(box!.height)).toBe(isMobile(page) ? 64 : 85); // mobile includes the hairline; desktop adds it
-  const logo = header.locator('a[title="Motor Claims Department, home"]');
+  const logo = header.locator('a[title="Claims 24/7, home"]');
   await expect(logo).toBeVisible();
-  const motor = logo.locator('span > span').first();
-  await expect(motor).toHaveCSS('font-size', isMobile(page) ? '30px' : '34px');
+  // The on-cream lockup at 34px desktop / 30px mobile, the wordmark as outlines (no <text> to fall back)
+  const lockup = logo.locator('svg[data-logo="cream"]');
+  expect(Math.round((await lockup.boundingBox())!.height)).toBe(isMobile(page) ? 30 : 34);
+  await expect(lockup.locator('text')).toHaveCount(0);
+  await expect(lockup.locator('path[data-text="Claims"]')).toHaveCount(1);
 });
 
 test('header: desktop shows links, chip and two pills; mobile shows Call now and the burger only', async ({ page }) => {

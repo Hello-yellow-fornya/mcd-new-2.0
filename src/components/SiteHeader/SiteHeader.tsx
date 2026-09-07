@@ -30,7 +30,7 @@ export function SiteHeader() {
   return (
     <header className={styles.nav} data-site-header>
       <div className={`wrap ${styles.row}`}>
-        <Logo />
+        <Logo surface="cream" />
         <NavLinks items={links} className={styles.links} />
         <ProofChip className={styles.chip} />
         <Button href={site.phone.href} variant="yellow" size="sm" icon="phone" className={styles.call} data-cta="call">

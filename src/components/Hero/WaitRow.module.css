@@ -1,0 +1,22 @@
+/* The wait row: 14px muted, pale 16px circles (mockup .proof). */
+.wait {
+  list-style: none;
+  display: flex;
+  gap: 18px;
+  font-size: var(--fs-label);
+  color: var(--muted);
+  margin-top: 14px;
+  max-width: none;
+}
+
+.wait li {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  max-width: none;
+  white-space: nowrap;
+}
+
+.pic {
+  flex: none;
+}

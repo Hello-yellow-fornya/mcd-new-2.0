@@ -6,7 +6,7 @@ export type RelatedPage = { href: string; title: string; description: string };
 /** Three related-page cards on cream. */
 export function RelatedPages({ items, heading = 'Related pages' }: { items: ReadonlyArray<RelatedPage>; heading?: string }) {
   return (
-    <section className={styles.related} aria-labelledby="rel-h">
+    <section className={styles.related} aria-labelledby="rel-h" data-related>
       <div className="wrap">
         <h2 id="rel-h">{heading}</h2>
         <div className={styles.grid}>

@@ -1,44 +1,51 @@
+/* The template hero on cream: padding cut so the headline, lead, CTAs and wait row fit 1280×720 under the 84px bar. */
 .hero {
-  padding: 28px 0 56px;
+  padding: 20px 0 40px;
   background: var(--cream);
 }
 
 .heroIn {
-  display: grid;
-  grid-template-columns: 1.2fr 0.8fr;
-  gap: 56px;
-  align-items: center;
+  display: block;
 }
 
 .kicker {
   font-size: var(--fs-label);
   color: var(--ochre-text);
   font-weight: var(--w-bold);
-  margin-bottom: 12px;
+  margin-bottom: 10px;
 }
 
 .h1 {
-  font-size: clamp(36px, 5vw, 60px);
+  font-size: clamp(40px, 5vw, 64px);
   line-height: 1.05;
   letter-spacing: var(--ls-h1);
+  max-width: 16ch;
 }
 
-/* The lead is the page's H2: Archivo Black at the hero sub size. */
+/* The lead is the page's H2, in Archivo 400 at 20px max: the display face is for H1–H3, card titles and the band only. */
 .lead {
-  font-family: var(--display);
-  font-weight: var(--w-display);
-  font-size: var(--fs-h1-sub);
-  line-height: var(--lh-h1-sub);
-  letter-spacing: -0.02em;
-  max-width: 34ch;
-  margin-top: 18px;
+  font-family: var(--body);
+  font-weight: var(--w-regular);
+  font-size: clamp(18px, 1.6vw, 20px);
+  line-height: 1.5;
+  letter-spacing: 0;
+  color: var(--text-soft);
+  max-width: 60ch;
+  margin-top: 16px;
 }
 
 .ctaRow {
   display: flex;
   gap: 12px;
   flex-wrap: wrap;
-  margin-top: 24px;
+  align-items: center;
+  margin-top: 22px;
+}
+
+/* The wait row takes its own line under the pair. */
+.wait {
+  flex-basis: 100%;
+  margin-top: 2px;
 }
 
 .meta {
@@ -47,7 +54,7 @@
   display: flex;
   gap: 16px;
   flex-wrap: wrap;
-  margin-top: 18px;
+  margin-top: 16px;
   max-width: none;
 }
 
@@ -55,21 +62,51 @@
   color: var(--ink);
 }
 
-.photo > * {
-  width: 100%;
-}
-
 @media (max-width: 820px) {
   .hero {
-    padding: 16px 0 40px;
+    padding: 14px 0 28px;
   }
 
-  .heroIn {
-    grid-template-columns: 1fr;
-    gap: 24px;
+  .h1 {
+    font-size: 34px;
+    line-height: 1.1;
+    letter-spacing: -0.02em;
+    max-width: none;
   }
 
   .lead {
-    white-space: normal;
+    font-size: 17px;
+    margin-top: 12px;
+  }
+
+  /* Call first and full width, the wait row under it, Start in ink beneath. */
+  .ctaRow {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 10px;
+    margin-top: 18px;
+  }
+
+  .call {
+    order: 1;
+    width: 100%;
+  }
+
+  .wait {
+    order: 2;
+    margin: 0;
+    flex-basis: auto;
+    flex-wrap: wrap;
+    gap: 8px 16px;
+  }
+
+  .start {
+    order: 3;
+    width: 100%;
+  }
+
+  .meta {
+    margin-top: 14px;
+    gap: 6px 16px;
   }
 }

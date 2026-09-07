@@ -60,6 +60,60 @@ test.describe('the twelve launch pages', () => {
         expect(r.status(), h).toBe(200);
       }
       expect(await page.locator('main [data-draft-link]').count()).toBeGreaterThanOrEqual(0);
+      // Claims 24/7: the Organization node on every page carries the trading name
+      const org = graph.find((n: { '@type': string }) => n['@type'] === 'Organization');
+      expect(org.name).toBe('Claims 24/7');
+      await expect(page).toHaveTitle(/Claims 24\/7$/);
+      // The lead is Archivo (400), never Archivo Black; the display face is for H1–H3, card titles and the band
+      const lead = page.locator('[data-hero] h2');
+      const leadFamily = await lead.evaluate((el) => getComputedStyle(el).fontFamily);
+      expect(leadFamily).toMatch(/Archivo/);
+      expect(leadFamily).not.toMatch(/Archivo[_ ]Black/);
+      expect(leadFamily.split(',')[0]).not.toBe((await page.locator('h1').evaluate((el) => getComputedStyle(el).fontFamily)).split(',')[0]);
+      await expect(lead).toHaveCSS('font-weight', '400');
+      expect(parseFloat(await lead.evaluate((el) => getComputedStyle(el).fontSize))).toBeLessThanOrEqual(20);
+      // No photo placeholder box in the hero; the text column runs full width
+      await expect(page.locator('[data-hero] [role="img"]')).toHaveCount(0);
+      const vw = page.viewportSize()!.width;
+      if (vw <= 820) {
+        // No horizontal scroll at 390 (and 430)
+        expect(await page.evaluate(() => document.documentElement.scrollWidth)).toBeLessThanOrEqual(vw);
+        // The hero call button sits inside the first screen, full width, with the wait row under it and Start beneath
+        const call = (await page.locator('[data-hero] a[data-cta="call"]').boundingBox())!;
+        expect(call.y + call.height).toBeLessThanOrEqual(page.viewportSize()!.height);
+        expect(call.width).toBeGreaterThan(vw - 60);
+        const start = (await page.locator('[data-hero] a[data-cta="start"]').boundingBox())!;
+        expect(start.y).toBeGreaterThan(call.y + call.height);
+        const wait = page.locator('[data-hero] [data-wait-row]');
+        if (await wait.count()) {
+          const w = (await wait.boundingBox())!;
+          expect(w.y).toBeGreaterThanOrEqual(call.y + call.height - 1);
+          expect(w.y + w.height).toBeLessThanOrEqual(start.y + 1);
+        }
+        expect(parseFloat(await page.locator('h1').evaluate((el) => getComputedStyle(el).fontSize))).toBe(34);
+        // The jump list is collapsed into a tap-to-open "On this page"
+        const toc = page.locator('aside[aria-label="On this page"]');
+        const toggle = toc.getByRole('button', { name: 'On this page' });
+        await expect(toggle).toBeVisible();
+        await expect(toc.locator('a').first()).toBeHidden();
+        await toggle.click();
+        await expect(toc.locator('a').first()).toBeVisible();
+        // Step cards and related pages stack at equal height
+        for (const sel of ['[data-step-cards] li', '[data-related] a']) {
+          const hs = await page.locator(sel).evaluateAll((els) => els.map((el) => Math.round(el.getBoundingClientRect().height)));
+          if (hs.length > 1) expect(new Set(hs).size).toBe(1);
+        }
+      } else {
+        // Desktop: the H1, lead, both CTAs and the wait row sit inside 1280×720
+        await page.setViewportSize({ width: 1280, height: 720 });
+        for (const sel of ['h1', '[data-hero] h2', '[data-hero] a[data-cta="start"]', '[data-hero] a[data-cta="call"]', '[data-hero] [data-wait-row]']) {
+          const loc = page.locator(sel);
+          if (!(await loc.count())) continue;
+          const b = (await loc.boundingBox())!;
+          expect(b.y + b.height, sel).toBeLessThanOrEqual(720);
+        }
+        expect(parseFloat(await page.locator('h1').evaluate((el) => getComputedStyle(el).fontSize))).toBe(64);
+      }
     });
   }
 

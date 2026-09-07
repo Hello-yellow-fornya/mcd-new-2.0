@@ -21,7 +21,7 @@ function Mark({ ok }: { ok: boolean }) {
 }
 
 /** The two-column comparison inside prose (the SEO templates' .tu): outlined cross, yellow tick. */
-export function ThemUsTable({ head, rows, variant = 'them-us', label = 'Their claims department compared with your MCD claims handler', className }: Props) {
+export function ThemUsTable({ head, rows, variant = 'them-us', label = 'Their claims department compared with your Claims 24/7 handler', className }: Props) {
   const leftOk = variant === 'you-we';
   return (
     <div className={[styles.tu, className].filter(Boolean).join(' ')} role="table" aria-label={label}>

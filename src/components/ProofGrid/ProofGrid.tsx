@@ -10,7 +10,7 @@ import styles from './ProofGrid.module.css';
  */
 export function ProofGrid({ className }: { className?: string }) {
   return (
-    <ul className={[styles.grid, className].filter(Boolean).join(' ')} aria-label="Why claim through MCD" data-proof-grid>
+    <ul className={[styles.grid, className].filter(Boolean).join(' ')} aria-label="Why claim through Claims 24/7" data-proof-grid>
       {proofGrid.map((card) => {
         const claim = 'claim' in card && card.claim ? getClaim(card.claim) : null;
         if (claim && !claimVisible(claim)) return null;

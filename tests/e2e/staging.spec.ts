@@ -88,8 +88,12 @@ test('icons, manifest and the Open Graph image are served', async ({ page, reque
   const og = await page.locator('meta[property="og:image"]').getAttribute('content');
   expect(og).toMatch(/opengraph-image/);
   const manifest = await (await request.get('/manifest.webmanifest')).json();
-  expect(manifest.icons.map((i: { sizes: string }) => i.sizes)).toEqual(['192x192', '512x512']);
-  for (const path of ['/icon.svg', '/apple-icon.png', '/icons/icon-192.png', '/icons/icon-512.png']) expect((await request.get(path)).status(), path).toBe(200);
+  expect(manifest.icons.map((i: { sizes: string }) => i.sizes)).toEqual(['192x192', '512x512', '1024x1024']);
+  expect(manifest.name).toBe('Claims 24/7');
+  // The favicon set from design/logo/favicons, 16 to 1024, plus the social avatar
+  for (const path of ['/icon.svg', '/apple-icon.png', '/favicons/favicon.svg', ...[16, 32, 48, 64, 96, 128, 180, 192, 256, 384, 512, 1024].map((s) => `/favicons/favicon-${s}.png`), '/logo/square/claims247-stacked-yellow.png', '/logo/claims247-logo-on-cream.svg']) {
+    expect((await request.get(path)).status(), path).toBe(200);
+  }
   const img = await request.get(new URL(og!).pathname);
   expect(img.status()).toBe(200);
   expect(img.headers()['content-type']).toContain('image/png');

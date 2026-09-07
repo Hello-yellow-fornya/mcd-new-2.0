@@ -1,8 +1,7 @@
 import { Button } from '@/components/Button/Button';
-import { IconCircle } from '@/components/Icon/Icon';
 import { ProofGrid } from '@/components/ProofGrid/ProofGrid';
+import { WaitRow } from './WaitRow';
 import { cta, nav } from '@/data/copy';
-import { claimAttrs, claimVisible, getClaim } from '@/lib/claims';
 import { site } from '@/lib/site';
 import styles from './HomeHero.module.css';
 
@@ -15,25 +14,6 @@ function Hl({ t }: { t: Highlighted }) {
       {t.highlight ? <span className="hl">{t.highlight}</span> : null}
       {t.after}
     </>
-  );
-}
-
-/** The wait row: "Avg wait 1 min · Fastest way to claim", pale circles with ochre icons, substantiation-gated. */
-function WaitRow({ className }: { className?: string }) {
-  const items = [
-    { claim: getClaim('avg-wait-1-min'), icon: 'dot' as const },
-    { claim: getClaim('fastest-way-to-claim'), icon: 'bolt' as const },
-  ].filter((i) => claimVisible(i.claim));
-  if (items.length === 0) return null;
-  return (
-    <ul className={[styles.wait, className].filter(Boolean).join(' ')} aria-label="Why call">
-      {items.map((i) => (
-        <li key={i.claim.id} {...claimAttrs(i.claim)}>
-          <IconCircle name={i.icon} variant="pale" size={16} iconSize={9} className={styles.pic} />
-          {i.claim.text}
-        </li>
-      ))}
-    </ul>
   );
 }
 
