@@ -19,7 +19,7 @@ export default async function OpenGraphImage() {
   const [display, body, lockup] = await Promise.all([
     readFile(join(fonts, 'archivo-black-latin-400-normal.woff')),
     readFile(join(fonts, 'archivo-latin-700-normal.woff')),
-    readFile(join(process.cwd(), 'public', 'logo', 'claims247-logo-on-cream.svg'), 'utf8'),
+    readFile(join(process.cwd(), 'public', 'logo', 'claims247-logo-on-light-yellow.svg'), 'utf8'),
   ]);
   const logoSrc = `data:image/svg+xml;base64,${Buffer.from(lockup).toString('base64')}`;
   return new ImageResponse(
