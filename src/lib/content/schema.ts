@@ -44,8 +44,8 @@ export function pageSchema(page: Page, crumbs: { href: string; label: string }[]
       '@type': 'Service',
       name: fm.h1 ?? fm.title,
       provider: { '@id': absoluteUrl('/#org') },
-      areaServed: 'GB',
-      serviceType: 'Non-fault accident management',
+      areaServed: fm.areaServed?.length ? fm.areaServed.map((name) => ({ '@type': 'Place', name })) : 'GB',
+      serviceType: fm.areaServed?.length ? 'Non-fault accident management and vehicle recovery' : 'Non-fault accident management',
       url,
     });
   }

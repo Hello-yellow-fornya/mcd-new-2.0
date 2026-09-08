@@ -28,6 +28,10 @@ export type Frontmatter = {
   author?: string;
   /** Show the keeps strip (default: pillar, process, comparison and location do; guide and article do not). */
   keeps?: boolean;
+  /** The strip's three items for this page, in place of the site-wide "what you keep" set. */
+  keepsItems?: { icon: 'phone' | 'check' | 'cross' | 'pound' | 'shield' | 'car' | 'bolt' | 'doc' | 'person' | 'star' | 'dot' | 'arrow' | 'pin'; label: string }[];
+  /** Named areas for Service schema (a service-areas page); otherwise the service is nationwide. */
+  areaServed?: string[];
   /** Parent pages for the breadcrumb, in order. Home is added automatically. */
   breadcrumb?: Crumb[];
   faq?: FaqEntry[];

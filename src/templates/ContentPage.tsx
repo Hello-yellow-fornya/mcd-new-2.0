@@ -58,7 +58,7 @@ export function ContentPage({ page }: { page: Page }) {
       <main id="main" data-template={fm.template}>
         <Breadcrumb items={[...visibleCrumbs.map((c) => ({ href: c.href, label: c.label })), { href: fm.slug, label: fm.h1 ?? fm.title }]} schema={false} />
         <HeroText kicker={fm.kicker} title={fm.h1 ?? fm.title} highlight={fm.highlight} lead={fm.lead} />
-        {(fm.keeps ?? keepsStripOn.has(fm.template)) && <KeepsStrip />}
+        {(fm.keeps ?? keepsStripOn.has(fm.template)) && <KeepsStrip items={fm.keepsItems} label={fm.keepsItems ? 'What we cover' : undefined} />}
         <ArticleLayout toc={toc.length >= TOC_MIN ? toc : []}>
           <Body page={page} />
           <FaqBlock page={page} />

@@ -157,7 +157,7 @@ Routes come from the sitemap. Phase 1 live at launch, Phase 2/3 stubbed as MDX w
 | Process | `ProcessPage` | + HowTo with step anchors | `/how-accident-management-works/` |
 | Comparison | `ComparisonPage` | + Article | `/accident-management-vs-insurance/` |
 | Guide | `GuidePage` | + HowTo, no keeps strip | `/what-to-do-after-a-car-accident/` |
-| Location | `LocationPage` | + LocalBusiness (address only if real) | `/accident-management-services-london/` |
+| Location | `LocationPage` | + Service with `areaServed` (LocalBusiness only with a real address) | `/our-service-areas/` |
 | Article | `ArticlePage` | + Article, no keeps strip | `/how-to-prove-fault/rear-end-collision/`, `/side-impact-collision/`, `/car-park-accidents/` |
 | Landing (paid) | `LandingPage` | none; `noindex, nofollow` | `/claim/goskippy/`, `/claim/no-fault-accident/` (+ one per insurer, from the same template with a config file) |
 | Utility | `UtilityPage` | Organization | `/claim-now/`, `/about-us/`, `/contact-us/`, `/privacy-policy/`, `/terms/`, `/complaints/`, `/cookies/` |

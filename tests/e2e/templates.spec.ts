@@ -14,7 +14,7 @@ const phase1 = [
   ['/how-accident-management-works/', 'process', true],
   ['/accident-management-vs-insurance/', 'comparison', true],
   ['/what-to-do-after-a-car-accident/', 'guide', false],
-  ['/accident-management-services-london/', 'location', true],
+  ['/our-service-areas/', 'location', true],
   ['/how-to-prove-fault/rear-end-collision/', 'article', false],
   ['/how-to-prove-fault/side-impact-collision/', 'article', false],
   ['/how-to-prove-fault/car-park-accidents/', 'article', false],
@@ -36,7 +36,8 @@ test.describe('the twelve launch pages', () => {
       await expect(page.locator('[data-hero] h2')).toBeVisible();
       await expect(page.locator('link[rel="canonical"]')).toHaveAttribute('href', `${SITE}${path}`);
       await expect(page.locator('nav[aria-label="Breadcrumb"] [aria-current="page"]')).toHaveCount(1);
-      await expect(page.locator('section[aria-label="What you keep"]')).toHaveCount(keeps ? 1 : 0);
+      // The keeps strip: the site-wide "What you keep" set, or a page's own items ("What we cover" on the service-areas page).
+      await expect(page.locator('section[aria-label="What you keep"], section[aria-label="What we cover"]')).toHaveCount(keeps ? 1 : 0);
       // TOC entries point at H2s that exist, in order
       const tocIds = await page.locator('aside[aria-label="On this page"] a').evaluateAll((as) => as.map((a) => a.getAttribute('href')!.slice(1)));
       const h2Ids = await page.locator('main article h2').evaluateAll((hs) => hs.map((h) => h.id));
@@ -128,15 +129,19 @@ test.describe('the twelve launch pages', () => {
     }
   });
 
-  test('pillar carries Service schema; location carries LocalBusiness without an address', async ({ page }) => {
+  test('pillar carries Service schema; the service-areas page carries Service with its named areas and no address', async ({ page }) => {
     await page.goto('/accident-management-company/');
     let graph = JSON.parse((await page.locator('script[type="application/ld+json"]').last().textContent())!)['@graph'];
     expect(graph.some((n: { '@type': string }) => n['@type'] === 'Service')).toBe(true);
-    await page.goto('/accident-management-services-london/');
+    await page.goto('/our-service-areas/');
     graph = JSON.parse((await page.locator('script[type="application/ld+json"]').last().textContent())!)['@graph'];
-    const lb = graph.find((n: { '@type': string }) => n['@type'] === 'LocalBusiness');
-    expect(lb).toBeTruthy();
-    expect(lb.address).toBeUndefined();
+    const service = graph.find((n: { '@type': string }) => n['@type'] === 'Service');
+    expect(service.areaServed.map((a: { name: string }) => a.name)).toEqual(['London', 'Essex', 'Ilford', 'Romford']);
+    expect(graph.some((n: { '@type': string }) => n['@type'] === 'LocalBusiness')).toBe(false);
+    expect(JSON.stringify(graph)).not.toContain('"address"');
+    // The page's own keeps strip and the four area cards
+    await expect(page.locator('section[aria-label="What we cover"] > div > div')).toHaveCount(3);
+    await expect(page.locator('main article [data-step-cards] li')).toHaveCount(4);
   });
 
   test('inline components render in 2.0 colours: step cards, the table, the catch callout', async ({ page }) => {

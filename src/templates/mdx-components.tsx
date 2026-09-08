@@ -45,6 +45,8 @@ export const mdxComponents = {
   a: A,
   Callout,
   Steps: StepCards,
+  /** Area cards on the service-areas page: the same white card grid as the steps. */
+  Areas: StepCards,
   ThemUs: ThemUsTable,
   Figure,
   Muted: ({ children }: { children: ReactNode }) => <p className="muted">{children}</p>,
