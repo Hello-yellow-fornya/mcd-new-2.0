@@ -136,7 +136,7 @@ export const faq = {
   items: [
     {
       q: 'What’s the catch?',
-      a: 'We recover our costs from the at-fault driver’s insurer, which is why it costs you nothing. If they refuse to accept fault, we argue it for you. In the rare case that fault can’t be established, you could be asked to cover the hire charges — which is why we tell you on the first call whether your claim is one we’d take on.',
+      a: 'We recover our costs from the at-fault driver’s insurer, which is why it costs you nothing. If they refuse to accept fault, we argue it for you. In the rare case that fault can’t be established, you could be asked to cover the hire charges, which is why we tell you on the first call whether your claim is one we’d take on.',
     },
     {
       q: 'Do I still have to speak to my insurer?',
