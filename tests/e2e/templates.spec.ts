@@ -36,7 +36,8 @@ test.describe('the twelve launch pages', () => {
       await expect(page.locator('[data-hero] h2')).toBeVisible();
       await expect(page.locator('link[rel="canonical"]')).toHaveAttribute('href', `${SITE}${path}`);
       await expect(page.locator('nav[aria-label="Breadcrumb"] [aria-current="page"]')).toHaveCount(1);
-      await expect(page.locator('section[aria-label="What you keep"]')).toHaveCount(keeps ? 1 : 0);
+      // The keeps strip: the site-wide "What you keep" set, or a page's own items ("What we cover" on the service-areas page).
+      await expect(page.locator('section[aria-label="What you keep"], section[aria-label="What we cover"]')).toHaveCount(keeps ? 1 : 0);
       // TOC entries point at H2s that exist, in order
       const tocIds = await page.locator('aside[aria-label="On this page"] a').evaluateAll((as) => as.map((a) => a.getAttribute('href')!.slice(1)));
       const h2Ids = await page.locator('main article h2').evaluateAll((hs) => hs.map((h) => h.id));
