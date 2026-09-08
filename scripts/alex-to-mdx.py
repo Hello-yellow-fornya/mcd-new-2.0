@@ -83,6 +83,8 @@ REWRITES = {
  'Call us! MIB claims have specific requirements': 'Call us. MIB claims have specific requirements',
  # no timing promises
  'In most cases, a replacement vehicle can be arranged and delivered within 24 hours of your first call.': 'In most cases, a replacement vehicle is arranged on your first call and delivered to your address; we give you a realistic time when we speak to you.',
+ # typos in the source
+ ' m, in other words': ', in other words',
  'Same-day response is typically available in this area.': 'Call us and we will get things moving.',
  'Within London, Essex, Ilford and Romford, we can typically arrange recovery on the same day as your call.': 'Within London, Essex, Ilford and Romford, we arrange recovery as soon as we can after your call.',
  'our team can take your call and get things moving the same day.': 'our team can take your call and get things moving.',
