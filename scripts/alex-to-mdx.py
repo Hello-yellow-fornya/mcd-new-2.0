@@ -12,6 +12,7 @@ REPO = os.path.join(os.path.dirname(os.path.abspath(__file__)), '..')
 # slug → (mdx path, template, highlight)
 MANIFEST = {
  '/accident-management-company/': ('content/pillars/accident-management-company.mdx','pillar','Accident management'),
+ '/our-service-areas/': ('content/locations/our-service-areas.mdx','location','operate'),
  '/accident-management-vs-insurance/': ('content/comparison/accident-management-vs-insurance.mdx','comparison','Accident management'),
  '/will-a-non-fault-accident-affect-my-insurance/': ('content/resource-hub/will-a-non-fault-accident-affect-my-insurance.mdx','article','non-fault'),
  '/advice/dash-cam-non-fault-accident/': ('content/resource-hub-advice/advice/dash-cam-non-fault-accident.mdx','article','Dash cams'),
@@ -43,6 +44,14 @@ H1_OVERRIDE = {
 # Extra frontmatter per slug (the template's default schema is not always right).
 EXTRA_FM = {
  '/accident-management-company/': ['schemaType: "Service"'],
+ '/our-service-areas/': [
+  'schemaType: "Service"',
+  'areaServed:', '  - "London"', '  - "Essex"', '  - "Ilford"', '  - "Romford"',
+  'keepsItems:',
+  '  - icon: "pin"', '    label: "London and Essex coverage"',
+  '  - icon: "car"', '    label: "Vehicle recovery from the scene"',
+  '  - icon: "shield"', '    label: "No excess, no policy impact"',
+ ],
 }
 # Links Alex's export flattened to "Title ." inside callouts.
 LINK_FIX = {
@@ -74,6 +83,11 @@ REWRITES = {
  'Call us! MIB claims have specific requirements': 'Call us. MIB claims have specific requirements',
  # no timing promises
  'In most cases, a replacement vehicle can be arranged and delivered within 24 hours of your first call.': 'In most cases, a replacement vehicle is arranged on your first call and delivered to your address; we give you a realistic time when we speak to you.',
+ 'Same-day response is typically available in this area.': 'Call us and we will get things moving.',
+ 'Within London, Essex, Ilford and Romford, we can typically arrange recovery on the same day as your call.': 'Within London, Essex, Ilford and Romford, we arrange recovery as soon as we can after your call.',
+ 'our team can take your call and get things moving the same day.': 'our team can take your call and get things moving.',
+ 'we will confirm within a few minutes whether we can support you.': 'we will confirm on the call whether we can support you.',
+ 'call us or use the contact form and we will confirm within a few minutes.': 'call us or use the contact form and we will confirm.',
 }
 
 def clean(s):
@@ -186,6 +200,11 @@ def block(node, out, notes):
                     body = re.split(r'\s(?=2\.\s)', body)[0]   # Alex's export repeats every step inside step 1
                 items.append({'title': title, 'body': body})
             out.append(f'<Steps items={{{json.dumps(items, ensure_ascii=False)}}} />')
+        elif t == 'div' and 'area-grid' in k:
+            items = []
+            for card in [x for x in c.children if not isinstance(x,str) and 'area-card' in x.cls()]:
+                items.append({'title': md_text(first(card, lambda n: n.tag=='h3').text()), 'body': md_text(first(card, lambda n: n.tag=='p').text())})
+            out.append(f'<Areas items={{{json.dumps(items, ensure_ascii=False)}}} />')
         elif t == 'div' and k == 'tu':
             head = [md_text(h.text()) for h in first(c, lambda n: 'tu-head' in n.cls()).children if not isinstance(h,str)]
             rows = []; variant = 'them-us'

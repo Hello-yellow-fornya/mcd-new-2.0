@@ -26,6 +26,9 @@ export function Sprite() {
           <path d="M12 2l8 3.2v6.4c0 5-3.6 8.6-8 11.2C7.6 20.2 4 16.6 4 11.6V5.2z" />
           <path d="M8.5 12l2.5 2.5 4.8-4.8" fill="none" style={{ stroke: 'var(--ic-bg, var(--ink))' }} strokeWidth="2.6" strokeLinecap="round" strokeLinejoin="round" />
         </symbol>
+        <symbol id="i-pin" viewBox="0 0 24 24">
+          <path d="M12 2C8.1 2 5 5.1 5 9c0 5.2 7 13 7 13s7-7.8 7-13c0-3.9-3.1-7-7-7zm0 9.5a2.5 2.5 0 1 1 0-5 2.5 2.5 0 0 1 0 5z" />
+        </symbol>
         <symbol id="i-car" viewBox="0 0 24 24">
           <path d="M4.2 11.5l1.9-5A2.5 2.5 0 0 1 8.4 5h7.2a2.5 2.5 0 0 1 2.3 1.5l1.9 5A2.5 2.5 0 0 1 22 14v4a1.5 1.5 0 0 1-1.5 1.5h-.5a2 2 0 0 1-4 0H8a2 2 0 0 1-4 0h-.5A1.5 1.5 0 0 1 2 18v-4a2.5 2.5 0 0 1 2.2-2.5zM7.1 7.8L6 11h12l-1.1-3.2A.8.8 0 0 0 16.1 7H7.9a.8.8 0 0 0-.8.8zM6 15.5a1.3 1.3 0 1 0 0-2.6 1.3 1.3 0 0 0 0 2.6zm12 0a1.3 1.3 0 1 0 0-2.6 1.3 1.3 0 0 0 0 2.6z" />
         </symbol>
