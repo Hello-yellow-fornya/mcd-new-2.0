@@ -128,7 +128,7 @@ Each maps to markup in the templates. Names are suggestions; keep them consisten
 - `ProofGrid` — 2×2 proof cards (landing pages).
 - `IndependenceLine` — "Independent accident management company. Not an insurer…" strip.
 - `SectionCta` — coral Start your claim + coral Call (with icon). Every content section ends with it.
-- `SiteFooter` — links, phone in Franklin coral, legal line with the FCA placeholder.
+- `SiteFooter` — links, phone, legal line (company details only: not FCA authorised, confirmed 8 September 2026).
 - `Icon` — the solid icon set as an SVG sprite; circle variants: coral/ink, sky/ink, ink/coral.
 - `Pattern` — the shard and sweep SVGs as CSS backgrounds, per colourway.
 
@@ -220,7 +220,7 @@ The phone number on every page is a `tel:` link. Call tracking (dynamic number i
 
 ## 11. Placeholders to wire when the client supplies them
 
-- FCA status line and firm reference number in the footer — render a visible `[TODO]` in preview, block production build if unset
+- No FCA status line: the company is not FCA authorised (confirmed 8 September 2026). The legal line carries the company number and registered office only.
 - The catch wording (pending MCD's policy on failed claims)
 - The logo SVG set cut from §4a (favicons and app icons generated from the square)
 - Real reviews feed; real handler names/photos; London local content
@@ -234,6 +234,6 @@ The phone number on every page is a `tel:` link. Call tracking (dynamic number i
 - Landing pages `noindex`, excluded from sitemap, independence line present, fold test passing
 - Form posts to Railway, stores, emails, returns a thank-you route that fires the conversion
 - Consent gating verified; no tags before consent
-- Legal pages present; FCA placeholder resolved or build blocked
+- Legal pages present; company number and registered office in the legal line
 - README covers: run locally, add a page, add an insurer landing page, deploy, and the go-live checklist from §2a
 - Staging verified: no custom domain, deployment protection on, noindex header present, canonicals pointing at the final domain, Railway staging isolated
