@@ -92,7 +92,9 @@ test('skip link is the first focusable element and targets main', async ({ page 
 
 test('icons, manifest and the Open Graph image are served', async ({ page, request }) => {
   await page.goto('/');
-  await expect(page.locator('link[rel="icon"]').first()).toHaveAttribute('href', /icon\.svg/);
+  // Next lists favicon.ico first (the "247" tiles at 16 and 32) and icon.svg after it.
+  await expect(page.locator('link[rel="icon"][href$="favicon.ico"]')).toHaveCount(1);
+  await expect(page.locator('link[rel="icon"][href*="icon.svg"]')).toHaveCount(1);
   await expect(page.locator('link[rel="apple-touch-icon"]')).toHaveAttribute('href', /apple-icon\.png/);
   await expect(page.locator('link[rel="manifest"]')).toHaveCount(1);
   const og = await page.locator('meta[property="og:image"]').getAttribute('content');
