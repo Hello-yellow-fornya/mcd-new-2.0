@@ -36,6 +36,10 @@ MANIFEST = {
  '/what-to-do-after-a-car-accident/': ('content/guides/what-to-do-after-a-car-accident.mdx','guide','car accident'),
 }
 
+# Shorter H1s where Alex's would push the hero CTAs past the 1280×720 fold (the H1 sits at 16ch, 64px).
+H1_OVERRIDE = {
+ '/accident-management-company/': 'Accident management company: what we do',
+}
 # Extra frontmatter per slug (the template's default schema is not always right).
 EXTRA_FM = {
  '/accident-management-company/': ['schemaType: "Service"'],
@@ -207,7 +211,7 @@ def convert(path):
     title = re.sub(r'\s*\|\s*(MCD|Claims 24/7)$', ' | Claims 24/7', title)
     meta = re.search(r'<meta[^>]*name="description"[^>]*>', raw).group(0)
     desc = clean(re.search(r'content="([^"]*)"', meta).group(1))
-    h1 = clean(first(root, lambda n: n.tag=='h1').text())
+    h1 = H1_OVERRIDE.get(slug) or clean(first(root, lambda n: n.tag=='h1').text())
     kicker_n = first(root, lambda n: 'kicker' in n.cls()); kicker = clean(kicker_n.text()) if kicker_n else ''
     lead_n = first(root, lambda n: 'lead' in n.cls()); lead = clean(lead_n.text()) if lead_n else ''
     assert highlight in h1, (slug, h1, highlight)
