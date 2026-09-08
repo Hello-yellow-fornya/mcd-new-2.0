@@ -11,6 +11,7 @@ REPO = os.path.join(os.path.dirname(os.path.abspath(__file__)), '..')
 
 # slug → (mdx path, template, highlight)
 MANIFEST = {
+ '/accident-management-company/': ('content/pillars/accident-management-company.mdx','pillar','Accident management'),
  '/accident-management-vs-insurance/': ('content/comparison/accident-management-vs-insurance.mdx','comparison','Accident management'),
  '/will-a-non-fault-accident-affect-my-insurance/': ('content/resource-hub/will-a-non-fault-accident-affect-my-insurance.mdx','article','non-fault'),
  '/advice/dash-cam-non-fault-accident/': ('content/resource-hub-advice/advice/dash-cam-non-fault-accident.mdx','article','Dash cams'),
@@ -35,6 +36,14 @@ MANIFEST = {
  '/what-to-do-after-a-car-accident/': ('content/guides/what-to-do-after-a-car-accident.mdx','guide','car accident'),
 }
 
+# Shorter H1s where Alex's would push the hero CTAs past the 1280×720 fold (the H1 sits at 16ch, 64px).
+H1_OVERRIDE = {
+ '/accident-management-company/': 'Accident management company: what we do',
+}
+# Extra frontmatter per slug (the template's default schema is not always right).
+EXTRA_FM = {
+ '/accident-management-company/': ['schemaType: "Service"'],
+}
 # Links Alex's export flattened to "Title ." inside callouts.
 LINK_FIX = {
  'What to do after a car accident': '/what-to-do-after-a-car-accident/',
@@ -63,6 +72,8 @@ REWRITES = {
  'the process can complete in a matter of weeks. Where fault is disputed': 'the process is usually shorter. Where fault is disputed',
  'makes a personal injury claim weeks after you settled': 'makes a personal injury claim long after you settled',
  'Call us! MIB claims have specific requirements': 'Call us. MIB claims have specific requirements',
+ # no timing promises
+ 'In most cases, a replacement vehicle can be arranged and delivered within 24 hours of your first call.': 'In most cases, a replacement vehicle is arranged on your first call and delivered to your address; we give you a realistic time when we speak to you.',
 }
 
 def clean(s):
@@ -200,7 +211,7 @@ def convert(path):
     title = re.sub(r'\s*\|\s*(MCD|Claims 24/7)$', ' | Claims 24/7', title)
     meta = re.search(r'<meta[^>]*name="description"[^>]*>', raw).group(0)
     desc = clean(re.search(r'content="([^"]*)"', meta).group(1))
-    h1 = clean(first(root, lambda n: n.tag=='h1').text())
+    h1 = H1_OVERRIDE.get(slug) or clean(first(root, lambda n: n.tag=='h1').text())
     kicker_n = first(root, lambda n: 'kicker' in n.cls()); kicker = clean(kicker_n.text()) if kicker_n else ''
     lead_n = first(root, lambda n: 'lead' in n.cls()); lead = clean(lead_n.text()) if lead_n else ''
     assert highlight in h1, (slug, h1, highlight)
@@ -218,6 +229,7 @@ def convert(path):
     for d in find(prose, lambda n: n.tag=='details'):
         q = clean(first(d, lambda n: n.tag=='summary').text())
         a = ' '.join(md_text(inline(p)) for p in find(d, lambda n: n.tag=='p')) or md_text(inline(first(d, lambda n: 'a' == n.cls())))
+        a = re.sub(r'\[([^\]]+)\]\([^)]*\)', r'\1', a)   # plain text: the accordion and FAQPage schema do not render markdown
         faq.append({'q': q, 'a': a})
     def y(s): return json.dumps(s, ensure_ascii=False)
     fm = ['---', f'slug: {y(slug)}', f'template: {y(template)}', f'title: {y(title)}', f'description: {y(desc)}']
@@ -225,6 +237,7 @@ def convert(path):
     fm += [f'h1: {y(h1)}', f'highlight: {y(highlight)}']
     if lead: fm.append(f'lead: {y(lead)}')
     fm.append('phase: 1')
+    fm += EXTRA_FM.get(slug, [])
     default_keeps = template in ('pillar','process','comparison','location')
     if keeps != default_keeps: fm.append(f'keeps: {"true" if keeps else "false"}')
     if crumbs:
