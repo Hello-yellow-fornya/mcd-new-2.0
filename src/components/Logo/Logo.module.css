@@ -1,4 +1,4 @@
-/* The Claims 24/7 lockup (CLAUDE.md §4a): height from --logo-h, width from the artwork. */
+/* The Claims 24/7 wordmark (CLAUDE.md §4a): height from --logo-h, width from the artwork. */
 .brand {
   display: inline-flex;
   line-height: 0;
@@ -13,9 +13,22 @@
   overflow: visible;
 }
 
-/* Surfaces: currentColor is the wordmark, the speed lines and the hub; --logo-accent is the ring. */
+/* "Claims" is the wordmark colour; "247" is the accent. */
+.name {
+  fill: currentColor;
+}
+
+.accent {
+  fill: var(--logo-accent);
+}
+
 .light,
 .cream {
+  color: var(--ink);
+  --logo-accent: var(--ochre);
+}
+
+.lightYellow {
   color: var(--ink);
   --logo-accent: var(--yellow);
 }

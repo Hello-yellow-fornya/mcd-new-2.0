@@ -92,7 +92,9 @@ test('skip link is the first focusable element and targets main', async ({ page 
 
 test('icons, manifest and the Open Graph image are served', async ({ page, request }) => {
   await page.goto('/');
-  await expect(page.locator('link[rel="icon"]').first()).toHaveAttribute('href', /icon\.svg/);
+  // Next lists favicon.ico first (the "247" tiles at 16 and 32) and icon.svg after it.
+  await expect(page.locator('link[rel="icon"][href$="favicon.ico"]')).toHaveCount(1);
+  await expect(page.locator('link[rel="icon"][href*="icon.svg"]')).toHaveCount(1);
   await expect(page.locator('link[rel="apple-touch-icon"]')).toHaveAttribute('href', /apple-icon\.png/);
   await expect(page.locator('link[rel="manifest"]')).toHaveCount(1);
   const og = await page.locator('meta[property="og:image"]').getAttribute('content');
@@ -100,8 +102,8 @@ test('icons, manifest and the Open Graph image are served', async ({ page, reque
   const manifest = await (await request.get('/manifest.webmanifest')).json();
   expect(manifest.icons.map((i: { sizes: string }) => i.sizes)).toEqual(['192x192', '512x512', '1024x1024']);
   expect(manifest.name).toBe('Claims 24/7');
-  // The favicon set as delivered in design/logo/favicons (16 to 1024), the social avatar, and an outlined lockup and square
-  for (const path of ['/icon.svg', '/apple-icon.png', '/favicons/favicon.svg', ...[16, 32, 48, 180, 192, 512, 1024].map((s) => `/favicons/favicon-${s}.png`), '/logo/square/claims247-square-stacked-on-yellow.png', '/logo/square/claims247-square-stacked-on-yellow.svg', '/logo/claims247-logo-on-cream.svg']) {
+  // The favicon set as delivered in design/logo/favicons (16 to 1024, the "247" tiles at 16 and 32, favicon.ico), the social avatar, and an outlined lockup and square
+  for (const path of ['/icon.svg', '/favicon.ico', '/apple-icon.png', '/favicons/favicon.svg', '/favicons/favicon-16.svg', ...[16, 32, 48, 180, 192, 512, 1024].map((s) => `/favicons/favicon-${s}.png`), '/favicons/favicon-16-numerals.png', '/favicons/favicon-32-numerals.png', '/logo/square/claims247-square-stacked-on-yellow.png', '/logo/square/claims247-square-stacked-on-yellow.svg', '/logo/claims247-logo-on-cream.svg']) {
     expect((await request.get(path)).status(), path).toBe(200);
   }
   const img = await request.get(new URL(og!).pathname);
