@@ -1,18 +1,18 @@
 import Link from 'next/link';
-import { lockupFrame, mark, markTransform, wide, wordmark } from './lockup.generated';
+import { lockupFrame, wordmark } from './lockup.generated';
 import { site } from '@/lib/site';
 import styles from './Logo.module.css';
 
 /**
- * Which surface the lockup sits on (CLAUDE.md §4a). The variant follows:
- * light and cream take ink words with the yellow ring; yellow takes all ink;
- * ink takes white words with the yellow ring; the two monos are one colour.
- * The speed lines always match the wordmark colour.
+ * Which surface the wordmark sits on (CLAUDE.md §4a). "Claims" takes the
+ * wordmark colour; "247" takes the accent: ochre on light and cream, yellow
+ * on light-yellow and on ink, ink on yellow, the wordmark colour in the monos.
  */
-export type LogoSurface = 'light' | 'cream' | 'yellow' | 'ink' | 'mono-ink' | 'mono-white';
+export type LogoSurface = 'light' | 'light-yellow' | 'cream' | 'yellow' | 'ink' | 'mono-ink' | 'mono-white';
 
 const surfaceClass: Record<LogoSurface, string> = {
   light: styles.light,
+  'light-yellow': styles.lightYellow,
   cream: styles.cream,
   yellow: styles.yellow,
   ink: styles.ink,
@@ -22,22 +22,19 @@ const surfaceClass: Record<LogoSurface, string> = {
 
 type LockupProps = {
   surface?: LogoSurface;
-  /** wide (default): the wordmark at the mark's full height beside the stopwatch, for the header and footer. compact: the signed-off lockup with the words tucked into the opening. */
-  layout?: 'wide' | 'compact';
   className?: string;
   /** Decorative when the parent link carries the name. */
   decorative?: boolean;
 };
 
 /**
- * The horizontal lockup as inline SVG: "Claims" over "24/7" beside the
- * stopwatch, the wordmark as outlines cut from the self-hosted Archivo Black
- * at build time (scripts/logo-build.mjs), so it never falls back to another
- * face. The viewBox is the content box, so the height maps to the artwork.
+ * The wordmark as inline SVG: "Claims" with "247" set small and high beside
+ * it, both as outlines cut from the self-hosted Archivo Black at build time
+ * (scripts/logo-build.mjs), so it never falls back to another face. The
+ * viewBox is the content box, so the height maps to the drawn letters.
  */
-export function Lockup({ surface = 'light', layout = 'wide', className, decorative }: LockupProps) {
-  const box = layout === 'wide' ? wide.box : lockupFrame.box;
-  const markT = layout === 'wide' ? wide.markTransform : markTransform;
+export function Lockup({ surface = 'light', className, decorative }: LockupProps) {
+  const { box } = lockupFrame;
   return (
     <svg
       className={[styles.lockup, surfaceClass[surface], className].filter(Boolean).join(' ')}
@@ -47,19 +44,15 @@ export function Lockup({ surface = 'light', layout = 'wide', className, decorati
       aria-hidden={decorative || undefined}
       focusable="false"
       data-logo={surface}
-      data-layout={layout}
     >
-      <g transform={markT}>{mark}</g>
-      <g transform={layout === 'wide' ? wide.wordmarkTransform : undefined}>
-        {wordmark.map((w) => (
-          <path key={w.text} d={w.d} fill="currentColor" data-text={w.text} />
-        ))}
-      </g>
+      {wordmark.map((w) => (
+        <path key={w.text} d={w.d} className={w.role === 'accent' ? styles.accent : styles.name} data-text={w.text} />
+      ))}
     </svg>
   );
 }
 
-/** The header and footer logo: the wide lockup as a home link at --logo-h (50px desktop, 42px mobile). */
+/** The header and footer logo: the wordmark as a home link at --logo-h (34px desktop, 30px mobile). */
 export function Logo({ href = '/', surface = 'cream', className }: { href?: string; surface?: LogoSurface; className?: string }) {
   return (
     <Link href={href} className={[styles.brand, className].filter(Boolean).join(' ')} title={`${site.name}, home`} aria-label={`${site.name}, home`}>
