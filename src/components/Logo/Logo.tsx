@@ -5,8 +5,9 @@ import styles from './Logo.module.css';
 
 /**
  * Which surface the wordmark sits on (CLAUDE.md §4a). "Claims" takes the
- * wordmark colour; "247" takes the accent: ochre on light and cream, yellow
- * on light-yellow and on ink, ink on yellow, the wordmark colour in the monos.
+ * wordmark colour; "247" takes the accent: the brand yellow on light, cream
+ * and ink, ink on yellow, the wordmark colour in the monos. (The suite's
+ * ochre "247" on light surfaces is not used: the site sets it yellow.)
  */
 export type LogoSurface = 'light' | 'light-yellow' | 'cream' | 'yellow' | 'ink' | 'mono-ink' | 'mono-white';
 

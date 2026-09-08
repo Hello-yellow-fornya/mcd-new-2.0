@@ -24,7 +24,7 @@ test('header: sticky cream bar at 84px desktop / 64px mobile with the logo hard 
   expect(lb.width).toBeGreaterThan(isMobile(page) ? 150 : 170); // about 179 × 34 desktop, 158 × 30 mobile
   await expect(lockup.locator('text')).toHaveCount(0);
   await expect(lockup.locator('path[data-text="Claims"]')).toHaveCount(1);
-  await expect(lockup.locator('path[data-text="247"]')).toHaveCSS('fill', 'rgb(176, 137, 0)');
+  await expect(lockup.locator('path[data-text="247"]')).toHaveCSS('fill', 'rgb(243, 205, 62)');
 });
 
 test('header: desktop shows links, chip and two pills; mobile shows Call now and the burger only', async ({ page }) => {

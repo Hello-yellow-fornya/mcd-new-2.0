@@ -13,7 +13,7 @@
   overflow: visible;
 }
 
-/* "Claims" is the wordmark colour; "247" is the accent. */
+/* "Claims" is the wordmark colour; "247" is the accent: the brand yellow on every light surface (not the suite's ochre), ink on yellow. */
 .name {
   fill: currentColor;
 }
@@ -23,12 +23,8 @@
 }
 
 .light,
+.lightYellow,
 .cream {
-  color: var(--ink);
-  --logo-accent: var(--ochre);
-}
-
-.lightYellow {
   color: var(--ink);
   --logo-accent: var(--yellow);
 }
