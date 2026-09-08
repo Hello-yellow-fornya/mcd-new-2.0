@@ -111,11 +111,12 @@ test('faq: details accordion with the first open', async ({ page }) => {
   await expect(items.nth(1)).toHaveAttribute('open', '');
 });
 
-test('footer: logo, phone, four columns and a visible FCA placeholder on staging', async ({ page }) => {
+test('footer: logo, phone, four columns and a legal line with no FCA status', async ({ page }) => {
   const foot = page.locator('[data-site-footer]');
   await expect(foot.getByRole('link', { name: '0800 048 0048' })).toBeVisible();
   await expect(foot.locator('h3')).toHaveText(['Claims', 'Services', 'Help', 'Legal']);
-  await expect(foot).toContainText('[TODO');
+  await expect(foot).toContainText('Registered in England and Wales');
+  await expect(foot).not.toContainText('FCA');
   const h3 = foot.locator('h3').first();
   await expect(h3).toHaveCSS('text-transform', 'none');
 });
