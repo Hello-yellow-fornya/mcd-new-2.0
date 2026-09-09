@@ -1,14 +1,16 @@
 import { NextResponse } from 'next/server';
+import { isIndexable } from '@/lib/indexing';
 
 /**
- * Claims 24/7 is a PPC-only site: every page, on every host, is
- * `noindex, nofollow` (the header here, the meta tag in the root layout, a
- * disallow-all robots.txt, no sitemap). It must not compete with the 1.0
- * site, which carries the same copy.
+ * Everything except the indexable pages (src/lib/indexing.ts) is
+ * `noindex, nofollow` on every host — the header here, the meta tag in the
+ * root layout, and a robots.txt that allows only the same paths. Claims 24/7
+ * carries the same copy as the 1.0 site, so only its homepage may be indexed;
+ * Claims Report Line stays fully unindexed.
  */
-export function middleware() {
+export function middleware(req: import('next/server').NextRequest) {
   const res = NextResponse.next();
-  res.headers.set('X-Robots-Tag', 'noindex, nofollow');
+  if (!isIndexable(req.nextUrl.pathname)) res.headers.set('X-Robots-Tag', 'noindex, nofollow');
   return res;
 }
 

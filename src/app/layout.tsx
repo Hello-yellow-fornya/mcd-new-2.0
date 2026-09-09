@@ -15,9 +15,11 @@ export const metadata: Metadata = {
     template: `%s | ${site.name}`,
   },
   description: site.description,
-  // Claims 24/7 is a PPC-only site: every page is noindex, nofollow on every
-  // host (meta here, X-Robots-Tag in the middleware, disallow-all robots.txt,
-  // no sitemap). Canonicals point to this site's own URL, never to 1.0.
+  // The default for every page: noindex, nofollow on every host (meta here,
+  // X-Robots-Tag in the middleware, robots.txt). The indexable pages listed in
+  // src/lib/indexing.ts override it in their own metadata — on Claims 24/7
+  // that is the homepage alone. Canonicals point to this site's own URL,
+  // never to 1.0.
   robots: { index: false, follow: false },
   openGraph: {
     siteName: site.name,

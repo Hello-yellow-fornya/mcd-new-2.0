@@ -1,6 +1,7 @@
 import type { NextConfig } from 'next';
 import { join } from 'node:path';
 import { siteForBuild } from './src/lib/site-id';
+import { noindexHeaderSource } from './src/lib/indexing';
 
 /**
  * One repo, more than one site (sites/<id>/). NEXT_PUBLIC_SITE picks the site;
@@ -28,9 +29,11 @@ const nextConfig: NextConfig = {
   turbopack: {
     resolveAlias: { '@site': `./sites/${siteId}` },
   },
-  // Every page is noindex, nofollow (Claims 24/7 brief); src/middleware.ts sets the same header.
+  // Every page except the indexable ones is noindex, nofollow. This covers the
+  // static assets the middleware matcher skips; src/middleware.ts applies the
+  // same rule per request and both read src/lib/indexing.ts.
   async headers() {
-    return [{ source: '/:path*', headers: [{ key: 'X-Robots-Tag', value: 'noindex, nofollow' }] }];
+    return [{ source: noindexHeaderSource(), headers: [{ key: 'X-Robots-Tag', value: 'noindex, nofollow' }] }];
   },
 };
 

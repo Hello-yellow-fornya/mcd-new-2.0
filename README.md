@@ -57,7 +57,7 @@ The Vercel project is **`mcd-new-2-0`** (team `fornya`), production at `https://
 | Canonical URLs | `NEXT_PUBLIC_SITE_URL` (the 24/7 URL), never the 1.0 domain | same |
 
 - **Set `NEXT_PUBLIC_SITE_URL` in Vercel** to `https://mcd-new-2-0.vercel.app` for all environments. Unset, the site falls back to `VERCEL_PROJECT_PRODUCTION_URL`, then to `http://localhost:3000`.
-- **Every page is `noindex, nofollow` on every host**: content, homepage, landing pages, utility. `src/middleware.ts` and `next.config.ts` set the header, the root layout renders the meta tag, `src/app/robots.ts` serves disallow-all with no sitemap line, and there is no `sitemap.xml`. Nothing is keyed off the host or `VERCEL_ENV`; attaching a domain changes canonicals only. `tests/e2e/staging.spec.ts` walks every route and checks the header, the meta, the canonical host, and that no page links to the 1.0 domain.
+- **Only the homepage is indexable, and only on the live domain.** Every other page — content, landing, utility — is `noindex, nofollow` everywhere, because the 1.0 site carries the same copy. `src/lib/indexing.ts` holds the indexable set and keys it off the build's canonical origin (`NEXT_PUBLIC_SITE_URL`), so a staging domain or a preview indexes nothing with no switch to remember; `src/middleware.ts` and `next.config.ts` set the header, the root layout renders the meta tag with the homepage overriding it, and `src/app/robots.ts` allows the same paths and disallows the rest. There is no `sitemap.xml`. `tests/e2e/staging.spec.ts` walks every route and checks the header, the meta, the canonical host, and that no page links to the 1.0 domain.
 - Deployment protection is a Vercel project setting (Settings → Deployment Protection). It sits on top of the noindex, not instead of it.
 - Per-environment variables live in Vercel. No secrets in the repo; `.env.example` lists what exists.
 
@@ -157,4 +157,4 @@ Do none of this until told.
 2. Set `NEXT_PUBLIC_SITE_URL` to the real domain and add the root domain and `www` to this project.
 3. Switch DNS.
 4. Remove deployment protection on production only.
-5. The noindex does **not** lift: Claims 24/7 stays `noindex, nofollow` on the real domain too (it is a PPC-only site and must not compete with 1.0). Confirm the header, the meta and the disallow-all `robots.txt` on the real domain, and that canonicals carry it.
+5. Indexing opens only as far as the homepage, and only once `NEXT_PUBLIC_SITE_URL` is the live origin (`src/lib/indexing.ts` lists the hosts): the homepage serves `index, follow` and `robots.txt` allows `/$`; every other page stays `noindex, nofollow` so it cannot compete with 1.0, which carries the same copy. Confirm on the real domain that the homepage is indexable and a content page is not, and that canonicals carry the domain.

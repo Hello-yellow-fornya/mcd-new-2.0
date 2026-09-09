@@ -4,7 +4,7 @@ import { site } from '@/lib/site';
 
 export const metadata: Metadata = {
   title: { absolute: `Report your accident | ${site.name}` },
-  description: 'Report your accident online in two minutes, whoever was at fault, or call 0800 048 0048 and a person in the UK picks up.',
+  description: `Report your accident online in two minutes, whoever was at fault, or call ${site.phone.display} and a person in the UK picks up.`,
   alternates: { canonical: '/report/' },
 };
 

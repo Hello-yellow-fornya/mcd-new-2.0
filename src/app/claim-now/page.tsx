@@ -8,7 +8,7 @@ import styles from './claim-now.module.css';
 
 export const metadata: Metadata = {
   title: { absolute: `Start your non-fault claim | ${site.name}` },
-  description: 'Start a non-fault claim online, or call 0800 048 0048 and a person in the UK picks up.',
+  description: `Start a non-fault claim online, or call ${site.phone.display} and a person in the UK picks up.`,
   alternates: { canonical: '/claim-now/' },
 };
 
