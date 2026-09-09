@@ -18,9 +18,12 @@ export const siteConfig = {
   },
   description: 'Independent accident management for non-fault drivers. The other driver’s insurer pays. Nothing goes through your policy.',
   phone: {
-    display: '0800 048 0048',
-    href: 'tel:08000480048',
-    e164: '+448000480048',
+    display: '0208 988 9508',
+    // The href matches the live Claims247 site exactly: Google Ads number-swap
+    // rewrites both the display string and the tel: href, and the pair is what
+    // is registered against the call conversion action.
+    href: 'tel:+442089889508',
+    e164: '+442089889508',
   },
   locale: 'en_GB',
   source: 'mcd2',

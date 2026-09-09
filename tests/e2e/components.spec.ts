@@ -43,7 +43,7 @@ test('header: desktop shows links, chip and two pills; mobile shows Call now and
     for (const label of ['How it works', 'Non-fault accident', 'Advice', 'About']) await expect(nav.getByText(label)).toBeVisible();
     await expect(nav.getByRole('button', { name: /services/i })).toBeVisible();
     await expect(header.locator('[data-proof-chip]').first()).toBeVisible();
-    await expect(header.getByRole('link', { name: '0800 048 0048' })).toBeVisible();
+    await expect(header.getByRole('link', { name: '0208 988 9508' })).toBeVisible();
     await expect(header.getByRole('link', { name: 'Start your claim' })).toBeVisible();
     await expect(header.getByRole('button', { name: 'Menu' })).toBeHidden();
   }
@@ -58,7 +58,7 @@ test('mobile drawer opens with the proof line, links, and the two full-width but
   await expect(drawer.locator('[data-proof-chip]')).toBeVisible();
   for (const label of ['How it works', 'Non-fault accident', 'Advice', 'About', 'Contact']) await expect(drawer.getByText(label, { exact: true })).toBeVisible();
   await expect(drawer.getByRole('link', { name: 'Start your non-fault claim' })).toBeVisible();
-  await expect(drawer.getByRole('link', { name: 'Call 0800 048 0048' })).toBeVisible();
+  await expect(drawer.getByRole('link', { name: 'Call 0208 988 9508' })).toBeVisible();
   await page.keyboard.press('Escape');
   await expect(drawer).toBeHidden();
 });
@@ -116,7 +116,7 @@ test('faq: details accordion with the first open', async ({ page }) => {
 
 test('footer: logo, phone, four columns and a legal line with no FCA status', async ({ page }) => {
   const foot = page.locator('[data-site-footer]');
-  await expect(foot.getByRole('link', { name: '0800 048 0048' })).toBeVisible();
+  await expect(foot.getByRole('link', { name: '0208 988 9508' })).toBeVisible();
   await expect(foot.locator('h3')).toHaveText(['Claims', 'Services', 'Help', 'Legal']);
   await expect(foot).toContainText('J&R MARKETING LIMITED trading as Claims247.co.uk. Company number: 10025657.');
   await expect(foot).toContainText('does not provide legal advice or claims-management services.');
@@ -138,5 +138,5 @@ test('every tel link is the same number rendered as text', async ({ page }) => {
   const tels = page.locator('a[href^="tel:"]');
   const n = await tels.count();
   expect(n).toBeGreaterThan(3);
-  for (let i = 0; i < n; i++) await expect(tels.nth(i)).toHaveAttribute('href', 'tel:08000480048');
+  for (let i = 0; i < n; i++) await expect(tels.nth(i)).toHaveAttribute('href', 'tel:+442089889508');
 });
