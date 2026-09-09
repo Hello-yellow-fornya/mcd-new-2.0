@@ -47,9 +47,11 @@ export function HeroText({ kicker, title, highlight, lead, cta: ctaMode = 'pair'
           <Title title={title} highlight={highlight} />
         </h1>
         {lead && <h2 className={styles.lead}>{lead}</h2>}
-        <p className={styles.elig} data-eligibility>
-          {eligibility}
-        </p>
+        {eligibility && (
+          <p className={styles.elig} data-eligibility>
+            {eligibility}
+          </p>
+        )}
         {ctaMode !== 'none' && (
           <div className={styles.ctaRow}>
             {ctaMode === 'pair' && (

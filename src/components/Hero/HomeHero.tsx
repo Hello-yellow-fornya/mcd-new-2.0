@@ -44,9 +44,11 @@ export function HomeHero({ h1, h2, sub }: Props) {
           <h2 className={styles.h2}>
             <Hl t={h2} />
           </h2>
-          <p className={styles.elig} data-eligibility>
-            {eligibility}
-          </p>
+          {eligibility && (
+            <p className={styles.elig} data-eligibility>
+              {eligibility}
+            </p>
+          )}
           {sub ? <p className={styles.sub}>{sub}</p> : null}
           <div className={styles.desktopCtas}>
             <Button href={nav.claimHref} variant="ink" data-cta="start">

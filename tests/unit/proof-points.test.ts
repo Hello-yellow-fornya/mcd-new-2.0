@@ -20,7 +20,9 @@ test('the grid is the four canonical cards with the pound, car, handset and tow 
   assert.deepEqual(pp.grid.map((id) => point(id).icon), ['pound', 'car', 'phone', 'truck']);
   assert.deepEqual(pp.grid.map((id) => point(id).sub), ['We pursue the at-fault insurer, not your policy', 'Suited to your everyday needs', 'You don’t have to chase them', 'We coordinate the moving parts']);
   assert.deepEqual(pp.strip.slice(4).map((id) => point(id).short), ['Onward travel for you and your passengers', 'Updates your way: WhatsApp, email or phone', 'Nothing to pay upfront']);
-  assert.equal(pp.eligibility, 'On a non-fault claim we take on, you pay nothing.');
+  // The eligibility line is off for Claims 24/7 (client, 9 September 2026): the key stays so the
+  // heroes keep their type and OCR keeps its own line; empty means the heroes render no <p>.
+  assert.equal(pp.eligibility, '');
 });
 
 test('no short form says "eligible"; the three lines that break the lint are not used', () => {

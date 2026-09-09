@@ -74,9 +74,11 @@ export function PillarLanding({ page }: { page: Page }) {
               </h1>
               {fm.lead ? <h2 className={styles.h2}>{fm.lead}</h2> : null}
               {fm.intro ? <p className={styles.lead}>{fm.intro}</p> : null}
-              <p className={styles.elig} data-eligibility>
-                {eligibility}
-              </p>
+              {eligibility && (
+                <p className={styles.elig} data-eligibility>
+                  {eligibility}
+                </p>
+              )}
             </div>
             <div className={styles.bottom}>
               <ProofGrid className={styles.grid} />

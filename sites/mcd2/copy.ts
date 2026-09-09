@@ -118,8 +118,8 @@ export const benefits = {
 
 export const howItWorks = {
   h2: 'How it works',
-  lead: 'Someone hit you. Their insurer has to put it right — not yours.',
-  sub: 'Most people don’t know that. We claim from their insurer instead.',
+  lead: 'How Claims 24/7 handle your claim, start to finish.',
+  sub: 'Someone hit you. Their insurer puts it right, not yours.',
   steps: [
     { title: 'Tell us what happened.', text: 'One call, or your reg. That’s your bit done.' },
     { title: 'Your handler takes it on.', text: 'One person, in the UK, deals with the other driver’s insurer. If they ring you, send them to us.' },

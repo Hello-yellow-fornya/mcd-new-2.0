@@ -6,7 +6,7 @@ import { onlySite } from './lib/site';
 
 // Claims 24/7's canonical proof points (sites/mcd2/proof-points.json): every
 // page renders its grid and strip from the file; the eligibility line appears
-// once on desktop and not on mobile; no short form says "eligible"; the six
+// once on desktop and not on mobile while the file carries one; no short form says "eligible"; the six
 // gated claims are unsubstantiated; the legal line is the client's on every
 // page; nothing on the site says "Motor Claims Department".
 onlySite('mcd2');
@@ -28,7 +28,7 @@ const LEGAL = [
 const GATED = ['recovery-within-90-minutes', 'answered-within-1-minute', 'lifetime-guarantee-on-repairs', 'bs-10125-and-new-parts', 'updates-your-way', 'no-cut-of-settlement'];
 
 for (const path of ['/', '/claim/goskippy/', '/third-party-insurance-claim/', '/credit-hire/']) {
-  test(`${path}: the grid and strip render from proof-points.json; the eligibility line once on desktop, not on mobile`, async ({ page }) => {
+  test(`${path}: the grid and strip render from proof-points.json; the eligibility line follows proof-points.json`, async ({ page }) => {
     await page.goto(path);
     const titles = await page.locator('[data-proof-grid] li b').evaluateAll((els) => els.map((e) => (e as HTMLElement).innerText.replace(/\s+/g, ' ').trim()));
     expect(titles).toEqual(pp.grid.map((id) => point(id).title!.replace('\n', ' ')));
@@ -39,11 +39,16 @@ for (const path of ['/', '/claim/goskippy/', '/third-party-insurance-claim/', '/
     if (path === '/credit-hire/') expect(strip).toEqual([]);
     else expect(strip.map((s) => s.trim())).toEqual(pp.strip.map((id) => point(id).short));
     for (const t of [...titles, ...subs, ...strip]) expect(t).not.toMatch(/eligib/i);
+    // The eligibility line renders once on desktop when the file carries one, and not at all when it is empty.
     const elig = page.locator('[data-eligibility]');
-    await expect(elig).toHaveCount(1);
-    await expect(elig).toHaveText(pp.eligibility);
-    if (isMobile(page)) await expect(elig).toBeHidden();
-    else await expect(elig).toBeVisible();
+    if (!pp.eligibility) {
+      await expect(elig).toHaveCount(0);
+    } else {
+      await expect(elig).toHaveCount(1);
+      await expect(elig).toHaveText(pp.eligibility);
+      if (isMobile(page)) await expect(elig).toBeHidden();
+      else await expect(elig).toBeVisible();
+    }
   });
 }
 

@@ -1,6 +1,6 @@
 {
   "$comment": "Canonical proof points for Claims 24/7, from design/claims247-proof-points.pdf (Perry, 9 September 2026), the source of truth for benefit wording on this site. Every grid, strip and keeps set renders from here; no benefit copy sits inline in a component. Short forms carry no \"eligible\": eligibility lives in the eligibility line and the terms. A point with a claim renders only while sites/mcd2/claims.json substantiates it. Three lines from the document break the copy lint (the exclamation and the two throwaway sentences in the settlement and recovery rows) and are not used anywhere.",
-  "eligibility": "On a non-fault claim we take on, you pay nothing.",
+  "eligibility": "",
   "grid": ["no-excess", "like-for-like", "at-fault-insurer", "sorted"],
   "strip": ["no-excess", "like-for-like", "at-fault-insurer", "sorted", "onward-travel", "updates-your-way", "nothing-upfront"],
   "points": [
