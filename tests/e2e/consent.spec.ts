@@ -1,4 +1,5 @@
 import { test, expect, type Page } from '@playwright/test';
+import { SITE } from './lib/site';
 
 // Tracking and consent (CLAUDE.md §0, appendix §8): nothing loads before
 // consent; accepting injects 2.0's own GTM container; declining loads
@@ -44,7 +45,7 @@ test('accepting stores the choice, pushes the update and injects the 2.0 contain
   const update = dl.find((e) => Array.isArray(e) && e[0] === 'consent' && e[1] === 'update') as unknown[];
   expect(update[2]).toMatchObject({ analytics_storage: 'granted', ad_storage: 'granted' });
   // A later visit loads GTM straight away.
-  await page.goto('/claim-now/');
+  await page.goto(SITE === 'ocr' ? '/report/' : '/claim-now/');
   await expect(page.locator('script[data-gtm]')).toHaveCount(1);
   await expect(page.getByTestId('consent-banner')).toBeHidden();
 });
@@ -76,9 +77,10 @@ test('tel: clicks push phone_click with a placement, except on legal pages', asy
   await page.goto('/');
   await page.getByRole('button', { name: 'No, just the essentials' }).click();
   await page.evaluate(() => document.querySelectorAll('a[href^="tel:"]').forEach((a) => a.addEventListener('click', (e) => e.preventDefault())));
-  await page.locator('[data-band] a[href^="tel:"]').click();
+  const closing = SITE === 'ocr' ? ['[data-final-cta]', 'final-cta'] : ['[data-band]', 'band'];
+  await page.locator(`${closing[0]} a[href^="tel:"]`).click();
   let dl = await layer(page);
-  expect(dl.find((e) => (e as { event?: string }).event === 'phone_click')).toMatchObject({ placement: 'band', phone: '08000480048' });
+  expect(dl.find((e) => (e as { event?: string }).event === 'phone_click')).toMatchObject({ placement: closing[1], phone: '08000480048' });
   await page.goto('/privacy-policy/');
   await page.evaluate(() => document.querySelectorAll('a[href^="tel:"]').forEach((a) => a.addEventListener('click', (e) => e.preventDefault())));
   await page.locator('[data-site-footer] a[href^="tel:"]').click();

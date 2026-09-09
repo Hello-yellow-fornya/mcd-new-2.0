@@ -1,0 +1,7 @@
+{
+  "extends": "./tsconfig.json",
+  "compilerOptions": {
+    "paths": { "@/*": ["./src/*"], "@site/*": ["./sites/ocr/*"] },
+    "tsBuildInfoFile": ".next/ocr.tsbuildinfo"
+  }
+}

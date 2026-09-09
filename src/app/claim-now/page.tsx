@@ -1,4 +1,6 @@
 import type { Metadata } from 'next';
+import { notFound } from 'next/navigation';
+import { siteId } from '@/lib/site-id';
 import { Band, SiteFooter, SiteHeader } from '@/components';
 import { absoluteUrl, site } from '@/lib/site';
 import { ClaimStart } from './ClaimStart';
@@ -16,6 +18,7 @@ export const metadata: Metadata = {
  * Ollie's question flow mounts at #claim-flow exactly as in 1.0.
  */
 export default function ClaimNowPage() {
+  if (siteId !== 'mcd2') notFound();
   const jsonLd = {
     '@context': 'https://schema.org',
     '@graph': [

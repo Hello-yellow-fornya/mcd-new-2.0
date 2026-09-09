@@ -6,8 +6,9 @@ import { compactReg, isPlausibleReg } from '@/lib/reg';
  * The site's own intake endpoint for the reg box (appendix §7). There is no
  * claims service in this repo (§0): this handler validates the reg, honours a
  * honeypot, rate-limits per address, and forwards to the shared 1.0 claims
- * API on Railway with source: "mcd2", using CLAIMS_API_URL and 2.0's own
- * CLAIMS_API_KEY. Ollie's question flow owns everything after this.
+ * API on Railway with the site's source ("mcd2" or "ocr"), using
+ * CLAIMS_API_URL and this project's own CLAIMS_API_KEY. Ollie's question flow
+ * owns everything after this.
  */
 const SOURCE = site.source;
 
@@ -45,12 +46,17 @@ export async function POST(req: Request) {
   if (!isPlausibleReg(reg)) return NextResponse.json({ ok: false, error: 'Check the registration and try again.' }, { status: 422 });
 
   // The source is this site, always; the client only says where on the page the reg came from.
+  const name = typeof body.name === 'string' ? body.name.trim().slice(0, 120) : '';
+  const mobile = typeof body.mobile === 'string' ? body.mobile.replace(/[^\d+]/g, '').slice(0, 16) : '';
   const payload = {
     reg,
     source: SOURCE,
     placement: String(body.placement ?? 'claim-now'),
     path: String(body.path ?? '').slice(0, 200),
     startedAt: new Date().toISOString(),
+    // The report form (Online Claims Report) sends a name and a mobile; the reg box sends neither.
+    ...(name ? { name } : {}),
+    ...(mobile ? { mobile } : {}),
   };
 
   const api = process.env.CLAIMS_API_URL;

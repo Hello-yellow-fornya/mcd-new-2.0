@@ -1,0 +1,17 @@
+{
+  "$schema": "../../scripts/content.rules.schema.json",
+  "$comment": "Online Claims Report: the shared rules in content.rules.json plus this site's. Copy files (.ts, .tsx, .json) are linted by their string literals, so keep each copy item on one line.",
+  "extensions": [".mdx", ".md", ".ts", ".tsx", ".json"],
+  "ignore": ["reviews.json", "claims.json", "content.rules.json"],
+  "bannedPhrases": ["Your insurer has a claims department", "stress-free", "navigating", "non-fault only"],
+  "conditioned": {
+    "message": "On this site every non-fault benefit is conditioned on the same line: say \"if it was not your fault\" (or \"non-fault\", \"not at fault\").",
+    "benefits": [
+      "\\bno excess\\b",
+      "\\blike[- ]for[- ]like\\b",
+      "\\b(keep|keeps|keeping|protect|protects|save|saving)\\b[^.]{0,30}\\bno[- ]claims\\b",
+      "\\bno[- ]claims\\b[^.]{0,30}\\b(untouched|safe|protected|intact|bonus)\\b"
+    ],
+    "conditions": ["not (your|my|their) fault", "non-fault", "not at fault", "if it was", "if it wasn't", "whose fault"]
+  }
+}

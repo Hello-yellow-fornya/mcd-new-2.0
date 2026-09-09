@@ -1,4 +1,7 @@
 import { test, expect } from '@playwright/test';
+import { onlySite } from './lib/site';
+
+onlySite('mcd2');
 
 // /claim-now/ (CLAUDE.md §0, appendix §7): the stub with the #claim-flow slot,
 // posting through the site's own endpoint to the shared claims API with

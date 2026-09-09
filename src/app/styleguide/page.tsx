@@ -18,8 +18,9 @@ import {
   Steps,
   ThemUs,
 } from '@/components';
-import { hero } from '@site/copy';
+import { hero } from '../../../sites/mcd2/copy';
 import { isProduction } from '@/lib/staging';
+import { siteId } from '@/lib/site-id';
 import { allClaims, isSubstantiated } from '@/lib/claims';
 import { site } from '@/lib/site';
 import styles from './styleguide.module.css';
@@ -28,6 +29,7 @@ export const metadata: Metadata = { title: 'Styleguide', robots: { index: false,
 
 /** Every component with its variants, for review on staging. 404 on production. */
 export default function StyleguidePage() {
+  if (siteId !== 'mcd2') notFound();
   if (isProduction()) notFound();
   return (
     <>

@@ -1,0 +1,57 @@
+.final {
+  background: var(--navy);
+  color: var(--white);
+}
+
+.inner {
+  padding-top: 64px;
+  padding-bottom: 64px;
+  display: grid;
+  grid-template-columns: 1fr auto;
+  gap: 32px;
+  align-items: center;
+}
+
+.h2 {
+  color: var(--white);
+  margin-bottom: 12px;
+}
+
+/* The green chip on the payoff: line spacing is measured from the chip's top (margin-top equals its top padding). */
+.chip {
+  display: inline-block;
+  background: var(--green);
+  color: var(--ink-body);
+  margin-top: 0.16em;
+  line-height: 1.05;
+  padding: 0.04em 0.18em 0.06em;
+  border-radius: var(--r-chip);
+}
+
+.p {
+  color: rgba(255, 255, 255, 0.8);
+  max-width: 52ch;
+}
+
+.ctas {
+  display: flex;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+
+.final .outWhite {
+  border-color: var(--white);
+  color: var(--white);
+}
+
+@media (max-width: 820px) {
+  .inner {
+    grid-template-columns: 1fr;
+    padding-top: 44px;
+    padding-bottom: 44px;
+  }
+
+  .ctas > * {
+    width: 100%;
+  }
+}

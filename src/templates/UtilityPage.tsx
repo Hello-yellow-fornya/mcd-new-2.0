@@ -1,5 +1,5 @@
 import { MDXRemote } from 'next-mdx-remote/rsc';
-import { Band, Button, Prose, SiteFooter, SiteHeader } from '@/components';
+import { Button, Closing, Prose, SiteFooter, SiteHeader } from '@/components';
 import remarkHeadingIds from '@/lib/content/remark-heading-ids';
 import type { Page } from '@/lib/content';
 import { pageSchema } from '@/lib/content/schema';
@@ -46,7 +46,7 @@ export function UtilityPage({ page }: { page: Page }) {
             </Prose>
           </div>
         </section>
-        <Band />
+        <Closing />
       </main>
       <SiteFooter />
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(pageSchema(page, crumbs)) }} />

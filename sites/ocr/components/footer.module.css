@@ -1,0 +1,120 @@
+/* Navy footer, white type at 85%, green headings and number (ocr-homepage-concept.html .foot). */
+.foot {
+  background: var(--navy);
+  color: rgba(255, 255, 255, 0.85);
+  padding: 48px 0 40px;
+  font-size: 15px;
+  --foot-line: rgba(255, 255, 255, 0.12);
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: 1.4fr 1fr 1fr 1fr;
+  gap: 28px;
+}
+
+.strap {
+  margin-top: 12px;
+}
+
+.tel {
+  display: inline-block;
+  margin-top: 8px;
+  color: var(--green);
+  font-weight: var(--w-bold);
+  font-size: 22px;
+  text-decoration: none;
+}
+
+.reassure {
+  margin-top: 4px;
+  font-size: 13px;
+  color: rgba(255, 255, 255, 0.72);
+}
+
+/* Inter 700 14px, green on navy (4.7:1), sentence case. */
+.h3 {
+  font-family: var(--body);
+  font-weight: var(--w-bold);
+  font-size: 14px;
+  line-height: 1.3;
+  letter-spacing: 0;
+  color: var(--green);
+  margin-bottom: 10px;
+}
+
+.list {
+  list-style: none;
+}
+
+.list li {
+  margin-bottom: 6px;
+}
+
+.list a {
+  text-decoration: none;
+}
+
+.list a:hover {
+  text-decoration: underline;
+  text-decoration-color: var(--green);
+  text-decoration-thickness: 2px;
+}
+
+.soon {
+  color: rgba(255, 255, 255, 0.6);
+}
+
+.legal {
+  font-size: 12px;
+  color: rgba(255, 255, 255, 0.6);
+  margin-top: 24px;
+  padding-top: 16px;
+  border-top: 1px solid var(--foot-line);
+  max-width: 100ch;
+}
+
+.todo {
+  color: var(--white);
+  font-weight: var(--w-bold);
+}
+
+.linkButton {
+  background: none;
+  border: 0;
+  padding: 0;
+  font: inherit;
+  color: inherit;
+  cursor: pointer;
+}
+
+.linkButton:hover {
+  text-decoration: underline;
+  text-decoration-color: var(--green);
+  text-decoration-thickness: 2px;
+}
+
+/* Mobile (ocr-goskippy-mobile.html .foot): the brand block, then the columns two up. */
+@media (max-width: 820px) {
+  .foot {
+    padding: 36px 0 32px;
+    font-size: 14px;
+  }
+
+  .grid {
+    grid-template-columns: 1fr 1fr;
+    gap: 20px 16px;
+  }
+
+  .brand {
+    grid-column: 1 / -1;
+  }
+
+  .tel {
+    font-size: 20px;
+  }
+
+  .legal {
+    font-size: 11px;
+  }
+}

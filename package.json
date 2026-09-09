@@ -16,7 +16,7 @@
     "lint": "next lint",
     "lint:content": "node scripts/lint-content.mjs",
     "lint:css": "node scripts/lint-css.mjs",
-    "typecheck": "tsc --noEmit",
+    "typecheck": "tsc --noEmit && tsc --noEmit -p tsconfig.ocr.json",
     "test": "node --test \"tests/unit/**/*.test.{mjs,ts}\"",
     "test:e2e": "playwright test",
     "check": "pnpm site:assets && pnpm typecheck && pnpm lint && pnpm lint:content && pnpm lint:css && pnpm test",

@@ -1,22 +1,24 @@
 import { test, expect } from '@playwright/test';
 
+import { siteRoutes } from '../lib/snapshot.mjs';
 import { getLivePages } from '../../src/lib/content/index.ts';
+import { SITE, SITE_URL } from './lib/site';
 
 // Claims 24/7 is a PPC-only site and must not compete with the 1.0 site,
 // which carries the same copy: every page is noindex, nofollow (header, meta,
 // disallow-all robots.txt), there is no sitemap, canonicals point to this
 // site's own URL (NEXT_PUBLIC_SITE_URL, playwright.config.ts) and nothing
 // links to the 1.0 domain.
-const SITE = process.env.NEXT_PUBLIC_SITE_URL || 'https://mcd-new-2-0.vercel.app';
-const SITE_HOST = new URL(SITE).host;
+const SITE_HOST = new URL(SITE_URL).host;
 const OLD_DOMAIN = 'motorclaimsdepartment.co.uk';
 
-/** Every route the site serves: content pages, the homepage, claim-now, the landing pages, the styleguide, and a 404. */
-const everyRoute = ['/', '/claim-now/', '/claim-now/thank-you/', '/claim/goskippy/', '/styleguide/', '/does-not-exist/', ...getLivePages().map((p) => p.frontmatter.slug)];
+/** Every route the site serves (tests/lib/snapshot.mjs): the homepage, the claim or report routes, the landing pages, content pages, and a 404. */
+const everyRoutes = () => siteRoutes({ siteId: SITE, pages: getLivePages().map((p) => p.frontmatter.slug) }).then((r) => r.html);
 
 test('no page on the site is indexable, and no page links to the 1.0 domain', async ({ request }) => {
   test.setTimeout(120_000);
-  expect(everyRoute.length).toBeGreaterThan(20);
+  const everyRoute = await everyRoutes();
+  expect(everyRoute.length).toBeGreaterThan(SITE === 'ocr' ? 8 : 20);
   for (const path of everyRoute) {
     const res = await request.get(path);
     expect(res.headers()['x-robots-tag'], `${path} header`).toBe('noindex, nofollow');
@@ -25,7 +27,7 @@ test('no page on the site is indexable, and no page links to the 1.0 domain', as
     expect(html, `${path} links to the 1.0 domain`).not.toContain(OLD_DOMAIN);
     const canonical = html.match(/<link rel="canonical" href="([^"]+)"/)?.[1];
     if (res.status() === 200 && path !== '/styleguide/') {
-      expect(canonical, `${path} canonical`).toBe(`${SITE}${path}`);
+      expect(canonical, `${path} canonical`).toBe(`${SITE_URL}${path}`);
       expect(new URL(canonical!).host).toBe(SITE_HOST);
     }
   }
@@ -45,11 +47,12 @@ test('robots.txt disallows everything and names no sitemap; there is no sitemap.
 test('head has a static noindex meta and a canonical on the site URL', async ({ page }) => {
   await page.goto('/');
   await expect(page.locator('meta[name="robots"]')).toHaveAttribute('content', /noindex/);
-  await expect(page.locator('link[rel="canonical"]')).toHaveAttribute('href', `${SITE}/`);
+  await expect(page.locator('link[rel="canonical"]')).toHaveAttribute('href', `${SITE_URL}/`);
   await expect(page.locator('html')).toHaveAttribute('lang', 'en-GB');
 });
 
 test('fonts are self-hosted: Archivo Black 400 and Archivo 400/700, nothing from Google', async ({ page }) => {
+  test.skip(SITE !== 'mcd2', 'Claims 24/7 only; tests/e2e/ocr covers Online Claims Report');
   const fontRequests: string[] = [];
   page.on('request', (r) => {
     if (r.resourceType() === 'font') fontRequests.push(r.url());
@@ -69,6 +72,7 @@ test('fonts are self-hosted: Archivo Black 400 and Archivo 400/700, nothing from
 });
 
 test('the tokens are on :root and the highlight is a bar, not a box', async ({ page }) => {
+  test.skip(SITE !== 'mcd2', 'Claims 24/7 only; tests/e2e/ocr covers Online Claims Report');
   await page.goto('/');
   const tokens = await page.evaluate(() => {
     const s = getComputedStyle(document.documentElement);
@@ -91,6 +95,7 @@ test('skip link is the first focusable element and targets main', async ({ page 
 });
 
 test('icons, manifest and the Open Graph image are served', async ({ page, request }) => {
+  test.skip(SITE !== 'mcd2', 'Claims 24/7 only; tests/e2e/ocr covers Online Claims Report');
   await page.goto('/');
   // Next lists favicon.ico first (the "247" tiles at 16 and 32) and icon.svg after it.
   await expect(page.locator('link[rel="icon"][href$="favicon.ico"]')).toHaveCount(1);
@@ -112,6 +117,7 @@ test('icons, manifest and the Open Graph image are served', async ({ page, reque
 });
 
 test('accessibility basics the audit checks: heading order holds and the eyebrow colour passes AA', async ({ page }) => {
+  test.skip(SITE !== 'mcd2', 'Claims 24/7 only; tests/e2e/ocr covers Online Claims Report');
   await page.goto('/about-us/');
   const levels = await page.locator('h1, h2, h3, h4, h5, h6').evaluateAll((hs) => hs.map((h) => Number(h.tagName[1])));
   for (let i = 1; i < levels.length; i++) expect(levels[i] - levels[i - 1], `heading ${i}`).toBeLessThanOrEqual(1);

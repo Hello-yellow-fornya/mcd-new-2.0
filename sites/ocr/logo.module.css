@@ -1,0 +1,39 @@
+/* The wordmark: Inter Black at --logo-h (20px desktop, 17px mobile), tracking −4.5%, one line. */
+.brand {
+  display: inline-flex;
+  text-decoration: none;
+  flex: none;
+}
+
+.mark {
+  font-family: var(--display);
+  font-weight: var(--w-display);
+  font-size: var(--logo-h);
+  letter-spacing: var(--wm-tracking);
+  line-height: 1;
+  white-space: nowrap;
+  color: var(--navy);
+}
+
+.online {
+  color: var(--green);
+}
+
+.navy {
+  color: var(--white);
+}
+
+.green,
+.monoInk {
+  color: var(--navy);
+}
+
+.green .online,
+.monoInk .online,
+.monoWhite .online {
+  color: inherit;
+}
+
+.monoWhite {
+  color: var(--white);
+}

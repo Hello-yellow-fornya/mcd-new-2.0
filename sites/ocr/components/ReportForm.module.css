@@ -1,0 +1,120 @@
+/* The form card: white, hairline, 20px radius, 10px fields (ocr-homepage-concept.html .form). */
+.form {
+  background: var(--white);
+  border: 1px solid var(--hairline);
+  border-radius: var(--r-card-lg);
+  padding: 20px 22px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  width: 100%;
+  max-width: 440px;
+}
+
+.title {
+  font-family: var(--display);
+  font-weight: var(--w-display);
+  font-size: 20px;
+  letter-spacing: -0.03em;
+  line-height: 1.2;
+  color: var(--navy);
+}
+
+.sub {
+  color: var(--slate);
+  font-size: 13px;
+  margin-top: -4px;
+}
+
+.label {
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+  font-size: 12px;
+  font-weight: var(--w-bold);
+  color: var(--navy);
+}
+
+.input {
+  border: 1.5px solid var(--hairline);
+  border-radius: var(--r-reg);
+  padding: 9px 12px;
+  font-size: 16px;
+  font-weight: var(--w-bold);
+  color: var(--navy);
+  width: 100%;
+  background: var(--white);
+}
+
+.input::placeholder {
+  color: var(--slate);
+  font-weight: var(--w-regular);
+}
+
+.input:focus-visible {
+  outline: var(--focus-ring);
+  outline-offset: 0;
+  border-color: var(--navy);
+}
+
+.hp {
+  position: absolute;
+  left: -9999px;
+  width: 1px;
+  height: 1px;
+  opacity: 0;
+}
+
+/* The green submit: a pill, ink text, the line arrow. */
+.submit {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  min-height: var(--btn-h);
+  padding: 0 var(--btn-pad);
+  margin-top: 4px;
+  border: 0;
+  border-radius: var(--r-pill);
+  background: var(--green);
+  color: var(--ink-body);
+  font-weight: var(--w-bold);
+  font-size: var(--fs-btn);
+  cursor: pointer;
+  width: 100%;
+  transition: transform var(--motion);
+}
+
+.submit:hover {
+  transform: translateY(-1px);
+}
+
+.submit:disabled {
+  opacity: 0.7;
+  cursor: default;
+  transform: none;
+}
+
+.arrow {
+  width: 16px;
+  height: 16px;
+}
+
+.error {
+  font-size: 14px;
+  color: var(--navy);
+  margin: 0;
+}
+
+.fine {
+  text-align: center;
+  color: var(--slate);
+  font-size: 13px;
+  line-height: 1.4;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .submit:hover {
+    transform: none;
+  }
+}

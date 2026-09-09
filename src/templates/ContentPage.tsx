@@ -1,5 +1,5 @@
 import { MDXRemote } from 'next-mdx-remote/rsc';
-import { ArticleLayout, Band, Breadcrumb, Faq, HeroText, JsonLd, KeepsStrip, SectionCta, SiteFooter, SiteHeader } from '@/components';
+import { ArticleLayout, Closing, Breadcrumb, Faq, HeroText, JsonLd, KeepsStrip, SectionCta, SiteFooter, SiteHeader } from '@/components';
 import { isLive, type Page } from '@/lib/content';
 import { pageSchema } from '@/lib/content/schema';
 import remarkHeadingIds from '@/lib/content/remark-heading-ids';
@@ -64,7 +64,7 @@ export function ContentPage({ page }: { page: Page }) {
           <FaqBlock page={page} />
           <SectionCta compact />
         </ArticleLayout>
-        <Band />
+        <Closing />
       </main>
       <SiteFooter />
       <JsonLd data={pageSchema(page, crumbs)} />

@@ -12,7 +12,7 @@
  * A deliberate exception is marked on the same line, e.g.
  *   text-transform: uppercase; /* allow: uppercase *\/
  *
- * Usage: node scripts/lint-css.mjs [dir-or-file...]   (default: src)
+ * Usage: node scripts/lint-css.mjs [dir-or-file...]   (default: src and sites)
  */
 import { readdirSync, readFileSync, statSync, existsSync } from 'node:fs';
 import { join, extname, relative, resolve, dirname } from 'node:path';
@@ -42,7 +42,8 @@ export function lintCss(text, file) {
     if (/font-style\s*:\s*(italic|oblique)/i.test(code) && !/allow:\s*italic/.test(line)) {
       add(n, 'no-italic', 'Never italics (§0).');
     }
-    if (OLD_PALETTE.test(code)) {
+    // sites/ocr names its page colour --paper (design/ocr); everywhere else --paper is the 1.0 token.
+    if (OLD_PALETTE.test(code) && !(/(^|\/)sites\/ocr\//.test(file) && /var\(--paper\)/.test(code) && !OLD_PALETTE.test(code.replace(/var\(--paper\)/g, '')))) {
       add(n, 'no-1-0-palette', 'No coral, no marine, no sky, no stone: 2.0 uses ink, yellow, cream, pale, ochre, muted, line, green (§0).');
     }
     if (UNDERLAY.test(code) && !/allow:\s*chip/.test(line)) {
@@ -89,7 +90,7 @@ export function lintPaths(paths) {
 }
 
 function main() {
-  const paths = process.argv.slice(2).length ? process.argv.slice(2) : ['src'];
+  const paths = process.argv.slice(2).length ? process.argv.slice(2) : ['src', 'sites'];
   const { files, findings } = lintPaths(paths);
   if (findings.length === 0) {
     console.log(`css lint: ${files.length} file${files.length === 1 ? '' : 's'} checked, no problems.`);

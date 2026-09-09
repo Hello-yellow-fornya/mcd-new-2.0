@@ -34,6 +34,16 @@ The repo builds more than one site from the same components, API client, consent
 - A second Vercel project from this repo builds the other site: set `NEXT_PUBLIC_SITE`, `NEXT_PUBLIC_SITE_URL` (its own `.vercel.app` URL) and `NEXT_PUBLIC_GTM_ID` there, with deployment protection on.
 - `tests/snapshots/mcd2-routes.json` hashes every route's markup and stylesheet rules and every generated asset; `tests/e2e/unchanged.spec.ts` fails if a build serves anything different. Regenerate it only after a reviewed change to that site.
 
+### Online Claims Report (`sites/ocr/`)
+
+The third door: the same company and claims API, where the accident is reported online whoever was at fault. Design in `design/ocr/` (the one-page brand guidelines and the three signed-off pages); tokens in `sites/ocr/tokens.css`, Inter 400/600/700/900 self-hosted in `sites/ocr/fonts/`, the wordmark as live text (`sites/ocr/logo.tsx`), line icons (`sites/ocr/sprite.tsx`), the "OCR" tile icons (`sites/ocr/icons/`, PNGs rendered once with `node sites/ocr/icons/render.mjs`).
+
+- Pages: the homepage (`home.tsx`), `/report/` and `/report/thank-you/` (`report.tsx`, the conversion trigger), `/claim/<insurer>/` from `landing/*.json` (`landing.tsx`), and about, contact and the legal set from `content/utility/`. `/claim-now/` and `/styleguide/` are Claims 24/7's and 404 here.
+- The report form posts registration, name and mobile to `/api/claim-start/`, which forwards to the claims API with `source: "ocr"`.
+- Copy rules: "Report your accident" on primary buttons, "Or report it online" on the outlined one; `sites/ocr/content.rules.json` fails the build on an unconditioned "no excess", "no-claims" or "like-for-like" line and on the claims-department band. Copy files are linted by their string literals, so keep each item on one line.
+- Tests: `NEXT_PUBLIC_SITE=ocr pnpm test:e2e` runs `tests/e2e/ocr/` (the layout rulebook as assertions, the form and thank-you route, indexing, tokens) plus the shared consent, utility and staging specs; the Claims 24/7 specs skip themselves.
+- Vercel: a second project from this repo, with `NEXT_PUBLIC_SITE=ocr`, `NEXT_PUBLIC_SITE_URL` set to its own `.vercel.app` URL, its own `NEXT_PUBLIC_GTM_ID`, `CLAIMS_API_URL` and `CLAIMS_API_KEY`, and deployment protection on. Until it exists, the `ocr/preview` branch on the existing project builds the OCR site (the site id falls back to the branch name) at `https://mcd-new-2-0-git-ocr-preview-fornya.vercel.app/`.
+
 ## Environments and staging
 
 The Vercel project is **`mcd-new-2-0`** (team `fornya`), production at `https://mcd-new-2-0.vercel.app`. There is no custom domain, and there is no Railway service for 2.0.

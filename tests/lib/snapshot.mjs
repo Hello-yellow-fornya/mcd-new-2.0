@@ -3,11 +3,13 @@ import { join, relative } from 'node:path';
 import { normaliseHtml, stylesheetHrefs, sha256 } from './normalize.mjs';
 
 /** Every route the site serves, plus the generated non-HTML routes. */
-export async function siteRoutes() {
-  const { getLivePages } = await import('../../src/lib/content/index.ts');
-  const pages = getLivePages().map((p) => p.frontmatter.slug);
-  const { siteId } = await import('../../src/lib/site-id.ts').catch(() => ({ siteId: 'mcd2' }));
-  const fixed = siteId === 'mcd2' ? ['/', '/claim-now/', '/claim-now/thank-you/', '/claim/goskippy/', '/styleguide/', '/does-not-exist/'] : ['/'];
+export async function siteRoutes(known) {
+  const pages = known?.pages ?? (await import('../../src/lib/content/index.ts')).getLivePages().map((p) => p.frontmatter.slug);
+  const siteId = known?.siteId ?? (await import('../../src/lib/site-id.ts').catch(() => ({ siteId: 'mcd2' }))).siteId;
+  const fixed =
+    siteId === 'mcd2'
+      ? ['/', '/claim-now/', '/claim-now/thank-you/', '/claim/goskippy/', '/styleguide/', '/does-not-exist/']
+      : ['/', '/report/', '/report/thank-you/', '/claim/goskippy/', '/does-not-exist/'];
   return { siteId, html: [...fixed, ...pages], other: ['/robots.txt', '/manifest.webmanifest', '/opengraph-image', '/icon.svg', '/apple-icon.png', '/favicon.ico'] };
 }
 
@@ -41,8 +43,8 @@ export function snapshotFile(site) {
 }
 
 /** Hashes of the normalised HTML and the stylesheets of every route, plus the generated public assets. */
-export async function snapshotRoutes(base, { keepHtml } = {}) {
-  const { siteId, html: htmlRoutes, other } = await siteRoutes();
+export async function snapshotRoutes(base, { keepHtml, known } = {}) {
+  const { siteId, html: htmlRoutes, other } = await siteRoutes(known);
   const routes = {};
   const pages = {};
   const cssCache = new Map();

@@ -16,6 +16,8 @@ const nextConfig: NextConfig = {
   reactStrictMode: true,
   poweredByHeader: false,
   env: { NEXT_PUBLIC_SITE: siteId },
+  // The site's tsconfig carries the "@site/*" path, and Next reads the paths from here for the bundler as well as for the type check.
+  typescript: { tsconfigPath: siteId === 'mcd2' ? 'tsconfig.json' : `tsconfig.${siteId}.json` },
   images: {
     formats: ['image/avif', 'image/webp'],
   },

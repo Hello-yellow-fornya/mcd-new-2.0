@@ -1,0 +1,173 @@
+/* Sticky white bar with a hairline (ocr-homepage-concept.html .nav). */
+.nav {
+  position: sticky;
+  top: 0;
+  z-index: 20;
+  background: var(--white);
+  border-bottom: 1px solid var(--hairline);
+}
+
+.row {
+  display: flex;
+  align-items: center;
+  gap: 28px;
+  min-height: var(--nav-h);
+}
+
+/* Section links: Inter 600 16px, navy. */
+.links {
+  display: flex;
+  gap: 24px;
+  margin-left: auto;
+}
+
+.link {
+  font-weight: var(--w-semi);
+  font-size: 16px;
+  color: var(--navy);
+  text-decoration: none;
+  white-space: nowrap;
+}
+
+/* The call link: Inter 700, the line phone at 18px. */
+.call {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-weight: var(--w-bold);
+  color: var(--navy);
+  text-decoration: none;
+  white-space: nowrap;
+}
+
+.callIcon {
+  width: 18px;
+  height: 18px;
+}
+
+.start {
+  flex: none;
+}
+
+.mobile {
+  display: none;
+}
+
+@media (max-width: 820px) {
+  /* 64px including the hairline, so the fold-locked hero's maths are exact. */
+  .row {
+    gap: 12px;
+    padding: 0 14px 0 16px;
+    min-height: 0;
+    height: calc(var(--nav-h) - 1px);
+  }
+
+  /* Specific enough to beat the pill's own display. */
+  .row .links,
+  .row .call,
+  .row .start {
+    display: none;
+  }
+
+  .mobile {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-left: auto;
+  }
+
+  /* Navy "Call now" pill: 38px, 14px, 15px icon (ocr-homepage-mobile.html .pill.sm). */
+  .callNow {
+    padding: 0 14px;
+    gap: 7px;
+  }
+
+  .callNow svg {
+    width: 15px;
+    height: 15px;
+  }
+}
+
+/* Burger: 22×16, three 2px navy bars, inside a 44px target. */
+.burger {
+  width: 44px;
+  height: 44px;
+  margin-right: -11px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 5px;
+  background: none;
+  border: 0;
+  padding: 0;
+  cursor: pointer;
+}
+
+.bar,
+.barOpen {
+  display: block;
+  width: 22px;
+  height: 2px;
+  border-radius: 2px;
+  background: var(--navy);
+  transition: transform var(--motion), opacity var(--motion);
+}
+
+.barOpen:nth-child(1) {
+  transform: translateY(7px) rotate(45deg);
+}
+
+.barOpen:nth-child(2) {
+  opacity: 0;
+}
+
+.barOpen:nth-child(3) {
+  transform: translateY(-7px) rotate(-45deg);
+}
+
+/* The drawer: full width on paper under the bar. */
+.drawer {
+  position: fixed;
+  left: 0;
+  right: 0;
+  top: var(--nav-h);
+  bottom: 0;
+  background: var(--paper);
+  border-top: 1px solid var(--hairline);
+  padding: 8px 18px 24px;
+  overflow-y: auto;
+  z-index: 20;
+}
+
+.drawerList {
+  list-style: none;
+}
+
+.drawerList li {
+  border-bottom: 1px solid var(--hairline);
+}
+
+.drawerList a,
+.drawerList span {
+  display: block;
+  padding: 16px 0;
+  font-weight: var(--w-bold);
+  font-size: 18px;
+  color: var(--navy);
+  text-decoration: none;
+}
+
+.soon {
+  color: var(--slate);
+}
+
+.drawerCtas {
+  display: grid;
+  gap: 10px;
+  margin-top: 22px;
+}
+
+.drawerCtas > * {
+  min-height: 56px;
+}

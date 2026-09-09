@@ -1,6 +1,6 @@
 import type { Metadata } from 'next';
 import { Band, Benefits, ClaimsStrip, Faq, HomeHero, IndependenceLine, ReviewBand, SiteFooter, SiteHeader, Steps, ThemUs } from '@/components';
-import { hero } from '@site/copy';
+import { hero } from './copy';
 import { absoluteUrl, site } from '@/lib/site';
 
 export const metadata: Metadata = {

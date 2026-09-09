@@ -1,4 +1,7 @@
 import { test, expect, type Page } from '@playwright/test';
+import { onlySite } from './lib/site';
+
+onlySite('mcd2');
 
 // Every component renders on /styleguide/ (staging only). Values come from
 // CLAUDE.md §0 and the mockups in design/.

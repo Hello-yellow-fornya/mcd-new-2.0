@@ -1,4 +1,7 @@
 import { test, expect } from '@playwright/test';
+import { onlySite } from './lib/site';
+
+onlySite('mcd2');
 
 // The SEO template set (appendix §5) in 2.0 styling. Structure, schema,
 // jump links and internal-link behaviour as in the 1.0 mockups.
