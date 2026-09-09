@@ -23,6 +23,7 @@ test('noindex, canonical to self, the insurer only in the H1 and the independenc
   expect(text.split('GoSkippy').length - 1).toBe(2);
   expect(text).not.toMatch(/Your insurer has a claims department/i);
   await expect(page.locator('[data-band]')).toContainText('Managed directly with the at-fault insurer.');
+  await expect(page.locator('[data-band] mark')).toHaveCSS('background-color', 'rgb(221, 245, 235)');
   await expect(page.locator('script[type="application/ld+json"]')).toHaveCount(0);
 });
 

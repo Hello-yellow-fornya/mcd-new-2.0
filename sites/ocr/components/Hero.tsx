@@ -48,7 +48,8 @@ export function WaitRow({ claims = ['avg-wait-1-min', 'fastest-way-to-claim'], i
 /**
  * The homepage hero. Desktop (ocr-homepage-concept.html): paper, two
  * columns, the copy and CTAs left and the report form right, the three
- * worries beneath, everything inside 1280×720. Mobile
+ * worries beneath, everything inside 1280×720; the payoff carries the mint
+ * highlighter. Mobile
  * (ocr-homepage-mobile.html): navy, fold-locked with one flexible gap
  * between the worries and the call block; the green call button, the wait
  * row and "Or report it online" sit on the fold.
