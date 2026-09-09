@@ -2,11 +2,16 @@ import type { Metadata } from 'next';
 import { Band, Benefits, ClaimsStrip, Faq, HomeHero, IndependenceLine, ReviewBand, SiteFooter, SiteHeader, Steps, ThemUs } from '@/components';
 import { hero } from './copy';
 import { absoluteUrl, site } from '@/lib/site';
+import { isIndexable } from '@/lib/indexing';
 
 export const metadata: Metadata = {
   title: `${site.name}: non-fault accident? Choose the smarter way to claim`,
   description: site.description,
   alternates: { canonical: '/' },
+  // The one indexable page on the site, and only on the live domain
+  // (src/lib/indexing.ts). Anywhere else the key is absent and the page
+  // inherits noindex, nofollow from the root layout, like every other page.
+  ...(isIndexable('/') ? { robots: { index: true, follow: true } } : {}),
   openGraph: { title: 'Non-fault accident? Choose the smarter way to claim.', description: site.description, url: '/' },
 };
 

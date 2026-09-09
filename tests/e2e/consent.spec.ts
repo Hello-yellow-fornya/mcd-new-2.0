@@ -80,7 +80,7 @@ test('tel: clicks push phone_click with a placement, except on legal pages', asy
   const closing = SITE === 'ocr' ? ['[data-final-cta]', 'final-cta'] : ['[data-band]', 'band'];
   await page.locator(`${closing[0]} a[href^="tel:"]`).click();
   let dl = await layer(page);
-  expect(dl.find((e) => (e as { event?: string }).event === 'phone_click')).toMatchObject({ placement: closing[1], phone: '08000480048' });
+  expect(dl.find((e) => (e as { event?: string }).event === 'phone_click')).toMatchObject({ placement: closing[1], phone: '+442089889508' });
   await page.goto('/privacy-policy/');
   await page.evaluate(() => document.querySelectorAll('a[href^="tel:"]').forEach((a) => a.addEventListener('click', (e) => e.preventDefault())));
   await page.locator('[data-site-footer] a[href^="tel:"]').click();

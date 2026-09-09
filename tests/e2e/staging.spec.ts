@@ -3,27 +3,36 @@ import { test, expect } from '@playwright/test';
 import { siteRoutes } from '../lib/snapshot.mjs';
 import { getLivePages } from '../../src/lib/content/index.ts';
 import { SITE, SITE_URL } from './lib/site';
+import { indexablePathsFor } from '../../src/lib/indexing';
 
-// Claims 24/7 is a PPC-only site and must not compete with the 1.0 site,
-// which carries the same copy: every page is noindex, nofollow (header, meta,
-// disallow-all robots.txt), there is no sitemap, canonicals point to this
-// site's own URL (NEXT_PUBLIC_SITE_URL, playwright.config.ts) and nothing
+// Claims 24/7 carries the same copy as the 1.0 site, so only its homepage is
+// indexable and every other page is noindex, nofollow (header, meta,
+// robots.txt); Claims Report Line has no indexable page at all. The indexable
+// set lives in src/lib/indexing.ts. There is no sitemap, canonicals point to
+// this site's own URL (NEXT_PUBLIC_SITE_URL, playwright.config.ts) and nothing
 // links to the 1.0 domain.
 const SITE_HOST = new URL(SITE_URL).host;
 const OLD_DOMAIN = 'motorclaimsdepartment.co.uk';
+// What this build may index, decided by the site and the origin it was built for.
+const INDEXABLE_PATHS = indexablePathsFor(SITE as 'mcd2' | 'ocr', SITE_URL);
 
 /** Every route the site serves (tests/lib/snapshot.mjs): the homepage, the claim or report routes, the landing pages, content pages, and a 404. */
 const everyRoutes = () => siteRoutes({ siteId: SITE, pages: getLivePages().map((p) => p.frontmatter.slug) }).then((r) => r.html);
 
-test('no page on the site is indexable, and no page links to the 1.0 domain', async ({ request }) => {
+test('only the indexable pages are indexable, and no page links to the 1.0 domain', async ({ request }) => {
   test.setTimeout(120_000);
   const everyRoute = await everyRoutes();
   expect(everyRoute.length).toBeGreaterThan(SITE === 'ocr' ? 8 : 20);
   for (const path of everyRoute) {
     const res = await request.get(path);
-    expect(res.headers()['x-robots-tag'], `${path} header`).toBe('noindex, nofollow');
     const html = await res.text();
-    expect(html, `${path} meta`).toMatch(/<meta name="robots" content="noindex(, ?nofollow)?"/);
+    if (INDEXABLE_PATHS.includes(path)) {
+      expect(res.headers()['x-robots-tag'], `${path} header`).toBeUndefined();
+      expect(html, `${path} meta`).not.toMatch(/<meta name="robots" content="noindex/);
+    } else {
+      expect(res.headers()['x-robots-tag'], `${path} header`).toBe('noindex, nofollow');
+      expect(html, `${path} meta`).toMatch(/<meta name="robots" content="noindex(, ?nofollow)?"/);
+    }
     expect(html, `${path} links to the 1.0 domain`).not.toContain(OLD_DOMAIN);
     const canonical = html.match(/<link rel="canonical" href="([^"]+)"/)?.[1];
     if (res.status() === 200 && path !== '/styleguide/') {
@@ -31,22 +40,26 @@ test('no page on the site is indexable, and no page links to the 1.0 domain', as
       expect(new URL(canonical!).host).toBe(SITE_HOST);
     }
   }
-  // Even a request that claims the configured host is noindex.
-  const claimed = await request.get('/', { headers: { host: SITE_HOST } });
-  expect(claimed.headers()['x-robots-tag']).toBe('noindex, nofollow');
+  // The homepage is the only page that may ever be indexable, on either site.
+  expect(INDEXABLE_PATHS.filter((p) => p !== '/')).toEqual([]);
 });
 
-test('robots.txt disallows everything and names no sitemap; there is no sitemap.xml', async ({ request }) => {
+test('robots.txt disallows everything but the indexable pages and names no sitemap', async ({ request }) => {
   const robots = await (await request.get('/robots.txt')).text();
   expect(robots).toContain('Disallow: /');
-  expect(robots).not.toContain('Allow: /');
+  // End-anchored, so it allows the homepage and nothing beneath it.
+  if (INDEXABLE_PATHS.length) expect(robots).toContain('Allow: /$');
+  else expect(robots).not.toContain('Allow: /');
   expect(robots).not.toMatch(/sitemap/i);
   expect((await request.get('/sitemap.xml')).status()).toBe(404);
 });
 
-test('head has a static noindex meta and a canonical on the site URL', async ({ page }) => {
+test('the homepage head carries the right robots meta and a canonical on the site URL', async ({ page }) => {
   await page.goto('/');
-  await expect(page.locator('meta[name="robots"]')).toHaveAttribute('content', /noindex/);
+  await expect(page.locator('meta[name="robots"]')).toHaveAttribute(
+    'content',
+    INDEXABLE_PATHS.includes('/') ? /index, follow/ : /noindex/,
+  );
   await expect(page.locator('link[rel="canonical"]')).toHaveAttribute('href', `${SITE_URL}/`);
   await expect(page.locator('html')).toHaveAttribute('lang', 'en-GB');
 });

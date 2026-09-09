@@ -1,6 +1,12 @@
 import type { MetadataRoute } from 'next';
+import { INDEXABLE_PATHS } from '@/lib/indexing';
 
-/** Disallow everything, everywhere, and name no sitemap: the site is never indexed (Claims 24/7 brief). */
+/**
+ * Disallow everything, then allow back the indexable paths
+ * (src/lib/indexing.ts) with an end-anchored rule so `/$` matches the homepage
+ * and nothing beneath it. No sitemap is named: one page does not need one.
+ */
 export default function robots(): MetadataRoute.Robots {
-  return { rules: { userAgent: '*', disallow: '/' } };
+  const allow = INDEXABLE_PATHS.map((p) => `${p}$`);
+  return { rules: { userAgent: '*', ...(allow.length ? { allow } : {}), disallow: '/' } };
 }
