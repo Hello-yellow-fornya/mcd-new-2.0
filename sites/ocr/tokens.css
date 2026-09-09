@@ -149,3 +149,9 @@ html h2,
 html h3 {
   color: var(--navy);
 }
+
+/* H1 highlights take the mint underlay too (the green bar is not used under an H1 on this site); the homepage H1 keeps its chip. */
+html h1 .hl {
+  text-decoration: none;
+  background: linear-gradient(transparent 55%, var(--mint) 55%);
+}
