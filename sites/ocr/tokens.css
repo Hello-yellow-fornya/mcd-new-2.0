@@ -71,7 +71,7 @@
   --fs-btn-sm: 14px;
   --wm-tracking: -0.045em; /* the wordmark's letter-spacing */
 
-  /* Highlights, one at a time: the green chip on the H1 payoff, the green bar under one or two words (.hl), the mint underlay in body headings. */
+  /* Highlights: the mint underlay under one or two words (.hl in an H1, the section headings, the H1 payoff); on navy the same words sit on a mint band in navy type. The green chip is not used. */
   --hl-color: var(--green);
   --hl-thickness: 0.14em;
   --hl-offset: 0.08em;

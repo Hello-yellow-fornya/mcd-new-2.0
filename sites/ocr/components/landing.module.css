@@ -180,7 +180,7 @@
   padding: 12px 0;
 }
 
-/* The band (option A): two lines in Inter Black and the green mark. */
+/* The band (option A): two lines in Inter Black and the mint mark, navy type. */
 .band {
   background: var(--navy);
   color: var(--white);
@@ -199,8 +199,8 @@
 
 .mark {
   display: inline-block;
-  background: var(--green);
-  color: var(--ink-body);
+  background: var(--mint);
+  color: var(--navy);
   font-family: var(--display);
   font-weight: var(--w-display);
   font-size: var(--fs-band);

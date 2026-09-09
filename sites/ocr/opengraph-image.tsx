@@ -21,7 +21,7 @@ export default async function OpenGraphImage() {
         <div style={{ display: 'flex', flexDirection: 'column' }}>
           <div style={{ display: 'flex', fontWeight: 900, fontSize: 100, lineHeight: 1.02, letterSpacing: -4 }}>Had an accident?</div>
           <div style={{ display: 'flex', marginTop: 12 }}>
-            <span style={{ display: 'flex', background: '#18AC7E', color: '#181F23', fontWeight: 900, fontSize: 100, lineHeight: 1.05, letterSpacing: -4, padding: '2px 20px 8px', borderRadius: 14 }}>Report it here.</span>
+            <span style={{ display: 'flex', background: '#DDF5EB', color: '#0E2A47', fontWeight: 900, fontSize: 100, lineHeight: 1.05, letterSpacing: -4, padding: '2px 20px 8px', borderRadius: 14 }}>Report it here.</span>
           </div>
           <div style={{ display: 'flex', fontWeight: 900, fontSize: 38, marginTop: 26, letterSpacing: -1.5 }}>Whoever was at fault, report it once.</div>
         </div>

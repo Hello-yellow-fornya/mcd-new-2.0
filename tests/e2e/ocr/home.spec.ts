@@ -110,14 +110,22 @@ test('mobile hero: navy, fold-locked with one flexible gap, the call button, the
   expect(await page.locator('[data-hero]').evaluate((e) => e.scrollHeight - e.clientHeight)).toBeLessThanOrEqual(1);
 });
 
-test('chip clearance: the H1 chip’s margin-top equals its top padding, and line spacing is measured from the chip', async ({ page }) => {
+test('the H1 payoff carries the light highlighter: the mint underlay on paper; on navy a mint band whose margin-top equals its top padding', async ({ page }) => {
   const chip = page.locator('h1 [data-chip]');
-  const m = await chip.evaluate((e) => ({ mt: parseFloat(getComputedStyle(e).marginTop), pt: parseFloat(getComputedStyle(e).paddingTop), display: getComputedStyle(e).display }));
-  expect(m.display).toBe('inline-block');
-  expect(m.mt).toBeGreaterThan(0);
-  expect(m.mt).toBeGreaterThanOrEqual(m.pt);
-  await expect(chip).toHaveCSS('background-color', 'rgb(24, 172, 126)');
-  await expect(chip).toHaveCSS('color', 'rgb(24, 31, 35)');
+  const m = await chip.evaluate((e) => ({ mt: parseFloat(getComputedStyle(e).marginTop), pt: parseFloat(getComputedStyle(e).paddingTop), display: getComputedStyle(e).display, bg: getComputedStyle(e).backgroundColor, img: getComputedStyle(e).backgroundImage, color: getComputedStyle(e).color }));
+  if (isMobile(page)) {
+    expect(m.display).toBe('inline-block');
+    expect(m.mt).toBeGreaterThan(0);
+    expect(m.mt).toBeGreaterThanOrEqual(m.pt);
+    expect(m.bg).toBe('rgb(221, 245, 235)');
+    expect(m.color).toBe('rgb(14, 42, 71)');
+  } else {
+    expect(m.img).toContain('rgb(221, 245, 235)');
+    expect(m.color).toBe('rgb(14, 42, 71)');
+  }
+  // Nothing on the site uses the solid green band.
+  const green = await page.locator('h1 span, h2 span, mark').evaluateAll((els) => els.filter((e) => getComputedStyle(e).backgroundColor === 'rgb(24, 172, 126)').length);
+  expect(green).toBe(0);
 });
 
 test('desktop hero: two columns with the report form right, three equal-height worry cards, everything inside 1280×720', async ({ page }) => {

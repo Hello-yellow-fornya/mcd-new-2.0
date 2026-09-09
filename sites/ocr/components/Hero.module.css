@@ -26,15 +26,9 @@
   text-wrap: wrap;
 }
 
-/* The green chip on the payoff: line spacing is measured from the chip's top, so its margin-top equals its top padding. */
+/* The payoff carries the light highlighter: the mint underlay on paper. */
 .h1Chip {
-  display: inline-block;
-  background: var(--green);
-  color: var(--ink-body);
-  margin-top: 0.16em;
-  line-height: 1.05;
-  padding: 0.04em 0.18em 0.06em;
-  border-radius: var(--r-chip);
+  background: linear-gradient(transparent 55%, var(--mint) 55%);
 }
 
 .lead {
@@ -200,6 +194,17 @@
     font-size: 44px;
     color: var(--white);
     margin-bottom: 0;
+  }
+
+  /* On navy the underlay would sit behind white type, so the payoff is navy on a mint band; line spacing is measured from the band's top (margin-top equals its top padding). */
+  .h1Chip {
+    display: inline-block;
+    background: var(--mint);
+    color: var(--navy);
+    margin-top: 0.16em;
+    line-height: 1.05;
+    padding: 0.04em 0.18em 0.06em;
+    border-radius: var(--r-chip);
   }
 
   .lead {
