@@ -46,10 +46,17 @@ export function SiteFooter() {
           ))}
         </div>
         <p className={styles.legal} data-legal>
-          {site.legal
-            ? `${site.legalLine}. Company number: ${site.legal.companyNumber}. Registered office address: ${site.legal.registeredOffice}. ${site.legal.statusLine}`
-            : `${site.legalLine}.`}{' '}
-          © {year}.
+          {site.legal ? (
+            <>
+              {site.legalLine}. Company number: {site.legal.companyNumber}.
+              <br />
+              Registered office address: {site.legal.registeredOffice}
+              <br />
+              {site.legal.statusLine} © {year}.
+            </>
+          ) : (
+            `${site.legalLine}. © ${year}.`
+          )}
         </p>
       </div>
     </footer>
