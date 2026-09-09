@@ -163,17 +163,17 @@
     },
     "/cookies/": {
       "status": 200,
-      "html": "d7a6937a804188bc44cd77d3f68e2e5be082e207259b828f61a3bd6a9729f1cb",
+      "html": "7f48f7dbd6e7f2e64aec95f8c5b457a886ccda4b0b28a3156e647ec6a276f80f",
       "css": "aea61a8153aee7ded7d0313026fe30dc18684a56d1819b6f15787e76a8e401f3"
     },
     "/privacy-policy/": {
       "status": 200,
-      "html": "aa1672b6f175f076686fef0ee84fd27b237a66dba147301bb956444a18b8843e",
+      "html": "73b80f52ea390ef627f687dbc089a51f08fd58f7ec708b981f0d2847eeb7b808",
       "css": "aea61a8153aee7ded7d0313026fe30dc18684a56d1819b6f15787e76a8e401f3"
     },
     "/terms/": {
       "status": 200,
-      "html": "1bb9d2027faf775609eec6e7f85bf883215b1ac221266131dcd6b71a85a5aa9f",
+      "html": "1ff705c82c866feb45aa10ec681748f77376afd13a578a9d0d27173c5ce71052",
       "css": "aea61a8153aee7ded7d0313026fe30dc18684a56d1819b6f15787e76a8e401f3"
     }
   },

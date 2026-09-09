@@ -27,6 +27,8 @@ export type Frontmatter = {
   /** One or two words of the H1 that carry the yellow bar (§0). */
   highlight?: string;
   lead?: string;
+  /** utility: `none` drops the hero's claim and call CTAs (the legal pages). */
+  cta?: 'pair' | 'none';
   /** pillar-landing: the paragraph under the H2 (the lead is the H2). */
   intro?: string;
   /** pillar-landing: whose claims department the band names. */
