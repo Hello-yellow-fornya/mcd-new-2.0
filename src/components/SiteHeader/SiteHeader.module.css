@@ -10,14 +10,17 @@
 .row {
   display: flex;
   align-items: center;
-  gap: 18px;
+  /* The bar carries logo, links, proof chip and two pills. At 18px the row was
+     wider than --grid-max, so the "Start your claim" pill sat outside the grid
+     and clipped the viewport between 1181px and 1279px. */
+  gap: 12px;
   min-height: var(--nav-h);
 }
 
 /* Section links: Archivo 700 14px, 2px underline, yellow when active (mockup .links). */
 .links {
   display: flex;
-  gap: 16px;
+  gap: 12px;
   margin-left: auto;
   font-size: 14px;
   font-weight: var(--w-bold);
@@ -125,8 +128,19 @@
   display: none;
 }
 
-@media (max-width: 1180px) {
+/* The full bar needs ~1168px; below that the number pill goes first, so the
+   right-hand pill never crosses the viewport edge. The number stays reachable
+   in the drawer and on the mobile pill. */
+@media (max-width: 1220px) {
   .call {
+    display: none;
+  }
+}
+
+/* Below this the links and the chip together still overflow the row, so the
+   chip goes; the number is already in the drawer and on the mobile pill. */
+@media (max-width: 1080px) {
+  .chip {
     display: none;
   }
 }
