@@ -3,6 +3,7 @@
 import { useEffect, useState } from 'react';
 import { RegBox } from '@/components/RegBox/RegBox';
 import { track } from '@/lib/analytics';
+import { readCampaign } from '@/lib/campaign';
 import { formatReg } from '@/lib/reg';
 import { site } from '@/lib/site';
 import styles from './claim-now.module.css';
@@ -25,7 +26,9 @@ export function ClaimStart() {
       const res = await fetch('/api/claim-start/', {
         method: 'POST',
         headers: { 'content-type': 'application/json' },
-        body: JSON.stringify({ reg, placement: 'claim-now', path: location.pathname, website: '' }),
+        // The campaign the visitor arrived with, if any: paid clicks land on
+        // /ppc/third-party-claim/ and submit here (src/lib/campaign.ts).
+        body: JSON.stringify({ reg, placement: 'claim-now', path: location.pathname, website: '', campaign: readCampaign() ?? undefined }),
       });
       const data = (await res.json()) as { ok: boolean; ref?: string; reg?: string; error?: string };
       if (!res.ok || !data.ok) {

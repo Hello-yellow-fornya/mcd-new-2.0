@@ -1,7 +1,7 @@
 /** Frontmatter for content/<section>/<slug>.mdx (appendix §10). */
-export type TemplateName = 'pillar' | 'pillar-landing' | 'process' | 'comparison' | 'guide' | 'location' | 'article' | 'utility';
+export type TemplateName = 'pillar' | 'pillar-landing' | 'ppc-landing' | 'process' | 'comparison' | 'guide' | 'location' | 'article' | 'utility';
 
-export const templateNames: TemplateName[] = ['pillar', 'pillar-landing', 'process', 'comparison', 'guide', 'location', 'article', 'utility'];
+export const templateNames: TemplateName[] = ['pillar', 'pillar-landing', 'ppc-landing', 'process', 'comparison', 'guide', 'location', 'article', 'utility'];
 
 export type Crumb = { href: string; label: string };
 
@@ -29,11 +29,11 @@ export type Frontmatter = {
   lead?: string;
   /** utility: `none` drops the hero's claim and call CTAs (the legal pages). */
   cta?: 'pair' | 'none';
-  /** pillar-landing: the paragraph under the H2 (the lead is the H2). */
+  /** pillar-landing and ppc-landing: the paragraph under the H2 (the lead is the H2). */
   intro?: string;
-  /** pillar-landing: whose claims department the band names. */
+  /** pillar-landing and ppc-landing: whose claims department the band names. */
   band?: 'ours' | 'their';
-  /** pillar-landing: the how-it-works steps. */
+  /** pillar-landing and ppc-landing: the how-it-works steps. */
   howItWorks?: LandingStep[];
   /** ISO date of the last editorial review. Optional: the site is not indexed, so no reviewed line renders. */
   lastReviewed?: string;

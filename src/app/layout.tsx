@@ -3,6 +3,7 @@ import { body, display } from '@site/fonts';
 import { site, siteUrl } from '@/lib/site';
 import { Sprite } from '@site/sprite';
 import { Analytics } from '@/components/Analytics/Analytics';
+import { CampaignCapture } from '@/components/Campaign/CampaignCapture';
 import { ConsentBanner } from '@/components/Consent/ConsentBanner';
 import '@site/tokens.css';
 import './globals.css';
@@ -43,6 +44,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         <Sprite />
         {children}
         <Analytics gtmId={gtmId} />
+        <CampaignCapture />
         <ConsentBanner gtmId={gtmId} />
       </body>
     </html>

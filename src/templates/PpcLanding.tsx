@@ -5,25 +5,41 @@ import { pageSchema } from '@/lib/content/schema';
 import { cta, eligibility, nav } from '@site/copy';
 import { site } from '@/lib/site';
 import { bands, StepText, Title } from './landing-parts';
-import styles from './PillarLanding.module.css';
+import styles from './PpcLanding.module.css';
 
 /**
- * A pillar page laid out like the landing pages
- * (design/claims247-third-party-insurance-claim.html and -mobile.html): the
- * hero with the H1 bar, the H2, the lead, the eligibility line and the 2×2
- * proof grid, then the strip on the fold on mobile, the FAQ, the band (the
- * page's own lines), how it works with gated sentences, the independence
- * line and the footer. Everything benefit-shaped comes from the canonical
- * proof points and the frontmatter; nothing is inline here.
+ * The paid landing page (design/claims247-third-party-insurance-claim.html and
+ * -mobile.html, the signed-off mobile page being the spec). It is the same
+ * layout as the organic pillar-landing template with two deliberate
+ * differences, which is why it is its own template rather than a flag on that
+ * one:
+ *
+ *  - The breakpoint is the mockup's 1000px, not the organic template's 820px,
+ *    so between 820 and 999 the mobile layout runs here and the desktop one
+ *    runs there.
+ *  - A paid page is iterated on its own schedule. Nothing changed for a
+ *    campaign should be able to move /third-party-insurance-claim/.
+ *
+ * Landing-page rules (appendix §5): nothing links in from the nav, the footer
+ * or a related block; noindex, nofollow like the rest of the site; the visitor's
+ * campaign is captured on arrival (src/lib/campaign.ts) and rides the claim to
+ * the intake endpoint; /claim-now/thank-you/ is the conversion trigger.
+ *
+ * Top to bottom: sticky nav, the fold-locked hero (H1 with the bar, H2, lead,
+ * the 2x2 grid from proof-points.json, the call button with the wait row and
+ * the outlined online CTA), the moving strip ending on the fold, the seven-item
+ * accordion, the band, six steps with the gated sentences, the independence
+ * line and the legal footer. No cream bands, no pale callouts, no them/us
+ * table, no photo slot.
  */
-export function PillarLanding({ page }: { page: Page }) {
+export function PpcLanding({ page }: { page: Page }) {
   const fm = page.frontmatter;
   const crumbs = [...(fm.breadcrumb ?? []), { href: fm.slug, label: fm.h1 ?? fm.title }];
   const visibleCrumbs = crumbs.slice(0, -1).map((c) => (isLive(c.href) || c.href === '/' ? c : { ...c, href: '' }));
   return (
     <>
       <SiteHeader />
-      <main id="main" data-template={fm.template}>
+      <main id="main" data-template="ppc-landing" data-ppc>
         <div className={styles.crumbs}>
           <Breadcrumb items={[...visibleCrumbs, { href: fm.slug, label: fm.h1 ?? fm.title }]} schema={false} />
         </div>
@@ -44,14 +60,11 @@ export function PillarLanding({ page }: { page: Page }) {
             <div className={styles.bottom}>
               <ProofGrid className={styles.grid} />
               <div className={styles.ctas}>
-                <Button href={nav.claimHref} variant="ink" className={styles.start} data-cta="start">
-                  {cta.start}
-                </Button>
                 <Button href={site.phone.href} variant="yellow" icon="phone" className={styles.call} data-cta="call">
                   {cta.call}
                 </Button>
                 <WaitRow className={styles.wait} />
-                <Button href={nav.claimHref} variant="outline-ink" iconAfter="arrow" block className={styles.online} data-cta="start-online">
+                <Button href={nav.claimHref} variant="outline-ink" iconAfter="arrow" className={styles.online} data-cta="start-online">
                   {cta.startOnline}
                 </Button>
               </div>

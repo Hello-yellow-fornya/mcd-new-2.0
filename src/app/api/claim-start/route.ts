@@ -1,6 +1,7 @@
 import { NextResponse } from 'next/server';
 import { site } from '@/lib/site';
 import { compactReg, isPlausibleReg } from '@/lib/reg';
+import { CLICK_ID_KEYS, UTM_KEYS, type Campaign } from '@/lib/campaign';
 
 /**
  * The site's own intake endpoint for the reg box (appendix §7). There is no
@@ -9,6 +10,11 @@ import { compactReg, isPlausibleReg } from '@/lib/reg';
  * API on Railway with the site's source ("mcd2" or "ocr"), using
  * CLAIMS_API_URL and this project's own CLAIMS_API_KEY. Ollie's question flow
  * owns everything after this.
+ *
+ * A claim that came from a paid click also carries the campaign the visitor
+ * arrived with (src/lib/campaign.ts): the UTM set and the click id, forwarded
+ * as `campaign` and summarised in `sourceDetail` so a lead can be attributed
+ * without parsing the object. `source` stays the site id the API keys on.
  */
 const SOURCE = site.source;
 
@@ -22,6 +28,18 @@ function limited(key: string): boolean {
   recent.push(now);
   hits.set(key, recent);
   return recent.length > MAX_PER_WINDOW;
+}
+
+/** The campaign off the request: only the keys we send, only string values, length-capped. */
+function campaignFrom(value: unknown): Campaign | undefined {
+  if (!value || typeof value !== 'object') return undefined;
+  const input = value as Record<string, unknown>;
+  const out: Record<string, string> = {};
+  for (const k of [...UTM_KEYS, ...CLICK_ID_KEYS, 'landing', 'at'] as const) {
+    const v = input[k];
+    if (typeof v === 'string' && v.trim()) out[k] = v.trim().slice(0, 200);
+  }
+  return Object.keys(out).length ? (out as Campaign) : undefined;
 }
 
 function ref(): string {
@@ -48,12 +66,17 @@ export async function POST(req: Request) {
   // The source is this site, always; the client only says where on the page the reg came from.
   const name = typeof body.name === 'string' ? body.name.trim().slice(0, 120) : '';
   const mobile = typeof body.mobile === 'string' ? body.mobile.replace(/[^\d+]/g, '').slice(0, 16) : '';
+  const campaign = campaignFrom(body.campaign);
+  // A one-line summary of where the lead came from, for systems that do not read the object.
+  const sourceDetail = campaign ? [campaign.utm_source, campaign.utm_medium, campaign.utm_campaign].filter(Boolean).join(' / ') : '';
   const payload = {
     reg,
     source: SOURCE,
     placement: String(body.placement ?? 'claim-now'),
     path: String(body.path ?? '').slice(0, 200),
     startedAt: new Date().toISOString(),
+    ...(campaign ? { campaign } : {}),
+    ...(sourceDetail ? { sourceDetail } : {}),
     // The report form (Claims Report Line) sends a name and a mobile; the reg box sends neither.
     ...(name ? { name } : {}),
     ...(mobile ? { mobile } : {}),
@@ -77,5 +100,6 @@ export async function POST(req: Request) {
     }
   }
   // No API configured (or unreachable): acknowledge so the visitor is never stuck; the phone is the product.
-  return NextResponse.json({ ok: true, ref: ref(), reg, stub: true }, { status: 202 });
+  // The stub echoes the campaign so a test can prove the attribution reached the server.
+  return NextResponse.json({ ok: true, ref: ref(), reg, stub: true, ...(campaign ? { campaign } : {}) }, { status: 202 });
 }
