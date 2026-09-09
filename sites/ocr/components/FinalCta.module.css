@@ -17,15 +17,9 @@
   margin-bottom: 12px;
 }
 
-/* The light highlighter on navy: navy type on a mint band; line spacing is measured from the band's top (margin-top equals its top padding). */
+/* The half-height highlighter on navy: translucent mint behind white type. */
 .chip {
-  display: inline-block;
-  background: var(--mint);
-  color: var(--navy);
-  margin-top: 0.16em;
-  line-height: 1.05;
-  padding: 0.04em 0.18em 0.06em;
-  border-radius: var(--r-chip);
+  background: var(--underlay-on-navy);
 }
 
 .p {

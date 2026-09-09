@@ -180,7 +180,7 @@
   padding: 12px 0;
 }
 
-/* The band (option A): two lines in Inter Black and the mint mark, navy type. */
+/* The band (option A): three lines in Inter Black, the last on the half-height highlighter. */
 .band {
   background: var(--navy);
   color: var(--white);
@@ -199,15 +199,13 @@
 
 .mark {
   display: inline-block;
-  background: var(--mint);
-  color: var(--navy);
+  background: var(--underlay-on-navy);
+  color: var(--white);
   font-family: var(--display);
   font-weight: var(--w-display);
   font-size: var(--fs-band);
-  line-height: 1.05;
-  padding: 0.08em 0.2em 0.1em;
-  border-radius: var(--r-chip);
-  margin-top: 0.35em;
+  line-height: 1.15;
+  margin-top: 0.1em;
   letter-spacing: -0.03em;
 }
 

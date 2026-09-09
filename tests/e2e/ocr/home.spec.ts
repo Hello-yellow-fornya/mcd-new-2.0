@@ -110,19 +110,15 @@ test('mobile hero: navy, fold-locked with one flexible gap, the call button, the
   expect(await page.locator('[data-hero]').evaluate((e) => e.scrollHeight - e.clientHeight)).toBeLessThanOrEqual(1);
 });
 
-test('the H1 payoff carries the light highlighter: the mint underlay on paper; on navy a mint band whose margin-top equals its top padding', async ({ page }) => {
+test('the H1 payoff carries the half-height offset highlighter: mint on paper, translucent mint behind white type on navy', async ({ page }) => {
   const chip = page.locator('h1 [data-chip]');
-  const m = await chip.evaluate((e) => ({ mt: parseFloat(getComputedStyle(e).marginTop), pt: parseFloat(getComputedStyle(e).paddingTop), display: getComputedStyle(e).display, bg: getComputedStyle(e).backgroundColor, img: getComputedStyle(e).backgroundImage, color: getComputedStyle(e).color }));
-  if (isMobile(page)) {
-    expect(m.display).toBe('inline-block');
-    expect(m.mt).toBeGreaterThan(0);
-    expect(m.mt).toBeGreaterThanOrEqual(m.pt);
-    expect(m.bg).toBe('rgb(221, 245, 235)');
-    expect(m.color).toBe('rgb(14, 42, 71)');
-  } else {
-    expect(m.img).toContain('rgb(221, 245, 235)');
-    expect(m.color).toBe('rgb(14, 42, 71)');
-  }
+  const m = await chip.evaluate((e) => ({ padding: getComputedStyle(e).padding, img: getComputedStyle(e).backgroundImage, color: getComputedStyle(e).color }));
+  expect(m.padding).toBe('0px');
+  expect(m.img).toMatch(/linear-gradient\(rgba\(0, 0, 0, 0\) 55%, rgba?\(221, 245, 235(, 0\.22)?\) 55%\)/);
+  expect(m.color).toBe(isMobile(page) ? 'rgb(255, 255, 255)' : 'rgb(14, 42, 71)');
+  const final = page.locator('[data-final-cta] h2 span');
+  await expect(final).toHaveCSS('background-image', 'linear-gradient(rgba(0, 0, 0, 0) 55%, rgba(221, 245, 235, 0.22) 55%)');
+  await expect(final).toHaveCSS('color', 'rgb(255, 255, 255)');
   // Nothing on the site uses the solid green band.
   const green = await page.locator('h1 span, h2 span, mark').evaluateAll((els) => els.filter((e) => getComputedStyle(e).backgroundColor === 'rgb(24, 172, 126)').length);
   expect(green).toBe(0);

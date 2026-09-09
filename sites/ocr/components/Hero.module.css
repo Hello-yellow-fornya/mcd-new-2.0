@@ -26,9 +26,9 @@
   text-wrap: wrap;
 }
 
-/* The payoff carries the light highlighter: the mint underlay on paper. */
+/* The payoff carries the highlighter: the half-height mint underlay. */
 .h1Chip {
-  background: linear-gradient(transparent 55%, var(--mint) 55%);
+  background: var(--underlay);
 }
 
 .lead {
@@ -196,15 +196,9 @@
     margin-bottom: 0;
   }
 
-  /* On navy the underlay would sit behind white type, so the payoff is navy on a mint band; line spacing is measured from the band's top (margin-top equals its top padding). */
+  /* On navy the same underlay in translucent mint, behind white type. */
   .h1Chip {
-    display: inline-block;
-    background: var(--mint);
-    color: var(--navy);
-    margin-top: 0.16em;
-    line-height: 1.05;
-    padding: 0.04em 0.18em 0.06em;
-    border-radius: var(--r-chip);
+    background: var(--underlay-on-navy);
   }
 
   .lead {
