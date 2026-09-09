@@ -1,6 +1,6 @@
 import { Icon } from '@/components/Icon/Icon';
 import { SectionCta } from '@/components/SectionCta/SectionCta';
-import { themUs } from '@/data/copy';
+import { themUs } from '@site/copy';
 import styles from './ThemUs.module.css';
 
 /**

@@ -1,7 +1,7 @@
 import { Button } from '@/components/Button/Button';
 import { ProofGrid } from '@/components/ProofGrid/ProofGrid';
 import { WaitRow } from './WaitRow';
-import { cta, nav } from '@/data/copy';
+import { cta, nav } from '@site/copy';
 import { site } from '@/lib/site';
 import styles from './HomeHero.module.css';
 

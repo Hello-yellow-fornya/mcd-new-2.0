@@ -1,10 +1,10 @@
 import type { Metadata } from 'next';
-import { body, display } from '@/fonts';
+import { body, display } from '@site/fonts';
 import { site, siteUrl } from '@/lib/site';
 import { Sprite } from '@/components/Icon/Sprite';
 import { Analytics } from '@/components/Analytics/Analytics';
 import { ConsentBanner } from '@/components/Consent/ConsentBanner';
-import '@/styles/tokens.css';
+import '@site/tokens.css';
 import './globals.css';
 
 export const metadata: Metadata = {

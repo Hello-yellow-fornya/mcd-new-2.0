@@ -1,4 +1,4 @@
-import data from '@/data/claims.json';
+import data from '@site/claims.json';
 import { isProduction } from './staging.ts';
 
 export type Claim = {
@@ -14,7 +14,7 @@ const claims: Claim[] = data.claims;
 
 export function getClaim(id: string): Claim {
   const c = claims.find((x) => x.id === id);
-  if (!c) throw new Error(`Unknown claim "${id}" (src/data/claims.json)`);
+  if (!c) throw new Error(`Unknown claim "${id}" (sites/<id>/claims.json)`);
   return c;
 }
 

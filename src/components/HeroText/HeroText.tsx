@@ -1,7 +1,7 @@
 import { Button } from '@/components/Button/Button';
 import { WaitRow } from '@/components/Hero/WaitRow';
 import { site } from '@/lib/site';
-import { cta, nav } from '@/data/copy';
+import { cta, nav } from '@site/copy';
 import styles from './HeroText.module.css';
 
 type Props = {

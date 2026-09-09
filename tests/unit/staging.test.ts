@@ -1,7 +1,7 @@
 import { test } from 'node:test';
 import assert from 'node:assert/strict';
 import { isProduction } from '../../src/lib/staging.ts';
-import { resolveSiteUrl, canonicalPath } from '../../src/lib/site.ts';
+import { resolveSiteUrl, canonicalPath } from '../../src/lib/site-url.ts';
 
 test('only VERCEL_ENV=production is production', () => {
   assert.equal(isProduction('production'), true);

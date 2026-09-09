@@ -1,6 +1,6 @@
 import { IconCircle } from '@/components/Icon/Icon';
 import { SectionCta } from '@/components/SectionCta/SectionCta';
-import { benefits } from '@/data/copy';
+import { benefits } from '@site/copy';
 import styles from './Benefits.module.css';
 
 /** Benefits with icons (§0): three cream cards, ink circle with a yellow icon. */

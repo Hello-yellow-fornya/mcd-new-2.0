@@ -3,7 +3,7 @@ import { Button } from '@/components/Button/Button';
 import { NavLinks } from './NavLinks';
 import { MobileMenu } from './MobileMenu';
 import { ProofChip } from './ProofChip';
-import { cta, nav, type NavItem } from '@/data/copy';
+import { cta, nav, type NavItem } from '@site/copy';
 import { isLinkable } from '@/lib/content';
 import { site } from '@/lib/site';
 import styles from './SiteHeader.module.css';

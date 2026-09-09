@@ -1,4 +1,4 @@
-import { faq as defaults } from '@/data/copy';
+import { faq as defaults } from '@site/copy';
 import styles from './Faq.module.css';
 
 export type FaqItem = { q: string; a: string };

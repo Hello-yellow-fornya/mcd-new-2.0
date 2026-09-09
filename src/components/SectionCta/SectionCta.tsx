@@ -1,5 +1,5 @@
 import { Button } from '@/components/Button/Button';
-import { cta, nav } from '@/data/copy';
+import { cta, nav } from '@site/copy';
 import { site } from '@/lib/site';
 import styles from './SectionCta.module.css';
 

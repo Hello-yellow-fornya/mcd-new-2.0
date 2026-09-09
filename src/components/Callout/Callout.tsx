@@ -1,5 +1,5 @@
 import type { ReactNode } from 'react';
-import { theCatch } from '@/data/copy';
+import { theCatch } from '@site/copy';
 import styles from './Callout.module.css';
 
 type Props = { variant?: 'default'; lead: string; children: ReactNode } | { variant: 'catch'; lead?: string; children?: ReactNode };

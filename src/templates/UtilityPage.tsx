@@ -3,7 +3,7 @@ import { Band, Button, Prose, SiteFooter, SiteHeader } from '@/components';
 import remarkHeadingIds from '@/lib/content/remark-heading-ids';
 import type { Page } from '@/lib/content';
 import { pageSchema } from '@/lib/content/schema';
-import { cta, nav } from '@/data/copy';
+import { cta, nav } from '@site/copy';
 import { site } from '@/lib/site';
 import { mdxComponents } from './mdx-components';
 import styles from './UtilityPage.module.css';

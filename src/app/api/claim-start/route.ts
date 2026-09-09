@@ -1,4 +1,5 @@
 import { NextResponse } from 'next/server';
+import { site } from '@/lib/site';
 import { compactReg, isPlausibleReg } from '@/lib/reg';
 
 /**
@@ -8,7 +9,7 @@ import { compactReg, isPlausibleReg } from '@/lib/reg';
  * API on Railway with source: "mcd2", using CLAIMS_API_URL and 2.0's own
  * CLAIMS_API_KEY. Ollie's question flow owns everything after this.
  */
-const SOURCE = 'mcd2';
+const SOURCE = site.source;
 
 const WINDOW_MS = 10 * 60 * 1000;
 const MAX_PER_WINDOW = 10;

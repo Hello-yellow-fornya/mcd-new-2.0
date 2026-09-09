@@ -9,6 +9,7 @@
 import { existsSync, mkdirSync, readFileSync, writeFileSync } from 'node:fs';
 import { join, dirname } from 'node:path';
 import { fileURLToPath } from 'node:url';
+import { siteDir } from '../src/lib/site-dir.ts';
 
 const root = join(dirname(fileURLToPath(import.meta.url)), '..');
 const args = Object.fromEntries(process.argv.slice(2).map((a, i, all) => (a.startsWith('--') ? [a.slice(2), all[i + 1]] : [])).filter((p) => p.length));
@@ -30,12 +31,12 @@ slug = slug.toLowerCase();
 const name = slug.split('/').filter(Boolean).pop();
 const title = args.title || name.replace(/-/g, ' ').replace(/^\w/, (c) => c.toUpperCase());
 const section = args.section || sections[template];
-const out = join(root, 'content', section, `${name}.mdx`);
+const out = join(siteDir, 'content', section, `${name}.mdx`);
 if (existsSync(out)) {
   console.error(`${out} already exists`);
   process.exit(1);
 }
-const src = readFileSync(join(root, 'content', '_templates', `${template}.mdx`), 'utf8')
+const src = readFileSync(join(siteDir, 'content', '_templates', `${template}.mdx`), 'utf8')
   .replaceAll('{{slug}}', slug)
   .replaceAll('{{title}}', title)
   .replaceAll('{{date}}', new Date().toISOString().slice(0, 10));

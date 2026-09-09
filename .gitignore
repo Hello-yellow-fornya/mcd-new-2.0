@@ -24,3 +24,12 @@ blob-report/
 *.tsbuildinfo
 npm-debug.log*
 pnpm-debug.log*
+
+# generated per site by scripts/site-assets.mjs (predev, prebuild)
+/src/app/icon.svg
+/src/app/apple-icon.png
+/src/app/favicon.ico
+/public/favicons/
+/public/logo/*.svg
+/public/logo/square/*.svg
+/src/components/Logo/lockup.generated.tsx

@@ -1,6 +1,6 @@
 import { IconCircle } from '@/components/Icon/Icon';
 import type { IconName } from '@/components/Icon/Icon';
-import { keeps } from '@/data/copy';
+import { keeps } from '@site/copy';
 import styles from './KeepsStrip.module.css';
 
 export type KeepItem = { icon: IconName; label: string };

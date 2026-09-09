@@ -1,5 +1,5 @@
 import { IconCircle } from '@/components/Icon/Icon';
-import { strip } from '@/data/copy';
+import { strip } from '@site/copy';
 import styles from './ClaimsStrip.module.css';
 
 /**

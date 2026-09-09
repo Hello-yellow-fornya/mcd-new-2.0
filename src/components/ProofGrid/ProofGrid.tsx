@@ -1,5 +1,5 @@
 import { IconCircle } from '@/components/Icon/Icon';
-import { proofGrid } from '@/data/copy';
+import { proofGrid } from '@site/copy';
 import { claimAttrs, claimVisible, getClaim } from '@/lib/claims';
 import { selectProofCards } from '@/lib/proof-grid';
 import styles from './ProofGrid.module.css';

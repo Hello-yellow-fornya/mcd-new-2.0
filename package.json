@@ -9,7 +9,8 @@
   },
   "scripts": {
     "dev": "next dev",
-    "prebuild": "pnpm logo && pnpm lint:content && pnpm lint:css",
+    "predev": "pnpm site:assets",
+    "prebuild": "pnpm site:assets && pnpm lint:content && pnpm lint:css",
     "build": "next build",
     "start": "next start",
     "lint": "next lint",
@@ -18,9 +19,11 @@
     "typecheck": "tsc --noEmit",
     "test": "node --test \"tests/unit/**/*.test.{mjs,ts}\"",
     "test:e2e": "playwright test",
-    "check": "pnpm typecheck && pnpm lint && pnpm lint:content && pnpm lint:css && pnpm test",
+    "check": "pnpm site:assets && pnpm typecheck && pnpm lint && pnpm lint:content && pnpm lint:css && pnpm test",
     "new-page": "node scripts/new-page.mjs",
     "stubs": "node scripts/stubs-from-sitemap.mjs",
+    "site:assets": "node scripts/site-assets.mjs",
+    "snapshot": "node scripts/snapshot-routes.mjs",
     "logo": "node scripts/logo-build.mjs",
     "logo:png": "node scripts/logo-png.mjs",
     "audit:lh": "node scripts/lighthouse.mjs"

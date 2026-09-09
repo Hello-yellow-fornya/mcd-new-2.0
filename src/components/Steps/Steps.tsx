@@ -1,5 +1,5 @@
 import { SectionCta } from '@/components/SectionCta/SectionCta';
-import { howItWorks } from '@/data/copy';
+import { howItWorks } from '@site/copy';
 import styles from './Steps.module.css';
 
 /** How it works (§0): four step cards on cream, yellow number circles. */
