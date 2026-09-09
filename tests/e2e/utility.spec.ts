@@ -8,7 +8,7 @@ const pages = [
   ['/contact-us/', 'Contact us'],
   ['/privacy-policy/', 'Privacy policy'],
   ['/terms/', SITE === 'ocr' ? 'Terms of business' : 'Terms and conditions'],
-  ['/complaints/', 'Complaints'],
+  ...(SITE === 'ocr' ? ([['/complaints/', 'Complaints']] as const) : []),
   ['/cookies/', 'Cookies'],
 ] as const;
 
@@ -27,9 +27,22 @@ for (const [path, h1] of pages) {
   });
 }
 
-test('terms carries the catch wording from the FAQ', async ({ page }) => {
+test('the legal and informational pages carry no claim CTA, and terms does not talk about "the catch"', async ({ page }) => {
+  test.skip(SITE === 'ocr', 'the Claims 24/7 utility set');
+  for (const path of ['/about-us/', '/contact-us/', '/privacy-policy/', '/terms/', '/cookies/']) {
+    await page.goto(path);
+    await expect(page.locator('main [data-cta="start"]'), `${path} start CTA`).toHaveCount(0);
+    await expect(page.locator('main [data-band]'), `${path} closing band`).toHaveCount(0);
+  }
   await page.goto('/terms/');
-  const callout = page.locator('[data-variant="catch"]');
-  await expect(callout).toContainText('The catch');
-  await expect(callout).toContainText('We recover our costs from the at-fault driver’s insurer');
+  await expect(page.locator('[data-variant="catch"]')).toHaveCount(0);
+  expect(await page.locator('main').innerText()).not.toMatch(/the catch/i);
+});
+
+test('there is no complaints page on Claims 24/7, and the footer does not link to one', async ({ page }) => {
+  test.skip(SITE === 'ocr', 'OCR keeps its complaints page');
+  const res = await page.goto('/complaints/');
+  expect(res?.status()).toBe(404);
+  await page.goto('/');
+  await expect(page.locator('[data-site-footer] a[href="/complaints/"]')).toHaveCount(0);
 });

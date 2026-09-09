@@ -34,7 +34,7 @@ test('nothing from Google loads before a choice; defaults are all denied', async
 test('accepting stores the choice, pushes the update and injects the 2.0 container', async ({ page, context }) => {
   const hits = await blockGtm(page);
   await page.goto('/');
-  await page.getByRole('button', { name: 'Yes, measure visits' }).click();
+  await page.getByRole('button', { name: 'Accept all cookies' }).click();
   await expect(page.getByTestId('consent-banner')).toBeHidden();
   await expect(page.locator('script[data-gtm="GTM-TEST0000"]')).toHaveCount(1);
   expect(hits.some((u) => u.includes('id=GTM-TEST0000'))).toBe(true);
@@ -53,7 +53,7 @@ test('accepting stores the choice, pushes the update and injects the 2.0 contain
 test('declining stores the choice and loads nothing, now or on later pages', async ({ page, context }) => {
   const hits = await blockGtm(page);
   await page.goto('/');
-  await page.getByRole('button', { name: 'No, just the essentials' }).click();
+  await page.getByRole('button', { name: 'Reject optional cookies' }).click();
   await expect(page.getByTestId('consent-banner')).toBeHidden();
   const cookie = (await context.cookies()).find((c) => c.name === 'mcd2_consent');
   expect(JSON.parse(decodeURIComponent(cookie!.value))).toMatchObject({ analytics: 'denied', ads: 'denied' });
@@ -67,7 +67,7 @@ test('declining stores the choice and loads nothing, now or on later pages', asy
 test('"Cookie settings" in the footer reopens the banner', async ({ page }) => {
   await blockGtm(page);
   await page.goto('/');
-  await page.getByRole('button', { name: 'No, just the essentials' }).click();
+  await page.getByRole('button', { name: 'Reject optional cookies' }).click();
   await page.getByRole('button', { name: 'Cookie settings' }).click();
   await expect(page.getByTestId('consent-banner')).toBeVisible();
 });
@@ -75,7 +75,7 @@ test('"Cookie settings" in the footer reopens the banner', async ({ page }) => {
 test('tel: clicks push phone_click with a placement, except on legal pages', async ({ page }) => {
   await blockGtm(page);
   await page.goto('/');
-  await page.getByRole('button', { name: 'No, just the essentials' }).click();
+  await page.getByRole('button', { name: 'Reject optional cookies' }).click();
   await page.evaluate(() => document.querySelectorAll('a[href^="tel:"]').forEach((a) => a.addEventListener('click', (e) => e.preventDefault())));
   const closing = SITE === 'ocr' ? ['[data-final-cta]', 'final-cta'] : ['[data-band]', 'band'];
   await page.locator(`${closing[0]} a[href^="tel:"]`).click();

@@ -1,10 +1,14 @@
 import { test } from 'node:test';
 import assert from 'node:assert/strict';
 import { getAllPages, getLivePages, getPage, isLinkable, normaliseSlug } from '../../src/lib/content/index.ts';
+import { siteId } from '../../src/lib/site-id.ts';
 
-test('the six utility pages load with valid frontmatter', () => {
+test('the utility pages load with valid frontmatter', () => {
   const slugs = getLivePages().map((p) => p.frontmatter.slug).sort();
-  for (const s of ['/about-us/', '/contact-us/', '/privacy-policy/', '/terms/', '/complaints/', '/cookies/']) assert.ok(slugs.includes(s), s);
+  // Claims 24/7 has no complaints page: it handles complaints through the partner it introduces you to.
+  const utility = ['/about-us/', '/contact-us/', '/privacy-policy/', '/terms/', '/cookies/', ...(siteId === 'ocr' ? ['/complaints/'] : [])];
+  for (const s of utility) assert.ok(slugs.includes(s), s);
+  if (siteId !== 'ocr') assert.ok(!slugs.includes('/complaints/'));
   for (const p of getAllPages()) {
     assert.equal(p.frontmatter.slug, p.frontmatter.slug.toLowerCase());
     assert.ok(p.frontmatter.title.length > 0);

@@ -176,7 +176,6 @@ export const footer = {
         { label: 'vs your insurer', href: '/accident-management-vs-insurance/' },
         { label: 'FAQs', href: '/#faq' },
         { label: 'Contact', href: '/contact-us/' },
-        { label: 'Complaints', href: '/complaints/' },
       ],
     },
     {

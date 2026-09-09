@@ -6,9 +6,10 @@ import { loadGtm, OPEN_CONSENT_EVENT, pushConsentUpdate, readConsent, writeConse
 import styles from './ConsentBanner.module.css';
 
 /**
- * The consent banner (§0, appendix §8): the 1.0 banner restyled in 2.0
- * colours. Two equal choices, no dark patterns, reopened from "Cookie
- * settings" in the footer. Accepting loads GTM; declining loads nothing.
+ * The consent banner (§0, appendix §8), in the standard form: what is
+ * essential, what is optional, and two equal choices with no dark patterns.
+ * Reopened from "Cookie settings" in the footer. Accepting loads GTM;
+ * declining loads nothing.
  */
 export function ConsentBanner({ gtmId }: { gtmId?: string }) {
   const [open, setOpen] = useState(false);
@@ -32,18 +33,18 @@ export function ConsentBanner({ gtmId }: { gtmId?: string }) {
     <div className={styles.banner} role="dialog" aria-modal="false" aria-labelledby="consent-h" aria-describedby="consent-p" data-testid="consent-banner">
       <div className={styles.card}>
         <p id="consent-h" className={styles.h}>
-          Cookies, briefly.
+          Cookies on this site
         </p>
         <p id="consent-p" className={styles.p}>
-          The site works without them. If you say yes, we also measure visits and calls with Google Analytics and Google Ads. Nothing is set until you choose.{' '}
-          <Link href="/cookies/">What each one does</Link>.
+          We use essential cookies to make this site work. We would also like to set optional cookies to measure how the site is used and to improve
+          it. We will not set optional cookies unless you accept them. <Link href="/cookies/">Read our cookie policy</Link>.
         </p>
         <div className={styles.actions}>
           <button type="button" className={`${styles.btn} ${styles.yes}`} onClick={() => choose(true)}>
-            Yes, measure visits
+            Accept all cookies
           </button>
           <button type="button" className={`${styles.btn} ${styles.no}`} onClick={() => choose(false)}>
-            No, just the essentials
+            Reject optional cookies
           </button>
         </div>
       </div>

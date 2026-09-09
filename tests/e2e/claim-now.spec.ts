@@ -53,7 +53,11 @@ test('the endpoint rejects a bad reg, honours the honeypot, and never trusts the
 test('the thank-you route is noindex and fires claim_submitted with the ref', async ({ page }) => {
   await page.goto('/claim-now/thank-you/?ref=MCD-TEST01');
   await expect(page.locator('meta[name="robots"]')).toHaveAttribute('content', /noindex/);
-  await expect(page.locator('h1')).toHaveText('That’s your bit done.');
+  await expect(page.locator('h1')).toHaveText('Thank you.');
+  // The page is an acknowledgement and a phone number: no claim CTA, no closing band.
+  await expect(page.locator('main [data-cta="start"]')).toHaveCount(0);
+  await expect(page.locator('main [data-band]')).toHaveCount(0);
+  await expect(page.locator('main [data-cta="call"]')).toHaveCount(1);
   const ev = await page.evaluate(() => (window as unknown as { dataLayer: Record<string, unknown>[] }).dataLayer.find((e) => e.event === 'claim_submitted'));
   expect(ev).toMatchObject({ event: 'claim_submitted', ref: 'MCD-TEST01' });
 });

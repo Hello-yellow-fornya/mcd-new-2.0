@@ -146,7 +146,7 @@ test.describe('the twelve launch pages', () => {
     await expect(page.locator('main article [data-step-cards] li')).toHaveCount(4);
   });
 
-  test('inline components render in 2.0 colours: step cards, the table, the catch callout', async ({ page }) => {
+  test('inline components render in 2.0 colours: step cards, the table, the closing callout', async ({ page }) => {
     await page.goto('/non-fault-accident/');
     await expect(page.locator('main article ol li b').first()).toHaveText('1. Get their details');
     await page.goto('/accident-management-vs-insurance/');
@@ -156,7 +156,9 @@ test.describe('the twelve launch pages', () => {
     await expect(usMark).toHaveCSS('background-color', 'rgb(243, 205, 62)');
     const themMark = table.locator('[role="row"]').nth(1).locator('[role="cell"]').nth(0).locator('span').first();
     await expect(themMark).toHaveCSS('border-top-color', 'rgb(25, 24, 15)');
-    await expect(page.locator('main [data-variant="catch"]')).toContainText('We recover our costs');
+    // This page no longer frames its qualifying conditions as "the catch"; it closes on the positive callout.
+    await expect(page.locator('main [data-variant="catch"]')).toHaveCount(0);
+    await expect(page.locator('main article [data-callout]').last()).toContainText('You will know before you commit.');
   });
 
   test('the header and footer link only to pages that build; drafts do not build', async ({ page, request }) => {

@@ -11,11 +11,14 @@ import styles from './UtilityPage.module.css';
 /**
  * Utility pages (about, contact, the legal set) from content/utility/*.mdx.
  * Text hero: ochre eyebrow, H1, the lead as the page's H2 (the H2 rule holds
- * on every page, §0), the CTA pair (the legal pages drop it: `cta: none`). Then the prose, the
- * band and the footer. Organization and breadcrumb schema from frontmatter.
+ * on every page, §0), then the prose and the footer. These pages are
+ * informational, so `cta: none` drops both the hero pair and the closing band;
+ * a page that opts in gets the pair and the band. Organization and breadcrumb
+ * schema from frontmatter.
  */
 export function UtilityPage({ page }: { page: Page }) {
   const fm = page.frontmatter;
+  const showCta = fm.cta !== 'none';
   const crumbs = [
     { href: '/', label: 'Home' },
     { href: fm.slug, label: fm.h1 ?? fm.title },
@@ -29,7 +32,7 @@ export function UtilityPage({ page }: { page: Page }) {
             {fm.kicker ? <p className={styles.kicker}>{fm.kicker}</p> : null}
             <h1 className={styles.h1}>{fm.h1 ?? fm.title}</h1>
             {fm.lead ? <h2 className={styles.h2}>{fm.lead}</h2> : null}
-            {fm.cta !== 'none' ? (
+            {showCta ? (
               <div className={styles.ctas}>
                 <Button href={nav.claimHref} variant="ink" data-cta="start">
                   {cta.start}
@@ -48,7 +51,7 @@ export function UtilityPage({ page }: { page: Page }) {
             </Prose>
           </div>
         </section>
-        <Closing />
+        {showCta ? <Closing /> : null}
       </main>
       <SiteFooter />
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(pageSchema(page, crumbs)) }} />

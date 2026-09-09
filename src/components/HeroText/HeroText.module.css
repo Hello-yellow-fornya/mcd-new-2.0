@@ -19,7 +19,9 @@
   font-size: clamp(40px, 5vw, 64px);
   line-height: 1.05;
   letter-spacing: var(--ls-h1);
-  max-width: 16ch;
+  /* Wide enough that a headline breaks between phrases instead of stacking a
+     single word on its own line; the wrap still caps it below this on mobile. */
+  max-width: 20ch;
 }
 
 /* The lead is the page's H2, in Archivo 400 at 20px max: the display face is for H1–H3, card titles and the band only. */
