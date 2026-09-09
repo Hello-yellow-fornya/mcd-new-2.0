@@ -2,6 +2,7 @@ import type { Metadata } from 'next';
 import { notFound } from 'next/navigation';
 import { getLivePages, getPage } from '@/lib/content';
 import { ContentPage } from '@/templates/ContentPage';
+import { PillarLanding } from '@/templates/PillarLanding';
 import { UtilityPage } from '@/templates/UtilityPage';
 
 /** Every non-draft content page becomes a static route (appendix §5). */
@@ -31,5 +32,6 @@ export default async function Route({ params }: { params: Promise<{ slug: string
   const page = getPage(slugOf(slug));
   if (!page || page.frontmatter.draft) notFound();
   if (page.frontmatter.template === 'utility') return <UtilityPage page={page} />;
+  if (page.frontmatter.template === 'pillar-landing') return <PillarLanding page={page} />;
   return <ContentPage page={page} />;
 }

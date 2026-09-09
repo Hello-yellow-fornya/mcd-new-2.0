@@ -47,7 +47,7 @@ test('mobile: the fold lock holds with the sub line, and Call now is the primary
   const vh = page.viewportSize()!.height;
   const strip = await page.locator('[data-claims-strip]').boundingBox();
   expect(strip!.y + strip!.height, 'strip bottom edge on the fold').toBeCloseTo(vh, 0);
-  const sub = page.locator('[data-hero] p').first();
+  const sub = page.locator('[data-hero] p:not([data-eligibility])').first();
   await expect(sub).toHaveText('The smarter way to claim for no-fault accidents.');
   const call = page.locator('[data-hero] a[data-cta="call"]:visible');
   await expect(call).toHaveText(/call now/);
@@ -58,7 +58,7 @@ test('mobile: the fold lock holds with the sub line, and Call now is the primary
 test('desktop: no sub line, the CTA pair and wait row as on the homepage', async ({ page }) => {
   test.skip(isMobile(page), 'desktop only');
   await page.goto(PATH);
-  await expect(page.locator('[data-hero] p').first()).toBeHidden();
+  await expect(page.locator('[data-hero] p:not([data-eligibility])').first()).toBeHidden();
   await expect(page.locator('[data-hero] a[data-cta="start"]').first()).toBeVisible();
 });
 

@@ -1,10 +1,68 @@
 {
-  "$comment": "Proof-row claims (appendix §6). A claim renders on production only when substantiated is true and evidence says why. On previews unsubstantiated claims render with a dotted outline so the layout can be reviewed. Flip a flag only with evidence.",
+  "$comment": "Proof-row claims (appendix §6). A claim renders on production only when substantiated is true and evidence says why. On previews unsubstantiated claims render with a data-unsubstantiated attribute so the layout can be reviewed. Flip a flag only with evidence. The six from the proof-points document (recovery within 90 minutes, answered within 1 minute, lifetime guarantee, BS 10125 and new parts, updates your way, no cut of the settlement) are gated the same way.",
   "claims": [
-    { "id": "lines-open-24-7", "text": "Lines open 24/7", "substantiated": false, "evidence": "" },
-    { "id": "avg-wait-1-min", "text": "Avg wait 1 min", "substantiated": false, "evidence": "" },
-    { "id": "fastest-way-to-claim", "text": "Fastest way to claim", "substantiated": false, "evidence": "" },
-    { "id": "back-on-road-90-mins", "text": "Back on the road within 90 mins", "substantiated": false, "evidence": "" },
-    { "id": "reviews-score", "text": "4.9 · 300+ reviews", "substantiated": false, "evidence": "", "score": "4.9", "count": "300+" }
+    {
+      "id": "lines-open-24-7",
+      "text": "Lines open 24/7",
+      "substantiated": false,
+      "evidence": ""
+    },
+    {
+      "id": "avg-wait-1-min",
+      "text": "Avg wait 1 min",
+      "substantiated": false,
+      "evidence": ""
+    },
+    {
+      "id": "fastest-way-to-claim",
+      "text": "Fastest way to claim",
+      "substantiated": false,
+      "evidence": ""
+    },
+    {
+      "id": "reviews-score",
+      "text": "4.9 · 300+ reviews",
+      "substantiated": false,
+      "evidence": "",
+      "score": "4.9",
+      "count": "300+"
+    },
+    {
+      "id": "recovery-within-90-minutes",
+      "text": "Nationwide recovery within 90 minutes",
+      "substantiated": false,
+      "evidence": ""
+    },
+    {
+      "id": "answered-within-1-minute",
+      "text": "On average we answer the phone within 1 minute",
+      "substantiated": false,
+      "evidence": ""
+    },
+    {
+      "id": "lifetime-guarantee-on-repairs",
+      "text": "Lifetime guarantee on repairs",
+      "substantiated": false,
+      "evidence": ""
+    },
+    {
+      "id": "bs-10125-and-new-parts",
+      "text": "New parts. Repairs to BS 10125 standards.",
+      "substantiated": false,
+      "evidence": ""
+    },
+    {
+      "id": "updates-your-way",
+      "text": "Updates your way: WhatsApp, email or phone",
+      "substantiated": false,
+      "evidence": "",
+      "note": "Renders when the channel preference can be honoured consistently."
+    },
+    {
+      "id": "no-cut-of-settlement",
+      "text": "We don’t take a cut of your vehicle settlement",
+      "substantiated": false,
+      "evidence": ""
+    }
   ]
 }

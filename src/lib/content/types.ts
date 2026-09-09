@@ -1,11 +1,15 @@
 /** Frontmatter for content/<section>/<slug>.mdx (appendix §10). */
-export type TemplateName = 'pillar' | 'process' | 'comparison' | 'guide' | 'location' | 'article' | 'utility';
+export type TemplateName = 'pillar' | 'pillar-landing' | 'process' | 'comparison' | 'guide' | 'location' | 'article' | 'utility';
 
-export const templateNames: TemplateName[] = ['pillar', 'process', 'comparison', 'guide', 'location', 'article', 'utility'];
+export const templateNames: TemplateName[] = ['pillar', 'pillar-landing', 'process', 'comparison', 'guide', 'location', 'article', 'utility'];
 
 export type Crumb = { href: string; label: string };
 
-export type FaqEntry = { q: string; a: string };
+/** An answer is one paragraph; a longer one adds paragraphs (a leading **bold** run renders strong), a ticked list and a closing line. */
+export type FaqEntry = { q: string; a: string; more?: string[]; bullets?: string[]; after?: string };
+
+/** A how-it-works step on a pillar-landing page. `gated` replaces `text` while its claim may render; `extras` are sentences added while theirs may. */
+export type LandingStep = { title: string; text: string; gated?: { claim: string; text: string }; extras?: { claim: string; text: string }[] };
 
 export type HowToStep = { id: string; name: string };
 
@@ -23,6 +27,12 @@ export type Frontmatter = {
   /** One or two words of the H1 that carry the yellow bar (§0). */
   highlight?: string;
   lead?: string;
+  /** pillar-landing: the paragraph under the H2 (the lead is the H2). */
+  intro?: string;
+  /** pillar-landing: whose claims department the band names. */
+  band?: 'ours' | 'their';
+  /** pillar-landing: the how-it-works steps. */
+  howItWorks?: LandingStep[];
   /** ISO date of the last editorial review. Optional: the site is not indexed, so no reviewed line renders. */
   lastReviewed?: string;
   author?: string;

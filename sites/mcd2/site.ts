@@ -1,13 +1,21 @@
 import type { SiteConfig } from '@/lib/site-config';
 
+/** The footer's status sentence, from the client's legal line (9 September 2026); the site is not FCA regulated. */
+export const FCA_STATUS_LINE = 'Claims247.co.uk provides marketing and lead-generation services only and does not provide legal advice or claims-management services.';
+
 export const siteConfig = {
   id: 'mcd2',
   /** The trading name: every title, meta, schema name and the wordmark. */
   name: 'Claims 24/7',
   /** The registered company, for schema legalName. */
-  legalName: 'Motor Claims Department Ltd',
-  /** The footer's legal line (pending the client's confirmation). */
-  legalLine: 'Motor Claims Department Ltd, trading as Claims 24/7',
+  legalName: 'J&R Marketing Limited',
+  /** The footer's legal line, as supplied by the client. */
+  legalLine: 'J&R MARKETING LIMITED trading as Claims247.co.uk',
+  legal: {
+    companyNumber: '10025657',
+    registeredOffice: 'C/O Perception Accounting Limited, The Cobalt Building, 1600 Eureka Park, Lower Pemberton, Ashford, Kent, England, TN25 4BF',
+    statusLine: FCA_STATUS_LINE,
+  },
   description: 'Independent accident management for non-fault drivers. The other driver’s insurer pays. Nothing goes through your policy.',
   phone: {
     display: '0800 048 0048',

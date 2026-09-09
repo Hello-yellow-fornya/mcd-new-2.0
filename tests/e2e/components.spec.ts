@@ -70,7 +70,7 @@ test('claims strip: ink band, yellow text, yellow icon circles, 52px on mobile',
   const circle = strip.locator('li span').first();
   await expect(circle).toHaveCSS('background-color', 'rgb(243, 205, 62)');
   if (isMobile(page)) expect(Math.round((await strip.boundingBox())!.height)).toBe(52);
-  await expect(strip.locator('li:not([aria-hidden])')).toHaveCount(6);
+  await expect(strip.locator('li:not([aria-hidden])')).toHaveCount(7);
 });
 
 test('proof grid: four white cards in two columns with ink circles', async ({ page }) => {
@@ -118,7 +118,8 @@ test('footer: logo, phone, four columns and a legal line with no FCA status', as
   const foot = page.locator('[data-site-footer]');
   await expect(foot.getByRole('link', { name: '0800 048 0048' })).toBeVisible();
   await expect(foot.locator('h3')).toHaveText(['Claims', 'Services', 'Help', 'Legal']);
-  await expect(foot).toContainText('Registered in England and Wales');
+  await expect(foot).toContainText('J&R MARKETING LIMITED trading as Claims247.co.uk. Company number: 10025657.');
+  await expect(foot).toContainText('does not provide legal advice or claims-management services.');
   await expect(foot).not.toContainText('FCA');
   const h3 = foot.locator('h3').first();
   await expect(h3).toHaveCSS('text-transform', 'none');

@@ -8,9 +8,10 @@ import styles from './SiteFooter.module.css';
 
 /**
  * The footer: an ink surface carrying the on-ink lockup (CLAUDE.md §4a),
- * strapline and phone; four link columns; the legal line, which carries the
- * company details only (not FCA authorised, confirmed 8 September 2026, so
- * no regulatory status line and no build guard). Column headings are sentence case (§0), not the mockup's caps, and h3s so heading order holds after a page's h2s.
+ * strapline and phone; four link columns; the legal line as the client
+ * supplied it (sites/mcd2/site.ts: entity, company number, registered office
+ * and the status sentence; the site is not FCA authorised). Column headings
+ * are sentence case (§0), not the mockup's caps, and h3s so heading order holds after a page's h2s.
  */
 export function SiteFooter() {
   const year = new Date().getFullYear();
@@ -44,9 +45,11 @@ export function SiteFooter() {
             </div>
           ))}
         </div>
-        <p className={styles.legal}>
-          {site.legalLine}. Registered in England and
-          Wales, company number <span className={styles.todo}>[00000000]</span>. Registered office: <span className={styles.todo}>[address]</span>. © {year}.
+        <p className={styles.legal} data-legal>
+          {site.legal
+            ? `${site.legalLine}. Company number: ${site.legal.companyNumber}. Registered office address: ${site.legal.registeredOffice}. ${site.legal.statusLine}`
+            : `${site.legalLine}.`}{' '}
+          © {year}.
         </p>
       </div>
     </footer>

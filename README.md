@@ -129,7 +129,11 @@ Landing pages live at `/claim/<slug>/`, one JSON file each in `sites/<site>/land
 - Every `/claim/*` page, like every other page, is `noindex, nofollow` (header and meta) and canonical to itself.
 - The independence line renders directly under the hero and strip.
 - Sourced facts go in `facts[]` with `label`, `theirs`, `ours`, `source`, `sourceUrl` and `checkedOn`, rendered verbatim with the date. Leave the array empty and the section does not render.
-- Proof claims (the wait row, the 90-minute card, the header chip) follow the site's `claims.json` as everywhere else.
+- Proof claims (the wait row, the header chip, the gated proof points) follow the site's `claims.json` as everywhere else.
+
+## Proof points (Claims 24/7)
+
+`sites/mcd2/proof-points.json` is the canonical benefit wording, from `design/claims247-proof-points.pdf`. The 2×2 grid and the strip on every page render from it (`sites/mcd2/copy.ts` derives `proofGrid`, `strip` and `keeps`); no benefit copy sits inline in a component. Short forms never say "eligible": the eligibility line (`eligibility`, once per page, desktop only) and the terms carry that. A point with a `claim` renders only while `claims.json` substantiates it. The legal line on every page comes from `sites/mcd2/site.ts` (`legalLine`, `legal`, `FCA_STATUS_LINE`). Open items, including the blocking one on who "we" is, are in `docs/status.md`.
 
 `tests/e2e/landing.spec.ts` covers all of it, including the fold lock at 390×844 and 430×932.
 

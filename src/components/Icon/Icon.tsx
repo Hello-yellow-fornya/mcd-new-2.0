@@ -1,7 +1,7 @@
 import type { CSSProperties } from 'react';
 import styles from './Icon.module.css';
 
-export type IconName = 'phone' | 'check' | 'cross' | 'pound' | 'shield' | 'car' | 'bolt' | 'doc' | 'person' | 'star' | 'dot' | 'arrow' | 'pin' | 'question' | 'clock' | 'truck';
+export type IconName = 'phone' | 'check' | 'cross' | 'pound' | 'shield' | 'car' | 'bolt' | 'doc' | 'person' | 'star' | 'dot' | 'arrow' | 'pin' | 'question' | 'clock' | 'truck' | 'chat';
 
 type Props = {
   name: IconName;

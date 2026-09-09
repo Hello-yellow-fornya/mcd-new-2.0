@@ -77,3 +77,40 @@
 .inline .a {
   max-width: none;
 }
+
+/* Longer answers (the third-party page): paragraphs, a ticked list, a closing line. */
+.a p + p,
+.a p + ul,
+.a ul + p {
+  margin-top: 10px;
+}
+
+.bullets {
+  list-style: none;
+}
+
+.bullets li {
+  display: flex;
+  gap: 10px;
+  padding: 6px 0;
+  border-bottom: 1px solid var(--line);
+  max-width: none;
+}
+
+.tick {
+  flex: none;
+  width: 22px;
+  height: 22px;
+  border-radius: var(--r-circle);
+  background: var(--yellow);
+  color: var(--on-yellow);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: 2px;
+}
+
+.tick svg {
+  width: 12px;
+  height: 12px;
+}

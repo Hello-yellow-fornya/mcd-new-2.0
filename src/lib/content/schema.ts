@@ -30,6 +30,7 @@ export function pageSchema(page: Page, crumbs: { href: string; label: string }[]
 
   const defaults: Record<string, string> = {
     pillar: 'Article',
+    'pillar-landing': 'Article',
     process: 'HowTo',
     comparison: 'Article',
     guide: 'HowTo',
