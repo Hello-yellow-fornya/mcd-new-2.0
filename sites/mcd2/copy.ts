@@ -92,7 +92,7 @@ export const themUs = {
   heads: ['Their claims department', 'Your claims handler'],
   rows: [
     ['Works for your insurer', 'Works for you'],
-    ['A queue, then whoever picks up', 'One named person, UK-based, from first call to keys back'],
+    ['A queue, then whoever picks up', 'A main point of contact who knows your claim, supported by our UK claims team'],
     ['Your excess, paid by you', 'No excess — the other driver’s insurer pays'],
     ['A claim on your policy', 'Nothing on your policy. Your no-claims untouched'],
     ['A courtesy car, if you’re covered', 'A like-for-like car, on your drive'],
@@ -111,7 +111,7 @@ export const benefits = {
   sub: 'Nothing goes through your policy. Here’s what that means for you.',
   cards: [
     { icon: 'pound', h3: 'No excess fees to pay, ever', p: 'Nothing to pay up front. Nothing to chase back.' },
-    { icon: 'shield', h3: 'Keep your no claims bonus', p: 'Nothing goes through your policy, so your no-claims is untouched.' },
+    { icon: 'shield', h3: 'Keep your no claims discount', p: 'Nothing goes through your policy, so your no-claims is untouched.' },
     { icon: 'car', h3: 'Like-for-like car hire, 100% guaranteed', p: 'Delivered to your drive. If yours is written off, you keep it until the money lands.' },
   ],
 } as const;
