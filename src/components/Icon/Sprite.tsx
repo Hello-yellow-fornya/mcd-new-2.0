@@ -8,6 +8,21 @@ export function Sprite() {
   return (
     <svg width="0" height="0" style={{ position: 'absolute' }} aria-hidden="true" focusable="false">
       <defs>
+        <symbol id="i-truck" viewBox="0 0 24 24">
+          <path d="M23 16V9.5A1.5 1.5 0 0 0 21.5 8h-4.3a1.5 1.5 0 0 0-1.3.8L14 12h-2v4z" />
+          <rect x="18" y="9.4" width="3.2" height="2.4" rx=".5" fill="var(--ic-bg, #19180F)" />
+          <path d="M12 12L5 5.5" fill="none" stroke="currentColor" strokeWidth="2.4" strokeLinecap="round" />
+          <path d="M4.5 5.5v3.3a1.7 1.7 0 0 0 3.4 0" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" />
+          <rect x="1" y="15.5" width="22" height="2.5" rx="1" />
+          <circle cx="6" cy="19" r="2.2" />
+          <circle cx="18.5" cy="19" r="2.2" />
+        </symbol>
+        <symbol id="i-chat" viewBox="0 0 24 24">
+          <path d="M4 4h16a2 2 0 0 1 2 2v9a2 2 0 0 1-2 2h-8l-5 4v-4H4a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2z" />
+          <circle cx="8" cy="10.5" r="1.3" fill="var(--ic-bg, #F3CD3E)" />
+          <circle cx="12" cy="10.5" r="1.3" fill="var(--ic-bg, #F3CD3E)" />
+          <circle cx="16" cy="10.5" r="1.3" fill="var(--ic-bg, #F3CD3E)" />
+        </symbol>
         <symbol id="i-phone" viewBox="0 0 24 24">
           <path d="M6.6 10.8a15.2 15.2 0 0 0 6.6 6.6l2.2-2.2a1.3 1.3 0 0 1 1.3-.3c1.2.4 2.5.6 3.8.6a1.3 1.3 0 0 1 1.3 1.3v3.4a1.3 1.3 0 0 1-1.3 1.3A18.3 18.3 0 0 1 2.2 4.5a1.3 1.3 0 0 1 1.3-1.3h3.4a1.3 1.3 0 0 1 1.3 1.3c0 1.3.2 2.6.6 3.8a1.3 1.3 0 0 1-.3 1.3z" />
         </symbol>

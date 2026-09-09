@@ -7,8 +7,10 @@ export type SiteConfig = {
   name: string;
   /** The registered company, for schema legalName. */
   legalName: string;
-  /** The footer's legal line. */
+  /** The footer's legal line: the entity and trading name. */
   legalLine: string;
+  /** The rest of the footer's legal line, when the client has supplied it. */
+  legal?: { companyNumber: string; registeredOffice: string; statusLine: string };
   description: string;
   phone: { display: string; href: string; e164: string };
   locale: string;

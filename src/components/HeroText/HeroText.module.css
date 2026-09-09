@@ -34,12 +34,19 @@
   margin-top: 16px;
 }
 
+/* The eligibility line, once per page: under the lead on desktop, hidden on mobile (design .elig). */
+.elig {
+  font-size: 13px;
+  color: var(--muted);
+  margin-top: 6px;
+}
+
 .ctaRow {
   display: flex;
   gap: 12px;
   flex-wrap: wrap;
   align-items: center;
-  margin-top: 22px;
+  margin-top: 16px;
 }
 
 /* The wait row takes its own line under the pair. */
@@ -77,6 +84,10 @@
   .lead {
     font-size: 17px;
     margin-top: 12px;
+  }
+
+  .elig {
+    display: none;
   }
 
   /* Call first and full width, the wait row under it, Start in ink beneath. */

@@ -1,5 +1,6 @@
 import data from '@site/claims.json';
 import { isProduction } from './staging.ts';
+import * as pure from './claims-pure.ts';
 
 export type Claim = {
   id: string;
@@ -20,7 +21,7 @@ export function getClaim(id: string): Claim {
 
 /** A claim is substantiated only with the flag and a reason. */
 export function isSubstantiated(c: Claim): boolean {
-  return c.substantiated === true && c.evidence.trim().length > 0;
+  return pure.isSubstantiated(c);
 }
 
 /**
@@ -30,7 +31,7 @@ export function isSubstantiated(c: Claim): boolean {
  * listed on /styleguide/.
  */
 export function claimVisible(c: Claim, production: boolean = isProduction()): boolean {
-  return isSubstantiated(c) || !production;
+  return pure.claimVisible(c, production);
 }
 
 /** Attributes to spread on the element showing a claim; data-unsubstantiated is invisible and is for tests and tooling. */

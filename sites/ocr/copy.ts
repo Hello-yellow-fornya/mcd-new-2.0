@@ -57,6 +57,9 @@ export const hero = {
   ] as { icon: IconName; title: string; text: string }[],
 } as const;
 
+/** The eligibility line the shared heroes render (once per page, desktop only). */
+export const eligibility = 'On a non-fault claim we take on, you pay nothing.';
+
 /** The report form: the hero card, /report/ and the landing pages. */
 export const form = {
   title: 'Report your accident',
@@ -212,7 +215,7 @@ export const landing = {
     { icon: 'car', text: 'Like-for-like car, van or motorbike if it was not your fault' },
     { icon: 'person', text: 'One named UK handler' },
     { icon: 'truck', text: 'Nationwide recovery and repairs' },
-  ] as { icon: IconName; text: string }[],
+  ] as { icon: IconName; text: string; claim?: string }[],
   faq: {
     h2: 'Straight answers',
     sub: 'The catch, and everything else people ask.',

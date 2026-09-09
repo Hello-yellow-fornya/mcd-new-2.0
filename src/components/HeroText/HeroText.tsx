@@ -1,7 +1,7 @@
 import { Button } from '@/components/Button/Button';
 import { WaitRow } from '@/components/Hero/WaitRow';
 import { site } from '@/lib/site';
-import { cta, nav } from '@site/copy';
+import { cta, eligibility, nav } from '@site/copy';
 import styles from './HeroText.module.css';
 
 type Props = {
@@ -47,6 +47,9 @@ export function HeroText({ kicker, title, highlight, lead, cta: ctaMode = 'pair'
           <Title title={title} highlight={highlight} />
         </h1>
         {lead && <h2 className={styles.lead}>{lead}</h2>}
+        <p className={styles.elig} data-eligibility>
+          {eligibility}
+        </p>
         {ctaMode !== 'none' && (
           <div className={styles.ctaRow}>
             {ctaMode === 'pair' && (

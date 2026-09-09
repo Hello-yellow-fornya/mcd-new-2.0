@@ -60,6 +60,10 @@ export function Sprite() {
           <circle {...line} cx="7" cy="18.5" r="1.7" />
           <circle {...line} cx="17" cy="18.5" r="1.7" />
         </symbol>
+        <symbol id="i-chat" viewBox="0 0 24 24">
+          <path {...line} d="M4 4h16a2 2 0 0 1 2 2v9a2 2 0 0 1-2 2h-8l-5 4v-4H4a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2z" />
+          <path {...line} d="M8 10.5h.01M12 10.5h.01M16 10.5h.01" />
+        </symbol>
         <symbol id="i-pin" viewBox="0 0 24 24">
           <path {...line} d="M12 21s6-5.2 6-11a6 6 0 0 0-12 0c0 5.8 6 11 6 11z" />
           <circle {...line} cx="12" cy="10" r="2.2" />

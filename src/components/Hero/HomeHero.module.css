@@ -27,6 +27,13 @@
   margin-bottom: 26px;
 }
 
+/* The eligibility line, once per page: under the H2 on desktop, hidden on mobile (design .elig). */
+.elig {
+  font-size: 13px;
+  color: var(--muted);
+  margin: -14px 0 20px;
+}
+
 .sub {
   display: none;
 }
@@ -84,7 +91,8 @@
   }
 
   .desktopCtas,
-  .desktopWait {
+  .desktopWait,
+  .elig {
     display: none;
   }
 

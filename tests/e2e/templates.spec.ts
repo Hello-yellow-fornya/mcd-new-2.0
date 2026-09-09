@@ -11,7 +11,6 @@ const SITE = 'https://mcd-new-2-0.vercel.app';
 const phase1 = [
   ['/accident-management-company/', 'pillar', true],
   ['/non-fault-accident/', 'pillar', true],
-  ['/third-party-insurance-claim/', 'pillar', true],
   ['/non-fault-accident-courtesy-car/', 'pillar', true],
   ['/credit-hire/', 'pillar', true],
   ['/how-accident-management-works/', 'process', true],

@@ -4,6 +4,8 @@
  * compose them.
  */
 import { site } from '@/lib/site';
+import type { IconName } from '@/components/Icon/Icon';
+import proofPoints from './proof-points.json';
 
 export const cta = {
   /** Primary buttons (§0). */
@@ -53,36 +55,32 @@ export const hero = {
   h2: { before: 'Choose the ', highlight: 'smarter way', after: ' to claim.' },
 } as const;
 
-export type ProofCard = { [key: string]: unknown; icon: 'shield' | 'pound' | 'car' | 'bolt' | 'person' | 'doc'; title: string; sub: string; claim?: string; fallback?: ProofCard };
+export type ProofCard = { [key: string]: unknown; icon: IconName; title: string; sub: string; claim?: string; fallback?: ProofCard };
 
-/**
- * The 2×2 proof grid. No card carries a timing claim: the fourth card says
- * nationwide recovery, not a number of minutes, so nothing here is
- * substantiation-gated. A card may still name a `claim` and a `fallback`
- * (appendix §6); the fallback holds the slot while the claim may not show.
- */
-export const proofGrid: readonly ProofCard[] = [
-  { icon: 'shield', title: 'Protect your\nno claims', sub: 'Keep your no claims bonus safe.' },
-  { icon: 'pound', title: 'No excess\nto pay', sub: 'Our service is free for non-fault drivers.' },
-  { icon: 'car', title: 'Like-for-like\nreplacement', sub: 'Car, van or bike, whatever your cover.' },
-  { icon: 'bolt', title: 'Back on the road\nnationwide', sub: 'Recovery and a replacement car, wherever you are.' },
-];
+type ProofPoint = (typeof proofPoints.points)[number] & { title?: string; sub?: string; claim?: string };
+const point = (id: string): ProofPoint => {
+  const p = proofPoints.points.find((x) => x.id === id);
+  if (!p) throw new Error(`Unknown proof point "${id}" (sites/mcd2/proof-points.json)`);
+  return p;
+};
 
-export const strip = [
-  { icon: 'check', text: 'Non-fault claims handled for you' },
-  { icon: 'pound', text: 'No excess to pay' },
-  { icon: 'shield', text: 'Keep your no claims bonus' },
-  { icon: 'car', text: 'Like-for-like car from day one' },
-  { icon: 'doc', text: 'Nothing on your policy' },
-  { icon: 'person', text: 'A named UK handler' },
-] as const;
+/** The eligibility line: once per page, under the lead on desktop, hidden on mobile. */
+export const eligibility: string = proofPoints.eligibility;
 
-/** The keeps strip on the SEO templates: three things you keep. */
-export const keeps = [
-  { icon: 'pound', label: 'No excess to pay' },
-  { icon: 'shield', label: 'Keep your no claims bonus' },
-  { icon: 'car', label: 'Like-for-like car hire' },
-] as const;
+/** The 2×2 proof grid (every page), from the canonical proof points. A point with a claim renders under the substantiation rule. */
+export const proofGrid: readonly ProofCard[] = proofPoints.grid.map((id) => {
+  const p = point(id);
+  return { icon: p.icon as IconName, title: p.title ?? p.short, sub: p.sub ?? '', ...(p.claim ? { claim: p.claim } : {}) };
+});
+
+/** The ClaimsStrip: the short forms, from the canonical proof points; a gated one renders only while its claim may. */
+export const strip: readonly { icon: IconName; text: string; claim?: string }[] = proofPoints.strip.map((id) => {
+  const p = point(id);
+  return { icon: p.icon as IconName, text: p.short, ...(p.claim ? { claim: p.claim } : {}) };
+});
+
+/** The template pages' grid: the same four cards. */
+export const keeps = proofGrid;
 
 export const band = {
   l0: 'Your insurer has a claims department.',
