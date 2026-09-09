@@ -7,7 +7,7 @@ const pages = [
   ['/about-us/', `About ${name}`],
   ['/contact-us/', 'Contact us'],
   ['/privacy-policy/', 'Privacy policy'],
-  ['/terms/', 'Terms of business'],
+  ['/terms/', SITE === 'ocr' ? 'Terms of business' : 'Terms and conditions'],
   ['/complaints/', 'Complaints'],
   ['/cookies/', 'Cookies'],
 ] as const;

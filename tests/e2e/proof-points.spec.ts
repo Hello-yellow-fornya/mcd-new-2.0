@@ -19,8 +19,12 @@ const pp = JSON.parse(readFileSync(join(process.cwd(), 'sites', 'mcd2', 'proof-p
   points: { id: string; short: string; title?: string; sub?: string; claim?: string }[];
 };
 const point = (id: string) => pp.points.find((p) => p.id === id)!;
-const LEGAL =
-  'J&R MARKETING LIMITED trading as Claims247.co.uk. Company number: 10025657. Registered office address: C/O Perception Accounting Limited, The Cobalt Building, 1600 Eureka Park, Lower Pemberton, Ashford, Kent, England, TN25 4BF. Claims247.co.uk provides marketing and lead-generation services only and does not provide legal advice or claims-management services.';
+// The official text, three lines.
+const LEGAL = [
+  'J&R MARKETING LIMITED trading as Claims247.co.uk. Company number: 10025657.',
+  'Registered office address: C/O Perception Accounting Limited, The Cobalt Building, 1600 Eureka Park, Lower Pemberton, Ashford, Kent, England, TN25 4BF',
+  'Claims247.co.uk provides marketing and lead-generation services only and does not provide legal advice or claims-management services.',
+];
 const GATED = ['recovery-within-90-minutes', 'answered-within-1-minute', 'lifetime-guarantee-on-repairs', 'bs-10125-and-new-parts', 'updates-your-way', 'no-cut-of-settlement'];
 
 for (const path of ['/', '/claim/goskippy/', '/third-party-insurance-claim/', '/credit-hire/']) {
@@ -57,8 +61,9 @@ test('the legal line is the client’s on every page, and nothing on the site sa
   const routes = ['/', '/claim-now/', '/claim-now/thank-you/', '/claim/goskippy/', '/does-not-exist/', ...getLivePages().map((p) => p.frontmatter.slug)];
   for (const path of routes) {
     await page.goto(path);
-    const legal = await page.locator('[data-site-footer] [data-legal]').innerText();
-    expect(legal.replace(/\s+/g, ' '), `${path} legal line`).toContain(LEGAL);
+    const legal = (await page.locator('[data-site-footer] [data-legal]').innerText()).split('\n').map((l) => l.replace(/\s+/g, ' ').trim());
+    expect(legal.slice(0, 2), `${path} legal line`).toEqual(LEGAL.slice(0, 2));
+    expect(legal[2], `${path} status line`).toMatch(new RegExp(`^${LEGAL[2].replace(/[.]/g, '\\.')} © \\d{4}\\.$`));
     const html = await page.content();
     expect(html, `${path} Motor Claims Department`).not.toMatch(/Motor Claims Department/i);
     expect(html, `${path} placeholders`).not.toMatch(/\[00000000\]|\[address\]/);
