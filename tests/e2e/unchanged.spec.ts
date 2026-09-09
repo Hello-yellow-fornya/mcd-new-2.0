@@ -2,6 +2,8 @@ import { test, expect } from '@playwright/test';
 import { readFileSync, existsSync } from 'node:fs';
 
 import { snapshotRoutes, snapshotFile } from '../lib/snapshot.mjs';
+import { getLivePages } from '../../src/lib/content/index.ts';
+import { SITE } from './lib/site';
 
 /**
  * The multi-site refactor must not change what a site serves. Every route's
@@ -15,7 +17,7 @@ import { snapshotRoutes, snapshotFile } from '../lib/snapshot.mjs';
 test('the site serves exactly the snapshotted markup, styles and assets', async ({ baseURL }, testInfo) => {
   test.skip(testInfo.project.name !== 'desktop', 'one fetch per route is enough');
   test.setTimeout(180_000);
-  const { site, snapshot } = await snapshotRoutes(baseURL!);
+  const { site, snapshot } = await snapshotRoutes(baseURL!, { known: { siteId: SITE, pages: getLivePages().map((p) => p.frontmatter.slug) } });
   const file = snapshotFile(site);
   test.skip(!existsSync(file), `no snapshot for ${site} yet`);
   const expected = JSON.parse(readFileSync(file, 'utf8'));

@@ -1,35 +1,111 @@
 {
   "$schema": "http://json-schema.org/draft-07/schema#",
   "title": "content.rules.json",
-  "description": "Rules for scripts/lint-content.mjs (CLAUDE.md appendix §10).",
+  "description": "Rules for scripts/lint-content.mjs (CLAUDE.md appendix \u00a710).",
   "type": "object",
   "properties": {
-    "paths": { "type": "array", "items": { "type": "string" }, "description": "Directories or files to lint, relative to the repo root." },
-    "extensions": { "type": "array", "items": { "type": "string" } },
+    "paths": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      },
+      "description": "Directories or files to lint, relative to the repo root."
+    },
+    "extensions": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
     "rules": {
       "type": "object",
       "properties": {
-        "no-exclamation": { "type": "boolean" },
-        "no-all-caps-headings": { "type": "boolean" },
-        "no-week-phrasing": { "type": "boolean" },
-        "banned-phrases": { "type": "boolean" }
+        "no-exclamation": {
+          "type": "boolean"
+        },
+        "no-all-caps-headings": {
+          "type": "boolean"
+        },
+        "no-week-phrasing": {
+          "type": "boolean"
+        },
+        "banned-phrases": {
+          "type": "boolean"
+        }
       },
       "additionalProperties": false
     },
-    "allowedCaps": { "type": "array", "items": { "type": "string" }, "description": "Acronyms allowed in headings." },
-    "bannedPhrases": { "type": "array", "items": { "type": "string" }, "description": "Case-insensitive; curly apostrophes are normalised." },
+    "allowedCaps": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      },
+      "description": "Acronyms allowed in headings."
+    },
+    "bannedPhrases": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      },
+      "description": "Case-insensitive; curly apostrophes are normalised."
+    },
     "bannedPatterns": {
       "type": "array",
       "items": {
         "type": "object",
         "properties": {
-          "pattern": { "type": "string" },
-          "flags": { "type": "string" },
-          "message": { "type": "string" }
+          "pattern": {
+            "type": "string"
+          },
+          "flags": {
+            "type": "string"
+          },
+          "message": {
+            "type": "string"
+          }
         },
-        "required": ["pattern"]
+        "required": [
+          "pattern"
+        ]
       }
+    },
+    "ignore": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      },
+      "description": "File basenames the lint skips (sample data such as reviews.json)."
+    },
+    "conditioned": {
+      "type": "object",
+      "description": "Benefit phrases that must sit on a line that also carries a condition.",
+      "properties": {
+        "message": {
+          "type": "string"
+        },
+        "benefits": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "conditions": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        }
+      },
+      "required": [
+        "benefits",
+        "conditions"
+      ]
+    },
+    "$comment": {
+      "type": "string"
     }
   },
-  "required": ["paths"]
+  "required": [
+    "paths"
+  ]
 }

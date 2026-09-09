@@ -1,5 +1,5 @@
 import type { Metadata } from 'next';
-import { Band, Button, SiteFooter, SiteHeader } from '@/components';
+import { Button, Closing, SiteFooter, SiteHeader } from '@/components';
 import { cta, nav } from '@site/copy';
 import { site } from '@/lib/site';
 import styles from './not-found.module.css';
@@ -29,7 +29,7 @@ export default function NotFound() {
             </div>
           </div>
         </section>
-        <Band />
+        <Closing />
       </main>
       <SiteFooter />
     </>

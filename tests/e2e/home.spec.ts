@@ -1,4 +1,7 @@
 import { test, expect, type Page } from '@playwright/test';
+import { onlySite } from './lib/site';
+
+onlySite('mcd2');
 
 // The homepage (CLAUDE.md §0): section order, and the fold-locked mobile hero
 // where the ClaimsStrip's bottom edge lands exactly on the fold at 390×844 and

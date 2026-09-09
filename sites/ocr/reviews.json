@@ -1,0 +1,10 @@
+{
+  "$comment": "Review band data (appendix §4). While sample is true these are the mockup's placeholder quotes and the band does not render on production. Replace with the real feed and set sample to false.",
+  "sample": true,
+  "reviews": [
+    { "quote": "Got hit on the school run. One call and they sorted the lot — a car on my drive the next morning and I never spoke to the other insurer once.", "name": "Sarah M.", "place": "Bristol", "stars": 5 },
+    { "quote": "No excess, my no claims untouched, and the same person every time I rang. Wish I’d known this existed years ago.", "name": "Daniel K.", "place": "Leeds", "stars": 5 },
+    { "quote": "The other driver’s insurer rang me within the hour. I told them to speak to MCD, like I’d been told. Best decision I made all week.", "name": "Priya R.", "place": "Croydon", "stars": 5 },
+    { "quote": "Van was written off. They kept me in a like-for-like until the payout came through, so I didn’t lose a day’s work.", "name": "Tom H.", "place": "Salford", "stars": 5 }
+  ]
+}

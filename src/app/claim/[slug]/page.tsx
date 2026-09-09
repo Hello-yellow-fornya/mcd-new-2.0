@@ -1,6 +1,6 @@
 import type { Metadata } from 'next';
 import { notFound } from 'next/navigation';
-import { LandingPage } from '@/templates/LandingPage';
+import { LandingPage } from '@site/landing';
 import { getLanding, getLandingConfigs } from '@/lib/landing';
 
 type Params = { params: Promise<{ slug: string }> };

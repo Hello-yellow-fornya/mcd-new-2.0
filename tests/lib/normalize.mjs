@@ -7,12 +7,15 @@ import { createHash } from 'node:crypto';
  * up as a changed name, which is the point). What goes is the bundler's
  * bookkeeping: the build id, the hashed chunk and stylesheet names, how many
  * files the stylesheets are split into (their contents are compared
- * separately, in order) and the React Flight payload in the inline scripts,
+ * separately, as rules), the Open Graph image's cache-busting query (the
+ * image is compared as an asset) and the React Flight payload in the inline scripts,
  * which duplicates the markup for hydration with bundle-specific row ids.
  */
 export function normaliseHtml(html) {
   return html
     .replace(/<!--[A-Za-z0-9_-]{16,}-->/g, '<!--BUILD-->')
+    // the Open Graph image's cache-busting query is a hash of its route module; the image itself is hashed as an asset
+    .replace(/(opengraph-image|twitter-image)\?[a-f0-9]+/g, '$1?HASH')
     .replace(/<link rel="stylesheet" href="\/_next\/static\/css\/[^"]+"[^>]*>/g, '')
     .replace(/<script>self\.__next_f\.push\(.*?\)<\/script>/gs, '')
     // /_next/static/<buildId>/_buildManifest.js and friends

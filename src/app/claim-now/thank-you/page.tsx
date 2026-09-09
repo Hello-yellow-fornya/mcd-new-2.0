@@ -1,4 +1,6 @@
 import type { Metadata } from 'next';
+import { notFound } from 'next/navigation';
+import { siteId } from '@/lib/site-id';
 import { Suspense } from 'react';
 import { Band, Button, SiteFooter, SiteHeader } from '@/components';
 import { site } from '@/lib/site';
@@ -14,6 +16,7 @@ export const metadata: Metadata = {
 
 /** The thank-you route the claim flow redirects to. Fires the conversion; not indexed. */
 export default function ThankYouPage() {
+  if (siteId !== 'mcd2') notFound();
   return (
     <>
       <SiteHeader />

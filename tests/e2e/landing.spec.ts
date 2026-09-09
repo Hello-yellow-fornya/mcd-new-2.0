@@ -1,4 +1,7 @@
 import { test, expect, type Page } from '@playwright/test';
+import { onlySite } from './lib/site';
+
+onlySite('mcd2');
 
 // The insurer landing page (CLAUDE.md §0, appendix §6): noindex, canonical to self, the insurer name only in the H1 and the
 // independence line, the independence line directly under the hero, and the

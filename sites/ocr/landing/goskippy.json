@@ -1,0 +1,10 @@
+{
+  "$comment": "One insurer landing page (design/ocr/ocr-goskippy-mobile.html). The insurer name appears only where this file puts it: the H1 and the independence line. The proof cards, ticker, band, table and FAQ are site-wide (sites/ocr/copy.ts landing).",
+  "slug": "goskippy",
+  "insurer": "GoSkippy",
+  "title": "Insured with GoSkippy? Report it to us first",
+  "description": "Had an accident? Report it to us before you call your insurer. One report, one named handler, and if it was not your fault the other driver’s insurer pays.",
+  "h1": { "before": "Insured with ", "highlight": "GoSkippy?", "after": "" },
+  "h2": { "before": "Report it to us before you call your insurer.", "highlight": "", "after": "" },
+  "facts": []
+}

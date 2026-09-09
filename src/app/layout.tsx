@@ -1,7 +1,7 @@
 import type { Metadata } from 'next';
 import { body, display } from '@site/fonts';
 import { site, siteUrl } from '@/lib/site';
-import { Sprite } from '@/components/Icon/Sprite';
+import { Sprite } from '@site/sprite';
 import { Analytics } from '@/components/Analytics/Analytics';
 import { ConsentBanner } from '@/components/Consent/ConsentBanner';
 import '@site/tokens.css';
