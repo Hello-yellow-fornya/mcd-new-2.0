@@ -1,6 +1,6 @@
 {
   "$schema": "./scripts/content.rules.schema.json",
-  "paths": ["content", "src/data"],
+  "paths": ["sites"],
   "extensions": [".mdx", ".md"],
   "rules": {
     "no-exclamation": true,

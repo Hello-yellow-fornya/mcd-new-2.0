@@ -1,7 +1,7 @@
 import Link from 'next/link';
 import { Logo } from '@/components/Logo/Logo';
 import { CookieSettingsButton } from '@/components/Consent/ConsentBanner';
-import { footer } from '@/data/copy';
+import { footer } from '@site/copy';
 import { site } from '@/lib/site';
 import { isLinkable } from '@/lib/content';
 import styles from './SiteFooter.module.css';

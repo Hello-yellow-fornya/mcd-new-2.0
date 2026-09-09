@@ -5,7 +5,7 @@ import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import { Button } from '@/components/Button/Button';
 import { ProofChip } from './ProofChip';
-import { cta, nav, type NavItem } from '@/data/copy';
+import { cta, nav, type NavItem } from '@site/copy';
 import { site } from '@/lib/site';
 import styles from './SiteHeader.module.css';
 

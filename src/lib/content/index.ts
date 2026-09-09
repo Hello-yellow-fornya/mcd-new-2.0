@@ -8,10 +8,11 @@ import { visit } from 'unist-util-visit';
 import type { Heading as MdHeading, Root } from 'mdast';
 import { headingIdFor } from './remark-heading-ids.ts';
 import { templateNames, type Frontmatter, type Heading, type Page } from './types.ts';
+import { siteDir } from '../site-dir.ts';
 
 export type { Page, Frontmatter, Heading } from './types.ts';
 
-const CONTENT_DIR = join(process.cwd(), 'content');
+const CONTENT_DIR = join(siteDir, 'content');
 
 function walk(dir: string, acc: string[] = []): string[] {
   for (const entry of readdirSync(dir)) {

@@ -31,6 +31,7 @@ export default defineConfig({
     // the project's own .vercel.app address, so every host is staging.
     // A test container id so the consent path can be exercised; the loader request itself is blocked in tests.
     env: {
+      NEXT_PUBLIC_SITE: process.env.NEXT_PUBLIC_SITE || 'mcd2',
       NEXT_PUBLIC_SITE_URL: process.env.NEXT_PUBLIC_SITE_URL || 'https://mcd-new-2-0.vercel.app',
       NEXT_PUBLIC_GTM_ID: process.env.NEXT_PUBLIC_GTM_ID || 'GTM-TEST0000',
     },

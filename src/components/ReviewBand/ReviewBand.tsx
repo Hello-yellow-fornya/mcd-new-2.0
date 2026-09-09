@@ -1,6 +1,6 @@
-import reviewsData from '@/data/reviews.json';
+import reviewsData from '@site/reviews.json';
 import { Icon } from '@/components/Icon/Icon';
-import { reviewsHead } from '@/data/copy';
+import { reviewsHead } from '@site/copy';
 import { claimAttrs, claimVisible, getClaim } from '@/lib/claims';
 import { isProduction } from '@/lib/staging';
 import styles from './ReviewBand.module.css';
@@ -21,7 +21,7 @@ function Stars({ n, className }: { n: number; className?: string }) {
  * The review band (§0): "What drivers say" with the score, then an
  * auto-scrolling row of cards. CSS-only motion: the track is doubled for a
  * seamless loop, pauses on hover and touch, and with reduced motion it is a
- * scrollable row. Data from src/data/reviews.json; while sample is true the
+ * scrollable row. Data from sites/<id>/reviews.json; while sample is true the
  * band does not render on production.
  */
 export function ReviewBand() {

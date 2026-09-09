@@ -2,7 +2,7 @@ import type { Metadata } from 'next';
 import { Suspense } from 'react';
 import { Band, Button, SiteFooter, SiteHeader } from '@/components';
 import { site } from '@/lib/site';
-import { cta } from '@/data/copy';
+import { cta } from '@site/copy';
 import { ThankYouEvent } from './ThankYouEvent';
 import styles from '../claim-now.module.css';
 

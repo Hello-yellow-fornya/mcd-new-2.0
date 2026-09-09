@@ -1,6 +1,6 @@
 import type { Metadata } from 'next';
 import { Band, Button, SiteFooter, SiteHeader } from '@/components';
-import { cta, nav } from '@/data/copy';
+import { cta, nav } from '@site/copy';
 import { site } from '@/lib/site';
 import styles from './not-found.module.css';
 

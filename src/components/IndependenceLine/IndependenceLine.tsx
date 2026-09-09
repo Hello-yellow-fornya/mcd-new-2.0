@@ -1,4 +1,4 @@
-import { independence } from '@/data/copy';
+import { independence } from '@site/copy';
 import styles from './IndependenceLine.module.css';
 
 /** The independence line (§0). Landing pages name the insurer in it. */

@@ -6,7 +6,7 @@ import { getLanding, getLandingConfigs } from '@/lib/landing';
 type Params = { params: Promise<{ slug: string }> };
 
 
-/** One route per JSON file in src/data/landing/. */
+/** One route per JSON file in sites/<id>/landing/. */
 export function generateStaticParams() {
   return getLandingConfigs().map((c) => ({ slug: c.slug }));
 }

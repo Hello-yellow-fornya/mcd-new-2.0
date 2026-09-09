@@ -3,7 +3,7 @@
 import { useId, useState, type FormEvent } from 'react';
 import { useRouter } from 'next/navigation';
 import { Icon } from '@/components/Icon/Icon';
-import { nav } from '@/data/copy';
+import { nav } from '@site/copy';
 import { compactReg, formatReg } from '@/lib/reg';
 import { track } from '@/lib/analytics';
 import styles from './RegBox.module.css';

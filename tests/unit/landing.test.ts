@@ -3,8 +3,9 @@ import assert from 'node:assert/strict';
 import { readFileSync, readdirSync } from 'node:fs';
 import { join } from 'node:path';
 import { insurerLeaks, validateLanding, type LandingConfig } from '../../src/lib/landing-config.ts';
+import { siteDir } from '../../src/lib/site-dir.ts';
 
-const dir = join(process.cwd(), 'src', 'data', 'landing');
+const dir = join(siteDir, 'landing');
 
 test('every landing config is valid and keeps the insurer name to the H1', () => {
   const files = readdirSync(dir).filter((f) => f.endsWith('.json'));

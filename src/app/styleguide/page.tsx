@@ -18,7 +18,7 @@ import {
   Steps,
   ThemUs,
 } from '@/components';
-import { hero } from '@/data/copy';
+import { hero } from '@site/copy';
 import { isProduction } from '@/lib/staging';
 import { allClaims, isSubstantiated } from '@/lib/claims';
 import { site } from '@/lib/site';

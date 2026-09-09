@@ -1,10 +1,11 @@
 import { readdirSync, readFileSync } from 'node:fs';
 import { join } from 'node:path';
 import { validateLanding, type LandingConfig } from './landing-config.ts';
+import { siteDir } from './site-dir.ts';
 
-const dir = join(process.cwd(), 'src', 'data', 'landing');
+const dir = join(siteDir, 'landing');
 
-/** Every insurer landing page: one JSON file each in src/data/landing/. */
+/** Every insurer landing page: one JSON file each in sites/<id>/landing/. */
 export function getLandingConfigs(): LandingConfig[] {
   return readdirSync(dir)
     .filter((f) => f.endsWith('.json'))

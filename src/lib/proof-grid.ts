@@ -1,4 +1,4 @@
-/** A proof-grid card; `claim` names a src/data/claims.json entry, `fallback` holds the slot while that claim may not show. */
+/** A proof-grid card; `claim` names a sites/<id>/claims.json entry, `fallback` holds the slot while that claim may not show. */
 export type ProofCardLike = { [key: string]: unknown; claim?: string; fallback?: ProofCardLike };
 
 export type SelectedCard<C extends ProofCardLike> = { card: C; claimId: string | null };

@@ -10,6 +10,7 @@
 import { existsSync, mkdirSync, readdirSync, readFileSync, statSync, writeFileSync } from 'node:fs';
 import { join, dirname } from 'node:path';
 import { fileURLToPath } from 'node:url';
+import { siteDir } from '../src/lib/site-dir.ts';
 
 const root = join(dirname(fileURLToPath(import.meta.url)), '..');
 const html = readFileSync(join(root, 'design', 'motorclaimsdepartment_sitemap.html'), 'utf8');
@@ -26,7 +27,7 @@ const existing = new Set();
       if (m) existing.add(m[1].trim().replace(/^["']|["']$/g, ''));
     }
   }
-})(join(root, 'content'));
+})(join(siteDir, 'content'));
 
 const sectionOf = (header) => header.toLowerCase().replace(/&amp;/g, 'and').replace(/—/g, ' ').replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, '');
 const templateFor = (slug, section) => {
@@ -56,7 +57,7 @@ for (const block of blocks) {
     // Appendix §5: /how-it-works/ does not exist; it is /how-accident-management-works/.
     if (slug === '/how-it-works/') continue;
     // Nested slugs keep their path so two pages with the same last segment cannot collide.
-    const file = join(root, 'content', section, ...slug.split('/').filter(Boolean)) + '.mdx';
+    const file = join(siteDir, 'content', section, ...slug.split('/').filter(Boolean)) + '.mdx';
     if (existsSync(file)) continue;
     mkdirSync(dirname(file), { recursive: true });
     const safe = label.replace(/"/g, '\\"');

@@ -1,0 +1,216 @@
+{
+  "site": "mcd2",
+  "routes": {
+    "/": {
+      "status": 200,
+      "html": "2def359d6049bf73f1104fdbd5ddaf2854bedc0dfb90ad58160a3edf57ef1cd5",
+      "css": "af3b4a19e62e3b1ad1e78346b489a43e48a86f516c9d2ab5284b3d5d177f4718"
+    },
+    "/claim-now/": {
+      "status": 200,
+      "html": "900f59ad530a1c40602d06a6b785bfff8f8f73b57c0e9cf749f67a41e287aeb9",
+      "css": "af3b4a19e62e3b1ad1e78346b489a43e48a86f516c9d2ab5284b3d5d177f4718"
+    },
+    "/claim-now/thank-you/": {
+      "status": 200,
+      "html": "a2bc1c5d8665821f21994a5d5bb5e64d39df1bad4401e63d35e2a49a8cd0faf5",
+      "css": "af3b4a19e62e3b1ad1e78346b489a43e48a86f516c9d2ab5284b3d5d177f4718"
+    },
+    "/claim/goskippy/": {
+      "status": 200,
+      "html": "4a0309f0e8460604bc8a729b1d830a4a0f125ad6b3609af99ce887bff3495cc3",
+      "css": "af3b4a19e62e3b1ad1e78346b489a43e48a86f516c9d2ab5284b3d5d177f4718"
+    },
+    "/styleguide/": {
+      "status": 200,
+      "html": "a9aced835a2322a745462cdb90e916065d653d02930e2e9866d0a425028787d5",
+      "css": "af3b4a19e62e3b1ad1e78346b489a43e48a86f516c9d2ab5284b3d5d177f4718"
+    },
+    "/does-not-exist/": {
+      "status": 404,
+      "html": "1d29012b8d9d5eaea5b28fcde09ed52c9718f05184acecde6840e4c36c9692cd",
+      "css": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "/vehicle-replacement/will-i-get-a-like-for-like-replacement/": {
+      "status": 200,
+      "html": "386a59bebd32e16283e1f25adc2d3b2fd1b3f800b430ad2b25f2cb1dfa617ffd",
+      "css": "af3b4a19e62e3b1ad1e78346b489a43e48a86f516c9d2ab5284b3d5d177f4718"
+    },
+    "/how-to-prove-fault/car-park-accidents/": {
+      "status": 200,
+      "html": "e59e9ec372ba76ec674ef48c816e3bc57dfada146a246ab84645240981469a1f",
+      "css": "af3b4a19e62e3b1ad1e78346b489a43e48a86f516c9d2ab5284b3d5d177f4718"
+    },
+    "/how-to-prove-fault/rear-end-collision/": {
+      "status": 200,
+      "html": "6a35a1575de67cb3b650c42a8b8fcf182d6e907dcc8dd5a60feb464e9ef74e98",
+      "css": "af3b4a19e62e3b1ad1e78346b489a43e48a86f516c9d2ab5284b3d5d177f4718"
+    },
+    "/how-to-prove-fault/side-impact-collision/": {
+      "status": 200,
+      "html": "2fc00ace71dcd0eed7fa66655b79d0e741747b925d82371420b067fbe1590a06",
+      "css": "af3b4a19e62e3b1ad1e78346b489a43e48a86f516c9d2ab5284b3d5d177f4718"
+    },
+    "/accident-management-vs-insurance/": {
+      "status": 200,
+      "html": "2a86e3901ba5e767cdfad3e96062bc12d5ba76b5182803ca4f0cceafa636b546",
+      "css": "af3b4a19e62e3b1ad1e78346b489a43e48a86f516c9d2ab5284b3d5d177f4718"
+    },
+    "/what-to-do-after-a-car-accident/": {
+      "status": 200,
+      "html": "cc4433aa85d7f3b4547d0cb83aa23419a690ee5699bf038dea7733fad8cbe3b4",
+      "css": "af3b4a19e62e3b1ad1e78346b489a43e48a86f516c9d2ab5284b3d5d177f4718"
+    },
+    "/our-service-areas/": {
+      "status": 200,
+      "html": "f4cc7bc758d1a62273e8f4fa446aa1ffd39e2e967474991a03bc1637fcf49274",
+      "css": "af3b4a19e62e3b1ad1e78346b489a43e48a86f516c9d2ab5284b3d5d177f4718"
+    },
+    "/car-written-off-not-my-fault/": {
+      "status": 200,
+      "html": "dcecf13cd87b08f0e4d07eee4353e1721ce939781d8ccf2534bcc2259e29509f",
+      "css": "af3b4a19e62e3b1ad1e78346b489a43e48a86f516c9d2ab5284b3d5d177f4718"
+    },
+    "/accident-management-company/": {
+      "status": 200,
+      "html": "c59b8634e61909205462b2d37bba42cc626d3132e0b9288c9bf8ae537ee29755",
+      "css": "af3b4a19e62e3b1ad1e78346b489a43e48a86f516c9d2ab5284b3d5d177f4718"
+    },
+    "/credit-hire/": {
+      "status": 200,
+      "html": "7e3be234879f5989e46aeee02173f620d9657b21ba51bcd24f22575efc90ca39",
+      "css": "af3b4a19e62e3b1ad1e78346b489a43e48a86f516c9d2ab5284b3d5d177f4718"
+    },
+    "/non-fault-accident-courtesy-car/": {
+      "status": 200,
+      "html": "81f590ba6e2cc21cb7e640336e5c0403321c3fac1ca1db6e65c610516a444665",
+      "css": "af3b4a19e62e3b1ad1e78346b489a43e48a86f516c9d2ab5284b3d5d177f4718"
+    },
+    "/non-fault-accident/": {
+      "status": 200,
+      "html": "2ecd1910c5e79111022525ac09e5c6b99404a7eccc7ae99c5c6bfc967536a3d9",
+      "css": "af3b4a19e62e3b1ad1e78346b489a43e48a86f516c9d2ab5284b3d5d177f4718"
+    },
+    "/third-party-insurance-claim/": {
+      "status": 200,
+      "html": "e07c385d92f144e4d4934dfd901f244df8db22ec0d1c1313e9a487f3b8d57298",
+      "css": "af3b4a19e62e3b1ad1e78346b489a43e48a86f516c9d2ab5284b3d5d177f4718"
+    },
+    "/how-accident-management-works/": {
+      "status": 200,
+      "html": "8e756a8336ea091e31065f1931e9436e3e7dc7cf686c50d7f0165a9e2b54f39f",
+      "css": "af3b4a19e62e3b1ad1e78346b489a43e48a86f516c9d2ab5284b3d5d177f4718"
+    },
+    "/do-i-have-to-pay-excess-if-not-my-fault/": {
+      "status": 200,
+      "html": "1532862d594602125bdbd1133aa726047b0b3115b3a2698efe45203b6cc17dde",
+      "css": "af3b4a19e62e3b1ad1e78346b489a43e48a86f516c9d2ab5284b3d5d177f4718"
+    },
+    "/had-accident/should-i-settle-privately/": {
+      "status": 200,
+      "html": "7c9a95b45198daeb35e272f826ec4dda1c1655ca0e40f04dc3a42896dbf6a6bb",
+      "css": "af3b4a19e62e3b1ad1e78346b489a43e48a86f516c9d2ab5284b3d5d177f4718"
+    },
+    "/how-to-prove-fault/car-accident-reversing/": {
+      "status": 200,
+      "html": "3e1a6dc95f7f726d60b8a0bcc44bce4c11f3b499124a164655a96aa2b811a719",
+      "css": "af3b4a19e62e3b1ad1e78346b489a43e48a86f516c9d2ab5284b3d5d177f4718"
+    },
+    "/how-to-prove-fault/car-park-accidents/parked-car/": {
+      "status": 200,
+      "html": "5d184674200e51fc774f063838c8c98148d859c13d79b3fc438ff3acd9426916",
+      "css": "af3b4a19e62e3b1ad1e78346b489a43e48a86f516c9d2ab5284b3d5d177f4718"
+    },
+    "/what-to-do-after-a-car-accident/minor-car-accident/": {
+      "status": 200,
+      "html": "39c4c2a0db907fc63630720f62abf8c8537d29b5e5839e25dee337733fa74925",
+      "css": "af3b4a19e62e3b1ad1e78346b489a43e48a86f516c9d2ab5284b3d5d177f4718"
+    },
+    "/what-to-do-after-a-car-accident/what-details-to-exchange/": {
+      "status": 200,
+      "html": "59e69d4a37eae6d7a032ce2cbe6a0c58063656de3c6d42b228526154ffc6b693",
+      "css": "af3b4a19e62e3b1ad1e78346b489a43e48a86f516c9d2ab5284b3d5d177f4718"
+    },
+    "/will-a-non-fault-accident-affect-my-insurance/": {
+      "status": 200,
+      "html": "c42387a0158b37d67e3b238aed0fa4fca345363dea3ce3d7b5a6608457ba4949",
+      "css": "af3b4a19e62e3b1ad1e78346b489a43e48a86f516c9d2ab5284b3d5d177f4718"
+    },
+    "/advice/dash-cam-non-fault-accident/": {
+      "status": 200,
+      "html": "67b38d8890ea26393ec0a3b88b388b9194d1bbfec6b53c69bc824349c3529634",
+      "css": "af3b4a19e62e3b1ad1e78346b489a43e48a86f516c9d2ab5284b3d5d177f4718"
+    },
+    "/advice/what-to-do-if-hit-by-uninsured-driver/": {
+      "status": 200,
+      "html": "1b9d289b6a227f81c301ec2c5f1864038f6ea5cfd8fc4cc96045a050705effb7",
+      "css": "af3b4a19e62e3b1ad1e78346b489a43e48a86f516c9d2ab5284b3d5d177f4718"
+    },
+    "/about-us/": {
+      "status": 200,
+      "html": "163ec2c5447423280b975c321c89bbe0166f0d00b882c05c65ce7d0cf0454666",
+      "css": "af3b4a19e62e3b1ad1e78346b489a43e48a86f516c9d2ab5284b3d5d177f4718"
+    },
+    "/complaints/": {
+      "status": 200,
+      "html": "f17dbe20578e5a813d5d6ea9820f145288c174c23a795efa4f3ad6d31caf76c0",
+      "css": "af3b4a19e62e3b1ad1e78346b489a43e48a86f516c9d2ab5284b3d5d177f4718"
+    },
+    "/contact-us/": {
+      "status": 200,
+      "html": "735803bb6e5687994dd503a8f71e06440dfadb64f47995b252970c5357232807",
+      "css": "af3b4a19e62e3b1ad1e78346b489a43e48a86f516c9d2ab5284b3d5d177f4718"
+    },
+    "/cookies/": {
+      "status": 200,
+      "html": "826be091de25d808f41287fca985e95dbd43a8b11aded28134d746adb3c4803c",
+      "css": "af3b4a19e62e3b1ad1e78346b489a43e48a86f516c9d2ab5284b3d5d177f4718"
+    },
+    "/privacy-policy/": {
+      "status": 200,
+      "html": "bd08cc7014e0254c2b1b51a25b4c8b81bd5056683150474476e43ee0865d4c6b",
+      "css": "af3b4a19e62e3b1ad1e78346b489a43e48a86f516c9d2ab5284b3d5d177f4718"
+    },
+    "/terms/": {
+      "status": 200,
+      "html": "8cb73da20c1f574b7e5931435231af094bcceb6bf201f4bbf85da5756d9575c0",
+      "css": "af3b4a19e62e3b1ad1e78346b489a43e48a86f516c9d2ab5284b3d5d177f4718"
+    }
+  },
+  "assets": {
+    "/robots.txt": "200:d17b641665bc0d4e8b0836dc3b4539a0cddbfceb72ccfb01a0b733683238dcd5",
+    "/manifest.webmanifest": "200:002d4e0387d83c1f34e8649394c780bb0be4b82f91bcf0e122c72073a06b99d5",
+    "/opengraph-image": "200:55af29eb2f1fcde568f8ddf876d1a5ab9b5d444be734a002bc5ce7b77e4b7a92",
+    "/icon.svg": "200:dff08302d55705a2c8df48380704dd712dcefbb7242a4c72b7b45f1442bedfe9",
+    "/apple-icon.png": "200:bc26262c91bacca97c206d212da8cba63ff23fa234c7e84d9e856f6a924df3cb",
+    "/favicon.ico": "200:020ecb8fdb5316c1ae2ff3c017e46e863a205c8a35495dca774827dfd26d2cb3",
+    "public/favicons/favicon-1024.png": "77f55cfb25f67006e0e2d160ec559cfbf6682dfd45ea2df6e7913e22b194cad5",
+    "public/favicons/favicon-16-numerals.png": "e1654438a50f95f14d580bc384f3cc7e4bfc16b6e44784c5735b9b14990fb36a",
+    "public/favicons/favicon-16.png": "f2d79c250d72147fa9a39c3a199489512970629f6dc82e408c990667be65f6c2",
+    "public/favicons/favicon-16.svg": "89d8ff9beb7b5ccbbb0f2c7c5b4423982938afda58895f864cfdc73822d8523d",
+    "public/favicons/favicon-180.png": "bc26262c91bacca97c206d212da8cba63ff23fa234c7e84d9e856f6a924df3cb",
+    "public/favicons/favicon-192.png": "5be7a1780e6021a99804ae88109f046c1b71a5aabad96b2827784fe474e9c849",
+    "public/favicons/favicon-32-numerals.png": "9b1a84157d2450f0a15fce89dfb21ac95ba69db44e734376ca5326fcebeece49",
+    "public/favicons/favicon-32.png": "f9d075792be29c210103254e7c2cbea9a0ba853dc29a5caca99e008f4b7492d2",
+    "public/favicons/favicon-48.png": "a2dea28a86df659b64369c48baaf41872ace7b6e8033c85a54caefa716f6c576",
+    "public/favicons/favicon-512.png": "7b43747c38d01cbb8366982cff1dfedd2efb65c9e5a7a728c2c973750a031383",
+    "public/favicons/favicon.svg": "dff08302d55705a2c8df48380704dd712dcefbb7242a4c72b7b45f1442bedfe9",
+    "public/logo/claims247-logo-mono-ink.svg": "98ca3a1c73ba2b53e670e8e70ff799c403ba26f8b9a6406ae0ae96759c203e07",
+    "public/logo/claims247-logo-mono-white.svg": "0cf7354b9c139f9b07ad4c2aa4b05410fb675a615f6411117a7b4c34e3e8b42d",
+    "public/logo/claims247-logo-on-cream.svg": "e81ed3c23071041435fb4c53351e22dd08f487aa08e24b41cdb38811f3fc972e",
+    "public/logo/claims247-logo-on-ink.svg": "58c9bcf78752c2ef53816c8c368edeaac7aabde699076a6b28a155f7997e76b5",
+    "public/logo/claims247-logo-on-light-yellow.svg": "11b6de059e7eb3a4740388382c4a02ddceee9be8641e248d3f279704b509bf57",
+    "public/logo/claims247-logo-on-light.svg": "2b93e7c66c9ed6c07f5c192105cdcbfd65f9fb934171cf1b5270e3af29ba140c",
+    "public/logo/claims247-logo-on-yellow.svg": "44f8c46ec2933024f9eab68f207ef175ce76168f097fd1ba8901bf7bf83383ca",
+    "public/logo/square/claims247-square-247-on-ink.svg": "4ec9558f7225b536d9b888530df27814114115fcdad835ab4438d9994e072c69",
+    "public/logo/square/claims247-square-247-on-white.svg": "cb76442ca85ca015b6db675855b0b5fc6b156c886685359b3fcc2e3b9c4617f7",
+    "public/logo/square/claims247-square-247-on-yellow.svg": "baa96566867d4ad4642d88ff2c2c5f1710d804b4321e9dd58fd8cfc6289cc69c",
+    "public/logo/square/claims247-square-c247-on-ink.svg": "4497b3270442071bd3f402fdeb20fe0e1018b0de4d89cdcc25696b69cf4549dd",
+    "public/logo/square/claims247-square-c247-on-white.svg": "f151ca6c26bd6984e78c2e3f521955ca934a94137e106600a463bd2d2b8ed572",
+    "public/logo/square/claims247-square-c247-on-yellow.svg": "0fbb1c8fdca49f4df21d166d9a30a91183d1074a0c66fc8451993720f545d7ee",
+    "public/logo/square/claims247-square-stacked-on-ink.svg": "dff08302d55705a2c8df48380704dd712dcefbb7242a4c72b7b45f1442bedfe9",
+    "public/logo/square/claims247-square-stacked-on-white.svg": "466d316088cc67cf4ebe43fbbd3354aa116a3c0cdb05455a776749814e1e0e50",
+    "public/logo/square/claims247-square-stacked-on-yellow.png": "ad0d2f1d509c8f0b1d38af2fd81815d32bee124fd2a63f77b5e24ce925b7b0cf",
+    "public/logo/square/claims247-square-stacked-on-yellow.svg": "2deb874f19029d569b8ae52bce726cadec17a0c6a520404bdac23ca0db7f7d91"
+  }
+}

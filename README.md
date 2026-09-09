@@ -18,11 +18,21 @@ Checks, all of which also run before every build:
 
 ```bash
 pnpm check          # typecheck + eslint + content lint + css lint + unit tests
-pnpm lint:content   # appendix §10 rules over content/ (fails the build on a hit)
+pnpm lint:content   # appendix §10 rules over sites/*/content/ (fails the build on a hit)
 pnpm lint:css       # §0 rules that live in code: no uppercase, no italics, ink on the bright, no 1.0 palette, no box behind text
 pnpm test           # unit tests (node --test)
 pnpm test:e2e       # Playwright, against a production build (run `pnpm exec playwright install` once)
+pnpm snapshot       # compares a running `pnpm start -p 3100` with tests/snapshots/<site>-routes.json (--write to capture)
 ```
+
+## Sites
+
+The repo builds more than one site from the same components, API client, consent, lint and tests. Each site is a folder in `sites/` holding what is its own: `site.ts` (name, legal line, phone, the `source` it posts to the claims API), `copy.ts`, `tokens.css`, `fonts.ts`, `home.tsx`, `content/` (its MDX pages, so its page list), `landing/`, `claims.json`, `reviews.json` and its icon sources.
+
+- `NEXT_PUBLIC_SITE` selects the site (`mcd2`, Claims 24/7, is the default; `ocr` is Online Claims Report). `next.config.ts` inlines the resolved id and points `@site/*` at `sites/<id>/`; a Vercel build of an `ocr/…` branch is the OCR site when the variable is unset.
+- `pnpm site:assets` (predev, prebuild) writes the site's icons: `src/app/icon.svg`, `apple-icon.png`, `favicon.ico`, `public/favicons/` and `public/logo/`. They are build output and gitignored.
+- A second Vercel project from this repo builds the other site: set `NEXT_PUBLIC_SITE`, `NEXT_PUBLIC_SITE_URL` (its own `.vercel.app` URL) and `NEXT_PUBLIC_GTM_ID` there, with deployment protection on.
+- `tests/snapshots/mcd2-routes.json` hashes every route's markup and stylesheet rules and every generated asset; `tests/e2e/unchanged.spec.ts` fails if a build serves anything different. Regenerate it only after a reviewed change to that site.
 
 ## Environments and staging
 
@@ -46,20 +56,20 @@ The Vercel project is **`mcd-new-2-0`** (team `fornya`), production at `https://
 ```
 CLAUDE.md               the build brief
 design/                 signed-off 2.0 mockups, nav and font options, the logo; the 1.0 tpl-*.html template mockups and the sitemap
-content/                MDX pages with frontmatter: the SEO set, utility pages, Phase 2/3 drafts
+sites/mcd2/             Claims 24/7: site.ts, copy.ts, tokens.css, home.tsx, content/ (MDX pages), landing/, claims.json, reviews.json
+sites/ocr/              Online Claims Report, the same shape
 content.rules.json      content lint rules (appendix §10)
-scripts/                lint-content.mjs, lint-css.mjs
+scripts/                lint-content.mjs, lint-css.mjs, site-assets.mjs, snapshot-routes.mjs
 src/app/                App Router routes and global CSS
 src/fonts/              self-hosted Archivo Black 400 and Archivo 400/700 (WOFF2, SIL OFL)
-src/lib/                site config, host and staging rules
-src/styles/tokens.css   §0 design tokens as custom properties
+src/lib/                site selection (site-id.ts), site config, staging rules
 tests/unit/             node --test
 tests/e2e/              Playwright (390×844, 430×932 and desktop projects)
 ```
 
 ## Design tokens
 
-`src/styles/tokens.css` holds the §0 values: ink, yellow, cream, pale, ochre, muted, line, green; the contrast pairings (`--on-yellow`, `--on-ink`, `--on-ink-button`, …); Archivo Black and Archivo; the highlight bar; radii, grid, spacing, motion and the focus ring, with the type scale, button heights, circle sizes and the mobile nav and strip heights read from the mockups in `design/`. The page body is white and the hero, nav and cards take cream, as the mockups set them. Components use tokens, never raw values. Five rules are enforced by `pnpm lint:css` rather than documented:
+`sites/mcd2/tokens.css` holds the §0 values: ink, yellow, cream, pale, ochre, muted, line, green; the contrast pairings (`--on-yellow`, `--on-ink`, `--on-ink-button`, …); Archivo Black and Archivo; the highlight bar; radii, grid, spacing, motion and the focus ring, with the type scale, button heights, circle sizes and the mobile nav and strip heights read from the mockups in `design/`. The page body is white and the hero, nav and cards take cream, as the mockups set them. Components use tokens, never raw values. Five rules are enforced by `pnpm lint:css` rather than documented:
 
 - sentence case everywhere: no `text-transform: uppercase`
 - never italics
@@ -69,13 +79,13 @@ tests/e2e/              Playwright (390×844, 430×932 and desktop projects)
 
 ## Add a page
 
-Pages are MDX files under `content/<section>/<slug>.mdx`. The route comes from the `slug` in the frontmatter, not the folder. Adding a page is "add a file, open a PR"; every PR gets a Vercel preview.
+Pages are MDX files under `sites/<site>/content/<section>/<slug>.mdx`. The route comes from the `slug` in the frontmatter, not the folder. Adding a page is "add a file, open a PR"; every PR gets a Vercel preview.
 
 ```bash
 pnpm new-page --template pillar --slug /accident-recovery/ --title "Accident recovery"
 ```
 
-That copies the template's lorem-ipsum skeleton from `content/_templates/` as a draft. Write the page, remove `draft: true`, open a PR. Frontmatter fields (appendix §10):
+That copies the template's lorem-ipsum skeleton from the site's `content/_templates/` as a draft. Write the page, remove `draft: true`, open a PR. Frontmatter fields (appendix §10):
 
 | Field | Purpose |
 |---|---|
@@ -103,13 +113,13 @@ See `docs/tracking.md`: 2.0's own GTM container loads only after consent, the ba
 
 ## Add an insurer landing page
 
-Landing pages live at `/claim/<slug>/`, one JSON file each in `src/data/landing/`, rendered by `src/templates/LandingPage.tsx` from `design/mcd-2-0-goskippy-landing*.html`. Copy `goskippy.json`, change `slug`, `insurer`, `title`, `description`, `h1` and (if needed) `h2` and `mobileSub`, and the page builds. Rules that hold in code:
+Landing pages live at `/claim/<slug>/`, one JSON file each in `sites/<site>/landing/`, rendered by `src/templates/LandingPage.tsx` from `design/mcd-2-0-goskippy-landing*.html`. Copy `goskippy.json`, change `slug`, `insurer`, `title`, `description`, `h1` and (if needed) `h2` and `mobileSub`, and the page builds. Rules that hold in code:
 
 - The insurer name may appear only in the H1 and the independence line (the template renders the line from `insurer`). `validateLanding` fails the build if it turns up in the description, H2, sub line or facts.
 - Every `/claim/*` page, like every other page, is `noindex, nofollow` (header and meta) and canonical to itself.
 - The independence line renders directly under the hero and strip.
 - Sourced facts go in `facts[]` with `label`, `theirs`, `ours`, `source`, `sourceUrl` and `checkedOn`, rendered verbatim with the date. Leave the array empty and the section does not render.
-- Proof claims (the wait row, the 90-minute card, the header chip) follow `src/data/claims.json` as everywhere else.
+- Proof claims (the wait row, the 90-minute card, the header chip) follow the site's `claims.json` as everywhere else.
 
 `tests/e2e/landing.spec.ts` covers all of it, including the fold lock at 390×844 and 430×932.
 
