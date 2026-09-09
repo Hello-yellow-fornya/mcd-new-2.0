@@ -1,5 +1,5 @@
 /**
- * Online Claims Report copy, in one place: the signed-off pages in
+ * Claims Report Line copy, in one place: the signed-off pages in
  * design/ocr/ with the brief's rules applied. "Report your accident" on
  * primary buttons, "Or report it online" on the outlined one; nothing says or
  * implies that only non-fault drivers are welcome; every benefit is conditioned on the
@@ -97,7 +97,7 @@ export const ways = {
   sub: 'Your insurer’s claims department is paid by your insurer. Ours is paid by the insurer of the driver who hit you, which is why it costs you nothing.',
   newWay: {
     eyebrow: 'The new way',
-    h3: 'Report it to Online Claims Report',
+    h3: 'Report it to Claims Report Line',
     items: [
       'Report it online in minutes, or speak to a UK-based handler',
       'One named person, whether it was your fault or not',
@@ -169,10 +169,10 @@ export const theCatch = {
 } as const;
 
 export const independence = {
-  generic: 'Independent accident management company. Not an insurer. Online Claims Report helps drivers with any insurer claim from the driver who hit them.',
+  generic: 'Independent accident management company. Not an insurer. Claims Report Line helps drivers with any insurer claim from the driver who hit them.',
   /** Landing pages name the insurer here and in the H1 only. */
   forInsurer: (insurer: string) =>
-    `Independent accident management company. Not ${insurer}, not an insurer. Online Claims Report helps drivers with any insurer claim from the driver who hit them.`,
+    `Independent accident management company. Not ${insurer}, not an insurer. Claims Report Line helps drivers with any insurer claim from the driver who hit them.`,
 } as const;
 
 /**

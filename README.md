@@ -29,14 +29,14 @@ pnpm snapshot       # compares a running `pnpm start -p 3100` with tests/snapsho
 
 The repo builds more than one site from the same components, API client, consent, lint and tests. Each site is a folder in `sites/` holding what is its own: `site.ts` (name, legal line, phone, the `source` it posts to the claims API), `copy.ts`, `tokens.css`, `fonts.ts`, `home.tsx`, `content/` (its MDX pages, so its page list), `landing/`, `claims.json`, `reviews.json` and its icon sources.
 
-- `NEXT_PUBLIC_SITE` selects the site (`mcd2`, Claims 24/7, is the default; `ocr` is Online Claims Report). `next.config.ts` inlines the resolved id and points `@site/*` at `sites/<id>/`; a Vercel build of an `ocr/…` branch is the OCR site when the variable is unset.
+- `NEXT_PUBLIC_SITE` selects the site (`mcd2`, Claims 24/7, is the default; `ocr` is Claims Report Line). `next.config.ts` inlines the resolved id and points `@site/*` at `sites/<id>/`; a Vercel build of an `ocr/…` branch is the OCR site when the variable is unset.
 - `pnpm site:assets` (predev, prebuild) writes the site's icons: `src/app/icon.svg`, `apple-icon.png`, `favicon.ico`, `public/favicons/` and `public/logo/`. They are build output and gitignored.
 - A second Vercel project from this repo builds the other site: set `NEXT_PUBLIC_SITE`, `NEXT_PUBLIC_SITE_URL` (its own `.vercel.app` URL) and `NEXT_PUBLIC_GTM_ID` there, with deployment protection on.
 - `tests/snapshots/mcd2-routes.json` hashes every route's markup and stylesheet rules and every generated asset; `tests/e2e/unchanged.spec.ts` fails if a build serves anything different. Regenerate it only after a reviewed change to that site.
 
-### Online Claims Report (`sites/ocr/`)
+### Claims Report Line (`sites/ocr/`)
 
-The third door: the same company and claims API, where the accident is reported online whoever was at fault. Design in `design/ocr/` (the one-page brand guidelines and the three signed-off pages); tokens in `sites/ocr/tokens.css`, Inter 400/600/700/900 self-hosted in `sites/ocr/fonts/`, the wordmark as live text (`sites/ocr/logo.tsx`), line icons (`sites/ocr/sprite.tsx`), the "OCR" tile icons (`sites/ocr/icons/`, PNGs rendered once with `node sites/ocr/icons/render.mjs`).
+The brand is Claims Report Line (claimsreportline.co.uk); the site id and the claims API source stay `ocr`. The third door: the same company and claims API, where the accident is reported online whoever was at fault. Design in `design/ocr/` (the one-page brand guidelines and the three signed-off pages); tokens in `sites/ocr/tokens.css`, Inter 400/600/700/900 self-hosted in `sites/ocr/fonts/`, the wordmark as live text (`sites/ocr/logo.tsx`), line icons (`sites/ocr/sprite.tsx`), the "OCR" tile icons (`sites/ocr/icons/`, PNGs rendered once with `node sites/ocr/icons/render.mjs`).
 
 - Pages: the homepage (`home.tsx`), `/report/` and `/report/thank-you/` (`report.tsx`, the conversion trigger), `/claim/<insurer>/` from `landing/*.json` (`landing.tsx`), and about, contact and the legal set from `content/utility/`. `/claim-now/` and `/styleguide/` are Claims 24/7's and 404 here.
 - The report form posts registration, name and mobile to `/api/claim-start/`, which forwards to the claims API with `source: "ocr"`.
@@ -67,7 +67,7 @@ The Vercel project is **`mcd-new-2-0`** (team `fornya`), production at `https://
 CLAUDE.md               the build brief
 design/                 signed-off 2.0 mockups, nav and font options, the logo; the 1.0 tpl-*.html template mockups and the sitemap
 sites/mcd2/             Claims 24/7: site.ts, copy.ts, tokens.css, home.tsx, content/ (MDX pages), landing/, claims.json, reviews.json
-sites/ocr/              Online Claims Report, the same shape
+sites/ocr/              Claims Report Line, the same shape
 content.rules.json      content lint rules (appendix §10)
 scripts/                lint-content.mjs, lint-css.mjs, site-assets.mjs, snapshot-routes.mjs
 src/app/                App Router routes and global CSS

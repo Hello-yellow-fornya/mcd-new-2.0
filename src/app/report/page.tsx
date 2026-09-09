@@ -8,7 +8,7 @@ export const metadata: Metadata = {
   alternates: { canonical: '/report/' },
 };
 
-/** /report/ (Online Claims Report): the report form as a full page. On other sites the route is not found. */
+/** /report/ (Claims Report Line): the report form as a full page. On other sites the route is not found. */
 export default function Route() {
   return <ReportPage />;
 }

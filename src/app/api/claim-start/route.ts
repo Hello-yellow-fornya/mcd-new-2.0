@@ -54,7 +54,7 @@ export async function POST(req: Request) {
     placement: String(body.placement ?? 'claim-now'),
     path: String(body.path ?? '').slice(0, 200),
     startedAt: new Date().toISOString(),
-    // The report form (Online Claims Report) sends a name and a mobile; the reg box sends neither.
+    // The report form (Claims Report Line) sends a name and a mobile; the reg box sends neither.
     ...(name ? { name } : {}),
     ...(mobile ? { mobile } : {}),
   };

@@ -1,7 +1,7 @@
 import { test, expect, type Page } from '@playwright/test';
 import { onlySite } from '../lib/site';
 
-// The Online Claims Report homepage (design/ocr/ocr-homepage-concept.html
+// The Claims Report Line homepage (design/ocr/ocr-homepage-concept.html
 // and ocr-homepage-mobile.html) and the layout rulebook
 // (design/MCD-layout-rules.md) as assertions: the fold-locked mobile hero
 // with one flexible gap and its last element on the fold at 390×844 and
@@ -41,9 +41,9 @@ test('section order and the FAQ: how → not to a queue → who → the catch wi
   await expect(page.locator('[data-final-cta] h2')).toContainText('sorts the lot.');
 });
 
-test('the wordmark is live text in Inter Black, tracked −4.5%, "Online" in green', async ({ page }) => {
+test('the wordmark is live text in Inter Black, tracked −4.5%, "Claims" in green', async ({ page }) => {
   const mark = page.locator('[data-site-header] [data-logo]').first();
-  await expect(mark).toHaveText('Online Claims Report');
+  await expect(mark).toHaveText('Claims Report Line');
   expect(await mark.evaluate((e) => getComputedStyle(e).fontWeight)).toBe('900');
   expect(await mark.evaluate((e) => getComputedStyle(e).fontFamily)).toMatch(/inter|__variable|font-body|Inter/i);
   const size = await mark.evaluate((e) => parseFloat(getComputedStyle(e).fontSize));

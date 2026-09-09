@@ -1,6 +1,6 @@
 {
   "$schema": "../../scripts/content.rules.schema.json",
-  "$comment": "Online Claims Report: the shared rules in content.rules.json plus this site's. Copy files (.ts, .tsx, .json) are linted by their string literals, so keep each copy item on one line.",
+  "$comment": "Claims Report Line: the shared rules in content.rules.json plus this site's. Copy files (.ts, .tsx, .json) are linted by their string literals, so keep each copy item on one line.",
   "extensions": [".mdx", ".md", ".ts", ".tsx", ".json"],
   "ignore": ["reviews.json", "claims.json", "content.rules.json"],
   "bannedPhrases": ["Your insurer has a claims department", "stress-free", "navigating", "non-fault only"],

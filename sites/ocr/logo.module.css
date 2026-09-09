@@ -15,7 +15,7 @@
   color: var(--navy);
 }
 
-.online {
+.first {
   color: var(--green);
 }
 
@@ -28,9 +28,9 @@
   color: var(--navy);
 }
 
-.green .online,
-.monoInk .online,
-.monoWhite .online {
+.green .first,
+.monoInk .first,
+.monoWhite .first {
   color: inherit;
 }
 
