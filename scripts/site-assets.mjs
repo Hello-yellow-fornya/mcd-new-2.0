@@ -6,7 +6,7 @@
  * not source (.gitignore), because each site writes its own:
  *
  *   mcd2  scripts/logo-build.mjs outlines the Claims 24/7 suite in design/logo
- *   ocr   the same, then sites/ocr/icons/build.mjs writes "OCR" in Inter Black on a navy tile over it
+ *   ocr   the same, then sites/ocr/icons/build.mjs writes "CRL" in Inter Black on a navy tile over it
  */
 import { spawnSync } from 'node:child_process';
 import { dirname, join } from 'node:path';

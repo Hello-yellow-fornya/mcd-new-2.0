@@ -2,7 +2,7 @@ import { test } from 'node:test';
 import assert from 'node:assert/strict';
 import { lintText, loadRules, mergeRules, rulesFor, codeProse } from '../../scripts/lint-content.mjs';
 
-// Online Claims Report's copy rules (sites/ocr/content.rules.json): every
+// Claims Report Line's copy rules (sites/ocr/content.rules.json): every
 // non-fault benefit conditioned on the same line, the claims-department band
 // banned, copy files linted by their string literals.
 const rules = rulesFor('sites/ocr/copy.ts');

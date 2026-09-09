@@ -52,7 +52,7 @@ test('head has a static noindex meta and a canonical on the site URL', async ({ 
 });
 
 test('fonts are self-hosted: Archivo Black 400 and Archivo 400/700, nothing from Google', async ({ page }) => {
-  test.skip(SITE !== 'mcd2', 'Claims 24/7 only; tests/e2e/ocr covers Online Claims Report');
+  test.skip(SITE !== 'mcd2', 'Claims 24/7 only; tests/e2e/ocr covers Claims Report Line');
   const fontRequests: string[] = [];
   page.on('request', (r) => {
     if (r.resourceType() === 'font') fontRequests.push(r.url());
@@ -72,7 +72,7 @@ test('fonts are self-hosted: Archivo Black 400 and Archivo 400/700, nothing from
 });
 
 test('the tokens are on :root and the highlight is a bar, not a box', async ({ page }) => {
-  test.skip(SITE !== 'mcd2', 'Claims 24/7 only; tests/e2e/ocr covers Online Claims Report');
+  test.skip(SITE !== 'mcd2', 'Claims 24/7 only; tests/e2e/ocr covers Claims Report Line');
   await page.goto('/');
   const tokens = await page.evaluate(() => {
     const s = getComputedStyle(document.documentElement);
@@ -95,7 +95,7 @@ test('skip link is the first focusable element and targets main', async ({ page 
 });
 
 test('icons, manifest and the Open Graph image are served', async ({ page, request }) => {
-  test.skip(SITE !== 'mcd2', 'Claims 24/7 only; tests/e2e/ocr covers Online Claims Report');
+  test.skip(SITE !== 'mcd2', 'Claims 24/7 only; tests/e2e/ocr covers Claims Report Line');
   await page.goto('/');
   // Next lists favicon.ico first (the "247" tiles at 16 and 32) and icon.svg after it.
   await expect(page.locator('link[rel="icon"][href$="favicon.ico"]')).toHaveCount(1);
@@ -117,7 +117,7 @@ test('icons, manifest and the Open Graph image are served', async ({ page, reque
 });
 
 test('accessibility basics the audit checks: heading order holds and the eyebrow colour passes AA', async ({ page }) => {
-  test.skip(SITE !== 'mcd2', 'Claims 24/7 only; tests/e2e/ocr covers Online Claims Report');
+  test.skip(SITE !== 'mcd2', 'Claims 24/7 only; tests/e2e/ocr covers Claims Report Line');
   await page.goto('/about-us/');
   const levels = await page.locator('h1, h2, h3, h4, h5, h6').evaluateAll((hs) => hs.map((h) => Number(h.tagName[1])));
   for (let i = 1; i < levels.length; i++) expect(levels[i] - levels[i - 1], `heading ${i}`).toBeLessThanOrEqual(1);

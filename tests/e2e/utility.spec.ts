@@ -2,7 +2,7 @@ import { test, expect } from '@playwright/test';
 import { SITE, SITE_URL } from './lib/site';
 
 // About, contact and the legal set from content/utility/*.mdx.
-const name = SITE === 'ocr' ? 'Online Claims Report' : 'Claims 24/7';
+const name = SITE === 'ocr' ? 'Claims Report Line' : 'Claims 24/7';
 const pages = [
   ['/about-us/', `About ${name}`],
   ['/contact-us/', 'Contact us'],

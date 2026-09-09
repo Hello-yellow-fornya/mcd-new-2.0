@@ -53,7 +53,7 @@ test('icons and the Open Graph image are this brand’s', async ({ page, request
   expect(svg).toContain('#0E2A47');
   expect(svg).not.toContain('247');
   const manifest = await (await request.get('/manifest.webmanifest')).json();
-  expect(manifest.name).toBe('Online Claims Report');
+  expect(manifest.name).toBe('Claims Report Line');
   expect(manifest.theme_color).toBe('#0E2A47');
   for (const path of ['/favicon.ico', '/apple-icon.png', '/favicons/favicon.svg', ...[16, 32, 48, 180, 192, 512, 1024].map((s) => `/favicons/favicon-${s}.png`)]) {
     expect((await request.get(path)).status(), path).toBe(200);
@@ -68,7 +68,7 @@ test('icons and the Open Graph image are this brand’s', async ({ page, request
 test('the legal line names the entity as a placeholder and carries no FCA line', async ({ page }) => {
   await page.goto('/');
   const legal = page.locator('[data-site-footer] p').last();
-  await expect(legal).toContainText('Motor Claims Department Ltd, trading as Online Claims Report');
+  await expect(legal).toContainText('Motor Claims Department Ltd, trading as Claims Report Line');
   await expect(legal).not.toContainText('FCA');
   await expect(legal).toContainText('[00000000]');
 });

@@ -1,5 +1,5 @@
 /**
- * The Online Claims Report icon: "OCR" in Inter Black, white on a navy tile
+ * The Claims Report Line icon: "CRL" in Inter Black, white on a navy tile
  * (rounded 22%), the letters outlined from the self-hosted font so nothing
  * depends on an installed face. tileSvg(size) returns the SVG text.
  */
@@ -16,7 +16,7 @@ const TRACKING = -0.045; /* em, the wordmark's tracking */
 const SPAN = 0.78; /* the word spans 78% of the tile */
 
 export function tileSvg(size = 512) {
-  const text = 'OCR';
+  const text = 'CRL';
   const probe = font.getPath(text, 0, 0, 100, { kerning: true, letterSpacing: TRACKING }).getBoundingBox();
   const fontSize = ((size * SPAN) / (probe.x2 - probe.x1)) * 100;
   const path = font.getPath(text, 0, 0, fontSize, { kerning: true, letterSpacing: TRACKING });
