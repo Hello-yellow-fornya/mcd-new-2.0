@@ -35,7 +35,7 @@ test('the legal and informational pages carry no claim CTA, and terms does not t
     await expect(page.locator('main [data-band]'), `${path} closing band`).toHaveCount(0);
   }
   await page.goto('/terms/');
-  await expect(page.locator('[data-variant="catch"]')).toHaveCount(0);
+  await expect(page.locator('[data-variant="conditions"]')).toHaveCount(0);
   expect(await page.locator('main').innerText()).not.toMatch(/the catch/i);
 });
 

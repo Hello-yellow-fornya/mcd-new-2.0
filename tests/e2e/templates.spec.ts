@@ -157,7 +157,7 @@ test.describe('the twelve launch pages', () => {
     const themMark = table.locator('[role="row"]').nth(1).locator('[role="cell"]').nth(0).locator('span').first();
     await expect(themMark).toHaveCSS('border-top-color', 'rgb(25, 24, 15)');
     // This page no longer frames its qualifying conditions as "the catch"; it closes on the positive callout.
-    await expect(page.locator('main [data-variant="catch"]')).toHaveCount(0);
+    await expect(page.locator('main [data-variant="conditions"]')).toHaveCount(0);
     await expect(page.locator('main article [data-callout]').last()).toContainText('You will know before you commit.');
   });
 

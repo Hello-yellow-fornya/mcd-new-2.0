@@ -194,8 +194,13 @@ export const footer = {
 
 export const reviewsHead = { h2: 'What drivers say' } as const;
 
-/** The one wording for "the catch" (appendix §11, pending the company's policy): the FAQ answer, reused wherever the catch is stated. */
-export const theCatch = {
-  lead: 'The catch',
-  text: faq.items[0].a,
+/**
+ * The one wording for when the non-fault route applies and how it is paid for
+ * (appendix §11, pending the company's policy), reused wherever a page states the
+ * conditions. "The catch" is the FAQ's phrasing and stays there; everywhere else
+ * the same facts are put the way round the reader cares about.
+ */
+export const conditions = {
+  lead: 'How it costs you nothing',
+  text: 'We recover our costs from the at-fault driver’s insurer, which is why the claim costs you nothing. That applies where another driver was at fault and holds valid motor insurance, which covers most road traffic accidents. If they refuse to accept fault, we argue it for you. We check yours on the first call and tell you where you stand before you sign anything.',
 } as const;

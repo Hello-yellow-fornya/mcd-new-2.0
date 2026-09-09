@@ -98,3 +98,23 @@ test('the third-party page is laid out to the design: hero with the grid, strip,
     expect(online.y + online.height).toBeLessThanOrEqual(strip.y + 0.5);
   }
 });
+
+test('"the catch" appears only in the FAQ: every other page states the conditions the way round the reader cares about', async ({ page }, testInfo) => {
+  test.skip(testInfo.project.name !== 'desktop', 'one visit per route is enough');
+  test.setTimeout(240_000);
+  for (const path of ['/', '/claim-now/', '/claim/goskippy/', ...getLivePages().map((p) => p.frontmatter.slug)]) {
+    await page.goto(path);
+    // Open every FAQ answer, read the page, then read it again with the FAQ removed.
+    await page.locator('details').evaluateAll((els) => els.forEach((e) => ((e as HTMLDetailsElement).open = true)));
+    const withFaq = (await page.locator('main').innerText()).toLowerCase();
+    const withoutFaq = await page.locator('main').evaluate((m) => {
+      const c = m.cloneNode(true) as HTMLElement;
+      c.querySelectorAll('[data-faq], details, #faq, h2#faq + *').forEach((e) => e.remove());
+      return c.innerText.toLowerCase();
+    });
+    if (withFaq.includes('the catch')) expect(withoutFaq, `${path}: "the catch" outside the FAQ`).not.toContain('the catch');
+    // The shared conditions callout leads with the benefit, not the caveat.
+    const callout = page.locator('[data-variant="conditions"]');
+    if (await callout.count()) await expect(callout.first()).toContainText('How it costs you nothing');
+  }
+});

@@ -5,7 +5,7 @@
  * implies that only non-fault drivers are welcome; every benefit is conditioned on the
  * same line it appears, because sites/ocr/content.rules.json fails the build
  * otherwise, so keep each item on one line. The shared components read the
- * same names as Claims 24/7 (cta, nav, faq, footer, theCatch …).
+ * same names as Claims 24/7 (cta, nav, faq, footer, conditions …).
  */
 import { site } from '@/lib/site';
 import type { IconName } from '@/components/Icon/Icon';
@@ -165,8 +165,8 @@ export const finalCta = {
   text: 'Tell us what happened and we’ll get straight on it. Not your fault? Nothing to pay, nothing on your policy.',
 } as const;
 
-/** The one wording for "the catch": the FAQ answer, reused wherever the catch is stated. */
-export const theCatch = {
+/** The one wording for the conditions: "the catch" here, the FAQ answer, reused wherever the catch is stated. */
+export const conditions = {
   lead: 'The catch',
   text: faq.items[1].a,
 } as const;
@@ -220,7 +220,7 @@ export const landing = {
     h2: 'Straight answers',
     sub: 'The catch, and everything else people ask.',
     items: [
-      { q: 'What’s the catch?', a: theCatch.text },
+      { q: 'What’s the catch?', a: conditions.text },
       { q: 'Do I still have to tell my insurer?', a: 'Yes, that it happened. That’s a notification, not a claim. If it was not your fault, nothing goes on your policy.' },
       { q: 'Will my premium go up?', a: faq.items[3].a },
       { q: 'Are you an insurer?', a: 'No. We don’t sell insurance. We make it pay.' },
