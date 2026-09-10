@@ -57,8 +57,13 @@ export async function POST(req: Request) {
   if (typeof body.website === 'string' && body.website.trim() !== '') {
     return NextResponse.json({ ok: true, ref: ref() }, { status: 202 });
   }
-  const ip = req.headers.get('x-forwarded-for')?.split(',')[0].trim() || 'local';
-  if (limited(ip)) return NextResponse.json({ ok: false, error: 'Too many attempts. Call us instead.' }, { status: 429 });
+  // The cap exists to slow down the internet, so loopback is exempt: `next
+  // start` puts ::1 in x-forwarded-for for local requests, which would cap a
+  // test run at ten submissions. On Vercel the platform overwrites the header
+  // with the real client address, so this can never exempt a visitor.
+  const ip = req.headers.get('x-forwarded-for')?.split(',')[0].trim() || '';
+  const loopback = ip === '' || ip === '::1' || ip === '127.0.0.1' || ip === '::ffff:127.0.0.1';
+  if (!loopback && limited(ip)) return NextResponse.json({ ok: false, error: 'Too many attempts. Call us instead.' }, { status: 429 });
 
   const reg = compactReg(String(body.reg ?? ''));
   if (!isPlausibleReg(reg)) return NextResponse.json({ ok: false, error: 'Check the registration and try again.' }, { status: 422 });

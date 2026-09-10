@@ -54,6 +54,15 @@ export function Sprite() {
           <path d="M6 2h8l5 5v15H6z" />
           <path d="M9 11h6M9 14.5h6M9 18h4" fill="none" style={{ stroke: 'var(--ic-bg, var(--yellow))' }} strokeWidth="2" strokeLinecap="round" />
         </symbol>
+        <symbol id="i-camera" viewBox="0 0 24 24">
+          <path d="M4 8h3.2L9 5.5h6L16.8 8H20a1 1 0 0 1 1 1v9a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1V9a1 1 0 0 1 1-1z" />
+          <circle cx="12" cy="13" r="3.2" fill="var(--ic-bg, #19180F)" />
+        </symbol>
+        <symbol id="i-image" viewBox="0 0 24 24">
+          <rect x="3" y="5" width="18" height="14" rx="2" />
+          <circle cx="8.6" cy="10.2" r="1.7" fill="var(--ic-bg, #19180F)" />
+          <path d="m5 17.6 4.6-4.6 3 3L15.6 13l4.4 4.6z" fill="var(--ic-bg, #19180F)" />
+        </symbol>
         <symbol id="i-person" viewBox="0 0 24 24">
           <circle cx="12" cy="7.5" r="4.5" />
           <path d="M3.5 21.5c0-4.7 3.8-8 8.5-8s8.5 3.3 8.5 8z" />
