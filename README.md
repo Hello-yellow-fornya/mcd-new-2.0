@@ -46,6 +46,12 @@ The brand is Claims Report Line (claimsreportline.co.uk); the site id and the cl
 
 ## Environments and staging
 
+> **The Claims 24/7 site now runs from `Hello-yellow-fornya/rta_claims`**, which
+> serves `claims247.co.uk` alongside the brand pages and brand subdomains that
+> already lived on that domain. Changes to the live site belong there; this repo
+> keeps the design sources, the build history and Claims Report Line. See
+> `docs/handover-claims247.md`.
+
 The Vercel project is **`mcd-new-2-0`** (team `fornya`), production at `https://mcd-new-2-0.vercel.app`. There is no custom domain, and there is no Railway service for 2.0.
 
 | | production (`main`, `.vercel.app`) | preview (every branch and PR) |

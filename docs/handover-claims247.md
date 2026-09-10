@@ -1,5 +1,14 @@
 # Handover: Claims 24/7 (claims247.co.uk)
 
+> **The site now runs from `Hello-yellow-fornya/rta_claims`.** It was ported
+> into that repo (under `claims247/`) and serves `claims247.co.uk` from the
+> deployment that already owns the brand pages and the brand subdomains, so
+> the whole domain is one project. Content, components and design changes for
+> the live site belong there — see "The Claims 24/7 marketing site" in its
+> README. This repo keeps the design sources in `design/`, the build history,
+> and the Claims Report Line site in `sites/ocr/`. Everything below describes
+> the site as it was handed over; the hosting section is superseded.
+
 For the session that builds and hosts the site on its own domain. Repo: `Hello-yellow-fornya/mcd-new-2.0`, branch `main`. Everything below is merged; the last commit at handover is the one this file lands in.
 
 ## What this repo is
