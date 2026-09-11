@@ -40,6 +40,15 @@ export function Sprite() {
           <path {...line} d="M9 8h6M9 12h6M9 16h3" />
           <path {...line} d="M15 15.5l1.5 1.5 3-3" />
         </symbol>
+        <symbol id="i-camera" viewBox="0 0 24 24">
+          <path {...line} d="M4 8h3.2L9 5.5h6L16.8 8H20a1 1 0 0 1 1 1v9a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1V9a1 1 0 0 1 1-1z" />
+          <circle {...line} cx="12" cy="13" r="3.2" />
+        </symbol>
+        <symbol id="i-image" viewBox="0 0 24 24">
+          <rect {...line} x="3" y="5" width="18" height="14" rx="2" />
+          <circle {...line} cx="8.6" cy="10.2" r="1.6" />
+          <path {...line} d="m5 17.6 4.6-4.6 3 3L15.6 13l4.4 4.6" />
+        </symbol>
         <symbol id="i-person" viewBox="0 0 24 24">
           <circle {...line} cx="12" cy="8" r="4" />
           <path {...line} d="M4 21c0-4 3.6-7 8-7s8 3 8 7" />

@@ -1,6 +1,7 @@
 'use client';
 
 import { useEffect, useState } from 'react';
+import { ClaimFlow } from '@/components/ClaimFlow/ClaimFlow';
 import { RegBox } from '@/components/RegBox/RegBox';
 import { track } from '@/lib/analytics';
 import { readCampaign } from '@/lib/campaign';
@@ -64,14 +65,14 @@ export function ClaimStart() {
         </div>
       )}
       {/*
-        Claim flow mount point, exactly as in 1.0. Ollie's question flow mounts
-        here and, when complete, sends the visitor to /claim-now/thank-you/?ref=…
-        which fires the conversion. Nothing in this repo renders inside it.
+        The claim flow, in the slot 1.0 mounts its own into. It follows the reg
+        box: the questions open once the reg is accepted, and the reference and
+        reg travel with the submission. On submit it goes to
+        /claim-now/thank-you/?ref=…, which fires the conversion. The data-*
+        attributes stay so anything that expects 1.0's contract still finds them.
       */}
       <div id="claim-flow" data-claim-flow-mount="" data-ref={state.status === 'done' ? state.ref : undefined} data-reg={state.status === 'done' ? state.reg : undefined} className={styles.slot}>
-        {process.env.NEXT_PUBLIC_VERCEL_ENV !== 'production' && state.status === 'done' && (
-          <p className={styles.slotNote}>[Claim flow mounts here: #claim-flow, with data-ref and data-reg set on this element.]</p>
-        )}
+        {state.status === 'done' && <ClaimFlow reg={state.reg} claimRef={state.ref} />}
       </div>
     </div>
   );
